@@ -1,0 +1,4 @@
+node_modules/
+*.sw[op]
+package-lock.json
+move.sh
