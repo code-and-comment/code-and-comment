@@ -1,0 +1,10 @@
+.outer-file {
+  font-size: 12px;
+  width: 1000px;
+  height: 100%;
+  .file {
+    overflow-x: auto;
+    border: solid 1px rgba(24, 24, 24, 0.2);
+    margin-bottom: 36px;
+  }
+}

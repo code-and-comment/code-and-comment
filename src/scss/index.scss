@@ -1,0 +1,22 @@
+@import 'start';
+@import 'edit';
+@import 'line';
+@import 'header';
+@import 'publish';
+@import 'navigator';
+@import 'view';
+
+html, body {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
