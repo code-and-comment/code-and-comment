@@ -26,6 +26,8 @@ class Start extends Component {
         <Header />
         {!loading && [
           (<div key='1'>
+            The status of this project is alpha.<br/>
+            Many breaking changes will be added to this application.<br/>  
             Input the file url in Github<br/>
             Example:<br/>
             https://github.com/developit/preact/blob/377e31b5c6d42c4ca92085571d5d4f0c9dbe4ba2/src/vdom/component.js<br/>
