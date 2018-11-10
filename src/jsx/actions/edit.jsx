@@ -16,10 +16,16 @@ const actions = () => ({
     return initialState()
   },
   publish(state, event, route = _route, location = window.location) {
+    const comments = {}
+    state.comments.forEach((c, i) => {
+      if (c) {
+        comments[i + ''] = c
+      }
+    })
     const data = {
       git: state.git,
       path: state.path,
-      comments: state.comments,
+      comments,
     }
     const data_string = Base64.encodeURI(JSON.stringify(data))
     const viewUrl = `${location.origin}${location.pathname}#/view?data=${data_string}`

@@ -32,7 +32,7 @@ describe('actions/view', () => {
     it('returns state', async function() {
       const git = 'https://api.github.com/repos/code-and-comment/test/git/blobs/df8ea659b9e30b8c6e0f5efd686e0165670524b5'
       const path = '/code-and-comment/test/blob/master/foo/bar.js'
-      const paramJson = Base64.encodeURI(`{"git": "${git}", "path": "${path}", "comments": ["", "a", "b"]}`)
+      const paramJson = Base64.encodeURI(`{"git": "${git}", "path": "${path}", "comments": { "1": "a", "2": "b" }}`)
       const route = spy()
       const content = 'ああああ\n1\n2'
       const base64Content = Base64.encode(content)
