@@ -8,6 +8,7 @@
 
 ### Note
 
+The status of this project is alpha.
 `https://code-and-comment.github.io/code-and-comment/` is demo site.  
 If you want to use this application as product, you should serve it.
 
