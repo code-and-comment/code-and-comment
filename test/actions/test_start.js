@@ -49,7 +49,7 @@ describe('actions/start', () => {
         git,
         path: '/code-and-comment/test/blob/master/foo/bar.js',
         lines: ['ああああ', '1', '2'],
-        comments: ['', '', ''],
+        comments: {},
         networkError: false,
         urlError: false
       })

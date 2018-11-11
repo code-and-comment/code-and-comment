@@ -6,8 +6,8 @@ import acitons from '../../src/jsx/actions/edit.jsx'
 describe('actions/edit', () => {
   describe('updateComment', () => {
     it('changes comments', () => {
-      const result = acitons().updateComment({ comments: ['', 'a', 'b'] }, 1, 'A')
-      expect(result).to.deep.equal({ comments: ['', 'A', 'b'] })
+      const result = acitons().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'A')
+      expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
     })
   })
 
@@ -21,7 +21,7 @@ describe('actions/edit', () => {
         git: '',
         path: '',
         lines: [],
-        comments: [],
+        comments: {},
         viewUrl: '',
         loading: false,
         networkError: false,
@@ -36,7 +36,7 @@ describe('actions/edit', () => {
       const state = {
         git: 'https://api.github.com/repos/code-and-comment/test/git/blobs/df8ea659b9e30b8c6e0f5efd686e0165670524b5',
         path: '/code-and-comment/test/bar',
-        comments: ['', 'a', 'b']
+        comments: { '0': '', '1': 'a',  '2': 'b' }
       }
       const location = {
         origin: 'http://example.com/',
