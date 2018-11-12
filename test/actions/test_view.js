@@ -52,7 +52,7 @@ describe('actions/view', () => {
         git: 'https://api.github.com/repos/code-and-comment/test/git/blobs/df8ea659b9e30b8c6e0f5efd686e0165670524b5',
         path: '/code-and-comment/test/blob/master/foo/bar.js',
         lines: ['ああああ', '1', '2'],
-        comments: ['', 'a', 'b'],
+        comments: { '1': 'a', '2': 'b' },
         networkError: false,
         urlError: false 
       })

@@ -32,17 +32,11 @@ const actions = () => ({
     if (data) {
       const { git, path, comments } = param
       const lines = Base64.decode(data.content).split('\n')
-      const _comments = []
-      _comments.length = lines.length
-      _comments.fill('')
-      Object.keys(comments).forEach((n) => {
-        _comments[n - 0] = comments[n]
-      })
       return {
         git,
         path,
         lines,
-        comments: _comments,
+        comments,
         networkError: false,
         urlError: false
       }

@@ -34,9 +34,7 @@ const actions = () => ({
       const git = data._links.git
       const path = url.substring(18)
       const lines = Base64.decode(data.content).split('\n')
-      const comments = []
-      comments.length = lines.length
-      comments.fill('')
+      const comments = {}
       return {
         loading: false,
         git,

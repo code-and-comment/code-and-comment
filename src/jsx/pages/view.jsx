@@ -21,7 +21,7 @@ function View({ lines, comments, path, back, getFile }) {
           {lines.map((code, index) => <Line 
             key={index}
             code={code}
-            comment={comments[index]}
+            comment={comments[index + '']}
             index={index}
             editable={false}/>
           )}

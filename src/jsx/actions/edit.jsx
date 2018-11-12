@@ -6,9 +6,9 @@ import { initialState } from '../store.jsx'
 
 const actions = () => ({
   updateComment({comments}, index, comment) {
-    comments[index] = comment
+    comments[index + ''] = comment
     return {
-      comments: [...comments]
+      comments: Object.assign({}, comments)
     }
   },
   back(state, event, route = _route) {
@@ -17,9 +17,9 @@ const actions = () => ({
   },
   publish(state, event, route = _route, location = window.location) {
     const comments = {}
-    state.comments.forEach((c, i) => {
-      if (c) {
-        comments[i + ''] = c
+    Object.keys(state.comments).forEach((index) => {
+      if (state.comments[index]) {
+        comments[index] = state.comments[index]
       }
     })
     const data = {

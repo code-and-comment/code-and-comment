@@ -19,14 +19,14 @@ function Edit({ lines, comments, path, updateComment, back, publish }) {
         leftClick={back}
         rightLabel={'Publish->'}
         rightClick={publish}
-        rightDisabled={comments.every(c => c === '')}
+        rightDisabled={Object.keys(comments).length === 0}
       />
       <div>{ path }</div>
       <div className="file">
         {lines.map((code, index) => <Line 
           key={index}
           code={code}
-          comment={comments[index]}
+          comment={comments[index + '']}
           index={index}
           updateComment={updateComment}
           editable={true}/>

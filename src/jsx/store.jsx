@@ -6,7 +6,7 @@ export function initialState() {
     git: '',
     path: '',
     lines: [],
-    comments: [],
+    comments: {},
     viewUrl: '',
     loading: false,
     networkError: false,
