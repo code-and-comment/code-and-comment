@@ -2,3 +2,5 @@ node_modules/
 *.sw[op]
 package-lock.json
 move.sh
+dist/app.js
+dist/app.js.map
