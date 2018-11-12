@@ -28,7 +28,7 @@ function View({ lines, comments, path, back, getFile }) {
         </div>)
       ];
       setTimeout(() => {
-        document.querySelector('.comment').scrollIntoView({})
+        document.querySelector('.comment').scrollIntoView({ block: 'center' })
       }, 0)
   }
   else {
