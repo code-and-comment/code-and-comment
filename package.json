@@ -1,8 +1,8 @@
 {
   "name": "code-and-comment",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "38elements",
-  "description": "Code and Comment is the application which add the comments to a file in Github.",
+  "description": "Code and Comment is the application to add the comments to a file in Github.",
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run build:minify",
     "build:css": "node-sass src/scss/index.scss dist/app.css --output-style compressed",
