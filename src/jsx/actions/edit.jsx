@@ -18,6 +18,7 @@ const actions = () => ({
   publish(state, event, route = _route, location = window.location) {
     const comments = {}
     Object.keys(state.comments).forEach((index) => {
+      // for empty string
       if (state.comments[index]) {
         comments[index] = state.comments[index]
       }
