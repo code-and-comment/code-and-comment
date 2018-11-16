@@ -19,7 +19,7 @@ function Edit({ lines, comments, path, updateComment, back, publish }) {
         leftClick={back}
         rightLabel={'Publish->'}
         rightClick={publish}
-        rightDisabled={Object.keys(comments).length === 0}
+        rightDisabled={!comments.length && !Object.values(comments).some(c => c)}
       />
       <div>{ path }</div>
       <div className="file">
