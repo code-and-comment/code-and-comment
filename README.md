@@ -8,7 +8,7 @@
 
 ### Note
 
-The status of this project is pre-alpha.  
+The status of this application is pre-alpha.  
 Many breaking changes will be added to this application.  
 `https://code-and-comment.github.io/code-and-comment/` is demo site.  
 If you want to use this application as product, you should serve it.

@@ -26,7 +26,7 @@ class Start extends Component {
         <Header />
         {!loading && [
           (<div key='1'>
-            The status of this project is pre-alpha.<br/>
+            The status of this application is pre-alpha.<br/>
             Many breaking changes will be added to this application.<br/>  
             Input the file url in Github<br/>
             Example:<br/>

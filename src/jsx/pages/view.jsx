@@ -2,6 +2,7 @@ import { h } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/view.jsx'
+import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
@@ -12,12 +13,13 @@ function View({ lines, comments, path, back, getFile }) {
   if (lines.length) {
       content = [
         (<Navigator
-          key={'navigator'}
+          key='navigator'
           leftLabel={'<-Edit'}
           leftClick={back}
         />),
-        <div key={'path'}>{ path }</div>,
-        (<div key={'file'} className="file">
+        <div key='comment-list'><CommentList /></div>,
+        <div key='path'>{ path }</div>,
+        (<div key='file' className="file">
           {lines.map((code, index) => <Line 
             key={index}
             code={code}
