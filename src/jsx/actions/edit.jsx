@@ -6,7 +6,13 @@ import { initialState } from '../store.jsx'
 
 const actions = () => ({
   updateComment({comments}, index, comment) {
-    comments[index + ''] = comment
+    index += ''
+    if (comment === '') {
+      delete comments[index]
+    }
+    else {
+      comments[index] = comment
+    }
     return {
       comments: Object.assign({}, comments)
     }
@@ -16,17 +22,10 @@ const actions = () => ({
     return initialState()
   },
   publish(state, event, route = _route, location = window.location) {
-    const comments = {}
-    Object.keys(state.comments).forEach((index) => {
-      // for empty string
-      if (state.comments[index]) {
-        comments[index] = state.comments[index]
-      }
-    })
     const data = {
       git: state.git,
       path: state.path,
-      comments,
+      comments: state.comments,
     }
     const data_string = Base64.encodeURI(JSON.stringify(data))
     const viewUrl = `${location.origin}${location.pathname}#/view?data=${data_string}`
