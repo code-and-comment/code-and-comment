@@ -7,8 +7,16 @@ import { initialState } from '../store.jsx'
 const actions = () => ({
   updateComment({comments}, index, comment) {
     index += ''
-    if (comment === '') {
-      delete comments[index]
+    if (comments[index] === comment) {
+      return
+    }
+    else if (comment === '') {
+      if (comments[index]) {
+        delete comments[index]
+      }
+      else {
+        return
+      }
     }
     else {
       comments[index] = comment

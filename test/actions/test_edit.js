@@ -12,6 +12,14 @@ describe('actions/edit', () => {
       result = acitons().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, '')
       expect(result).to.deep.equal({ comments: { '2': 'b' } })
     })
+
+    it('return undefined if comments do not change', () => {
+      let result = acitons().updateComment({ comments: { '2': 'b' } }, 1, '')
+      expect(result).to.be.undefined
+
+      result = acitons().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'a')
+      expect(result).to.be.undefined
+    })
   })
 
   describe('back', () => {
