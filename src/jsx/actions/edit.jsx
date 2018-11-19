@@ -6,6 +6,7 @@ import { initialState } from '../store.jsx'
 
 const actions = () => ({
   updateComment({comments}, index, comment) {
+    comment = comment.trim()
     index += ''
     if (comments[index] === comment) {
       return
