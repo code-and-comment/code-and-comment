@@ -29,7 +29,7 @@ class Start extends Component {
             The status of this application is pre-alpha.<br/>
             Many breaking changes will be added to this application.<br/>  
             This is demo site.<br/>
-            If you want to use this application as product, you should serve it.<br/>
+            If you want to use this application as product, you should host this application.<br/>
             Input the file url in Github<br/>
             Example:<br/>
             https://github.com/developit/preact/blob/377e31b5c6d42c4ca92085571d5d4f0c9dbe4ba2/src/vdom/component.js<br/>
