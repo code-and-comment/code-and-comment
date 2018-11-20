@@ -1,6 +1,8 @@
 import { h, Component } from 'preact'
 import marked from 'marked'
 
+import CommentList from '../parts/comment-list.jsx'
+
 marked.setOptions({
   sanitize: true
 })
@@ -43,6 +45,7 @@ class Comment extends Component {
       return (
         <div className="comment">
           <div className="display" dangerouslySetInnerHTML={ { __html: marked(comment) }} />
+          <CommentList />
         </div>
       )
     }
