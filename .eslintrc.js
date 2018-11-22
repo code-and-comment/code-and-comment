@@ -1,18 +1,21 @@
 module.exports = {
   parser: 'babel-eslint',
-  'env': {
-    'browser': true,
-    'es6': true,
-    'mocha': true
+  globals: {
+    global: true,
+  },
+  env: {
+    browser: true,
+    es6: true,
+    mocha: true
   },
   plugins: ['react'],
-  'extends': ['eslint:recommended', 'plugin:react/recommended'],
-  'parserOptions': {
-    'ecmaFeatures': {
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  parserOptions: {
+    ecmaFeatures: {
       'jsx': true
     },
-    'ecmaVersion': 2018,
-    'sourceType': 'module'
+    ecmaVersion: 2018,
+    sourceType: 'module'
   },
   settings: {
     react: {
@@ -20,12 +23,12 @@ module.exports = {
       version: '16.0',
     },
   },
-  'rules': {
+  rules: {
     'object-curly-spacing': [
       'error',
       'always'
     ],
-    'indent': [
+    indent: [
       'error',
       2
     ],
@@ -33,11 +36,11 @@ module.exports = {
       'error',
       'unix'
     ],
-    'quotes': [
+    quotes: [
       'error',
       'single'
     ],
-    'semi': [
+    semi: [
       'error',
       'never'
     ],
