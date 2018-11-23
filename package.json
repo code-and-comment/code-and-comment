@@ -1,6 +1,6 @@
 {
   "name": "code-and-comment",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "38elements",
   "description": "Code and Comment is the application to add the comments to a file in Github.",
   "scripts": {
