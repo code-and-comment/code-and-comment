@@ -7,7 +7,7 @@ export function onChange(event) {
     return
   }
   const selector = `.line:nth-child(${number})`
-  document.querySelector(selector).scrollIntoView()
+  document.querySelector(selector).scrollIntoView({ center: true })
 }
 
 export function CommentList({ comments, lines }) {
