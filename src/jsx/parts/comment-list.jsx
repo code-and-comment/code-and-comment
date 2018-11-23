@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-function onChange(event) {
+export function onChange(event) {
   const number = event.target.value
   if (number === '0') {
     return
@@ -10,7 +10,7 @@ function onChange(event) {
   document.querySelector(selector).scrollIntoView()
 }
 
-function CommentList({ comments, lines }) { 
+export function CommentList({ comments, lines }) {
   return (
       <select className="comment-list" onChange={onChange}>
         <option value="0">Select comment</option>
