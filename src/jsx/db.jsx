@@ -8,9 +8,12 @@ function onUpgradeneeded(event) {
     autoIncrement: true
   })
 
-  store.createIndex('git', ['git'], {
-    unique: false,
-    multiEntry: false,
+  const indexes = ['git', 'repository', 'path', 'updated_at']
+  indexes.forEach((key) => {
+    store.createIndex(key, [key], {
+      unique: false,
+      multiEntry: false,
+    })
   })
 }
 
