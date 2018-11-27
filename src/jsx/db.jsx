@@ -39,3 +39,10 @@ export async function getDB() {
   db = await p
   return db
 }
+
+
+export function getObjectStore(db) {
+  const transaction = db.transaction(['CodeAndComment'], 'readwrite')
+  // TODO add transaction.onsuccess() and transaction.onerror()
+  return transaction.objectStore('CodeAndComment')
+}
