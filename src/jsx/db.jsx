@@ -46,3 +46,20 @@ export function getObjectStore(db) {
   // TODO add transaction.onsuccess() and transaction.onerror()
   return transaction.objectStore('CodeAndComment')
 }
+
+
+export async function addRecord(objectStore, data) {
+  data.created_at = data.updated_at = new Date()
+  const p = new Promise((resolve, reject) => {
+    const request = objectStore.add(data)
+    request.addEventListener('success', () => {
+      resolve(true)
+    })
+
+    request.addEventListener('error', () => {
+      reject(false)
+    })
+  })
+  const result = await p
+  return result
+}
