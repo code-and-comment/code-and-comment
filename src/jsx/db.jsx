@@ -63,3 +63,20 @@ export async function addRecord(objectStore, data) {
   const result = await p
   return result
 }
+
+
+export async function putRecord(objectStore, data) {
+  data.updated_at = new Date()
+  const p = new Promise((resolve, reject) => {
+    const request = objectStore.put(data)
+    request.addEventListener('success', () => {
+      resolve(true)
+    })
+
+    request.addEventListener('error', () => {
+      reject(false)
+    })
+  })
+  const result = await p
+  return result
+}
