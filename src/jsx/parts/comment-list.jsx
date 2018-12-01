@@ -12,7 +12,7 @@ export function onChange(event) {
 
 export function CommentList({ comments, lines }) {
   return (
-      <select className="comment-list" onChange={onChange}>
+      <select className="cc-comment-list" onChange={onChange}>
         <option value="0">Select comment</option>
         {
           Object.keys(comments).map((number) => {

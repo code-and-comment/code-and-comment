@@ -32,7 +32,7 @@ function Navigator({
     )
   )
   return (
-    <div className="navigator">
+    <div className="cc-navigator">
       <div>
         { leftButton }
       </div>
