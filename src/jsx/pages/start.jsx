@@ -22,7 +22,7 @@ class Start extends Component {
   }
   render({ loading, networkError, urlError }, { url }) {
     return (
-      <div className="start center">
+      <div className="cc-start center">
         <Header />
         {!loading && [
           (<div key='1'>

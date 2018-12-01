@@ -8,7 +8,7 @@ import Navigator from '../parts/navigator.jsx'
 
 function Publish({ viewUrl, back }) {
   return (
-    <div className="publish center">
+    <div className="cc-publish center">
       <Header />
       <div>
         Save url.

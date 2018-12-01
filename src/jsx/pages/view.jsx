@@ -38,7 +38,7 @@ function View({ lines, comments, path, back, getFile }) {
     content = 'Loading'
   }
   return (
-    <div className="view center">
+    <div className="cc-view center">
       <Header />
       {content}
     </div>

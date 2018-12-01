@@ -10,7 +10,7 @@ import Navigator from '../parts/navigator.jsx'
 
 function Edit({ lines, comments, path, updateComment, back, publish }) {
   return (
-    <div className="edit center">
+    <div className="cc-edit center">
       <Header />
       <div>
         Click the line. Add the comment by Markdown. Click Publish button.

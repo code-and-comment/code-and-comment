@@ -106,7 +106,7 @@ class Line extends Component {
 
   render({ index, code, comment, editable }, { isEditing }) {
     return (
-      <div className="line">
+      <div className="cc-line">
         <Code number={index} content={code} edit={this.edit} editable={editable}/>
         <Comment
           comment={comment}
