@@ -8,7 +8,15 @@ import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 
 
-function Edit({ lines, comments, path, updateComment, back, publish }) {
+function Edit({
+  lines,
+  comments,
+  path,
+  updateComment,
+  back,
+  publish,
+  save
+}) {
   return (
     <div className="cc-edit center">
       <Header />
@@ -24,6 +32,7 @@ function Edit({ lines, comments, path, updateComment, back, publish }) {
       />
       <div><CommentList /></div>
       <div>{ path }</div>
+      <div><button onClick={save}>Save</button></div>
       <div className="file">
         {lines.map((code, index) => <Line 
           key={index}

@@ -3,6 +3,7 @@ import createStore from 'unistore'
 
 export function initialState() {
   return {
+    id: null,
     git: '',
     path: '',
     lines: [],
