@@ -40,6 +40,9 @@ const actions = () => ({
     const viewUrl = `${location.origin}${location.pathname}#/view?data=${data_string}`
     route('/publish')
     return { viewUrl }
+  },
+  save(state, event, route = _route) {
+    route('/save')
   }
 })
 
