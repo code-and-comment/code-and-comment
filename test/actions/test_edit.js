@@ -45,7 +45,8 @@ describe('actions/edit', () => {
         viewUrl: '',
         loading: false,
         networkError: false,
-        urlError: false
+        urlError: false,
+        saved: false,
       })
     })
   })
@@ -74,9 +75,10 @@ describe('actions/edit', () => {
   describe('save', () => {
     it('transfers to the save page', () => {
       const route = spy()
-      acitons().save(null, null, route)
+      const result = acitons().save(null, null, route)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/save')).to.be.true
+      expect(result).to.deep.equal({ saved: false })
     })
   })
 })
