@@ -11,7 +11,8 @@ export function initialState() {
     viewUrl: '',
     loading: false,
     networkError: false,
-    urlError: false
+    urlError: false,
+    saved: false,
   }
 }
 

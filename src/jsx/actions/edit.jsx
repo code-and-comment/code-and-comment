@@ -43,6 +43,7 @@ const actions = () => ({
   },
   save(state, event, route = _route) {
     route('/save')
+    return { saved: false }
   }
 })
 

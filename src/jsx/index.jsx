@@ -9,6 +9,7 @@ import Start from './pages/start.jsx'
 import Edit from './pages/edit.jsx'
 import Publish from './pages/publish.jsx'
 import View from './pages/view.jsx'
+import Save from './pages/save.jsx'
 
 
 class CodeAndComment extends Component {
@@ -32,6 +33,7 @@ class CodeAndComment extends Component {
           <Edit path="/edit" />
           <Publish path="/publish" />
           <View path="/view" />
+          <Save path="/save" />
           <Start default />
         </Router>
       </Provider>
