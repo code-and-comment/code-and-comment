@@ -1,12 +1,13 @@
-@import 'start';
-@import 'edit';
-@import 'view';
-@import 'save';
-@import 'publish';
-@import 'line';
-@import 'header';
-@import 'navigator';
-@import 'comment-list';
+@import 'pages/start';
+@import 'pages/edit';
+@import 'pages/view';
+@import 'pages/save';
+@import 'pages/publish';
+
+@import 'parts/line';
+@import 'parts/header';
+@import 'parts/navigator';
+@import 'parts/comment-list';
 
 html, body {
   height: 100%;

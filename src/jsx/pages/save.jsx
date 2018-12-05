@@ -10,7 +10,7 @@ class Save extends Component {
       <div className="cc-save center">
         <Header />
         <div>
-          The code and comment is saved.<br/>
+          If you want to save the code and comment,<br/>
           Please input the title for code and comment.
         </div>
       </div>
