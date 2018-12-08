@@ -39,7 +39,7 @@ describe('parts/comment-list', () => {
       }
       onChange(event)
       expect(document.querySelector.calledOnce).to.be.true
-      expect(document.querySelector.calledWith(`.line:nth-child(${event.target.value})`)).to.be.true
+      expect(document.querySelector.calledWith(`.cc-line:nth-child(${event.target.value})`)).to.be.true
       expect(scrollIntoView.calledOnce).to.be.true
       expect(scrollIntoView.calledWith({ center: true })).to.be.true
     })

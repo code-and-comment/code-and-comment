@@ -18,9 +18,7 @@ class Save extends Component {
     this.setState({ title: e.target.value })
   }
   save() {
-    if (this.state.title) {
-      this.props.save(this.state.title)
-    }
+    this.props.save(this.state.title)
   }
   render({ edit, save, saved }) {
     let content

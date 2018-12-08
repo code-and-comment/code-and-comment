@@ -6,7 +6,10 @@ const actions = () => ({
     route('/edit')
   },
   save(state, title) {
-    return { saved: true }
+    title = title.trim()
+    if (title) {
+      return { saved: true }
+    }
   }
 })
 
