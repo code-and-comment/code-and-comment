@@ -12,6 +12,9 @@ import View from './pages/view.jsx'
 import Save from './pages/save.jsx'
 
 
+const REDIRECT_URLS = ['/edit', '/publish', '/save']
+
+
 class CodeAndComment extends Component {
   constructor(props) {
     super(props)
@@ -20,7 +23,7 @@ class CodeAndComment extends Component {
   }
 
   changeRoute(event) {
-    if (this.isFirst && (event.url === '/edit' || event.url === '/publish')) {
+    if (this.isFirst && REDIRECT_URLS.includes(event.url)) {
       route('/start')
     }
     this.isFirst = false

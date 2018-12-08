@@ -20,7 +20,7 @@ class Start extends Component {
     this.props.setLoading(true)
     this.props.getFile(this.state.url)
   }
-  render({ loading, networkError, urlError }, { url }) {
+  render({ loading, networkError, urlError }) {
     return (
       <div className="cc-start center">
         <Header />
@@ -35,7 +35,7 @@ class Start extends Component {
             https://github.com/developit/preact/blob/377e31b5c6d42c4ca92085571d5d4f0c9dbe4ba2/src/vdom/component.js<br/>
             https://github.com/developit/preact/blob/master/src/vdom/component.js<br/>
           </div>),
-          <input type="text" key="2" value={url} name="url" className="url" onChange={this.setUrl}/>,
+          <input type="text" key="2" className="url" onChange={this.setUrl}/>,
           <button key="3" onClick={this.edit}>{ 'Edit->' }</button>,
           networkError && <p key="4">The file data is not got.</p>,
           urlError && <p key="5">Url is invalid.</p>
