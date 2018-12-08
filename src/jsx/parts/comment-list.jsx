@@ -6,7 +6,7 @@ export function onChange(event) {
   if (number === '0') {
     return
   }
-  const selector = `.line:nth-child(${number})`
+  const selector = `.cc-line:nth-child(${number})`
   document.querySelector(selector).scrollIntoView({ center: true })
 }
 
