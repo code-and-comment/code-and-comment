@@ -3,6 +3,9 @@ import { route as _route } from 'preact-router'
 
 
 const actions = () => ({
+  home(state, event, route = _route) {
+    route('/home')
+  },
   setLoading(state, loading) {
     return { loading }
   },
