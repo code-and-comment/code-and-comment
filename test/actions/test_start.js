@@ -5,6 +5,16 @@ import { Base64 } from 'js-base64'
 import acitons from '../../src/jsx/actions/start.jsx'
 
 describe('actions/start', () => {
+  describe('home', () => {
+    it('moves /home', () => {
+      const route = spy()
+      const result = acitons().home(null, null, route)
+      expect(route.calledOnce).to.be.true
+      expect(route.calledWith('/home')).to.be.true
+      expect(result).to.be.undefined
+    })
+  })
+
   describe('setLoading', () => {
     it('returns object which has loading key', () => {
       expect(acitons().setLoading(null, true)).to.deep.equal({ loading: true })

@@ -10,6 +10,7 @@ import Edit from './pages/edit.jsx'
 import Publish from './pages/publish.jsx'
 import View from './pages/view.jsx'
 import Save from './pages/save.jsx'
+import Home from './pages/home.jsx'
 
 
 const REDIRECT_URLS = ['/edit', '/publish', '/save']
@@ -24,7 +25,7 @@ class CodeAndComment extends Component {
 
   changeRoute(event) {
     if (this.isFirst && REDIRECT_URLS.includes(event.url)) {
-      route('/start')
+      route('/home')
     }
     this.isFirst = false
   }
@@ -37,7 +38,8 @@ class CodeAndComment extends Component {
           <Publish path="/publish" />
           <View path="/view" />
           <Save path="/save" />
-          <Start default />
+          <Start path="/start" />
+          <Home default />
         </Router>
       </Provider>
     )
