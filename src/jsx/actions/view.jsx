@@ -3,7 +3,7 @@ import { route as _route } from 'preact-router'
 
 
 const actions = () => ({
-  back(state, event, route = _route) {
+  edit(state, event, route = _route) {
     route('/edit')
   },
   async getFile(state, paramJson, route = _route, fetch = window.fetch) {

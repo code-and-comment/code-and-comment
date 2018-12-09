@@ -8,14 +8,14 @@ import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 
 
-function View({ lines, comments, path, back, getFile }) {
+function View({ lines, comments, path, edit, getFile }) {
   let content;
   if (lines.length) {
       content = [
         (<Navigator
           key='navigator'
           leftLabel={'<-Edit'}
-          leftClick={back}
+          leftClick={edit}
         />),
         <div key='comment-list'><CommentList /></div>,
         <div key='path'>{ path }</div>,

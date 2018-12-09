@@ -5,10 +5,10 @@ import { Base64 } from 'js-base64'
 import acitons from '../../src/jsx/actions/view.jsx'
 
 describe('actions/view', () => {
-  describe('back', () => {
+  describe('edit', () => {
     it('moves /edit', () => {
       const route = spy()
-      acitons().back(null, null, route)
+      acitons().edit(null, null, route)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
     })
