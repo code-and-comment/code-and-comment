@@ -9,6 +9,7 @@ import Navigator from '../parts/navigator.jsx'
 
 
 function Edit({
+  title,
   lines,
   comments,
   path,
@@ -30,6 +31,7 @@ function Edit({
         rightClick={publish}
         rightDisabled={Object.keys(comments).length < 1}
       />
+      <div>Title: { title }</div>
       <div><CommentList /></div>
       <div>{ path }</div>
       <div><button onClick={save}>Save</button></div>
@@ -48,4 +50,4 @@ function Edit({
 }
 
 
-export default connect(['lines', 'comments', 'path'], actions)(Edit)
+export default connect(['title', 'lines', 'comments', 'path'], actions)(Edit)

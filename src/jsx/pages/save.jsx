@@ -20,7 +20,7 @@ class Save extends Component {
   save() {
     this.props.save(this.state.title)
   }
-  render({ edit, save, saved }) {
+  render({ edit, save, saved, title }) {
     let content
     if (saved) {
       content = <p>The code and comment was saved.</p>
@@ -28,7 +28,7 @@ class Save extends Component {
     else {
       content = (
         <div>
-          Title: <input type="text" className="title" onChange={ this.setTitle } />
+          Title: <input type="text" className="title" value={ title } onChange={ this.setTitle } />
           <button onClick={ this.save }>Save</button>
         </div>
       )
@@ -48,4 +48,4 @@ class Save extends Component {
 }
 
 
-export default connect(['saved'], actions)(Save)
+export default connect(['saved', 'title'], actions)(Save)

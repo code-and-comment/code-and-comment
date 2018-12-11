@@ -22,7 +22,10 @@ const actions = () => ({
         comments: state.comments,
         repository: `${parts[1]}/${parts[2]}`,
       })
-      return { saved: true }
+      return {
+        title,
+        saved: true
+      }
     }
   }
 })
