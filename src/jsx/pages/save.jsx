@@ -9,7 +9,7 @@ class Save extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
+      title: props.title,
     }
     this.setTitle = this.setTitle.bind(this)
     this.save = this.save.bind(this)
