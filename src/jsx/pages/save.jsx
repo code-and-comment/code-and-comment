@@ -20,7 +20,7 @@ class Save extends Component {
   save() {
     this.props.save(this.state.title)
   }
-  render({ edit, save, saved, title }) {
+  render({ edit, save, saved }, { title }) {
     let content
     if (saved) {
       content = <p>The code and comment was saved.</p>
