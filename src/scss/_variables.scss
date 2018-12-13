@@ -1,6 +1,8 @@
+$page-width: 1000px; 
+
 .outer-file {
   font-size: 12px;
-  width: 1000px;
+  width: $page-width;
   height: 100%;
   .file {
     overflow-x: auto;

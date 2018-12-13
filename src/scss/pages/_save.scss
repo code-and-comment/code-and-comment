@@ -1,6 +1,8 @@
+@import '../variables';
+
 .cc-save {
   font-size: 12px;
-  width: 600px;
+  width: $page-width;
   height: 100%;
   .title {
     width: 300px;
