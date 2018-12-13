@@ -1,6 +1,8 @@
+@import '../variables';
+
 .cc-start {
   font-size: 12px;
-  width: 600px;
+  width: $page-width;
   height: 100%;
   .url {
     width: 545px;
