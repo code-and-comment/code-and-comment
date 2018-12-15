@@ -15,9 +15,7 @@ If you want to use this application as product, you should host this application
 
 ## Support
 
-* Chrome@70+
-
-* Firefox@63+
+* Chrome@71+
 
 ## Contribution
 
