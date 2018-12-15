@@ -11,6 +11,7 @@ import Publish from './pages/publish.jsx'
 import View from './pages/view.jsx'
 import Save from './pages/save.jsx'
 import Home from './pages/home.jsx'
+import SearchCodeAndComment from './pages/search-code-and-comment.jsx'
 
 
 const REDIRECT_URLS = ['/edit', '/publish', '/save']
@@ -39,6 +40,7 @@ class CodeAndComment extends Component {
           <View path="/view" />
           <Save path="/save" />
           <Start path="/start" />
+          <SearchCodeAndComment path="/search_code_and_comment" />
           <Home default />
         </Router>
       </Provider>
