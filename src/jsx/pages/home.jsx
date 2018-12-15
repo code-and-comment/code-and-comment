@@ -14,7 +14,8 @@ function Home() {
         If you want to use this application as product, you should host this application.<br/>
       </div>
       <div className="links">
-        <Link href="/start">Create Code and Comment</Link>
+        <p><Link href="/start">Create Code and Comment</Link></p>
+        <p><Link href="/search_code_and_comment">Code and Comment List</Link></p>
       </div>
     </div>
   )
