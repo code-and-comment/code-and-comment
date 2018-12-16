@@ -18,7 +18,7 @@ function onUpgradeneeded(event) {
 }
 
 
-export async function getDB() {
+export function getDB() {
   if (db) {
     return db
   }
@@ -36,8 +36,7 @@ export async function getDB() {
       reject(null)
     })
   })
-  db = await p
-  return db
+  return p
 }
 
 
@@ -59,39 +58,36 @@ function setEvent(request, resolve, reject) {
 }
 
 
-export async function addRecord(objectStore, data) {
+export function addRecord(objectStore, data) {
   data.created_at = data.updated_at = new Date()
   const p = new Promise((resolve, reject) => {
     const request = objectStore.add(data)
     setEvent(request, resolve, reject)
   })
-  const result = await p
-  return result
+  return p
 }
 
 
-export async function putRecord(objectStore, data) {
+export function putRecord(objectStore, data) {
   data.updated_at = new Date()
   const p = new Promise((resolve, reject) => {
     const request = objectStore.put(data)
     setEvent(request, resolve, reject)
   })
-  const result = await p
-  return result
+  return p
 }
 
 
-export async function deleteRecord(objectStore, key) {
+export function deleteRecord(objectStore, key) {
   const p = new Promise((resolve, reject) => {
     const request = objectStore.delete(key)
     setEvent(request, resolve, reject)
   })
-  const result = await p
-  return result
+  return p
 }
 
 
-export async function getAllRecords(objectStore) {
+export function getAllRecords(objectStore) {
   const p = new Promise((resolve, reject) => {
     const index = objectStore.index('updated_at')
     const cursor = index.openCursor(null, 'prev')
@@ -110,6 +106,5 @@ export async function getAllRecords(objectStore) {
       reject(null)
     })
   })
-  const result = await p
-  return result
+  return p
 }
