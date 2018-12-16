@@ -89,3 +89,27 @@ export async function deleteRecord(objectStore, key) {
   const result = await p
   return result
 }
+
+
+export async function getAllRecords(objectStore) {
+  const p = new Promise((resolve, reject) => {
+    const index = objectStore.index('updated_at')
+    const cursor = index.openCursor(null, 'prev')
+    const records = []
+    cursor.addEventListener('success', (event) => {
+      const cursor = event.target.result
+      if (cursor) {
+        records.push(cursor.value)
+        cursor.continue()
+      }
+      else {
+        resolve(records)
+      }
+    })
+    cursor.addEventListener('error', () => {
+      reject(null)
+    })
+  })
+  const result = await p
+  return result
+}
