@@ -48,6 +48,7 @@ describe('actions/edit', () => {
         networkError: false,
         urlError: false,
         saved: false,
+        codeAndComments: [],
       })
     })
   })
