@@ -1,6 +1,6 @@
 import { route as _route } from 'preact-router'
 
-import { getDB, getObjectStore, deleteRecord, getAllRecords } from '../db.jsx'
+import { getDB, getObjectStore, getRecord, deleteRecord, getAllRecords } from '../db.jsx'
 
 
 const actions = () => ({
@@ -15,7 +15,21 @@ const actions = () => ({
     return { codeAndComments }
   },
   async edit(state, id, event, route = _route) {
-    route('/edit')
+    const db = await getDB()
+    const objectStore = await getObjectStore(db)
+    const request = await getRecord(objectStore, id)
+    if (request.target.result) {
+      const codeAndComment = request.target.result
+      route('/edit')
+      return {
+        id: codeAndComment.id,
+        title: codeAndComment.title,
+        git: codeAndComment.git,
+        path: codeAndComment.path,
+        lines: codeAndComment.lines,
+        comments: codeAndComment.comments,
+      }
+    }
   },
 })
 
