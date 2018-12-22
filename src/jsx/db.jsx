@@ -58,6 +58,15 @@ function setEvent(request, resolve, reject) {
 }
 
 
+export function getRecord(objectStore, key) {
+  const p = new Promise((resolve, reject) => {
+    const request = objectStore.get(key)
+    setEvent(request, resolve, reject)
+  })
+  return p
+}
+
+
 export function addRecord(objectStore, data) {
   data.created_at = data.updated_at = new Date()
   const p = new Promise((resolve, reject) => {
