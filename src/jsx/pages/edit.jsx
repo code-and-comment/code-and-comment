@@ -9,6 +9,7 @@ import Navigator from '../parts/navigator.jsx'
 
 
 function Edit({
+  id,
   title,
   lines,
   comments,
@@ -16,7 +17,8 @@ function Edit({
   updateComment,
   back,
   publish,
-  save
+  save,
+  update
 }) {
   return (
     <div className="cc-edit center">
@@ -34,7 +36,7 @@ function Edit({
       <div>Title: { title }</div>
       <div><CommentList /></div>
       <div>{ path }</div>
-      <div><button onClick={save}>Save</button></div>
+      <div><button onClick={ save }>Save</button>{ ' ' }<button onClick={ update } disabled={ !id }>Update</button></div>
       <div className="file">
         {lines.map((code, index) => <Line 
           key={index}
@@ -50,4 +52,4 @@ function Edit({
 }
 
 
-export default connect(['title', 'lines', 'comments', 'path'], actions)(Edit)
+export default connect(['id', 'title', 'lines', 'comments', 'path'], actions)(Edit)

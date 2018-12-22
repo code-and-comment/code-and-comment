@@ -1,46 +1,46 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/save.jsx'
+import actions from '../actions/update.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 
-class Save extends Component {
+class Update extends Component {
   constructor(props) {
     super(props)
     this.state = {
       title: props.title,
     }
     this.setTitle = this.setTitle.bind(this)
-    this.save = this.save.bind(this)
+    this.update = this.update.bind(this)
   }
   setTitle(e) {
     this.setState({ title: e.target.value })
   }
-  save() {
-    this.props.save(this.state.title)
+  update() {
+    this.props.update(this.state.title)
   }
-  render({ edit, saved }, { title }) {
+  render({ edit, updated }, { title }) {
     let content
-    if (saved) {
-      content = <p>The code and comment was saved.</p>
+    if (updated) {
+      content = <p>The code and comment was updated.</p>
     }
     else {
       content = (
         <div>
           Title: <input type="text" className="title" value={ title } onChange={ this.setTitle } />
-          <button onClick={ this.save }>Save</button>
+          <button onClick={ this.update }>Update</button>
         </div>
       )
     }
     return (
-      <div className="cc-save center">
+      <div className="cc-update center">
         <Header />
         <Navigator
           leftLabel={ '<-Edit' }
           leftClick={ edit }
         />
-        <p>If you want to save the code and comment, Please input the title for code and comment.</p>
+        <p>If you want to update the code and comment, Please input the title for code and comment.</p>
         { content }
       </div>
     )
@@ -48,4 +48,4 @@ class Save extends Component {
 }
 
 
-export default connect(['saved', 'title'], actions)(Save)
+export default connect(['updated', 'title'], actions)(Update)

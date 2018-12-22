@@ -1,0 +1,10 @@
+@import '../variables';
+
+.cc-update {
+  font-size: 12px;
+  width: $page-width;
+  height: 100%;
+  .title {
+    width: 300px;
+  }
+}
