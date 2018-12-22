@@ -15,7 +15,7 @@ function Edit({
   comments,
   path,
   updateComment,
-  back,
+  fileUrl,
   publish,
   save,
   update
@@ -23,28 +23,28 @@ function Edit({
   return (
     <div className="cc-edit center">
       <Header />
+      <Navigator
+        leftLabel={ '<-Url' }
+        leftClick={ fileUrl }
+        rightLabel={ 'Publish->' }
+        rightClick={ publish }
+        rightDisabled={ Object.keys(comments).length < 1 }
+      />
       <div>
         Click the line. Add the comment by Markdown. Click Publish button.
       </div>
-      <Navigator
-        leftLabel={'<-Back'}
-        leftClick={back}
-        rightLabel={'Publish->'}
-        rightClick={publish}
-        rightDisabled={Object.keys(comments).length < 1}
-      />
       <div>Title: { title }</div>
       <div><CommentList /></div>
       <div>{ path }</div>
       <div><button onClick={ save }>Save</button>{ ' ' }<button onClick={ update } disabled={ !id }>Update</button></div>
       <div className="file">
         {lines.map((code, index) => <Line 
-          key={index}
-          code={code}
-          comment={comments[index + '']}
-          index={index}
-          updateComment={updateComment}
-          editable={true}/>
+          key={ index }
+          code={ code }
+          comment={ comments[index + ''] }
+          index={ index }
+          updateComment={ updateComment }
+          editable={ true }/>
         )}
       </div>
     </div>

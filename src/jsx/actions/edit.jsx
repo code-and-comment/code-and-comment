@@ -26,7 +26,7 @@ const actions = () => ({
       comments: Object.assign({}, comments)
     }
   },
-  back(state, event, route = _route) {
+  fileUrl(state, event, route = _route) {
     route('/start')
     return initialState()
   },

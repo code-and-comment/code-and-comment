@@ -30,10 +30,10 @@ describe('actions/edit', () => {
     })
   })
 
-  describe('back', () => {
+  describe('fileUrl', () => {
     it('returns initial state', () => {
       const route = spy()
-      const result = acitons().back(null, null, route)
+      const result = acitons().fileUrl(null, null, route)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/start')).to.be.true
       expect(result).to.deep.equal({
