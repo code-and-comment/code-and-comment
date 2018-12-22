@@ -4,4 +4,11 @@
   font-size: 12px;
   width: $page-width;
   height: 100%;
+  .list {
+    padding: 24px 120px 24px 120px;
+  }
+  hr {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
 }
