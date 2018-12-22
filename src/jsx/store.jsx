@@ -14,6 +14,7 @@ export function initialState() {
     networkError: false,
     urlError: false,
     saved: false,
+    updated: false,
     codeAndComments: [],
   }
 }
