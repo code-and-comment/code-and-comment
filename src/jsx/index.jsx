@@ -14,7 +14,7 @@ import Home from './pages/home.jsx'
 import SearchCodeAndComment from './pages/search-code-and-comment.jsx'
 
 
-const REDIRECT_URLS = ['/edit', '/publish', '/save']
+const REDIRECT_URLS = ['/edit', '/publish', '/save', '/search_code_and_comment']
 
 
 class CodeAndComment extends Component {
