@@ -12,7 +12,7 @@ class SearchCodeAndComment extends Component {
     super(props)
     this.state = {}
   }
-  render({ codeAndComments, deleteOne, edit, home }) {
+  render({ codeAndComments, deleteOne, git, back, edit, home }) {
     const length = codeAndComments.length - 1
     const list =  codeAndComments.map((c, i) => {
       if (length == i) {
@@ -26,6 +26,9 @@ class SearchCodeAndComment extends Component {
         <Navigator
           leftLabel={ '<-Home' }
           leftClick={ home }
+          rightLabel={ 'Edit->' }
+          rightClick={ back }
+          rightDisabled={ !git }
         />
         <div className="list">
           { list }
@@ -36,4 +39,4 @@ class SearchCodeAndComment extends Component {
 }
 
 
-export default connect(['codeAndComments'], actions)(SearchCodeAndComment)
+export default connect(['git', 'codeAndComments'], actions)(SearchCodeAndComment)

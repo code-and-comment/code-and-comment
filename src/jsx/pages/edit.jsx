@@ -18,7 +18,8 @@ function Edit({
   fileUrl,
   publish,
   save,
-  update
+  update,
+  list
 }) {
   return (
     <div className="cc-edit center">
@@ -36,7 +37,13 @@ function Edit({
       <div>Title: { title }</div>
       <div><CommentList /></div>
       <div>{ path }</div>
-      <div><button onClick={ save }>Save</button>{ ' ' }<button onClick={ update } disabled={ !id }>Update</button></div>
+      <div>
+        <button onClick={ save }>Save</button>
+        { ' ' }
+        <button onClick={ update } disabled={ !id }>Update</button>
+        { ' ' }
+        <button onClick={ list }>List</button>
+      </div>
       <div className="file">
         {lines.map((code, index) => <Line 
           key={ index }
