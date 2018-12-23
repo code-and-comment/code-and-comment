@@ -34,8 +34,8 @@ class CodeAndComment extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <Router history={createHashHistory()} onChange={this.changeRoute}> 
+      <Provider store={ store }>
+        <Router history={ createHashHistory() } onChange={ this.changeRoute }>
           <Edit path="/edit" />
           <Publish path="/publish" />
           <View path="/view" />
