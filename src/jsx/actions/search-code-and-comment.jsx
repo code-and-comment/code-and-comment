@@ -4,6 +4,9 @@ import { getDB, getObjectStore, getRecord, deleteRecord, getAllRecords } from '.
 
 
 const actions = () => ({
+  back(state, event, route = _route) {
+    route('/edit')
+  },
   home(state, event, route = _route) {
     route('/home')
   },

@@ -13,4 +13,13 @@ describe('actions/search-code-and-comment', () => {
       expect(result).to.be.undefined
     })
   })
+  describe('back', () => {
+    it('moves /edit', () => {
+      const route = spy()
+      const result = acitons().back(null, null, route)
+      expect(route.calledOnce).to.be.true
+      expect(route.calledWith('/edit')).to.be.true
+      expect(result).to.be.undefined
+    })
+  })
 })
