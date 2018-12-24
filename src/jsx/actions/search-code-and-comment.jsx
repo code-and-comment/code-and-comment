@@ -13,8 +13,8 @@ const actions = () => ({
   async deleteOne(state, id) {
     const db = await getDB()
     const objectStore = await getObjectStore(db)
-    await deleteRecord(objectStore, id) 
-    const codeAndComments = await getAllRecords(objectStore) 
+    await deleteRecord(objectStore, id)
+    const codeAndComments = await getAllRecords(objectStore)
     return { codeAndComments }
   },
   async edit(state, id, event, route = _route) {

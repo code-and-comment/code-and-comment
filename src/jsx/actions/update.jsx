@@ -14,7 +14,7 @@ const actions = () => ({
       const objectStore = await getObjectStore(db)
       const parts = state.path.split('/')
       // TODO add error process
-      const event = await putRecord(objectStore, {
+      await putRecord(objectStore, {
         id: state.id,
         title,
         git: state.git,

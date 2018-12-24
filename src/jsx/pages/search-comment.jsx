@@ -8,13 +8,13 @@ import CommentCard from '../parts/comment-card.jsx'
 
 
 class SearchComment extends Component {
-  render({ codeAndComments, deleteOne, git, back, edit, home }) {
+  render({ codeAndComments, edit, home }) {
     const list = []
     codeAndComments.forEach((c) => {
-        Object.values(c.comments).forEach((comment, i) => {
-          list.push(<CommentCard key={ `${c.id}_${i}` } comment={ comment } codeAndComment={ c } edit={ edit } />)
-          list.push(<hr />)
-        })
+      Object.values(c.comments).forEach((comment, i) => {
+        list.push(<CommentCard key={ `${c.id}_${i}` } comment={ comment } codeAndComment={ c } edit={ edit } />)
+        list.push(<hr />)
+      })
     })
     list.pop()
     return (

@@ -15,10 +15,10 @@ function Publish({ viewUrl, back }) {
         Click View button.
       </div>
       <Navigator
-        leftLabel={'<-Back'}
-        leftClick={back}
-        rightLabel={'View->'}
-        rightUrl={viewUrl}
+        leftLabel={ '<-Back' }
+        leftClick={ back }
+        rightLabel={ 'View->' }
+        rightUrl={ viewUrl }
       />
       <div className="url">
         <textarea>{ viewUrl }</textarea>

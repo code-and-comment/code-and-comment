@@ -7,7 +7,7 @@ const actions = () => ({
     route('/edit')
   },
   async getFile(state, paramJson, route = _route, fetch = window.fetch) {
-    let param;
+    let param
     try {
       if (paramJson) {
         param = JSON.parse(Base64.decode(paramJson))

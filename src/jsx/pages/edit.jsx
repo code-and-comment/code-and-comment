@@ -45,14 +45,14 @@ function Edit({
         <button onClick={ list }>List</button>
       </div>
       <div className="file">
-        {lines.map((code, index) => <Line 
+        { lines.map((code, index) => <Line
           key={ index }
           code={ code }
           comment={ comments[index + ''] }
           index={ index }
           updateComment={ updateComment }
           editable={ true }/>
-        )}
+        ) }
       </div>
     </div>
   )

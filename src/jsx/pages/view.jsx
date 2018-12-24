@@ -9,29 +9,29 @@ import Navigator from '../parts/navigator.jsx'
 
 
 function View({ lines, comments, path, edit, getFile }) {
-  let content;
+  let content
   if (lines.length) {
-      content = [
-        (<Navigator
-          key='navigator'
-          leftLabel={'<-Edit'}
-          leftClick={edit}
-        />),
-        <div key='comment-list'><CommentList /></div>,
-        <div key='path'>{ path }</div>,
-        (<div key='file' className="file">
-          {lines.map((code, index) => <Line 
-            key={index}
-            code={code}
-            comment={comments[index + '']}
-            index={index}
-            editable={false}/>
-          )}
-        </div>)
-      ];
-      setTimeout(() => {
-        document.querySelector('.comment').scrollIntoView({ block: 'center' })
-      }, 0)
+    content = [
+      (<Navigator
+        key='navigator'
+        leftLabel={ '<-Edit' }
+        leftClick={ edit }
+      />),
+      <div key='comment-list'><CommentList /></div>,
+      <div key='path'>{ path }</div>,
+      (<div key='file' className="file">
+        { lines.map((code, index) => <Line
+          key={ index }
+          code={ code }
+          comment={ comments[index + ''] }
+          index={ index }
+          editable={ false }/>
+        ) }
+      </div>)
+    ]
+    setTimeout(() => {
+      document.querySelector('.comment').scrollIntoView({ block: 'center' })
+    }, 0)
   }
   else {
     getFile(location.hash.substring(12))
@@ -40,7 +40,7 @@ function View({ lines, comments, path, edit, getFile }) {
   return (
     <div className="cc-view center">
       <Header />
-      {content}
+      { content }
     </div>
   )
 }

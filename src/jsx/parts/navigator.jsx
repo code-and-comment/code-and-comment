@@ -3,7 +3,7 @@ import { h } from 'preact'
 
 function addAnchor(url, button) {
   if (url) {
-    return <a href={url} target="_blank" rel="noopener noreferrer">{button}</a>
+    return <a href={ url } target="_blank" rel="noopener noreferrer">{ button }</a>
   }
   return button
 }
@@ -22,13 +22,13 @@ function Navigator({
   const leftButton = (
     leftLabel && addAnchor(
       leftUrl,
-      <button disabled={leftDisabled} onClick={leftClick}>{leftLabel}</button>
+      <button disabled={ leftDisabled } onClick={ leftClick }>{ leftLabel }</button>
     )
   )
   const rightButton = (
     rightLabel && addAnchor(
       rightUrl,
-      <button disabled={rightDisabled} onClick={rightClick}>{rightLabel}</button>
+      <button disabled={ rightDisabled } onClick={ rightClick }>{ rightLabel }</button>
     )
   )
   return (

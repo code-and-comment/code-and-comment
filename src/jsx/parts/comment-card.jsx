@@ -22,14 +22,14 @@ class CommentCard extends Component {
 
   render({ comment, codeAndComment }) {
     return (
-        <div className="cc-comment-card">
-          <div className="display" dangerouslySetInnerHTML={ { __html: marked(comment) } } />
-          <div>{ codeAndComment.repository }</div>
-          <div>{ codeAndComment.path }</div>
-          <div>{ codeAndComment.title }</div>
-          <div>{ codeAndComment.updated_at.toLocaleString() }</div>
-          <div><button onClick={ this.edit }>Edit</button></div>
-        </div>
+      <div className="cc-comment-card">
+        <div className="display" dangerouslySetInnerHTML={ { __html: marked(comment) } } />
+        <div>{ codeAndComment.repository }</div>
+        <div>{ codeAndComment.path }</div>
+        <div>{ codeAndComment.title }</div>
+        <div>{ codeAndComment.updated_at.toLocaleString() }</div>
+        <div><button onClick={ this.edit }>Edit</button></div>
+      </div>
     )
   }
 }
