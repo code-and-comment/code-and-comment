@@ -4,30 +4,28 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/search-code-and-comment.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
-import CodeAndCommentCard from '../parts/code-and-comment-card.jsx'
+import CommentCard from '../parts/comment-card.jsx'
 
 
-class SearchCodeAndComment extends Component {
+class SearchComment extends Component {
   render({ codeAndComments, deleteOne, git, back, edit, home }) {
-    const length = codeAndComments.length - 1
-    const list =  codeAndComments.map((c, i) => {
-      if (length == i) {
-        return <CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />
-      }
-      return [<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />, <hr/>]
+    const list = []
+    codeAndComments.forEach((c) => {
+        Object.values(c.comments).forEach((comment, i) => {
+          list.push(<CommentCard key={ `${c.id}_${i}` } comment={ comment } codeAndComment={ c } edit={ edit } />)
+          list.push(<hr />)
+        })
     })
+    list.pop()
     return (
       <div className="cc-search-comment center">
         <Header />
         <Navigator
           leftLabel={ '<-Home' }
           leftClick={ home }
-          rightLabel={ 'Edit->' }
-          rightClick={ back }
-          rightDisabled={ !git }
         />
         <div className="list">
-          { list }
+          { list.length ? list : 'There is no comment.' }
         </div>
       </div>
     )
@@ -35,4 +33,4 @@ class SearchCodeAndComment extends Component {
 }
 
 
-export default connect(['git', 'codeAndComments'], actions)(SearchCodeAndComment)
+export default connect(['codeAndComments'], actions)(SearchComment)
