@@ -10,9 +10,9 @@ marked.setOptions({
 
 function Code({ number, content, edit, editable }) {
   return (
-    <div className="code" onClick={editable ? edit : null}>
-      <span className="number">{number + 1}</span>
-      <span className="content">{content}</span>
+    <div className="code" onClick={ editable ? edit : null }>
+      <span className="number">{ number + 1 }</span>
+      <span className="content">{ content }</span>
     </div>
   )
 }
@@ -34,7 +34,7 @@ class Comment extends Component {
     this.props.save(comment)
   }
 
-  render({ comment, isEditing, cancel }) { 
+  render({ comment, isEditing, cancel }) {
     if (comment && !isEditing) {
       const _comment = []
       comment.split('\n').forEach((c) => {
@@ -53,14 +53,14 @@ class Comment extends Component {
       return (
         <div className="comment">
           <div className="input">
-            <textarea ref={this.textareaRef}>{comment}</textarea>
+            <textarea ref={ this.textareaRef }>{ comment }</textarea>
           </div>
           <div>
-            <button onClick={cancel}>Cancel</button>
-            {' '}
-            <button onClick={this.save}>Save</button>
-            {' '}
-            <button onClick={this.props.delete}>Delete</button>
+            <button onClick={ cancel }>Cancel</button>
+            { ' ' }
+            <button onClick={ this.save }>Save</button>
+            { ' ' }
+            <button onClick={ this.props.delete }>Delete</button>
           </div>
         </div>
       )
@@ -107,13 +107,13 @@ class Line extends Component {
   render({ index, code, comment, editable }, { isEditing }) {
     return (
       <div className="cc-line">
-        <Code number={index} content={code} edit={this.edit} editable={editable}/>
+        <Code number={ index } content={ code } edit={ this.edit } editable={ editable }/>
         <Comment
-          comment={comment}
+          comment={ comment }
           isEditing={ isEditing }
-          cancel={this.cancel}
-          save={this.save}
-          delete={this.delete}
+          cancel={ this.cancel }
+          save={ this.save }
+          delete={ this.delete }
         />
       </div>
     )

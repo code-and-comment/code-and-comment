@@ -10,9 +10,9 @@ import CodeAndCommentCard from '../parts/code-and-comment-card.jsx'
 class SearchCodeAndComment extends Component {
   render({ codeAndComments, deleteOne, git, back, edit, home }) {
     const list = []
-    codeAndComments.forEach((c, i) => {
-        list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
-        list.push(<hr />)
+    codeAndComments.forEach((c) => {
+      list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
+      list.push(<hr />)
     })
     list.pop()
     return (

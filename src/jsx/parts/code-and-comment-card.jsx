@@ -26,7 +26,7 @@ class CodeAndCommentCard extends Component {
       && this.props.codeAndComment.updated_at.getTime() === codeAndComment.updated_at.getTime()
     )
   }
-  
+
   render({ codeAndComment }, { isDeleting }) {
     let controls
     if (isDeleting) {
@@ -48,13 +48,13 @@ class CodeAndCommentCard extends Component {
       )
     }
     return (
-        <div className="cc-code-and-comment-card">
-          <div>{ codeAndComment.repository }</div>
-          <div>{ codeAndComment.path }</div>
-          <div>{ codeAndComment.title }</div>
-          <div>{ codeAndComment.updated_at.toLocaleString() }</div>
-          { controls }
-        </div>
+      <div className="cc-code-and-comment-card">
+        <div>{ codeAndComment.repository }</div>
+        <div>{ codeAndComment.path }</div>
+        <div>{ codeAndComment.title }</div>
+        <div>{ codeAndComment.updated_at.toLocaleString() }</div>
+        { controls }
+      </div>
     )
   }
 }

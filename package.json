@@ -8,8 +8,8 @@
     "build:css": "node-sass src/scss/index.scss dist/app.css --output-style compressed",
     "build:js": "rollup -c",
     "build:minify": "terser dist/app.js -c --ecma 8 -o dist/app.min.js",
-    "fix": "eslint src/jsx/*.jsx test/**/*.js --fix",
-    "lint": "eslint src/jsx/*.jsx test/**/*.js",
+    "fix": "eslint src/jsx/**/*.jsx test/**/*.js --fix",
+    "lint": "eslint src/jsx/**/*.jsx test/**/*.js",
     "test": "mocha --require @babel/register --recursive test --reporter spec"
   },
   "license": "MIT License",

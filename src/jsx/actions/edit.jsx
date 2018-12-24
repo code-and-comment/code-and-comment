@@ -6,7 +6,7 @@ import { getDB, getObjectStore, getAllRecords } from '../db.jsx'
 
 
 const actions = () => ({
-  updateComment({comments}, index, comment) {
+  updateComment({ comments }, index, comment) {
     comment = comment.trim()
     index += ''
     if (comments[index] === comment) {

@@ -15,7 +15,7 @@ class Start extends Component {
     this.edit = this.edit.bind(this)
   }
   setUrl(e) {
-    this.setState({ url: e.target.value }) 
+    this.setState({ url: e.target.value })
   }
   edit() {
     this.props.setLoading(true)
@@ -29,20 +29,20 @@ class Start extends Component {
           leftLabel={ '<-Home' }
           leftClick={ home }
         />
-        {!loading && [
+        { !loading && [
           (<div key='1'>
             Input the file url in Github<br/>
             Example:<br/>
             https://github.com/developit/preact/blob/377e31b5c6d42c4ca92085571d5d4f0c9dbe4ba2/src/vdom/component.js<br/>
             https://github.com/developit/preact/blob/master/src/vdom/component.js<br/>
           </div>),
-          <input type="text" key="2" className="url" onChange={this.setUrl}/>,
-          <button key="3" onClick={this.edit}>{ 'Edit->' }</button>,
+          <input type="text" key="2" className="url" onChange={ this.setUrl }/>,
+          <button key="3" onClick={ this.edit }>{ 'Edit->' }</button>,
           networkError && <p key="4">The file data is not got.</p>,
           urlError && <p key="5">Url is invalid.</p>
         ]
         }
-        {loading && 'Loading'}
+        { loading && 'Loading' }
       </div>
     )
   }

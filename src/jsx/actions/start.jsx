@@ -11,7 +11,7 @@ const actions = () => ({
   },
   async getFile(state, url, route = _route, fetch = window.fetch) {
     url = url.trim()
-    const re = /^https:\/\/github.com\/(.+)\/blob\/([^\/]+)\/(.+)/
+    const re = /^https:\/\/github.com\/(.+)\/blob\/([^/]+)\/(.+)/
     const matches = url.match(re)
 
     if (!matches) {
