@@ -17,7 +17,7 @@ class SearchCodeAndComment extends Component {
       return [<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />, <hr/>]
     })
     return (
-      <div className="cc-search-code-and-comment center">
+      <div className="cc-search-comment center">
         <Header />
         <Navigator
           leftLabel={ '<-Home' }

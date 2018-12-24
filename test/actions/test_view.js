@@ -54,7 +54,7 @@ describe('actions/view', () => {
         lines: ['ああああ', '1', '2'],
         comments: { '1': 'a', '2': 'b' },
         networkError: false,
-        urlError: false 
+        urlError: false
       })
     })
   })

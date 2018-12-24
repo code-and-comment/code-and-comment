@@ -13,9 +13,10 @@ import Save from './pages/save.jsx'
 import Update from './pages/update.jsx'
 import Home from './pages/home.jsx'
 import SearchCodeAndComment from './pages/search-code-and-comment.jsx'
+import SearchComment from './pages/search-comment.jsx'
 
 
-const REDIRECT_URLS = ['/edit', '/publish', '/save', '/update', '/search_code_and_comment']
+const REDIRECT_URLS = ['/edit', '/publish', '/save', '/update', '/search_code_and_comment', '/search_comment']
 
 
 class CodeAndComment extends Component {
@@ -43,6 +44,7 @@ class CodeAndComment extends Component {
           <Update path="/update" />
           <Start path="/start" />
           <SearchCodeAndComment path="/search_code_and_comment" />
+          <SearchComment path="/search_comment" />
           <Home default />
         </Router>
       </Provider>

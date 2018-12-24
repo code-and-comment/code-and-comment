@@ -7,7 +7,7 @@ import Header from '../parts/header.jsx'
 
 
 class Home extends Component {
-  render({ search_code_and_comment }) {
+  render({ search_comment, search_code_and_comment }) {
     return (
       <div className="cc-home center">
         <Header />
@@ -20,6 +20,7 @@ class Home extends Component {
         <div className="links">
           <p><Link href="/start">Create Code and Comment</Link></p>
           <p><a onClick={ search_code_and_comment }>Code and Comment List</a></p>
+          <p><a onClick={ search_comment }>Comment List</a></p>
         </div>
       </div>
     )

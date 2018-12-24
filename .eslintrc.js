@@ -24,6 +24,7 @@ module.exports = {
     },
   },
   rules: {
+    'no-trailing-spaces': 'error',
     'react/jsx-curly-spacing': [
       'error',
       {
@@ -55,6 +56,6 @@ module.exports = {
       'error',
       'stroustrup'
     ],
-    'react/prop-types': 0
+    'react/prop-types': 'off',
   }
 };
