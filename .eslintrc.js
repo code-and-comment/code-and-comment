@@ -24,6 +24,7 @@ module.exports = {
     },
   },
   rules: {
+    'key-spacing': 'error',
     'no-trailing-spaces': 'error',
     'react/jsx-curly-spacing': [
       'error',
