@@ -28,7 +28,8 @@ export function getDB() {
     request.addEventListener('upgradeneeded', onUpgradeneeded)
 
     request.addEventListener('success', (event) => {
-      resolve(event.target.result)
+      db = event.target.result
+      resolve(db)
     })
 
     request.addEventListener('error', () => {
