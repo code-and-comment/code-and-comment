@@ -9,13 +9,12 @@ import CodeAndCommentCard from '../parts/code-and-comment-card.jsx'
 
 class SearchCodeAndComment extends Component {
   render({ codeAndComments, deleteOne, git, back, edit, home }) {
-    const length = codeAndComments.length - 1
-    const list =  codeAndComments.map((c, i) => {
-      if (length == i) {
-        return <CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />
-      }
-      return [<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />, <hr/>]
+    const list = []
+    codeAndComments.forEach((c, i) => {
+        list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
+        list.push(<hr />)
     })
+    list.pop()
     return (
       <div className="cc-search-code-and-comment center">
         <Header />
@@ -27,7 +26,7 @@ class SearchCodeAndComment extends Component {
           rightDisabled={ !git }
         />
         <div className="list">
-          { list }
+          { list.length ? list : 'There is no Code and Comment.' }
         </div>
       </div>
     )

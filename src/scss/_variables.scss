@@ -10,3 +10,16 @@ $page-width: 1000px;
     margin-bottom: 36px;
   }
 }
+
+.display {
+  color: #111111;
+  background-color: #fff;
+  border: solid 1px rgba(24, 24, 24, 0.2);
+  line-height: initial;
+  overflow: auto;
+  word-break: keep-all;
+  p {
+    margin: 0px;
+    padding: 8px;
+  }
+}
