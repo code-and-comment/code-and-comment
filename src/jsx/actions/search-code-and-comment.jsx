@@ -1,6 +1,12 @@
 import { route as _route } from 'preact-router'
 
-import { getDB, getObjectStore, getRecord, deleteRecord, getAllRecords } from '../db.jsx'
+import {
+  getDB as _getDB,
+  getObjectStore as _getObjectStore,
+  getRecord as _getRecord,
+  deleteRecord as _deleteRecord,
+  getAllRecords as _getAllRecords
+} from '../db.jsx'
 
 
 const actions = () => ({
@@ -10,14 +16,30 @@ const actions = () => ({
   home(state, event, route = _route) {
     route('/home')
   },
-  async deleteOne(state, id) {
+  async deleteOne(
+    state,
+    id,
+    event,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    deleteRecord = _deleteRecord,
+    getAllRecords = _getAllRecords
+  ) {
     const db = await getDB()
     const objectStore = await getObjectStore(db)
     await deleteRecord(objectStore, id)
     const codeAndComments = await getAllRecords(objectStore)
     return { codeAndComments }
   },
-  async edit(state, id, event, route = _route) {
+  async edit(
+    state,
+    id,
+    event,
+    route = _route,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    getRecord = _getRecord
+  ) {
     const db = await getDB()
     const objectStore = await getObjectStore(db)
     const request = await getRecord(objectStore, id)
