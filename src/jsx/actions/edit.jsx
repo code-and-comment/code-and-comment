@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
 
 import { initialState } from '../store.jsx'
-import { getDB, getObjectStore, getAllRecords } from '../db.jsx'
+import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords } from '../db.jsx'
 
 
 const actions = () => ({
@@ -31,7 +31,14 @@ const actions = () => ({
     route('/start')
     return initialState()
   },
-  async list(state, event, route = _route) {
+  async list(
+    state,
+    event,
+    route = _route,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    getAllRecords = _getAllRecords
+  ) {
     route('/search_code_and_comment')
     const db = await getDB()
     const objectStore = await getObjectStore(db)

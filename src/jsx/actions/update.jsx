@@ -1,13 +1,13 @@
 import { route as _route } from 'preact-router'
 
-import { getDB, getObjectStore, putRecord } from '../db.jsx'
+import { getDB as _getDB, getObjectStore as _getObjectStore, putRecord as _putRecord } from '../db.jsx'
 
 
 const actions = () => ({
   edit(state, event, route = _route) {
     route('/edit')
   },
-  async update(state, title) {
+  async update(state, title, getDB = _getDB, getObjectStore = _getObjectStore, putRecord = _putRecord) {
     title = title.trim()
     if (title) {
       const db = await getDB()
