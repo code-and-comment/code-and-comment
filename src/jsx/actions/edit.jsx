@@ -1,6 +1,6 @@
-import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
 
+import { createViewUrl } from '../utils.jsx'
 import { initialState } from '../store.jsx'
 import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords } from '../db.jsx'
 
@@ -46,13 +46,7 @@ const actions = () => ({
     return { codeAndComments }
   },
   publish(state, event, route = _route, location = window.location) {
-    const data = {
-      git: state.git,
-      path: state.path,
-      comments: state.comments,
-    }
-    const data_string = Base64.encodeURI(JSON.stringify(data))
-    const viewUrl = `${location.origin}${location.pathname}#/view?data=${data_string}`
+    const viewUrl = createViewUrl(state.git, state.path, state.comments, location)
     route('/publish')
     return { viewUrl }
   },
