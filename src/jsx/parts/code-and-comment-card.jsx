@@ -46,10 +46,6 @@ class CodeAndCommentCard extends Component {
           <button onClick={ this.edit }>Edit</button>
           { ' ' }
           <button onClick={ this.deleting }>Delete</button>
-          { ' ' }
-          <a href={ codeAndComment.viewUrl } target="_blank" rel="noopener noreferrer">
-            <button>View</button>
-          </a>
         </div>
       )
     }
