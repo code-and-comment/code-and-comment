@@ -8,12 +8,18 @@ function onUpgradeneeded(event) {
     autoIncrement: true
   })
 
-  const indexes = ['git', 'repository', 'path', 'updated_at']
+  const updated_at = 'updated_at'
+  const indexes = ['git', 'repository', 'path']
   indexes.forEach((key) => {
-    store.createIndex(key, [key], {
+    store.createIndex(key, [key, updated_at], {
       unique: false,
       multiEntry: false,
     })
+  })
+
+  store.createIndex(updated_at, [updated_at], {
+    unique: false,
+    multiEntry: false,
   })
 }
 
@@ -97,10 +103,15 @@ export function deleteRecord(objectStore, key) {
 }
 
 
-export function getAllRecords(objectStore) {
+export function getAllRecords(
+  objectStore,
+  indexName = 'updated_at',
+  range,
+  direction = 'prev'
+) {
   const p = new Promise((resolve, reject) => {
-    const index = objectStore.index('updated_at')
-    const cursor = index.openCursor(null, 'prev')
+    const index = objectStore.index(indexName)
+    const cursor = index.openCursor(range, direction)
     const records = []
     cursor.addEventListener('success', (event) => {
       const cursor = event.target.result
