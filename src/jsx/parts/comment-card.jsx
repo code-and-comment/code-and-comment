@@ -30,10 +30,6 @@ class CommentCard extends Component {
         <div>{ codeAndComment.updated_at.toLocaleString() }</div>
         <div>
           <button onClick={ this.edit }>Edit</button>
-          { ' ' }
-          <a href={ codeAndComment.viewUrl } target="_blank" rel="noopener noreferrer">
-            <button>View</button>
-          </a>
         </div>
       </div>
     )
