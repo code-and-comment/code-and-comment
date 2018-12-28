@@ -33,7 +33,8 @@ class CodeAndCommentCard extends Component {
       controls = (
         <div className="controls">
           <div className="message">This code and comment is removed.</div>
-          <button onClick={ this.deleteOne }>OK</button>{ ' ' }
+          <button onClick={ this.deleteOne }>OK</button>
+          { ' ' }
           <button onClick={ this.cancel }>Cancel</button>
         </div>
       )
@@ -42,8 +43,13 @@ class CodeAndCommentCard extends Component {
       controls = (
         <div className="controls">
           <div className="message"></div>
-          <button onClick={ this.edit }>Edit</button>{ ' ' }
+          <button onClick={ this.edit }>Edit</button>
+          { ' ' }
           <button onClick={ this.deleting }>Delete</button>
+          { ' ' }
+          <a href={ codeAndComment.viewUrl } target="_blank" rel="noopener noreferrer">
+            <button>View</button>
+          </a>
         </div>
       )
     }
