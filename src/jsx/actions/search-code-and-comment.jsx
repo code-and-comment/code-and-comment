@@ -10,6 +10,31 @@ import {
 
 
 const actions = () => ({
+  async search(
+    state,
+    conditions,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    getAllRecords = _getAllRecords,
+    bound = IDBKeyRange.bound
+  ) {
+    const { repository } = conditions
+    let indexName
+    if (repository) {
+      indexName = 'repository'
+    }
+    else {
+      indexName = 'updated_at'
+    }
+    let range
+    if (repository) {
+      range = bound([repository, new Date(0)], [repository, new Date()])
+    }
+    const db = await getDB()
+    const objectStore = await getObjectStore(db)
+    const codeAndComments = await getAllRecords(objectStore, indexName, range)
+    return { codeAndComments }
+  },
   back(state, event, route = _route) {
     route('/edit')
   },
