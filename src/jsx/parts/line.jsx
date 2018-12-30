@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 import marked from 'marked'
 
 import CommentList from '../parts/comment-list.jsx'
+import Button from '../parts/button.jsx'
 
 marked.setOptions({
   sanitize: true
@@ -56,11 +57,11 @@ class Comment extends Component {
             <textarea ref={ this.textareaRef }>{ comment }</textarea>
           </div>
           <div>
-            <button onClick={ cancel }>Cancel</button>
+            <Button onClick={ cancel }>Cancel</Button>
             { ' ' }
-            <button onClick={ this.save }>Save</button>
+            <Button onClick={ this.save }>Save</Button>
             { ' ' }
-            <button onClick={ this.props.delete }>Delete</button>
+            <Button onClick={ this.props.delete }>Delete</Button>
           </div>
         </div>
       )

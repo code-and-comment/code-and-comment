@@ -5,6 +5,7 @@ import actions from '../actions/start.jsx'
 import Navigator from '../parts/navigator.jsx'
 import Header from '../parts/header.jsx'
 import Loading from '../parts/loading.jsx'
+import Button from '../parts/button.jsx'
 
 class Start extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Start extends Component {
             https://github.com/developit/preact/blob/master/src/vdom/component.js<br/>
           </div>),
           <input type="text" key="2" className="url" onChange={ this.setUrl }/>,
-          <button key="3" onClick={ this.edit }>{ 'Edit->' }</button>,
+          <Button key="3" onClick={ this.edit }>{ 'Edit->' }</Button>,
           networkError && <p key="4">The file data is not got.</p>,
           urlError && <p key="5">Url is invalid.</p>
         ]

@@ -1,5 +1,7 @@
 import { h } from 'preact'
 
+import Button from '../parts/button.jsx'
+
 
 function addAnchor(url, button) {
   if (url) {
@@ -22,13 +24,13 @@ function Navigator({
   const leftButton = (
     leftLabel && addAnchor(
       leftUrl,
-      <button disabled={ leftDisabled } onClick={ leftClick }>{ leftLabel }</button>
+      <Button disabled={ leftDisabled } onClick={ leftClick }>{ leftLabel }</Button>
     )
   )
   const rightButton = (
     rightLabel && addAnchor(
       rightUrl,
-      <button disabled={ rightDisabled } onClick={ rightClick }>{ rightLabel }</button>
+      <Button disabled={ rightDisabled } onClick={ rightClick }>{ rightLabel }</Button>
     )
   )
   return (

@@ -6,6 +6,7 @@ import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
+import Button from '../parts/button.jsx'
 
 
 function Edit({
@@ -38,11 +39,11 @@ function Edit({
       <div><CommentList /></div>
       <div>{ path }</div>
       <div>
-        <button onClick={ save }>Save</button>
+        <Button onClick={ save }>Save</Button>
         { ' ' }
-        <button onClick={ update } disabled={ !id }>Update</button>
+        <Button onClick={ update } disabled={ !id }>Update</Button>
         { ' ' }
-        <button onClick={ list }>List</button>
+        <Button onClick={ list }>List</Button>
       </div>
       <div className="file">
         { lines.map((code, index) => <Line

@@ -4,6 +4,7 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/update.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
+import Button from '../parts/button.jsx'
 
 class Update extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Update extends Component {
       content = (
         <div>
           Title: <input type="text" className="title" value={ title } onChange={ this.setTitle } />
-          <button onClick={ this.update }>Update</button>
+          <Button onClick={ this.update }>Update</Button>
         </div>
       )
     }
