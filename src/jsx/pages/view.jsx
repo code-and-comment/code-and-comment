@@ -6,6 +6,7 @@ import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
+import Loading from '../parts/loading.jsx'
 
 
 function View({ lines, comments, path, edit, getFile }) {
@@ -35,7 +36,7 @@ function View({ lines, comments, path, edit, getFile }) {
   }
   else {
     getFile(location.hash.substring(12))
-    content = 'Loading'
+    content = <Loading />
   }
   return (
     <div className="cc-view center">
