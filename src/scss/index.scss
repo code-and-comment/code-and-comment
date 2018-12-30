@@ -8,6 +8,7 @@
 @import 'pages/search-code-and-comment';
 @import 'pages/search-comment';
 
+@import 'parts/button';
 @import 'parts/line';
 @import 'parts/loading';
 @import 'parts/header';
@@ -28,4 +29,11 @@ html, body {
 .center {
   margin-left: auto;
   margin-right: auto;
+}
+
+input[type="text"] {
+  line-height: 20px;
+  padding: 3px 6px;
+  border: solid 1px #cccccc;
+  border-radius: 3px;
 }

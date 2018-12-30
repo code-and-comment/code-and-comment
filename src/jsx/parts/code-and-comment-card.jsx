@@ -1,5 +1,7 @@
 import { h, Component } from 'preact'
 
+import Button from '../parts/button.jsx'
+
 
 class CodeAndCommentCard extends Component {
   constructor(props) {
@@ -33,9 +35,9 @@ class CodeAndCommentCard extends Component {
       controls = (
         <div className="controls">
           <div className="message">This code and comment is removed.</div>
-          <button onClick={ this.deleteOne }>OK</button>
+          <Button onClick={ this.deleteOne }>OK</Button>
           { ' ' }
-          <button onClick={ this.cancel }>Cancel</button>
+          <Button onClick={ this.cancel }>Cancel</Button>
         </div>
       )
     }
@@ -43,9 +45,9 @@ class CodeAndCommentCard extends Component {
       controls = (
         <div className="controls">
           <div className="message"></div>
-          <button onClick={ this.edit }>Edit</button>
+          <Button onClick={ this.edit }>Edit</Button>
           { ' ' }
-          <button onClick={ this.deleting }>Delete</button>
+          <Button onClick={ this.deleting }>Delete</Button>
         </div>
       )
     }

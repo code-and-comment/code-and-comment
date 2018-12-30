@@ -1,6 +1,9 @@
 import { h, Component } from 'preact'
 import marked from 'marked'
 
+import Button from '../parts/button.jsx'
+
+
 marked.setOptions({
   sanitize: true
 })
@@ -29,7 +32,7 @@ class CommentCard extends Component {
         <div>{ codeAndComment.title }</div>
         <div>{ codeAndComment.updated_at.toLocaleString() }</div>
         <div>
-          <button onClick={ this.edit }>Edit</button>
+          <Button onClick={ this.edit }>Edit</Button>
         </div>
       </div>
     )

@@ -5,6 +5,7 @@ import actions from '../actions/search-code-and-comment.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 import CommentCard from '../parts/comment-card.jsx'
+import Button from '../parts/button.jsx'
 
 
 class Search extends Component {
@@ -37,7 +38,7 @@ class Search extends Component {
       <div className="search">
         <div>Repository: <input type="text" value={ repository } onChange={ this.setRepository } /></div>
         <div>Comment: <input type="text" value={ comment } onChange={ this.setComment } /></div>
-        <div><button onClick={ this.search } >Search</button></div>
+        <div><Button onClick={ this.search } >Search</Button></div>
       </div>
     )
   }
