@@ -4,6 +4,7 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/start.jsx'
 import Navigator from '../parts/navigator.jsx'
 import Header from '../parts/header.jsx'
+import Loading from '../parts/loading.jsx'
 
 class Start extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class Start extends Component {
           urlError && <p key="5">Url is invalid.</p>
         ]
         }
-        { loading && 'Loading' }
+        { loading && <Loading /> }
       </div>
     )
   }

@@ -1,0 +1,15 @@
+.cc-loading {
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  animation: rotate 0.7s infinite linear;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: solid 4px #dcdcdc;
+  border-left-color: transparent;
+  vertical-align: text-bottom;
+  margin: auto;
+}
