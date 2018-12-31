@@ -38,7 +38,7 @@ function Edit({
       <div>Title: { title }</div>
       <div><CommentList /></div>
       <div>{ path }</div>
-      <div>
+      <div className="controls">
         <Button onClick={ save }>Save</Button>
         { ' ' }
         <Button onClick={ update } disabled={ !id }>Update</Button>
