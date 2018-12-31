@@ -19,9 +19,9 @@ class SearchCodeAndComment extends Component {
       <div className="cc-search-code-and-comment center">
         <Header />
         <Navigator
-          leftLabel={ '<-Home' }
+          leftLabel={ 'Home' }
           leftClick={ home }
-          rightLabel={ 'Edit->' }
+          rightLabel={ 'Edit' }
           rightClick={ back }
           rightDisabled={ !git }
         />

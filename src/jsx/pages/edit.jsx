@@ -26,9 +26,9 @@ function Edit({
     <div className="cc-edit center">
       <Header />
       <Navigator
-        leftLabel={ '<-Url' }
+        leftLabel={ 'Url' }
         leftClick={ fileUrl }
-        rightLabel={ 'Publish->' }
+        rightLabel={ 'Publish' }
         rightClick={ publish }
         rightDisabled={ Object.keys(comments).length < 1 }
       />

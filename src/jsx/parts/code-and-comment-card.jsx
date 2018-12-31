@@ -44,7 +44,6 @@ class CodeAndCommentCard extends Component {
     else {
       controls = (
         <div className="controls">
-          <div className="message"></div>
           <Button onClick={ this.edit }>Edit</Button>
           { ' ' }
           <Button onClick={ this.deleting }>Delete</Button>
