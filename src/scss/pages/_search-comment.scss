@@ -6,6 +6,19 @@
   height: 100%;
   .search {
     padding: 24px 120px 0px 120px;
+    > div {
+      padding-bottom: 6px;
+      .label {
+        width: 80px;
+        display: inline-block;
+      }
+      input {
+        width: 350px;
+      }
+    }
+    > .controls {
+      padding-top: 3px;
+    }
   }
   .comment-list {
     padding: 24px 120px 24px 120px;

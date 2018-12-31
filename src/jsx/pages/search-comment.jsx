@@ -36,9 +36,21 @@ class Search extends Component {
   render(_, { repository, comment }) {
     return (
       <div className="search">
-        <div>Repository: <input type="text" value={ repository } onChange={ this.setRepository } /></div>
-        <div>Comment: <input type="text" value={ comment } onChange={ this.setComment } /></div>
-        <div><Button onClick={ this.search } >Search</Button></div>
+        <div>
+          <span className="label">
+            Repository
+          </span>
+          <input type="text" value={ repository } onChange={ this.setRepository } />
+        </div>
+        <div>
+          <span className="label">
+            Comment
+          </span>
+          <input type="text" value={ comment } onChange={ this.setComment } />
+        </div>
+        <div className="controls">
+          <Button onClick={ this.search } >Search</Button>
+        </div>
       </div>
     )
   }
