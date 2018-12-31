@@ -28,7 +28,7 @@ class Start extends Component {
       <div className="cc-start center">
         <Header />
         <Navigator
-          leftLabel={ '<-Home' }
+          leftLabel={ 'Home' }
           leftClick={ home }
         />
         { !loading && [
@@ -39,7 +39,7 @@ class Start extends Component {
             https://github.com/developit/preact/blob/master/src/vdom/component.js<br/>
           </div>),
           <input type="text" key="2" className="url" onChange={ this.setUrl }/>,
-          <Button key="3" onClick={ this.edit }>{ 'Edit->' }</Button>,
+          <Button key="3" onClick={ this.edit }>Edit<img src="dist/arrow-forward.svg" /></Button>,
           networkError && <p key="4">The file data is not got.</p>,
           urlError && <p key="5">Url is invalid.</p>
         ]

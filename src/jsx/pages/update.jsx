@@ -38,7 +38,7 @@ class Update extends Component {
       <div className="cc-update center">
         <Header />
         <Navigator
-          leftLabel={ '<-Edit' }
+          leftLabel={ 'Edit' }
           leftClick={ edit }
         />
         <p>If you want to update the code and comment, Please input the title for code and comment.</p>

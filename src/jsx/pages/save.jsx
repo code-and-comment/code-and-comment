@@ -38,7 +38,7 @@ class Save extends Component {
       <div className="cc-save center">
         <Header />
         <Navigator
-          leftLabel={ '<-Edit' }
+          leftLabel={ 'Edit' }
           leftClick={ edit }
         />
         <p>If you want to save the code and comment, Please input the title for code and comment.</p>

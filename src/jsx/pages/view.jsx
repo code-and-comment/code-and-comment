@@ -15,7 +15,7 @@ function View({ lines, comments, path, edit, getFile }) {
     content = [
       (<Navigator
         key='navigator'
-        leftLabel={ '<-Edit' }
+        leftLabel={ 'Edit' }
         leftClick={ edit }
       />),
       <div key='comment-list'><CommentList /></div>,

@@ -10,16 +10,16 @@ function Publish({ viewUrl, back }) {
   return (
     <div className="cc-publish center">
       <Header />
+      <Navigator
+        leftLabel={ 'Back' }
+        leftClick={ back }
+        rightLabel={ 'View' }
+        rightUrl={ viewUrl }
+      />
       <div>
         Save url.
         Click View button.
       </div>
-      <Navigator
-        leftLabel={ '<-Back' }
-        leftClick={ back }
-        rightLabel={ 'View->' }
-        rightUrl={ viewUrl }
-      />
       <div className="url">
         <textarea>{ viewUrl }</textarea>
       </div>

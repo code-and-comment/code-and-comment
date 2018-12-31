@@ -24,13 +24,13 @@ function Navigator({
   const leftButton = (
     leftLabel && addAnchor(
       leftUrl,
-      <Button disabled={ leftDisabled } onClick={ leftClick }>{ leftLabel }</Button>
+      <Button disabled={ leftDisabled } onClick={ leftClick }><img src="dist/arrow-back.svg" />{ leftLabel }</Button>
     )
   )
   const rightButton = (
     rightLabel && addAnchor(
       rightUrl,
-      <Button disabled={ rightDisabled } onClick={ rightClick }>{ rightLabel }</Button>
+      <Button disabled={ rightDisabled } onClick={ rightClick }>{ rightLabel }<img src="dist/arrow-forward.svg" /></Button>
     )
   )
   return (

@@ -14,11 +14,17 @@
     background-image: linear-gradient(-180deg, #fbfbfb, #eaeaea 5%);
     border: solid 1px rgba(30, 30, 30, 0.30);
   }
+  img {
+    position: relative;
+    top: 4px;
+    height: 16px;
+  }
 }
 
 .cc-button-disabled {
   cursor: initial;
-  background-image: #fff!important;
+  background-image: none!important;
+  background-color: #fff!important;
   &:hover {
     color: #242424;
     background-image: none!important;

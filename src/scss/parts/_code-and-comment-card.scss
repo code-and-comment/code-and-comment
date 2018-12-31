@@ -1,6 +1,11 @@
- .cc-code-and-comment-card {
-  .message {
-    color: #cc2222;
-    height: 18px;
+.cc-code-and-comment-card {
+  > .controls {
+    padding-top: 6px;
+    > .message {
+      color: #cc2222;
+      height: 18px;
+      margin-bottom: 8px;
+      margin-top: -4px;
+    }
   }
 }
