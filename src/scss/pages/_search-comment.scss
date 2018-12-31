@@ -4,8 +4,9 @@
   font-size: 12px;
   width: $page-width;
   height: 100%;
+  padding: 0px 120px 0px 120px;
   .search {
-    padding: 24px 120px 0px 120px;
+    padding-top: 24px;
     > div {
       padding-bottom: 6px;
       .label {
@@ -21,7 +22,7 @@
     }
   }
   .comment-list {
-    padding: 24px 120px 24px 120px;
+    padding-top: 24px;
     hr {
       margin-top: 16px;
       margin-bottom: 16px;
