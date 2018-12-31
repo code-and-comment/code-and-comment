@@ -2,5 +2,10 @@
 
 
 .cc-comment-card {
-  @extend .display;
+  .comment {
+    @extend .display;
+  }
+  .controls {
+    margin-top: 8px;
+  }
 }
