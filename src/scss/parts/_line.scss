@@ -29,10 +29,11 @@
 
   .comment {
     padding: 12px 48px;
+    border-left: none;
     border-top: solid 1px rgba(24, 24, 24, 0.2);
     border-bottom: solid 1px rgba(24, 24, 24, 0.2);
     border-right: solid 1px rgba(24, 24, 24, 0.2);
-    background-color: rgba(24, 24, 24, 0.05);
+    background-color: rgba(24, 24, 24, 0.1);
     width: 900px;
     @extend .display;
     .input {
@@ -42,6 +43,9 @@
         height: 72px;
         padding: 8px;
       }
+    }
+    > .controls {
+      padding-top: 6px;
     }
   }
 }

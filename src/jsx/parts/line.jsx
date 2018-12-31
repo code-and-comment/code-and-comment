@@ -56,7 +56,7 @@ class Comment extends Component {
           <div className="input">
             <textarea ref={ this.textareaRef }>{ comment }</textarea>
           </div>
-          <div>
+          <div className="controls">
             <Button onClick={ cancel }>Cancel</Button>
             { ' ' }
             <Button onClick={ this.save }>Save</Button>
