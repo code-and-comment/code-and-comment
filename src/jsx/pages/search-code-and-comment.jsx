@@ -35,6 +35,7 @@ class Search extends Component {
           <input type="text" value={ repository } onChange={ this.setRepository } />
         </div>
         <div className="controls">
+          <span className="label"></span>
           <Button onClick={ this.search } >Search</Button>
         </div>
       </div>
