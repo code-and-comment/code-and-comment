@@ -45,7 +45,7 @@ class Comment extends Component {
       _comment.pop()
       return (
         <div className="comment">
-          <div className="display" dangerouslySetInnerHTML={ { __html: marked(comment) } } />
+          <div className="display-markdown" dangerouslySetInnerHTML={ { __html: marked(comment) } } />
           <CommentList />
         </div>
       )

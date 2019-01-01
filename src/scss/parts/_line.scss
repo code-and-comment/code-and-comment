@@ -35,7 +35,9 @@
     border-right: solid 1px rgba(24, 24, 24, 0.2);
     background-color: rgba(24, 24, 24, 0.1);
     width: 900px;
-    @extend .display;
+    .display-markdown {
+      @extend .display-markdown;
+    }
     .input {
       textarea {
         background-color: #fff;
