@@ -10,4 +10,7 @@
     margin-top: 16px;
     margin-bottom: 16px;
   }
+  .search {
+    @extend .cc-search-form;
+  }
 }

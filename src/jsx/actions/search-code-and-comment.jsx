@@ -18,7 +18,8 @@ const actions = () => ({
     getAllRecords = _getAllRecords,
     bound = IDBKeyRange.bound
   ) {
-    const { repository } = conditions
+    let { repository } = conditions
+    repository = repository.trim()
     let indexName
     if (repository) {
       indexName = 'repository'

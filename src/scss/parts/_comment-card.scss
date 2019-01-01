@@ -3,7 +3,7 @@
 
 .cc-comment-card {
   .comment {
-    @extend .display-markdown;
+    @extend .cc-display-markdown;
   }
   .controls {
     margin-top: 8px;

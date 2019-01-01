@@ -100,7 +100,7 @@ class SearchComment extends Component {
       <div className="cc-search-comment center">
         <Header />
         <Navigator leftLabel={ 'Home' } leftClick={ home } />
-        <Search search= { this.search } />
+        <Search search={ this.search } />
         <CommentList codeAndComments={ codeAndComments } commentPattern={ comment } edit={ edit } />
       </div>
     )
