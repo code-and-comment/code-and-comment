@@ -5,21 +5,7 @@
   width: 800px;
   height: 100%;
   .search {
-    padding-top: 24px;
-    > div {
-      padding-bottom: 6px;
-      .label {
-        font-size: 14px;
-        width: 80px;
-        display: inline-block;
-      }
-      input {
-        width: 350px;
-      }
-    }
-    > .controls {
-      padding-top: 7px;
-    }
+    @extend .cc-search-form;
   }
   .comment-list {
     padding-top: 24px;

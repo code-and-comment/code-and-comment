@@ -5,10 +5,46 @@ import actions from '../actions/search-code-and-comment.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 import CodeAndCommentCard from '../parts/code-and-comment-card.jsx'
+import Button from '../parts/button.jsx'
+
+
+class Search extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      repository: '',
+    }
+    this.setRepository = this.setRepository.bind(this)
+    this.search = this.search.bind(this)
+  }
+  setRepository(event) {
+    this.setState({
+      repository: event.target.value
+    })
+  }
+  search() {
+    this.props.search(this.state)
+  }
+  render(_, { repository }) {
+    return (
+      <div className="search">
+        <div>
+          <span className="label">
+            Repository
+          </span>
+          <input type="text" value={ repository } onChange={ this.setRepository } />
+        </div>
+        <div className="controls">
+          <Button onClick={ this.search } >Search</Button>
+        </div>
+      </div>
+    )
+  }
+}
 
 
 class SearchCodeAndComment extends Component {
-  render({ codeAndComments, deleteOne, git, back, edit, home }) {
+  render({ codeAndComments, deleteOne, search, git, back, edit, home }) {
     const list = []
     codeAndComments.forEach((c) => {
       list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
@@ -25,6 +61,7 @@ class SearchCodeAndComment extends Component {
           rightClick={ back }
           rightDisabled={ !git }
         />
+        <Search search={ search } />
         <div className="list">
           { list.length ? list : 'There is no Code and Comment.' }
         </div>
