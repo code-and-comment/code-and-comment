@@ -49,6 +49,7 @@ class Search extends Component {
           <input type="text" value={ comment } onChange={ this.setComment } />
         </div>
         <div className="controls">
+          <span className="label"></span>
           <Button onClick={ this.search } >Search</Button>
         </div>
       </div>
