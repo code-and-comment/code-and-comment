@@ -19,7 +19,7 @@ class Home extends Component {
         </div>
         <div className="links">
           <p><Link href="/start">Create Code and Comment</Link></p>
-          <p><a onClick={ search_code_and_comment }>Code and Comment List</a></p>
+          <p><a onClick={ search_code_and_comment }>{ 'Search Code and Comment' }</a></p>
           <p><a onClick={ search_comment }>{ 'Search Comment' }</a></p>
         </div>
       </div>
