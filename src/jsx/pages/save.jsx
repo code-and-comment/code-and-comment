@@ -35,7 +35,7 @@ class Save extends Component {
       )
     }
     return (
-      <div className="cc-save center">
+      <div className="cc-save">
         <Header />
         <Navigator
           leftLabel={ 'Edit' }

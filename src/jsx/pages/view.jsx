@@ -39,7 +39,7 @@ function View({ lines, comments, path, edit, getFile }) {
     content = <Loading />
   }
   return (
-    <div className="cc-view center">
+    <div className="cc-view">
       <Header />
       { content }
     </div>

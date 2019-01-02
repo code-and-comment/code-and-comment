@@ -98,7 +98,7 @@ class SearchComment extends Component {
   }
   render({ codeAndComments, edit, home }, { comment }) {
     return (
-      <div className="cc-search-comment center">
+      <div className="cc-search-comment">
         <Header />
         <Navigator leftLabel={ 'Home' } leftClick={ home } />
         <Search search={ this.search } />

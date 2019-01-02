@@ -1,6 +1,7 @@
 @import '../variables';
 
 .cc-home {
+  @extend .cc-center;
   font-size: 12px;
   width: 480px;
   height: 100%;

@@ -1,10 +1,18 @@
 @import '../variables';
 
 .cc-start {
+  @extend .cc-center;
   font-size: 12px;
   width: 700px;
   height: 100%;
-  .url {
-    width: 545px;
+  > .controls {
+    @extend .cc-center;
+    width: fit#{"-"}content;
+    .url {
+      width: 545px;
+    }
+  }
+  > .account {
+    padding: 16px 0px;
   }
 }
