@@ -34,6 +34,7 @@ function Edit({
       />
       <div>
         Click the line. Add the comment by Markdown. Click Publish button.
+        When a line number is clicked, the comment is hidden.
       </div>
       <div>Title: { title }</div>
       <div><CommentList /></div>
