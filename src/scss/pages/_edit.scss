@@ -2,6 +2,7 @@
 
 .cc-edit {
   @extend .cc-outer-file;
+  @extend .cc-center;
   > .controls {
     padding: 10px 0px;
   }

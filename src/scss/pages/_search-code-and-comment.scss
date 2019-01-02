@@ -1,6 +1,7 @@
 @import '../variables';
 
 .cc-search-code-and-comment {
+  @extend .cc-center;
   font-size: 12px;
   width: 800px;
   .list {

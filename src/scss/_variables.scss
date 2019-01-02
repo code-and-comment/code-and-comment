@@ -24,7 +24,15 @@ $page-width: 1000px;
   }
 }
 
+
+.cc-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .cc-search-form {
+  @extend .cc-center;
   width: 430px;
   margin-left: auto;
   margin-right: auto;

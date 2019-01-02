@@ -9,7 +9,7 @@ import Header from '../parts/header.jsx'
 class Home extends Component {
   render({ search_comment, search_code_and_comment }) {
     return (
-      <div className="cc-home center">
+      <div className="cc-home">
         <Header />
         <div>
           The status of this application is pre-alpha.<br/>
