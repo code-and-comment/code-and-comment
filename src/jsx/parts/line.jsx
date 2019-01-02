@@ -9,11 +9,22 @@ marked.setOptions({
 })
 
 
-function Code({ number, content, edit, editable }) {
+function Code({ number, content, edit, editable, isHidden, toggleHidden }) {
+  const className = isHidden ? 'number hidden' : 'number'
   return (
-    <div className="code" onClick={ editable ? edit : null }>
-      <span className="number">{ number + 1 }</span>
-      <span className="content">{ content }</span>
+    <div className="code">
+      <span
+        className={ className }
+        onClick={ toggleHidden }
+      >
+        { number + 1 }
+      </span>
+      <span
+        className="content"
+        onClick={ editable ? edit : null }
+      >
+        { content }
+      </span>
     </div>
   )
 }
@@ -73,18 +84,27 @@ class Comment extends Component {
 class Line extends Component {
   constructor(props) {
     super(props)
-    this.state = { isEditing: false }
+    this.state = {
+      isEditing: false,
+      isHidden: false
+    }
     this.edit = this.edit.bind(this)
     this.cancel = this.cancel.bind(this)
     this.save = this.save.bind(this, props.index)
     this.delete = this.delete.bind(this, props.index)
+    this.toggleHidden = this.toggleHidden.bind(this)
   }
 
-  shouldComponentUpdate({ index, code, comment }, { isEditing }) {
+  shouldComponentUpdate({ index, code, comment }, { isEditing, isHidden }) {
     return !(this.props.index === index
         && this.props.code === code
         && this.props.comment === comment
-        && this.state.isEditing === isEditing)
+        && this.state.isEditing === isEditing
+        && this.state.isHidden === isHidden)
+  }
+
+  toggleHidden() {
+    this.setState({ isHidden: !this.state.isHidden })
   }
 
   edit() {
@@ -105,17 +125,24 @@ class Line extends Component {
     this.props.updateComment(index, '')
   }
 
-  render({ index, code, comment, editable }, { isEditing }) {
+  render({ index, code, comment, editable }, { isEditing, isHidden }) {
     return (
       <div className="cc-line">
-        <Code number={ index } content={ code } edit={ this.edit } editable={ editable }/>
-        <Comment
+        <Code
+          number={ index }
+          content={ code }
+          edit={ this.edit }
+          editable={ editable }
+          isHidden={ isHidden }
+          toggleHidden={ this.toggleHidden }
+        />
+        { !isHidden && <Comment
           comment={ comment }
           isEditing={ isEditing }
           cancel={ this.cancel }
           save={ this.save }
           delete={ this.delete }
-        />
+        /> }
       </div>
     )
   }
