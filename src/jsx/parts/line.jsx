@@ -134,7 +134,7 @@ class Line extends Component {
           edit={ this.edit }
           editable={ editable }
           isHidden={ isHidden }
-          toggleHidden={ this.toggleHidden }
+          toggleHidden={ comment && this.toggleHidden }
         />
         { !isHidden && <Comment
           comment={ comment }
