@@ -12,17 +12,17 @@ marked.setOptions({
 function Code({ number, content, edit, editable, isHidden, toggleHidden }) {
   const className = isHidden ? 'number hidden' : 'number'
   return (
-    <div className="code">
+    <div
+      className="code"
+      onClick={ editable ? edit : null }
+    >
       <span
         className={ className }
         onClick={ toggleHidden }
       >
         { number + 1 }
       </span>
-      <span
-        className="content"
-        onClick={ editable ? edit : null }
-      >
+      <span className="content">
         { content }
       </span>
     </div>
@@ -103,7 +103,8 @@ class Line extends Component {
         && this.state.isHidden === isHidden)
   }
 
-  toggleHidden() {
+  toggleHidden(event) {
+    event.stopPropagation()
     this.setState({ isHidden: !this.state.isHidden })
   }
 
