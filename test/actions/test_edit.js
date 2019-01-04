@@ -75,6 +75,21 @@ describe('actions/edit', () => {
     })
   })
 
+  describe('list', () => {
+    it('transfers to the search code and comment page', async function() {
+      const route = spy()
+      const noop = function() {}
+      const codeAndComments = [{}, {}]
+      const getAllRecords = async function() {
+        return codeAndComments
+      }
+      const result = await acitons().list(null, null, route, noop, noop, getAllRecords)
+      expect(route.calledOnce).to.be.true
+      expect(route.calledWith('/search_code_and_comment')).to.be.true
+      expect(result).to.deep.equal({ codeAndComments })
+    })
+  })
+
   describe('save', () => {
     it('transfers to the save page', () => {
       const route = spy()
