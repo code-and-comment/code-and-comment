@@ -2,7 +2,8 @@ import { route as _route } from 'preact-router'
 
 import { createViewUrl } from '../utils.jsx'
 import { initialState } from '../store.jsx'
-import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords } from '../db.jsx'
+import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords } from '../utils.jsx'
+import { transfer } from '../utils.jsx'
 
 
 const actions = () => ({
@@ -31,7 +32,7 @@ const actions = () => ({
     route('/start')
     return initialState()
   },
-  async list(
+  list(
     state,
     event,
     route = _route,
@@ -39,11 +40,7 @@ const actions = () => ({
     getObjectStore = _getObjectStore,
     getAllRecords = _getAllRecords
   ) {
-    route('/search_code_and_comment')
-    const db = await getDB()
-    const objectStore = await getObjectStore(db)
-    const codeAndComments = await getAllRecords(objectStore)
-    return { codeAndComments }
+    return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords)
   },
   publish(state, event, route = _route, location = window.location) {
     const viewUrl = createViewUrl(state.git, state.path, state.comments, location)
