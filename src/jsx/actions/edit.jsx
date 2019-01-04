@@ -2,7 +2,7 @@ import { route as _route } from 'preact-router'
 
 import { createViewUrl } from '../utils.jsx'
 import { initialState } from '../store.jsx'
-import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords } from '../utils.jsx'
+import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords } from '../db.jsx'
 import { transfer } from '../utils.jsx'
 
 
