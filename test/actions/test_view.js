@@ -2,13 +2,13 @@ import { expect } from 'chai'
 import { spy } from 'sinon'
 import { Base64 } from 'js-base64'
 
-import acitons from '../../src/jsx/actions/view.jsx'
+import actions from '../../src/jsx/actions/view.jsx'
 
 describe('actions/view', () => {
   describe('edit', () => {
     it('moves /edit', () => {
       const route = spy()
-      acitons().edit(null, null, route)
+      actions().edit(null, null, route)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
     })
@@ -17,14 +17,14 @@ describe('actions/view', () => {
   describe('getFile', () => {
     it('move /start if paramJson is empty', async function() {
       const route = spy()
-      await acitons().getFile(null, null, route, null)
+      await actions().getFile(null, null, route, null)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/start')).to.be.true
     })
 
     it('move /start if paramJson is invalid', async function() {
       const route = spy()
-      await acitons().getFile(null, Base64.encodeURI('{}'), route, null)
+      await actions().getFile(null, Base64.encodeURI('{}'), route, null)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/start')).to.be.true
     })
@@ -46,7 +46,7 @@ describe('actions/view', () => {
           }
         }
       })
-      const result = await acitons().getFile(null, paramJson, route, fetch)
+      const result = await actions().getFile(null, paramJson, route, fetch)
       expect(route.notCalled).to.be.true
       expect(result).to.deep.equal({
         git: 'https://api.github.com/repos/code-and-comment/test/git/blobs/df8ea659b9e30b8c6e0f5efd686e0165670524b5',
