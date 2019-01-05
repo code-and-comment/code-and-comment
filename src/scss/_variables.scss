@@ -1,10 +1,10 @@
 $page-width: 1000px; 
 
 .cc-outer-file {
-  font-size: 12px;
   width: $page-width;
   height: 100%;
   .file {
+    font-size: 12px;
     overflow-x: auto;
     border: solid 1px rgba(24, 24, 24, 0.2);
     margin-bottom: 36px;
@@ -12,7 +12,9 @@ $page-width: 1000px;
 }
 
 .cc-display-markdown {
+  font-family: Roboto,sans-serif;
   color: #111111;
+  font-size: 12px;
   background-color: #fff;
   border: solid 1px rgba(24, 24, 24, 0.2);
   line-height: initial;
