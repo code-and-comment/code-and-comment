@@ -23,7 +23,7 @@ function Edit({
   list
 }) {
   return (
-    <div className="cc-edit center">
+    <div className="cc-edit">
       <Header />
       <Navigator
         leftLabel={ 'Url' }
