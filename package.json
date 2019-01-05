@@ -1,6 +1,6 @@
 {
   "name": "code-and-comment",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "author": "38elements",
   "description": "Code and Comment is the application to add the comments to a file in Github.",
   "scripts": {
@@ -30,7 +30,7 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "sinon": "^7.2.2",
-    "terser": "^3.14.0"
+    "terser": "^3.14.1"
   },
   "dependencies": {
     "history": "^4.7.2",
