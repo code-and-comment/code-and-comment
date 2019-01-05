@@ -35,7 +35,7 @@ class Update extends Component {
       )
     }
     return (
-      <div className="cc-update center">
+      <div className="cc-update">
         <Header />
         <Navigator
           leftLabel={ 'Edit' }

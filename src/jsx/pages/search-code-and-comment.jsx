@@ -53,7 +53,7 @@ class SearchCodeAndComment extends Component {
     })
     list.pop()
     return (
-      <div className="cc-search-code-and-comment center">
+      <div className="cc-search-code-and-comment">
         <Header />
         <Navigator
           leftLabel={ 'Home' }

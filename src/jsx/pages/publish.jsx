@@ -8,7 +8,7 @@ import Navigator from '../parts/navigator.jsx'
 
 function Publish({ viewUrl, back }) {
   return (
-    <div className="cc-publish center">
+    <div className="cc-publish">
       <Header />
       <Navigator
         leftLabel={ 'Back' }
