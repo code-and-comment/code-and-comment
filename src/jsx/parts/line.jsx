@@ -109,7 +109,9 @@ class Line extends Component {
   }
 
   edit() {
-    this.setState({ isEditing: true })
+    if (window.getSelection().isCollapsed) {
+      this.setState({ isEditing: true })
+    }
   }
 
   cancel() {
