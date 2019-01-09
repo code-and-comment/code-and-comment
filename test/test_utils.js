@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { spy } from 'sinon'
 
-import { createViewUrl } from '../src/jsx/utils.jsx'
+import { createViewUrl, transfer } from '../src/jsx/utils.jsx'
 
 describe('utils', () => {
   describe('createViewUrl', () => {
@@ -17,6 +17,21 @@ describe('utils', () => {
       expect(url).to.deep.equal(
         'http://example.com/foo#/view?data=eyJnaXQiOiJodHRwczovL2FwaS5naXRodWIuY29tL3JlcG9zL2NvZGUtYW5kLWNvbW1lbnQvdGVzdC9naXQvYmxvYnMvZGY4ZWE2NTliOWUzMGI4YzZlMGY1ZWZkNjg2ZTAxNjU2NzA1MjRiNSIsInBhdGgiOiIvY29kZS1hbmQtY29tbWVudC90ZXN0L2JhciIsImNvbW1lbnRzIjp7IjEiOiJhIiwiMiI6ImIifX0'
       )
+    })
+  })
+
+  describe('transfer', () => {
+    it('returns codeAndComments', async function() {
+      const route = spy()
+      const noop = function() {}
+      const codeAndComments = [{}, {}]
+      const getAllRecords = async function() {
+        return codeAndComments
+      }
+      const result = await transfer('/foo', route, noop, noop, getAllRecords)
+      expect(route.calledOnce).to.be.true
+      expect(route.calledWith('/foo')).to.be.true
+      expect(result).to.deep.equal({ codeAndComments })
     })
   })
 })
