@@ -13,4 +13,13 @@ describe('actions/save', () => {
       expect(result).to.be.undefined
     })
   })
+
+  describe('save', () => {
+    it('does nothing when title is empty', async function() {
+      const getDB = spy()
+      const result = await actions().save(null, '   ', getDB)
+      expect(getDB.notCalled).to.be.true
+      expect(result).to.be.undefined
+    })
+  })
 })
