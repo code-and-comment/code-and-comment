@@ -12,10 +12,7 @@ class Home extends Component {
       <div className="cc-home">
         <Header />
         <div>
-          The status of this application is pre-alpha.<br/>
-          Many breaking changes will be added to this application.<br/>
-          This is demo site.<br/>
-          If you want to use this application as product, you should host this application.<br/>
+          The status of this application is pre-alpha.
         </div>
         <div className="links">
           <p><Link href="/start">Create Code and Comment</Link></p>
