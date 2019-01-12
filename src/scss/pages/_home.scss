@@ -4,16 +4,11 @@
   @extend .cc-center;
   width: fit#{"-"}content;
   height: 100%;
+  .message {
+    padding-top: 16px;
+  }
   .links {
     font-size: 14px;
     padding: 14px;
-    a {
-      color: #0669d9;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-    }
   }
 }

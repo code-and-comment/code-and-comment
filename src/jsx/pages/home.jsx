@@ -11,7 +11,7 @@ class Home extends Component {
     return (
       <div className="cc-home">
         <Header />
-        <div>
+        <div className="message">
           The status of this application is pre-alpha.
         </div>
         <div className="links">

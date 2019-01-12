@@ -7,4 +7,9 @@
   .title {
     width: 300px;
   }
+  > .content {
+    @extend .cc-center;
+    width: fit#{"-"}content;
+    padding-top: 16px;
+  }
 }

@@ -24,11 +24,12 @@ class Update extends Component {
   render({ edit, updated }, { title }) {
     let content
     if (updated) {
-      content = <p>The code and comment was updated.</p>
+      content = <div className="content">The code and comment was updated.</div>
     }
     else {
       content = (
-        <div>
+        <div className="content">
+          <p>If you want to update the code and comment, Please input the title for code and comment.</p>
           Title: <input type="text" className="title" value={ title } onChange={ this.setTitle } />
           <Button onClick={ this.update }>Update</Button>
         </div>
@@ -41,7 +42,6 @@ class Update extends Component {
           leftLabel={ 'Edit' }
           leftClick={ edit }
         />
-        <p>If you want to update the code and comment, Please input the title for code and comment.</p>
         { content }
       </div>
     )

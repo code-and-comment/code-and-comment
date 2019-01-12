@@ -18,7 +18,7 @@
 @import 'parts/comment-card';
 
 html, body {
-  font-family: Roboto,sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 14px;
   height: 100%;
   padding: 0px;
@@ -34,4 +34,13 @@ input[type="text"] {
   padding: 3px 6px;
   border: solid 1px #cccccc;
   border-radius: 3px;
+}
+
+a {
+  color: #0669d9;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
