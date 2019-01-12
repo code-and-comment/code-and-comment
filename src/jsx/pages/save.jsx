@@ -24,11 +24,12 @@ class Save extends Component {
   render({ edit, saved }, { title }) {
     let content
     if (saved) {
-      content = <p>The code and comment was saved.</p>
+      content = <div className="content">The code and comment was saved.</div>
     }
     else {
       content = (
-        <div>
+        <div className="content">
+          <p>If you want to save the code and comment, Please input the title for code and comment.</p>
           Title: <input type="text" className="title" value={ title } onChange={ this.setTitle } />
           <Button onClick={ this.save }>Save</Button>
         </div>
@@ -41,7 +42,6 @@ class Save extends Component {
           leftLabel={ 'Edit' }
           leftClick={ edit }
         />
-        <p>If you want to save the code and comment, Please input the title for code and comment.</p>
         { content }
       </div>
     )
