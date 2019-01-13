@@ -2,7 +2,7 @@
 
 .cc-start {
   @extend .cc-center;
-  width: 700px;
+  width: fit#{"-"}content;
   height: 100%;
   > .controls {
     @extend .cc-center;
