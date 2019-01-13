@@ -9,6 +9,18 @@ marked.setOptions({
 })
 
 
+function TabNavigator({ isPreview, togglePreview }) {
+  return (
+    <div className="tab-navigator">
+      <div className="tabs">
+        <span className={ isPreview ? 'tab' : 'tab selected' } onClick={ isPreview && togglePreview }>Edit</span>
+        <span className={ isPreview ? 'tab selected' : 'tab' } onClick={ !isPreview && togglePreview }>Preview</span>
+      </div>
+    </div>
+  )
+}
+
+
 function Code({ number, content, edit, editable, isHidden, toggleHidden }) {
   const className = isHidden ? 'number hidden' : 'number'
   return (
@@ -33,20 +45,39 @@ function Code({ number, content, edit, editable, isHidden, toggleHidden }) {
 class Comment extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      comment: props.comment,
+      isPreview: false,
+    }
+    this.cancel = this.cancel.bind(this)
     this.save = this.save.bind(this)
-    this.textareaRef = this.textareaRef.bind(this)
+    this.setComment = this.setComment.bind(this)
+    this.togglePreview = this.togglePreview.bind(this)
   }
 
-  textareaRef(textarea) {
-    this.textarea = textarea
+  setComment(event) {
+    this.setState({
+      comment: event.target.value
+    })
+  }
+
+  cancel() {
+    this.setState({
+      comment: this.props.comment
+    })
+    this.props.cancel()
   }
 
   save() {
-    const comment = this.textarea.value
-    this.props.save(comment)
+    this.props.save(this.state.comment)
   }
 
-  render({ comment, isEditing, cancel }) {
+  togglePreview(event) {
+    event.stopPropagation()
+    this.setState({ isPreview: !this.state.isPreview })
+  }
+
+  render({ isEditing }, { comment, isPreview }) {
     if (comment && !isEditing) {
       const _comment = []
       comment.split('\n').forEach((c) => {
@@ -65,10 +96,12 @@ class Comment extends Component {
       return (
         <div className="comment">
           <div className="input">
-            <textarea ref={ this.textareaRef }>{ comment }</textarea>
+            <TabNavigator isPreview={ isPreview } togglePreview={ this.togglePreview } />
+            { !isPreview && <textarea onChange={ this.setComment }>{ comment }</textarea> }
+            { isPreview && <div className="display-markdown" dangerouslySetInnerHTML={ { __html: marked(comment) } } /> }
           </div>
           <div className="controls">
-            <Button onClick={ cancel }>Cancel</Button>
+            <Button onClick={ this.cancel }>Cancel</Button>
             { ' ' }
             <Button onClick={ this.save }>Save</Button>
             { ' ' }
@@ -140,7 +173,7 @@ class Line extends Component {
           toggleHidden={ comment && this.toggleHidden }
         />
         { !isHidden && <Comment
-          comment={ comment }
+          comment={ comment || '' }
           isEditing={ isEditing }
           cancel={ this.cancel }
           save={ this.save }
