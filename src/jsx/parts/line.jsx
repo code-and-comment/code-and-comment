@@ -9,18 +9,6 @@ marked.setOptions({
 })
 
 
-function TabNavigator({ isPreview, togglePreview }) {
-  return (
-    <div className="tab-navigator">
-      <div className="tabs">
-        <span className={ isPreview ? 'tab' : 'tab selected' } onClick={ isPreview && togglePreview }>Edit</span>
-        <span className={ isPreview ? 'tab selected' : 'tab' } onClick={ !isPreview && togglePreview }>Preview</span>
-      </div>
-    </div>
-  )
-}
-
-
 function Code({ number, content, edit, editable, isHidden, toggleHidden }) {
   const className = isHidden ? 'number hidden' : 'number'
   return (
@@ -51,6 +39,7 @@ class Comment extends Component {
     }
     this.cancel = this.cancel.bind(this)
     this.save = this.save.bind(this)
+    this.delete = this.delete.bind(this)
     this.setComment = this.setComment.bind(this)
     this.togglePreview = this.togglePreview.bind(this)
   }
@@ -72,6 +61,13 @@ class Comment extends Component {
     this.props.save(this.state.comment)
   }
 
+  delete() {
+    this.setState({
+      comment: ''
+    })
+    this.props.delete()
+  }
+
   togglePreview(event) {
     event.stopPropagation()
     this.setState({ isPreview: !this.state.isPreview })
@@ -79,12 +75,6 @@ class Comment extends Component {
 
   render({ isEditing }, { comment, isPreview }) {
     if (comment && !isEditing) {
-      const _comment = []
-      comment.split('\n').forEach((c) => {
-        _comment.push(c)
-        _comment.push(<br/>)
-      })
-      _comment.pop()
       return (
         <div className="comment">
           <div className="display-markdown" dangerouslySetInnerHTML={ { __html: marked(comment) } } />
@@ -96,7 +86,12 @@ class Comment extends Component {
       return (
         <div className="comment">
           <div className="input">
-            <TabNavigator isPreview={ isPreview } togglePreview={ this.togglePreview } />
+            <div className="tab-navigator">
+              <div className="tabs">
+                <span className={ isPreview ? 'tab' : 'tab selected' } onClick={ isPreview && this.togglePreview }>Edit</span>
+                <span className={ isPreview ? 'tab selected' : 'tab' } onClick={ !isPreview && this.togglePreview }>Preview</span>
+              </div>
+            </div>
             { !isPreview && <textarea onChange={ this.setComment }>{ comment }</textarea> }
             { isPreview && <div className="display-markdown" dangerouslySetInnerHTML={ { __html: marked(comment) } } /> }
           </div>
@@ -105,7 +100,7 @@ class Comment extends Component {
             { ' ' }
             <Button onClick={ this.save }>Save</Button>
             { ' ' }
-            <Button onClick={ this.props.delete }>Delete</Button>
+            <Button onClick={ this.delete }>Delete</Button>
           </div>
         </div>
       )
