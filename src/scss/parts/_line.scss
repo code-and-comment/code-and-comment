@@ -64,7 +64,6 @@ $border: solid 1px rgba(24, 24, 24, 0.2);
     }
     .display-markdown {
       @extend .cc-display-markdown;
-      border-top: 0px!important;
     }
     .input {
       textarea {
@@ -79,6 +78,9 @@ $border: solid 1px rgba(24, 24, 24, 0.2);
         &:focus {
           outline: none;
         }
+      }
+      .display-markdown {
+        border-top: 0px!important;
       }
     }
     > .controls {
