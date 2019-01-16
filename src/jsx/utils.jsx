@@ -25,4 +25,28 @@ export async function transfer(
   return { codeAndComments }
 }
 
-
+export async function saveCodeAndComment(
+  state,
+  title,
+  getDB,
+  getObjectStore,
+  addRecord
+) {
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  const parts = state.path.split('/')
+  // TODO add error process
+  const event = await addRecord(objectStore, {
+    title,
+    git: state.git,
+    path: state.path,
+    lines: state.lines,
+    comments: state.comments,
+    repository: `${parts[1]}/${parts[2]}`,
+  })
+  return {
+    id: event.target.result,
+    title,
+    saved: true
+  }
+}
