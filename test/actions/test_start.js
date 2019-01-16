@@ -57,6 +57,7 @@ describe('actions/start', () => {
       expect(result).to.deep.equal({
         loading: false,
         git,
+        title: 'New Code and Comment',
         path: '/code-and-comment/test/blob/master/foo/bar.js',
         lines: ['ああああ', '1', '2'],
         comments: {},

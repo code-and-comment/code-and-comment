@@ -40,6 +40,7 @@ const actions = () => ({
       const comments = {}
       return {
         loading: false,
+        title: 'New Code and Comment',
         git,
         path,
         lines,
