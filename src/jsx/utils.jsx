@@ -50,3 +50,29 @@ export async function saveCodeAndComment(
     saved: true
   }
 }
+
+export async function updateCodeAndComment(
+  state,
+  title,
+  getDB,
+  getObjectStore,
+  putRecord
+) {
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  const parts = state.path.split('/')
+  // TODO add error process
+  await putRecord(objectStore, {
+    id: state.id,
+    title,
+    git: state.git,
+    path: state.path,
+    lines: state.lines,
+    comments: state.comments,
+    repository: `${parts[1]}/${parts[2]}`,
+  })
+  return {
+    title,
+    updated: true
+  }
+}
