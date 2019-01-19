@@ -10,15 +10,14 @@ import Button from '../parts/button.jsx'
 
 
 function Edit({
-  id,
   title,
   lines,
   comments,
   path,
   updateComment,
+  updateTitle,
   fileUrl,
   publish,
-  update,
   list
 }) {
   return (
@@ -35,12 +34,12 @@ function Edit({
         Click the line. Add the comment by Markdown. Click Publish button.
         When a line number is clicked, the comment is hidden.
       </div>
-      <div>Title: { title }</div>
+      <div>
+        Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
+      </div>
       <div><CommentList /></div>
       <div>{ path }</div>
       <div className="controls">
-        <Button onClick={ update } disabled={ !id }>Update</Button>
-        { ' ' }
         <Button onClick={ list }>List</Button>
       </div>
       <div className="file">
@@ -58,4 +57,4 @@ function Edit({
 }
 
 
-export default connect(['id', 'title', 'lines', 'comments', 'path'], actions)(Edit)
+export default connect(['title', 'lines', 'comments', 'path'], actions)(Edit)

@@ -9,7 +9,6 @@ import Start from './pages/start.jsx'
 import Edit from './pages/edit.jsx'
 import Publish from './pages/publish.jsx'
 import View from './pages/view.jsx'
-import Update from './pages/update.jsx'
 import Home from './pages/home.jsx'
 import SearchCodeAndComment from './pages/search-code-and-comment.jsx'
 import SearchComment from './pages/search-comment.jsx'
@@ -39,7 +38,6 @@ class CodeAndComment extends Component {
           <Edit path="/edit" />
           <Publish path="/publish" />
           <View path="/view" />
-          <Update path="/update" />
           <Start path="/start" />
           <SearchCodeAndComment path="/search_code_and_comment" />
           <SearchComment path="/search_comment" />

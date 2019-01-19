@@ -2,8 +2,8 @@ import { route as _route } from 'preact-router'
 
 import { createViewUrl } from '../utils.jsx'
 import { initialState } from '../store.jsx'
-import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords } from '../db.jsx'
-import { transfer } from '../utils.jsx'
+import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords, putRecord as _putRecord } from '../db.jsx'
+import { transfer, updateCodeAndComment } from '../utils.jsx'
 
 
 const actions = () => ({
@@ -28,6 +28,24 @@ const actions = () => ({
       comments: Object.assign({}, comments)
     }
   },
+  async updateTitle(
+    state,
+    event,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    putRecord = _putRecord
+  ) {
+    const title = event.target.value.trim()
+    if (title) {
+      await updateCodeAndComment(
+        Object.assign(state, { title }),
+        getDB,
+        getObjectStore,
+        putRecord
+      )
+      return { title }
+    }
+  },
   fileUrl(state, event, route = _route) {
     route('/start')
     return initialState()
@@ -47,10 +65,6 @@ const actions = () => ({
     route('/publish')
     return { viewUrl }
   },
-  update(state, event, route = _route) {
-    route('/update')
-    return { updated: false }
-  }
 })
 
 
