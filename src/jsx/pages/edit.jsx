@@ -18,7 +18,6 @@ function Edit({
   updateComment,
   fileUrl,
   publish,
-  save,
   update,
   list
 }) {
@@ -40,8 +39,6 @@ function Edit({
       <div><CommentList /></div>
       <div>{ path }</div>
       <div className="controls">
-        <Button onClick={ save }>Save</Button>
-        { ' ' }
         <Button onClick={ update } disabled={ !id }>Update</Button>
         { ' ' }
         <Button onClick={ list }>List</Button>

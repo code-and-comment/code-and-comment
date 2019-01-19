@@ -27,7 +27,6 @@ export async function transfer(
 
 export async function saveCodeAndComment(
   state,
-  title,
   getDB,
   getObjectStore,
   addRecord
@@ -37,18 +36,14 @@ export async function saveCodeAndComment(
   const parts = state.path.split('/')
   // TODO add error process
   const event = await addRecord(objectStore, {
-    title,
+    title: state.title,
     git: state.git,
     path: state.path,
     lines: state.lines,
     comments: state.comments,
     repository: `${parts[1]}/${parts[2]}`,
   })
-  return {
-    id: event.target.result,
-    title,
-    saved: true
-  }
+  return event.target.result
 }
 
 export async function updateCodeAndComment(

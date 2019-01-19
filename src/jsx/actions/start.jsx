@@ -1,6 +1,9 @@
 import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
 
+import { getDB as _getDB, getObjectStore as _getObjectStore, addRecord as _addRecord } from '../db.jsx'
+import { saveCodeAndComment as _saveCodeAndComment } from '../utils.jsx'
+
 
 const actions = () => ({
   home(state, event, route = _route) {
@@ -9,7 +12,16 @@ const actions = () => ({
   setLoading(state, loading) {
     return { loading }
   },
-  async getFile(state, url, route = _route, fetch = window.fetch) {
+  async getFile(
+    state,
+    url,
+    route = _route,
+    fetch = window.fetch,
+    saveCodeAndComment = _saveCodeAndComment,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    addRecord = _addRecord
+  ) {
     url = url.trim()
     const re = /^https:\/\/github.com\/(.+)\/blob\/([^/]+)\/(.+)/
     const matches = url.match(re)
@@ -38,9 +50,13 @@ const actions = () => ({
       const path = url.substring(18)
       const lines = Base64.decode(data.content).split('\n')
       const comments = {}
+      const title = 'New Code and Comment'
+      const state = { title, git, path, lines, comments }
+      const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
       return {
+        id,
         loading: false,
-        title: 'New Code and Comment',
+        title,
         git,
         path,
         lines,
