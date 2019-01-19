@@ -9,6 +9,11 @@
     width: fit#{"-"}content;
     .url {
       width: 545px;
+      border-radius: 3px 0px 0px 3px!important;
+    }
+    .cc-button {
+      border-radius: 0px 3px 3px 0px!important;
+      border-left: 0px!important;
     }
   }
   > .account {
