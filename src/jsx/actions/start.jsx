@@ -27,13 +27,13 @@ const actions = () => ({
     const data = await fetch(apiUrl)
       .then(response => {
         if (response.ok) {
-          route('/edit')
           return response.json()
         }
         return null
       })
 
     if (data && data.type === 'file') {
+      route('/edit')
       const git = data._links.git
       const path = url.substring(18)
       const lines = Base64.decode(data.content).split('\n')
