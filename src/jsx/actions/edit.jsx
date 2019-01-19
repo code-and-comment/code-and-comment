@@ -3,11 +3,20 @@ import { route as _route } from 'preact-router'
 import { createViewUrl } from '../utils.jsx'
 import { initialState } from '../store.jsx'
 import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords, putRecord as _putRecord } from '../db.jsx'
-import { transfer, updateCodeAndComment } from '../utils.jsx'
+import { transfer, updateCodeAndComment as _updateCodeAndComment } from '../utils.jsx'
 
 
 const actions = () => ({
-  updateComment({ comments }, index, comment) {
+  async updateComment(
+    state,
+    index,
+    comment,
+    updateCodeAndComment = _updateCodeAndComment,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    putRecord = _putRecord
+  ) {
+    let comments = state.comments
     comment = comment.trim()
     index += ''
     if (comments[index] === comment) {
@@ -24,13 +33,19 @@ const actions = () => ({
     else {
       comments[index] = comment
     }
-    return {
-      comments: Object.assign({}, comments)
-    }
+    comments = Object.assign({}, comments)
+    await updateCodeAndComment(
+      Object.assign(state, { comments }),
+      getDB,
+      getObjectStore,
+      putRecord
+    )
+    return { comments }
   },
   async updateTitle(
     state,
     event,
+    updateCodeAndComment = _updateCodeAndComment,
     getDB = _getDB,
     getObjectStore = _getObjectStore,
     putRecord = _putRecord

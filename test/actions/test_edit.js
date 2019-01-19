@@ -3,29 +3,33 @@ import { spy } from 'sinon'
 
 import actions from '../../src/jsx/actions/edit.jsx'
 
+
+function noop() {}
+
+
 describe('actions/edit', () => {
   describe('updateComment', () => {
-    it('changes comments', () => {
-      let result = actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'A')
+    it('changes comments', async function(){
+      let result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'A', noop)
       expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
 
-      result = actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, '')
+      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, '', noop)
       expect(result).to.deep.equal({ comments: { '2': 'b' } })
     })
 
-    it('returns undefined if comments do not change', () => {
-      let result = actions().updateComment({ comments: { '2': 'b' } }, 1, '')
+    it('returns undefined if comments do not change', async function() {
+      let result = await actions().updateComment({ comments: { '2': 'b' } }, 1, '', noop)
       expect(result).to.be.undefined
 
-      result = actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'a')
+      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'a', noop)
       expect(result).to.be.undefined
     })
 
-    it('trims comment', () => {
-      let result = actions().updateComment({ comments: { '2': 'b' } }, 1, ' \n \n ')
+    it('trims comment', async function() {
+      let result = await actions().updateComment({ comments: { '2': 'b' } }, 1, ' \n \n ', noop)
       expect(result).to.be.undefined
 
-      result = actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, '  A\n ')
+      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, '  A\n ', noop)
       expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
     })
   })
