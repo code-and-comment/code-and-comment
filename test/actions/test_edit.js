@@ -89,14 +89,4 @@ describe('actions/edit', () => {
       expect(result).to.deep.equal({ codeAndComments })
     })
   })
-
-  describe('save', () => {
-    it('transfers to the save page', () => {
-      const route = spy()
-      const result = actions().save(null, null, route)
-      expect(route.calledOnce).to.be.true
-      expect(route.calledWith('/save')).to.be.true
-      expect(result).to.deep.equal({ saved: false })
-    })
-  })
 })

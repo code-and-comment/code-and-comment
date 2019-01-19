@@ -49,8 +49,9 @@ describe('actions/start', () => {
         }
       })
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
+      const id = 1
       async function saveCodeAndComment() {
-        return 1
+        return id
       }
       const result = await actions().getFile(null, url, route, fetch, saveCodeAndComment)
       expect(route.calledOnce).to.be.true
@@ -58,7 +59,7 @@ describe('actions/start', () => {
       expect(fetch.calledOnce).to.be.true
       expect(fetch.calledWith('https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master')).to.be.true
       expect(result).to.deep.equal({
-        id: 1,
+        id,
         loading: false,
         git,
         title: 'New Code and Comment',
