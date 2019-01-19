@@ -6,11 +6,16 @@ import actions from '../../src/jsx/actions/view.jsx'
 
 describe('actions/view', () => {
   describe('edit', () => {
-    it('moves /edit', () => {
+    it('moves /edit', async function() {
       const route = spy()
-      actions().edit(null, null, route)
+      const id = 1
+      async function saveCodeAndComment() {
+        return id
+      }
+      const result = await actions().edit({}, null, route, saveCodeAndComment)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
+      expect(result).to.deep.equal({ id })
     })
   })
 

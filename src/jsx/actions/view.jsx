@@ -1,10 +1,26 @@
 import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
 
+import { getDB as _getDB, getObjectStore as _getObjectStore, addRecord as _addRecord } from '../db.jsx'
+import { saveCodeAndComment as _saveCodeAndComment } from '../utils.jsx'
+
 
 const actions = () => ({
-  edit(state, event, route = _route) {
+  async edit(
+    state,
+    event,
+    route = _route,
+    saveCodeAndComment = _saveCodeAndComment,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    addRecord = _addRecord
+  ) {
     route('/edit')
+    const title = 'New Code and Comment'
+    const { git, path, lines, comments } = state
+    const _state = { title, git, path, lines, comments }
+    const id = await saveCodeAndComment(_state, getDB, getObjectStore, addRecord)
+    return { id }
   },
   async getFile(state, paramJson, route = _route, fetch = window.fetch) {
     let param
