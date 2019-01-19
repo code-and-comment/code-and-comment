@@ -48,7 +48,6 @@ export async function saveCodeAndComment(
 
 export async function updateCodeAndComment(
   state,
-  title,
   getDB,
   getObjectStore,
   putRecord
@@ -59,15 +58,11 @@ export async function updateCodeAndComment(
   // TODO add error process
   await putRecord(objectStore, {
     id: state.id,
-    title,
+    title: state.title,
     git: state.git,
     path: state.path,
     lines: state.lines,
     comments: state.comments,
     repository: `${parts[1]}/${parts[2]}`,
   })
-  return {
-    title,
-    updated: true
-  }
 }
