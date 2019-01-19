@@ -47,10 +47,6 @@ const actions = () => ({
     route('/publish')
     return { viewUrl }
   },
-  save(state, event, route = _route) {
-    route('/save')
-    return { saved: false }
-  },
   update(state, event, route = _route) {
     route('/update')
     return { updated: false }
