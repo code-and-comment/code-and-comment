@@ -2,8 +2,18 @@ import { route as _route } from 'preact-router'
 
 import { createViewUrl } from '../utils.jsx'
 import { initialState } from '../store.jsx'
-import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _getAllRecords, putRecord as _putRecord } from '../db.jsx'
-import { transfer, updateCodeAndComment as _updateCodeAndComment } from '../utils.jsx'
+import {
+  getDB as _getDB,
+  getObjectStore as _getObjectStore,
+  getAllRecords as _getAllRecords,
+  putRecord as _putRecord,
+  deleteRecord as _deleteRecord
+} from '../db.jsx'
+import {
+  transfer,
+  updateCodeAndComment as _updateCodeAndComment,
+  deleteOne as _deleteOne
+} from '../utils.jsx'
 
 
 const actions = () => ({
@@ -79,6 +89,19 @@ const actions = () => ({
     const viewUrl = createViewUrl(state.git, state.path, state.comments, location)
     route('/publish')
     return { viewUrl }
+  },
+  deleteOne(
+    state,
+    id,
+    event,
+    route = _route,
+    getDB = _getDB,
+    getObjectStore = _getObjectStore,
+    deleteRecord = _deleteRecord,
+    getAllRecords = _getAllRecords
+  ) {
+    _deleteOne(id, getDB, getObjectStore, deleteRecord)
+    return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords)
   },
 })
 

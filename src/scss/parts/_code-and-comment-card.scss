@@ -1,8 +1,10 @@
+@import '../variables';
+
 .cc-code-and-comment-card {
   > .controls {
     padding-top: 6px;
     > .message {
-      color: #cc2222;
+      color: $red;
       height: 18px;
       margin-bottom: 8px;
       margin-top: -4px;
