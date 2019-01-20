@@ -7,6 +7,7 @@ import {
   deleteRecord as _deleteRecord,
   getAllRecords as _getAllRecords
 } from '../db.jsx'
+import { deleteOne as _deleteOne } from '../utils.jsx'
 
 
 const actions = () => ({
@@ -42,7 +43,7 @@ const actions = () => ({
   home(state, event, route = _route) {
     route('/home')
   },
-  async deleteOne(
+  deleteOne(
     state,
     id,
     event,
@@ -51,11 +52,7 @@ const actions = () => ({
     deleteRecord = _deleteRecord,
     getAllRecords = _getAllRecords
   ) {
-    const db = await getDB()
-    const objectStore = await getObjectStore(db)
-    await deleteRecord(objectStore, id)
-    const codeAndComments = await getAllRecords(objectStore)
-    return { codeAndComments }
+    return _deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords)
   },
   async edit(
     state,

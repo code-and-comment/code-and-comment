@@ -66,3 +66,13 @@ export async function updateCodeAndComment(
     repository: `${parts[1]}/${parts[2]}`,
   })
 }
+
+export async function deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords) {
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  await deleteRecord(objectStore, id)
+  if (getAllRecords) {
+    const codeAndComments = await getAllRecords(objectStore)
+    return { codeAndComments }
+  }
+}

@@ -8,5 +8,9 @@
   }
   > .controls {
     padding: 10px 0px;
+    .message {
+      padding-bottom: 14px;
+      color: $red;
+    }
   }
 }
