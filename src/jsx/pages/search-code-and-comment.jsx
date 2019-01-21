@@ -2,7 +2,6 @@ import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/search-code-and-comment.jsx'
-import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 import CodeAndCommentCard from '../parts/code-and-comment-card.jsx'
 import Button from '../parts/button.jsx'
@@ -54,7 +53,6 @@ class SearchCodeAndComment extends Component {
     list.pop()
     return (
       <div className="cc-search-code-and-comment">
-        <Header />
         <Navigator
           leftLabel={ 'Home' }
           leftClick={ home }

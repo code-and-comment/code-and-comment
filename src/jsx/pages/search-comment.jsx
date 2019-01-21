@@ -2,7 +2,6 @@ import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/search-code-and-comment.jsx'
-import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 import CommentCard from '../parts/comment-card.jsx'
 import Button from '../parts/button.jsx'
@@ -99,7 +98,6 @@ class SearchComment extends Component {
   render({ codeAndComments, edit, home }, { comment }) {
     return (
       <div className="cc-search-comment">
-        <Header />
         <Navigator leftLabel={ 'Home' } leftClick={ home } />
         <Search search={ this.search } />
         <CommentList codeAndComments={ codeAndComments } commentPattern={ comment } edit={ edit } />

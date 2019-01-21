@@ -4,7 +4,6 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/edit.jsx'
 import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
-import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 import Button from '../parts/button.jsx'
 
@@ -70,7 +69,6 @@ class Edit extends Component {
   }) {
     return (
       <div className="cc-edit">
-        <Header />
         <Navigator
           leftLabel={ 'Url' }
           leftClick={ fileUrl }
