@@ -3,7 +3,6 @@ import { connect } from 'unistore/preact'
 
 import actions from '../actions/start.jsx'
 import Navigator from '../parts/navigator.jsx'
-import Header from '../parts/header.jsx'
 import Loading from '../parts/loading.jsx'
 import Button from '../parts/button.jsx'
 
@@ -26,7 +25,6 @@ class Start extends Component {
   render({ home, loading, networkError, urlError }) {
     return (
       <div className="cc-start">
-        <Header />
         <Navigator
           leftLabel={ 'Home' }
           leftClick={ home }
