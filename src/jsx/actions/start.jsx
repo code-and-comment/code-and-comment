@@ -6,6 +6,9 @@ import { saveCodeAndComment as _saveCodeAndComment } from '../utils.jsx'
 
 
 const actions = () => ({
+  back(state, event, route = _route) {
+    route('/edit')
+  },
   home(state, event, route = _route) {
     route('/home')
   },

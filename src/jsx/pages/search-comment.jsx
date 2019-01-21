@@ -95,10 +95,16 @@ class SearchComment extends Component {
     })
     this.props.search({ repository })
   }
-  render({ codeAndComments, edit, home }, { comment }) {
+  render({ back, codeAndComments, edit, home, git }, { comment }) {
     return (
       <div className="cc-search-comment">
-        <Navigator leftLabel={ 'Home' } leftClick={ home } />
+        <Navigator
+          leftLabel={ 'Home' }
+          leftClick={ home }
+          rightLabel={ 'Edit' }
+          rightClick={ back }
+          rightDisabled={ !git }
+        />
         <Search search={ this.search } />
         <CommentList codeAndComments={ codeAndComments } commentPattern={ comment } edit={ edit } />
       </div>
@@ -107,4 +113,4 @@ class SearchComment extends Component {
 }
 
 
-export default connect(['codeAndComments'], actions)(SearchComment)
+export default connect(['git', 'codeAndComments'], actions)(SearchComment)

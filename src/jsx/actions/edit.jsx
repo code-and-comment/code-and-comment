@@ -1,7 +1,6 @@
 import { route as _route } from 'preact-router'
 
 import { createViewUrl } from '../utils.jsx'
-import { initialState } from '../store.jsx'
 import {
   getDB as _getDB,
   getObjectStore as _getObjectStore,
@@ -73,7 +72,6 @@ const actions = () => ({
   },
   fileUrl(state, event, route = _route) {
     route('/start')
-    return initialState()
   },
   list(
     state,

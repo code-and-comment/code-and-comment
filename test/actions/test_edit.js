@@ -40,21 +40,7 @@ describe('actions/edit', () => {
       const result = actions().fileUrl(null, null, route)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/start')).to.be.true
-      expect(result).to.deep.equal({
-        id: null,
-        title: 'New Code and Comment',
-        git: '',
-        path: '',
-        lines: [],
-        comments: {},
-        viewUrl: '',
-        loading: false,
-        networkError: false,
-        urlError: false,
-        saved: false,
-        updated: false,
-        codeAndComments: [],
-      })
+      expect(result).to.be.undefined
     })
   })
 
