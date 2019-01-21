@@ -22,12 +22,15 @@ class Start extends Component {
     this.props.setLoading(true)
     this.props.getFile(this.state.url)
   }
-  render({ home, loading, networkError, urlError }) {
+  render({ back, home, loading, git, networkError, urlError }) {
     return (
       <div className="cc-start">
         <Navigator
           leftLabel={ 'Home' }
           leftClick={ home }
+          rightLabel={ 'Edit' }
+          rightClick={ back }
+          rightDisabled={ !git }
         />
         { !loading && [
           (<div className="account" key='1'>
@@ -38,7 +41,7 @@ class Start extends Component {
           </div>),
           (<div className="controls" key="2">
             <input type="text" className="url" onChange={ this.setUrl }/>
-            <Button onClick={ this.edit }>Edit<img src="dist/arrow-forward.svg" /></Button>
+            <Button onClick={ this.edit }>Create</Button>
             { networkError && <p>The file data is not got.</p> }
             { urlError && <p>Url is invalid.</p> }
           </div>)
@@ -51,4 +54,4 @@ class Start extends Component {
 }
 
 
-export default connect(['loading', 'networkError', 'urlError'], actions)(Start)
+export default connect(['git', 'loading', 'networkError', 'urlError'], actions)(Start)
