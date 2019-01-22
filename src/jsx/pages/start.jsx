@@ -25,14 +25,15 @@ class Start extends Component {
   render({ back, home, loading, git, networkError, urlError }) {
     return (
       <div className="cc-start">
-        <Navigator
-          leftLabel={ 'Home' }
-          leftClick={ home }
-          rightLabel={ 'Edit' }
-          rightClick={ back }
-          rightDisabled={ !git }
-        />
         { !loading && [
+          (<Navigator
+            key={ '0' }
+            leftLabel={ 'Home' }
+            leftClick={ home }
+            rightLabel={ 'Edit' }
+            rightClick={ back }
+            rightDisabled={ !git }
+          />),
           (<div className="account" key='1'>
             Input the file url in Github<br/>
             Example:<br/>
