@@ -25,6 +25,7 @@ async function getFile(
   url,
   route = _route,
   fetch = window.fetch,
+  setTimeout = window.setTimeout,
   saveCodeAndComment = _saveCodeAndComment,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
@@ -53,7 +54,6 @@ async function getFile(
     })
 
   if (data && data.type === 'file') {
-    route('/edit')
     const git = data._links.git
     const path = url.substring(18)
     const lines = Base64.decode(data.content).split('\n')
@@ -61,6 +61,9 @@ async function getFile(
     const title = 'New Code and Comment'
     const state = { title, git, path, lines, comments }
     const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
+    setTimeout(() => {
+      route('/edit')
+    }, 0)
     return {
       id,
       loading: false,

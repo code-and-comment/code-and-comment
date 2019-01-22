@@ -53,7 +53,10 @@ describe('actions/start', () => {
       async function saveCodeAndComment() {
         return id
       }
-      const result = await actions().getFile(null, url, route, fetch, saveCodeAndComment)
+      function setTimeout(func) {
+        func()
+      }
+      const result = await actions().getFile(null, url, route, fetch, setTimeout, saveCodeAndComment)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
       expect(fetch.calledOnce).to.be.true
