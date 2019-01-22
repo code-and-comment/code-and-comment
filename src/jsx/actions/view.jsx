@@ -5,61 +5,67 @@ import { getDB as _getDB, getObjectStore as _getObjectStore, addRecord as _addRe
 import { saveCodeAndComment as _saveCodeAndComment } from '../utils.jsx'
 
 
-const actions = () => ({
-  async edit(
-    state,
-    event,
-    route = _route,
-    saveCodeAndComment = _saveCodeAndComment,
-    getDB = _getDB,
-    getObjectStore = _getObjectStore,
-    addRecord = _addRecord
-  ) {
-    route('/edit')
-    const title = 'New Code and Comment'
-    const { git, path, lines, comments } = state
-    const _state = { title, git, path, lines, comments }
-    const id = await saveCodeAndComment(_state, getDB, getObjectStore, addRecord)
-    return { id }
-  },
-  async getFile(state, paramJson, route = _route, fetch = window.fetch) {
-    let param
-    try {
-      if (paramJson) {
-        param = JSON.parse(Base64.decode(paramJson))
-      }
-    }
-    catch(e) {
-      return route('/start')
-    }
+async function edit(
+  state,
+  event,
+  route = _route,
+  saveCodeAndComment = _saveCodeAndComment,
+  getDB = _getDB,
+  getObjectStore = _getObjectStore,
+  addRecord = _addRecord
+) {
+  route('/edit')
+  const title = 'New Code and Comment'
+  const { git, path, lines, comments } = state
+  const _state = { title, git, path, lines, comments }
+  const id = await saveCodeAndComment(_state, getDB, getObjectStore, addRecord)
+  return { id }
+}
 
-    if (!param || !param.git || !param.path) {
-      return route('/start')
+
+async function getFile(state, paramJson, route = _route, fetch = window.fetch) {
+  let param
+  try {
+    if (paramJson) {
+      param = JSON.parse(Base64.decode(paramJson))
     }
-
-    const data = await fetch(param.git)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        return null
-      })
-
-    if (data) {
-      const { git, path, comments } = param
-      const lines = Base64.decode(data.content).split('\n')
-      return {
-        git,
-        path,
-        lines,
-        comments,
-        networkError: false,
-        urlError: false
-      }
-    }
-
-    route('/start')
   }
+  catch(e) {
+    return route('/start')
+  }
+
+  if (!param || !param.git || !param.path) {
+    return route('/start')
+  }
+
+  const data = await fetch(param.git)
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      return null
+    })
+
+  if (data) {
+    const { git, path, comments } = param
+    const lines = Base64.decode(data.content).split('\n')
+    return {
+      git,
+      path,
+      lines,
+      comments,
+      networkError: false,
+      urlError: false
+    }
+  }
+
+  route('/start')
+}
+
+
+const actions = () => ({
+  edit,
+  getFile,
 })
 
 
