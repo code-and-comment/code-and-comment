@@ -66,6 +66,7 @@ async function edit(
   id,
   event,
   route = _route,
+  setTimeout = window.setTimeout,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getRecord = _getRecord
@@ -75,7 +76,9 @@ async function edit(
   const request = await getRecord(objectStore, id)
   if (request.target.result) {
     const codeAndComment = request.target.result
-    route('/edit')
+    setTimeout(() => {
+      route('/edit')
+    })
     return {
       id: codeAndComment.id,
       title: codeAndComment.title,

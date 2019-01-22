@@ -22,8 +22,12 @@ describe('actions/start', () => {
   })
 
   describe('getFile', () => {
+    function setTimeout(func) {
+      func()
+    }
+
     it('returns urlError if url is invalid', async function() {
-      const result = await actions().getFile(null, 'https://example.com/index.html', null, null)
+      const result = await actions().getFile(null, 'https://example.com/index.html', null, null, null)
       expect(result).to.deep.equal({
         loading: false,
         networkError: false,
@@ -53,9 +57,6 @@ describe('actions/start', () => {
       async function saveCodeAndComment() {
         return id
       }
-      function setTimeout(func) {
-        func()
-      }
       const result = await actions().getFile(null, url, route, fetch, setTimeout, saveCodeAndComment)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
@@ -81,7 +82,7 @@ describe('actions/start', () => {
         }
       })
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
-      const result = await actions().getFile(null, url, null, fetch)
+      const result = await actions().getFile(null, url, null, fetch, setTimeout)
       expect(result).to.deep.equal({
         loading: false,
         networkError: true,
