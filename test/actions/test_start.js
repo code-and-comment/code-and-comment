@@ -5,6 +5,8 @@ import { Base64 } from 'js-base64'
 import actions from '../../src/jsx/actions/start.jsx'
 
 describe('actions/start', () => {
+  function noop() {}
+
   describe('home', () => {
     it('moves /home', () => {
       const route = spy()
@@ -57,7 +59,7 @@ describe('actions/start', () => {
       async function saveCodeAndComment() {
         return id
       }
-      const result = await actions().getFile(null, url, route, fetch, setTimeout, saveCodeAndComment)
+      const result = await actions().getFile(null, url, route, fetch, setTimeout, saveCodeAndComment, noop, noop, noop, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
       expect(fetch.calledOnce).to.be.true

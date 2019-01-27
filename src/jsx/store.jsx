@@ -16,6 +16,7 @@ export function initialState() {
     saved: false,
     updated: false,
     codeAndComments: [],
+    // repositories: []
   }
 }
 

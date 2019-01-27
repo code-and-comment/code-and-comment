@@ -13,6 +13,7 @@ import {
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne
 } from '../utils.jsx'
+import { updateRepositories as _updateRepositories } from '../worker.jsx'
 
 
 async function updateComment(
@@ -97,17 +98,20 @@ function publish(state, event, route = _route, location = window.location) {
 }
 
 
-function deleteOne(
+async function deleteOne(
   state,
   id,
   event,
   route = _route,
   getDB = _getDB,
+  deleteOneFunc = _deleteOne,
   getObjectStore = _getObjectStore,
   deleteRecord = _deleteRecord,
-  getAllRecords = _getAllRecords
+  getAllRecords = _getAllRecords,
+  updateRepositories = _updateRepositories,
 ) {
-  _deleteOne(id, getDB, getObjectStore, deleteRecord)
+  await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
+  updateRepositories(state)
   return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords)
 }
 
