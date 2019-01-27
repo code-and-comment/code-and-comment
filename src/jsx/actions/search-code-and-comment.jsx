@@ -8,6 +8,7 @@ import {
   getAllRecords as _getAllRecords
 } from '../db.jsx'
 import { deleteOne as _deleteOne } from '../utils.jsx'
+import { updateRepositories as _updateRepositories } from '../worker.jsx'
 
 
 async function search(
@@ -48,16 +49,19 @@ function home(state, event, route = _route) {
 }
 
 
-function deleteOne(
+async function deleteOne(
   state,
   id,
   event,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   deleteRecord = _deleteRecord,
-  getAllRecords = _getAllRecords
+  getAllRecords = _getAllRecords,
+  updateRepositories = _updateRepositories,
 ) {
-  return _deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords)
+  const codeAndComments = await _deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords)
+  updateRepositories(state)
+  return codeAndComments
 }
 
 

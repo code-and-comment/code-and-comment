@@ -32,14 +32,17 @@ class Search extends Component {
     const { repository, comment } = this.state
     this.props.search(repository, comment)
   }
-  render(_, { repository, comment }) {
+  render({ repositories }, { repository, comment }) {
     return (
       <div className="search">
         <div>
           <span className="label">
             Repository
           </span>
-          <input type="text" value={ repository } onChange={ this.setRepository } />
+          <input type="text" list="repositories" value={ repository } onChange={ this.setRepository } />
+          { repositories && !!repositories.length && (<datalist id="repositories">
+            { repositories.map((v) => <option value={ v } key={ v }/>) }
+          </datalist>) }
         </div>
         <div>
           <span className="label">
@@ -95,7 +98,7 @@ class SearchComment extends Component {
     })
     this.props.search({ repository })
   }
-  render({ back, codeAndComments, edit, home, git }, { comment }) {
+  render({ back, codeAndComments, edit, home, git, repositories }, { comment }) {
     return (
       <div className="cc-search-comment">
         <Navigator
@@ -105,7 +108,7 @@ class SearchComment extends Component {
           rightClick={ back }
           rightDisabled={ !git }
         />
-        <Search search={ this.search } />
+        <Search search={ this.search } repositories={ repositories } />
         <CommentList codeAndComments={ codeAndComments } commentPattern={ comment } edit={ edit } />
       </div>
     )
@@ -113,4 +116,4 @@ class SearchComment extends Component {
 }
 
 
-export default connect(['git', 'codeAndComments'], actions)(SearchComment)
+export default connect(['git', 'codeAndComments', 'repositories'], actions)(SearchComment)

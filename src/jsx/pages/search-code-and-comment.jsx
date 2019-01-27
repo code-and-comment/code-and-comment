@@ -24,14 +24,17 @@ class Search extends Component {
   search() {
     this.props.search(this.state)
   }
-  render(_, { repository }) {
+  render({ repositories }, { repository }) {
     return (
       <div className="search">
         <div>
           <span className="label">
             Repository
           </span>
-          <input type="text" value={ repository } onChange={ this.setRepository } />
+          <input type="text" list="repositories" value={ repository } onChange={ this.setRepository } />
+          { repositories && !!repositories.length && (<datalist id="repositories">
+            { repositories.map((v) => <option value={ v } key={ v }/>) }
+          </datalist>) }
         </div>
         <div className="controls">
           <span className="label"></span>
@@ -44,7 +47,7 @@ class Search extends Component {
 
 
 class SearchCodeAndComment extends Component {
-  render({ codeAndComments, deleteOne, search, git, back, edit, home }) {
+  render({ codeAndComments, deleteOne, search, git, back, edit, home, repositories }) {
     const list = []
     codeAndComments.forEach((c) => {
       list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
@@ -60,7 +63,7 @@ class SearchCodeAndComment extends Component {
           rightClick={ back }
           rightDisabled={ !git }
         />
-        <Search search={ search } />
+        <Search search={ search } repositories={ repositories } />
         <div className="list">
           { list.length ? list : 'There is no Code and Comment.' }
         </div>
@@ -70,4 +73,4 @@ class SearchCodeAndComment extends Component {
 }
 
 
-export default connect(['git', 'codeAndComments'], actions)(SearchCodeAndComment)
+export default connect(['git', 'codeAndComments', 'repositories'], actions)(SearchCodeAndComment)

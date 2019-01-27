@@ -3,6 +3,7 @@ import { route as _route } from 'preact-router'
 
 import { getDB as _getDB, getObjectStore as _getObjectStore, addRecord as _addRecord } from '../db.jsx'
 import { saveCodeAndComment as _saveCodeAndComment } from '../utils.jsx'
+import { updateRepositories as _updateRepositories } from '../worker.jsx'
 
 
 function back(state, event, route = _route) {
@@ -29,7 +30,8 @@ async function getFile(
   saveCodeAndComment = _saveCodeAndComment,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
-  addRecord = _addRecord
+  addRecord = _addRecord,
+  updateRepositories = _updateRepositories
 ) {
   url = url.trim()
   const re = /^https:\/\/github.com\/(.+)\/blob\/([^/]+)\/(.+)/
@@ -61,6 +63,7 @@ async function getFile(
     const title = 'New Code and Comment'
     const state = { title, git, path, lines, comments }
     const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
+    updateRepositories(state)
     setTimeout(() => {
       route('/edit')
     }, 0)
