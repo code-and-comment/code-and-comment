@@ -4,3 +4,5 @@ package-lock.json
 move.sh
 dist/app.js
 dist/app.js.map
+dist/repositories.js.map
+dist/repositories.js
