@@ -5,6 +5,7 @@ import actions from '../actions/search-code-and-comment.jsx'
 import Navigator from '../parts/navigator.jsx'
 import CodeAndCommentCard from '../parts/code-and-comment-card.jsx'
 import Button from '../parts/button.jsx'
+import RepositoriesDatalist from '../parts/repositories-datalist.jsx'
 
 
 class Search extends Component {
@@ -24,7 +25,7 @@ class Search extends Component {
   search() {
     this.props.search(this.state)
   }
-  render({ repositories }, { repository }) {
+  render(_, { repository }) {
     return (
       <div className="search">
         <div>
@@ -32,9 +33,7 @@ class Search extends Component {
             Repository
           </span>
           <input type="text" list="repositories" value={ repository } onChange={ this.setRepository } />
-          { repositories && !!repositories.length && (<datalist id="repositories">
-            { repositories.map((v) => <option value={ v } key={ v }/>) }
-          </datalist>) }
+          <RepositoriesDatalist />
         </div>
         <div className="controls">
           <span className="label"></span>
@@ -47,7 +46,7 @@ class Search extends Component {
 
 
 class SearchCodeAndComment extends Component {
-  render({ codeAndComments, deleteOne, search, git, back, edit, home, repositories }) {
+  render({ codeAndComments, deleteOne, search, git, back, edit, home }) {
     const list = []
     codeAndComments.forEach((c) => {
       list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
@@ -63,7 +62,7 @@ class SearchCodeAndComment extends Component {
           rightClick={ back }
           rightDisabled={ !git }
         />
-        <Search search={ search } repositories={ repositories } />
+        <Search search={ search } />
         <div className="list">
           { list.length ? list : 'There is no Code and Comment.' }
         </div>
@@ -73,4 +72,4 @@ class SearchCodeAndComment extends Component {
 }
 
 
-export default connect(['git', 'codeAndComments', 'repositories'], actions)(SearchCodeAndComment)
+export default connect(['git', 'codeAndComments'], actions)(SearchCodeAndComment)
