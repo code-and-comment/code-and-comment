@@ -5,6 +5,7 @@ import actions from '../actions/search-code-and-comment.jsx'
 import Navigator from '../parts/navigator.jsx'
 import CommentCard from '../parts/comment-card.jsx'
 import Button from '../parts/button.jsx'
+import RepositoriesDatalist from '../parts/repositories-datalist.jsx'
 
 
 class Search extends Component {
@@ -32,7 +33,7 @@ class Search extends Component {
     const { repository, comment } = this.state
     this.props.search(repository, comment)
   }
-  render({ repositories }, { repository, comment }) {
+  render(_, { repository, comment }) {
     return (
       <div className="search">
         <div>
@@ -40,9 +41,7 @@ class Search extends Component {
             Repository
           </span>
           <input type="text" list="repositories" value={ repository } onChange={ this.setRepository } />
-          { repositories && !!repositories.length && (<datalist id="repositories">
-            { repositories.map((v) => <option value={ v } key={ v }/>) }
-          </datalist>) }
+          <RepositoriesDatalist />
         </div>
         <div>
           <span className="label">
@@ -98,7 +97,7 @@ class SearchComment extends Component {
     })
     this.props.search({ repository })
   }
-  render({ back, codeAndComments, edit, home, git, repositories }, { comment }) {
+  render({ back, codeAndComments, edit, home, git }, { comment }) {
     return (
       <div className="cc-search-comment">
         <Navigator
@@ -108,7 +107,7 @@ class SearchComment extends Component {
           rightClick={ back }
           rightDisabled={ !git }
         />
-        <Search search={ this.search } repositories={ repositories } />
+        <Search search={ this.search } />
         <CommentList codeAndComments={ codeAndComments } commentPattern={ comment } edit={ edit } />
       </div>
     )
@@ -116,4 +115,4 @@ class SearchComment extends Component {
 }
 
 
-export default connect(['git', 'codeAndComments', 'repositories'], actions)(SearchComment)
+export default connect(['git', 'codeAndComments'], actions)(SearchComment)
