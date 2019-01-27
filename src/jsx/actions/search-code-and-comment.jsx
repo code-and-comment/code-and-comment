@@ -60,9 +60,12 @@ async function deleteOne(
   getAllRecords = _getAllRecords,
   updateRepositories = _updateRepositories,
 ) {
+  const _state = await _deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords)
+  if (state.id !== id) {
+    return _state
+  }
   const _initialState = initialState()
-  const { codeAndComments } = await _deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords)
-  _initialState.codeAndComments = codeAndComments
+  _initialState.codeAndComments = _state.codeAndComments
   updateRepositories(state)
   return _initialState
 }
