@@ -14,6 +14,7 @@ import {
   deleteOne as _deleteOne
 } from '../utils.jsx'
 import { updateRepositories as _updateRepositories } from '../worker.jsx'
+import { initialState } from '../store.jsx'
 
 
 async function updateComment(
@@ -110,9 +111,12 @@ async function deleteOne(
   getAllRecords = _getAllRecords,
   updateRepositories = _updateRepositories,
 ) {
+  const _initialState = initialState()
   await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
   updateRepositories(state)
-  return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords)
+  const { codeAndComments } = await transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords)
+  _initialState.codeAndComments = codeAndComments
+  return _initialState
 }
 
 
