@@ -116,6 +116,7 @@ export function getAllRecords(
     cursor.addEventListener('success', (event) => {
       const cursor = event.target.result
       if (cursor) {
+        delete cursor.value.lines
         records.push(cursor.value)
         cursor.continue()
       }
