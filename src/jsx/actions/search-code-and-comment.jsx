@@ -7,7 +7,7 @@ import {
   deleteRecord as _deleteRecord,
   getAllRecords as _getAllRecords
 } from '../db.jsx'
-import { deleteOne as _deleteOne } from '../utils.jsx'
+import { deleteOne as _deleteOne, search as _search } from '../utils.jsx'
 import { updateRepositories as _updateRepositories } from '../worker.jsx'
 import { initialState } from '../store.jsx'
 
@@ -17,25 +17,9 @@ async function search(
   conditions,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
-  getAllRecords = _getAllRecords,
-  bound = IDBKeyRange.bound
+  getAllRecords = _getAllRecords
 ) {
-  let { repository } = conditions
-  repository = repository.trim()
-  let indexName
-  if (repository) {
-    indexName = 'repository'
-  }
-  else {
-    indexName = 'updated_at'
-  }
-  let range
-  if (repository) {
-    range = bound([repository, new Date(0)], [repository, new Date()])
-  }
-  const db = await getDB()
-  const objectStore = await getObjectStore(db)
-  const codeAndComments = await getAllRecords(objectStore, indexName, range)
+  const codeAndComments = await _search(conditions, getDB, getObjectStore, getAllRecords)
   return { codeAndComments }
 }
 
