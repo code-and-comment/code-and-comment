@@ -11,19 +11,45 @@ export function createViewUrl(git, path, comments, location = window.location) {
   return `${location.origin}${location.pathname}#/view?data=${data_string}`
 }
 
-export async function transfer(
-  path,
-  route = _route,
-  getDB = _getDB,
-  getObjectStore = _getObjectStore,
-  getAllRecords = _getAllRecords
+
+export async function search(
+  conditions,
+  getDB,
+  getObjectStore,
+  getAllRecords
 ) {
-  route(path)
+  let { repository } = conditions
+  repository = repository && repository.trim()
+  let indexName
+  if (repository) {
+    indexName = 'repository'
+  }
+  else {
+    indexName = 'updated_at'
+  }
+  let range
+  if (repository) {
+    range = IDBKeyRange.bound([repository, new Date(0)], [repository, new Date()])
+  }
   const db = await getDB()
   const objectStore = await getObjectStore(db)
-  const codeAndComments = await getAllRecords(objectStore)
+  const codeAndComments = await getAllRecords(objectStore, indexName, range)
+  return codeAndComments
+}
+
+
+export async function transfer(
+  path,
+  route,
+  getDB,
+  getObjectStore,
+  getAllRecords
+) {
+  route(path)
+  const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords)
   return { codeAndComments }
 }
+
 
 export async function saveCodeAndComment(
   state,
@@ -46,6 +72,7 @@ export async function saveCodeAndComment(
   return event.target.result
 }
 
+
 export async function updateCodeAndComment(
   state,
   getDB,
@@ -66,6 +93,7 @@ export async function updateCodeAndComment(
     repository: `${parts[1]}/${parts[2]}`,
   })
 }
+
 
 export async function deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords) {
   const db = await getDB()
