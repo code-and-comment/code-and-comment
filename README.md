@@ -19,4 +19,4 @@ If you want to use this application as product, you should host this application
 
 ## Contribution
 
-Please see `CONTRIBUTING.md`.
+Please see [CONTRIBUTING.md](https://github.com/code-and-comment/code-and-comment/blob/master/CONTRIBUTING.md).
