@@ -86,9 +86,10 @@ function list(
   route = _route,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
-  getAllRecords = _getAllRecords
+  getAllRecords = _getAllRecords,
+  setTimeout = window.setTimeout
 ) {
-  return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords)
+  return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout)
 }
 
 

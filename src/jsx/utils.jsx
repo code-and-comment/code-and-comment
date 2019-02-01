@@ -43,9 +43,12 @@ export async function transfer(
   route,
   getDB,
   getObjectStore,
-  getAllRecords
+  getAllRecords,
+  setTimeout
 ) {
-  route(path)
+  setTimeout(() => {
+    route(path)
+  }, 0)
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords)
   return { codeAndComments }
 }
