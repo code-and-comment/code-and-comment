@@ -16,6 +16,9 @@ export function initialState() {
     saved: false,
     updated: false,
     codeAndComments: [],
+    // for search
+    // This is changed at `actions.edit.list()`.
+    searchRepository: '',
     // repositories: []
   }
 }

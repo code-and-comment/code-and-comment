@@ -11,9 +11,10 @@ function search_code_and_comment(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
-  setTimeout = window.setTimeout
+  setTimeout = window.setTimeout,
+  bound = window.IDBKeyRange.bound
 ) {
-  return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout)
+  return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout, bound)
 }
 
 
@@ -24,9 +25,10 @@ function search_comment(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
-  setTimeout = window.setTimeout
+  setTimeout = window.setTimeout,
+  bound = window.IDBKeyRange.bound
 ) {
-  return transfer('/search_comment', route, getDB, getObjectStore, getAllRecords, setTimeout)
+  return transfer('/search_comment', route, getDB, getObjectStore, getAllRecords, setTimeout, bound)
 }
 
 
