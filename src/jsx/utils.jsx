@@ -106,12 +106,8 @@ export async function updateCodeAndComment(
 }
 
 
-export async function deleteOne(id, getDB, getObjectStore, deleteRecord, getAllRecords) {
+export async function deleteOne(id, getDB, getObjectStore, deleteRecord) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   await deleteRecord(objectStore, id)
-  if (getAllRecords) {
-    const codeAndComments = await getAllRecords(objectStore)
-    return { codeAndComments }
-  }
 }
