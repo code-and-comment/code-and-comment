@@ -12,13 +12,14 @@ describe('actions/home', () => {
       const route = spy()
       const noop = function() {}
       const codeAndComments = [{}, {}]
+      const searchRepository = ''
       const getAllRecords = async function() {
         return codeAndComments
       }
-      const result = await actions().search_code_and_comment(null, null, route, noop, noop, getAllRecords, setTimeout)
+      const result = await actions().search_code_and_comment(null, null, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true
-      expect(result).to.deep.equal({ codeAndComments })
+      expect(result).to.deep.equal({ codeAndComments, searchRepository })
     })
   })
   describe('search_comment', () => {
@@ -26,13 +27,14 @@ describe('actions/home', () => {
       const route = spy()
       const noop = function() {}
       const codeAndComments = [{}, {}]
+      const searchRepository = ''
       const getAllRecords = async function() {
         return codeAndComments
       }
-      const result = await actions().search_comment(null, null, route, noop, noop, getAllRecords, setTimeout)
+      const result = await actions().search_comment(null, null, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_comment')).to.be.true
-      expect(result).to.deep.equal({ codeAndComments })
+      expect(result).to.deep.equal({ codeAndComments, searchRepository })
     })
   })
 })

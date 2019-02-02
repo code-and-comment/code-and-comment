@@ -25,16 +25,17 @@ describe('utils', () => {
       const route = spy()
       const noop = function() {}
       const codeAndComments = [{}, {}]
+      const searchRepository = ''
       async function getAllRecords() {
         return codeAndComments
       }
       function setTimeout(func) {
         func()
       }
-      const result = await transfer('/foo', route, noop, noop, getAllRecords, setTimeout)
+      const result = await transfer('/foo', route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/foo')).to.be.true
-      expect(result).to.deep.equal({ codeAndComments })
+      expect(result).to.deep.equal({ codeAndComments, searchRepository })
     })
   })
 })

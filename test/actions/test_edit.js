@@ -76,10 +76,13 @@ describe('actions/edit', () => {
       function setTimeout(func) {
         func()
       }
-      const result = await actions().list(null, null, route, noop, noop, getAllRecords, setTimeout)
+      const path = '/a/b'
+      const state = { path }
+      const searchRepository = 'a/b'
+      const result = await actions().list(state, null, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true
-      expect(result).to.deep.equal({ codeAndComments })
+      expect(result).to.deep.equal({ codeAndComments, searchRepository })
     })
   })
 })

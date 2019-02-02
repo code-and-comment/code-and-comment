@@ -9,6 +9,8 @@ import {
   deleteRecord as _deleteRecord
 } from '../db.jsx'
 import {
+  getRepository,
+  search,
   transfer,
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne
@@ -80,16 +82,26 @@ function fileUrl(state, event, route = _route) {
 }
 
 
-function list(
+async function list(
   state,
   event,
   route = _route,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
-  setTimeout = window.setTimeout
+  setTimeout = window.setTimeout,
+  bound = window.IDBKeyRange.bound
 ) {
-  return transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout)
+  const repository = getRepository(state.path)
+  const conditions = { repository }
+  const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
+  setTimeout(() => {
+    route('/search_code_and_comment')
+  }, 0)
+  return {
+    codeAndComments,
+    searchRepository: repository
+  }
 }
 
 
@@ -111,11 +123,13 @@ async function deleteOne(
   deleteRecord = _deleteRecord,
   getAllRecords = _getAllRecords,
   updateRepositories = _updateRepositories,
+  setTimeout = window.setTimeout,
+  bound = window.IDBKeyRange.bound
 ) {
   const _initialState = initialState()
   await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
   updateRepositories(state)
-  const { codeAndComments } = await transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords)
+  const { codeAndComments } = await transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout, bound)
   _initialState.codeAndComments = codeAndComments
   return _initialState
 }

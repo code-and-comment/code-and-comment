@@ -12,7 +12,7 @@ class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      repository: '',
+      repository: props.searchRepository,
     }
     this.setRepository = this.setRepository.bind(this)
     this.search = this.search.bind(this)
@@ -46,7 +46,7 @@ class Search extends Component {
 
 
 class SearchCodeAndComment extends Component {
-  render({ codeAndComments, deleteOne, search, git, back, edit, home }) {
+  render({ codeAndComments, deleteOne, search, git, back, edit, home, searchRepository }) {
     const list = []
     codeAndComments.forEach((c) => {
       list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
@@ -62,7 +62,7 @@ class SearchCodeAndComment extends Component {
           rightClick={ back }
           rightDisabled={ !git }
         />
-        <Search search={ search } />
+        <Search search={ search } searchRepository={ searchRepository } />
         <div className="list">
           { list.length ? list : 'There is no Code and Comment.' }
         </div>
@@ -72,4 +72,4 @@ class SearchCodeAndComment extends Component {
 }
 
 
-export default connect(['git', 'codeAndComments'], actions)(SearchCodeAndComment)
+export default connect(['git', 'codeAndComments', 'searchRepository'], actions)(SearchCodeAndComment)

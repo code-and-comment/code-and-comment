@@ -16,7 +16,8 @@ export async function search(
   conditions,
   getDB,
   getObjectStore,
-  getAllRecords
+  getAllRecords,
+  bound = IDBKeyRange.bound
 ) {
   let { repository } = conditions
   repository = repository && repository.trim()
@@ -29,7 +30,7 @@ export async function search(
   }
   let range
   if (repository) {
-    range = IDBKeyRange.bound([repository, new Date(0)], [repository, new Date()])
+    range = bound([repository, new Date(0)], [repository, new Date()])
   }
   const db = await getDB()
   const objectStore = await getObjectStore(db)
@@ -44,13 +45,20 @@ export async function transfer(
   getDB,
   getObjectStore,
   getAllRecords,
-  setTimeout
+  setTimeout,
+  bound
 ) {
+  const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound)
   setTimeout(() => {
     route(path)
   }, 0)
-  const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords)
-  return { codeAndComments }
+  return { codeAndComments, searchRepository: '' }
+}
+
+
+export function getRepository(path) {
+  const parts = path.split('/')
+  return `${parts[1]}/${parts[2]}`
 }
 
 
@@ -62,7 +70,7 @@ export async function saveCodeAndComment(
 ) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
-  const parts = state.path.split('/')
+  const repository = getRepository(state.path)
   // TODO add error process
   const event = await addRecord(objectStore, {
     title: state.title,
@@ -70,7 +78,7 @@ export async function saveCodeAndComment(
     path: state.path,
     lines: state.lines,
     comments: state.comments,
-    repository: `${parts[1]}/${parts[2]}`,
+    repository
   })
   return event.target.result
 }
@@ -84,7 +92,7 @@ export async function updateCodeAndComment(
 ) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
-  const parts = state.path.split('/')
+  const repository = getRepository(state.path)
   // TODO add error process
   await putRecord(objectStore, {
     id: state.id,
@@ -93,7 +101,7 @@ export async function updateCodeAndComment(
     path: state.path,
     lines: state.lines,
     comments: state.comments,
-    repository: `${parts[1]}/${parts[2]}`,
+    repository,
   })
 }
 
