@@ -16,7 +16,8 @@ describe('actions/home', () => {
       const getAllRecords = async function() {
         return codeAndComments
       }
-      const result = await actions().search_code_and_comment(null, null, route, noop, noop, getAllRecords, setTimeout, noop)
+      const result = await actions()
+        .search_code_and_comment(null, null, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true
       expect(result).to.deep.equal({ codeAndComments, searchRepository })
@@ -31,7 +32,8 @@ describe('actions/home', () => {
       const getAllRecords = async function() {
         return codeAndComments
       }
-      const result = await actions().search_comment(null, null, route, noop, noop, getAllRecords, setTimeout, noop)
+      const result = await actions()
+        .search_comment(null, null, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_comment')).to.be.true
       expect(result).to.deep.equal({ codeAndComments, searchRepository })

@@ -24,6 +24,17 @@ module.exports = {
     },
   },
   rules: {
+    'max-len': [
+      "error", {
+        'code': 120,
+        'ignoreComments': true,
+        'ignoreTrailingComments': true,
+        'ignoreUrls': true,
+        'ignoreStrings': true,
+        'ignoreTemplateLiterals': true,
+        'ignoreRegExpLiterals': true
+      }
+    ],
     'key-spacing': 'error',
     'no-trailing-spaces': 'error',
     'react/jsx-curly-spacing': [
