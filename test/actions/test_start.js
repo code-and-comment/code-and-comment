@@ -59,11 +59,13 @@ describe('actions/start', () => {
       async function saveCodeAndComment() {
         return id
       }
-      const result = await actions().getFile(null, url, route, fetch, setTimeout, saveCodeAndComment, noop, noop, noop, noop)
+      const result = await actions()
+        .getFile(null, url, route, fetch, setTimeout, saveCodeAndComment, noop, noop, noop, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
       expect(fetch.calledOnce).to.be.true
-      expect(fetch.calledWith('https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master')).to.be.true
+      const requestUrl = 'https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master'
+      expect(fetch.calledWith(requestUrl)).to.be.true
       expect(result).to.deep.equal({
         id,
         loading: false,

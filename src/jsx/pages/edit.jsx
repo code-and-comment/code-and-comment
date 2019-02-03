@@ -85,7 +85,13 @@ class Edit extends Component {
         </div>
         <div><CommentList /></div>
         <div>{ path }</div>
-        <Controls cancel={ this.cancel } deleting={ this.deleting } deleteOne={ this.deleteOne } isDeleting={ isDeleting } list={ list } />
+        <Controls
+          cancel={ this.cancel }
+          deleting={ this.deleting }
+          deleteOne={ this.deleteOne }
+          isDeleting={ isDeleting }
+          list={ list }
+        />
         <div className="file">
           { lines.map((code, index) => <Line
             key={ index }

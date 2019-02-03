@@ -17,7 +17,11 @@ export function CommentList({ comments, lines }) {
       {
         Object.keys(comments).map((number) => {
           number -= 0
-          return <option value={ number + 1 } key={ number }>{ number + 1 }: { lines[number].trim().substr(0, 100) }</option>
+          return (
+            <option value={ number + 1 } key={ number }>
+              { number + 1 }: { lines[number].trim().substr(0, 100) }
+            </option>
+          )
         })
       }
     </select>
