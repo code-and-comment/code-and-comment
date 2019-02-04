@@ -12,6 +12,27 @@ export function createViewUrl(git, path, comments, location = window.location) {
 }
 
 
+export function getIndexName(conditions) {
+  let { repository } = conditions
+  repository = repository && repository.trim()
+  if (repository) {
+    return 'repository'
+  }
+  else {
+    return 'updated_at'
+  }
+}
+
+
+export function getRange(conditions, bound) {
+  let { repository } = conditions
+  repository = repository && repository.trim()
+  if (repository) {
+    return bound([repository, new Date(0)], [repository, new Date()])
+  }
+}
+
+
 export async function search(
   conditions,
   getDB,
@@ -19,19 +40,8 @@ export async function search(
   getAllRecords,
   bound = IDBKeyRange.bound
 ) {
-  let { repository } = conditions
-  repository = repository && repository.trim()
-  let indexName
-  if (repository) {
-    indexName = 'repository'
-  }
-  else {
-    indexName = 'updated_at'
-  }
-  let range
-  if (repository) {
-    range = bound([repository, new Date(0)], [repository, new Date()])
-  }
+  const indexName = getIndexName(conditions)
+  const range = getRange(conditions, bound)
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   const codeAndComments = await getAllRecords(objectStore, indexName, range)
