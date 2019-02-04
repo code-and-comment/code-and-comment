@@ -75,6 +75,7 @@ async function getFile(
       path,
       lines,
       comments,
+      codeAndComments: [],
       networkError: false,
       urlError: false
     }

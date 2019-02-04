@@ -3,6 +3,7 @@ import { route as _route } from 'preact-router'
 import { createViewUrl } from '../utils.jsx'
 import {
   getDB as _getDB,
+  getRecord as _getRecord,
   getObjectStore as _getObjectStore,
   getAllRecords as _getAllRecords,
   putRecord as _putRecord,
@@ -135,6 +136,47 @@ async function deleteOne(
 }
 
 
+async function setCodeAndComments(
+  state,
+  repository,
+  getDB = _getDB,
+  getObjectStore = _getObjectStore,
+  getAllRecords = _getAllRecords,
+  bound = window.IDBKeyRange.bound
+) {
+  const conditions = { repository }
+  const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
+  return {
+    codeAndComments
+  }
+}
+
+
+async function changeCodeAndComment(
+  state,
+  id,
+  getDB = _getDB,
+  getObjectStore = _getObjectStore,
+  getRecord = _getRecord
+) {
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  const request = await getRecord(objectStore, id)
+  // TODO error process
+  if (request.target.result) {
+    const codeAndComment = request.target.result
+    return {
+      id: codeAndComment.id,
+      title: codeAndComment.title,
+      git: codeAndComment.git,
+      path: codeAndComment.path,
+      lines: codeAndComment.lines,
+      comments: codeAndComment.comments,
+    }
+  }
+}
+
+
 const actions = () => ({
   updateComment,
   updateTitle,
@@ -142,6 +184,8 @@ const actions = () => ({
   list,
   publish,
   deleteOne,
+  setCodeAndComments,
+  changeCodeAndComment,
 })
 
 

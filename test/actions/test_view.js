@@ -8,11 +8,17 @@ describe('actions/view', () => {
   describe('edit', () => {
     it('moves /edit', async function() {
       const route = spy()
+      const state = {}
       const id = 1
       async function saveCodeAndComment() {
         return id
       }
-      const result = await actions().edit({}, null, route, saveCodeAndComment)
+      function noop() {}
+      function updateRepositories() {}
+      function setTimeout(func) {
+        func()
+      }
+      const result = await actions().edit(state, null, route, saveCodeAndComment, noop, noop, noop, setTimeout, updateRepositories)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
       expect(result).to.deep.equal({ id })

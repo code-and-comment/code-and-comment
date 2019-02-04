@@ -71,6 +71,7 @@ async function edit(
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   const request = await getRecord(objectStore, id)
+  // TODO error process
   if (request.target.result) {
     const codeAndComment = request.target.result
     setTimeout(() => {
@@ -83,6 +84,7 @@ async function edit(
       path: codeAndComment.path,
       lines: codeAndComment.lines,
       comments: codeAndComment.comments,
+      codeAndComments: [],
     }
   }
 }
