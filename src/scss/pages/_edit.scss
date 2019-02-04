@@ -3,14 +3,16 @@
 .cc-edit {
   @extend .cc-outer-file;
   @extend .cc-center;
-  .title {
-    width: 400px;
-  }
-  > .controls {
-    padding: 10px 0px;
-    .message {
-      padding-bottom: 14px;
-      color: $red;
+  > .main {
+    .title {
+      width: 400px;
+    }
+    > .controls {
+      padding: 10px 0px;
+      .message {
+        padding-bottom: 14px;
+        color: $red;
+      }
     }
   }
 }

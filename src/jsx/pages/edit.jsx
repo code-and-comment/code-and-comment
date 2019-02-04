@@ -69,38 +69,40 @@ class Edit extends Component {
   }) {
     return (
       <div className="cc-edit">
-        <Navigator
-          leftLabel={ 'Url' }
-          leftClick={ fileUrl }
-          rightLabel={ 'Publish' }
-          rightClick={ publish }
-          rightDisabled={ Object.keys(comments).length < 1 }
-        />
-        <div>
-          Click the line. Add the comment by Markdown. Click Publish button.
-          When a line number is clicked, the comment is hidden.
-        </div>
-        <div>
-          Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
-        </div>
-        <div><CommentList /></div>
-        <div>{ path }</div>
-        <Controls
-          cancel={ this.cancel }
-          deleting={ this.deleting }
-          deleteOne={ this.deleteOne }
-          isDeleting={ isDeleting }
-          list={ list }
-        />
-        <div className="file">
-          { lines.map((code, index) => <Line
-            key={ index }
-            code={ code }
-            comment={ comments[index + ''] }
-            index={ index }
-            updateComment={ updateComment }
-            editable={ true }/>
-          ) }
+        <div className="main">
+          <Navigator
+            leftLabel={ 'Url' }
+            leftClick={ fileUrl }
+            rightLabel={ 'Publish' }
+            rightClick={ publish }
+            rightDisabled={ Object.keys(comments).length < 1 }
+          />
+          <div>
+            Click the line. Add the comment by Markdown. Click Publish button.
+            When a line number is clicked, the comment is hidden.
+          </div>
+          <div>
+            Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
+          </div>
+          <div><CommentList /></div>
+          <div>{ path }</div>
+          <Controls
+            cancel={ this.cancel }
+            deleting={ this.deleting }
+            deleteOne={ this.deleteOne }
+            isDeleting={ isDeleting }
+            list={ list }
+          />
+          <div className="file">
+            { lines.map((code, index) => <Line
+              key={ index }
+              code={ code }
+              comment={ comments[index + ''] }
+              index={ index }
+              updateComment={ updateComment }
+              editable={ true }/>
+            ) }
+          </div>
         </div>
       </div>
     )
