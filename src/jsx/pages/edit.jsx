@@ -42,10 +42,6 @@ class Edit extends Component {
     this.deleteOne = props.deleteOne.bind(null, props.id)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.deleteOne = nextProps.deleteOne.bind(null, nextProps.id)
-  }
-
   deleting() {
     this.setState({ isDeleting: true })
   }
