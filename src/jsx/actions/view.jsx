@@ -3,6 +3,7 @@ import { route as _route } from 'preact-router'
 
 import { getDB as _getDB, getObjectStore as _getObjectStore, addRecord as _addRecord } from '../db.jsx'
 import { saveCodeAndComment as _saveCodeAndComment } from '../utils.jsx'
+import { updateRepositories as _updateRepositories } from '../worker.jsx'
 
 
 async function edit(
@@ -12,13 +13,18 @@ async function edit(
   saveCodeAndComment = _saveCodeAndComment,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
-  addRecord = _addRecord
+  addRecord = _addRecord,
+  setTimeout = window.setTimeout,
+  updateRepositories = _updateRepositories
 ) {
-  route('/edit')
   const title = 'New Code and Comment'
   const { git, path, lines, comments } = state
   const _state = { title, git, path, lines, comments }
   const id = await saveCodeAndComment(_state, getDB, getObjectStore, addRecord)
+  updateRepositories(state)
+  setTimeout(() => {
+    route('/edit')
+  }, 0)
   return { id }
 }
 
