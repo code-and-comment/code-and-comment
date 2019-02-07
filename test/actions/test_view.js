@@ -18,7 +18,8 @@ describe('actions/view', () => {
       function setTimeout(func) {
         func()
       }
-      const result = await actions().edit(state, null, route, saveCodeAndComment, noop, noop, noop, setTimeout, updateRepositories)
+      const result = await actions().edit(
+        state, null, route, saveCodeAndComment, noop, noop, noop, setTimeout, updateRepositories)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
       expect(result).to.deep.equal({ id })
