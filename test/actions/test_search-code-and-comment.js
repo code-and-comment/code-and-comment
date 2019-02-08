@@ -13,13 +13,17 @@ describe('actions/search-code-and-comment', () => {
       expect(result).to.be.undefined
     })
   })
+
   describe('back', () => {
     it('moves /edit', () => {
+      function setTimeout(func) {
+        func()
+      }
       const route = spy()
-      const result = actions().back(null, null, route)
+      const result = actions().back(null, null, route, setTimeout)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
-      expect(result).to.be.undefined
+      expect(result).to.deep.equal({ codeAndComments: [] })
     })
   })
 })
