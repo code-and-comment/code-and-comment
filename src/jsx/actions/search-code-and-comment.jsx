@@ -24,8 +24,11 @@ async function search(
 }
 
 
-function back(state, event, route = _route) {
-  route('/edit')
+function back(state, event, route = _route, setTimeout = window.setTimeout) {
+  setTimeout(() => {
+    route('/edit')
+  }, 0)
+  return { codeAndComments: [] }
 }
 
 
