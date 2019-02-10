@@ -64,6 +64,7 @@ async function updateTitle(
   state,
   event,
   updateCodeAndComment = _updateCodeAndComment,
+  updateCodeAndComments = _updateCodeAndComments,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   putRecord = _putRecord
@@ -76,6 +77,10 @@ async function updateTitle(
       getObjectStore,
       putRecord
     )
+    const repository = getRepository(state.path)
+    if (state.searchRepository === repository) {
+      updateCodeAndComments(state.searchRepository)
+    }
     return { title }
   }
 }
