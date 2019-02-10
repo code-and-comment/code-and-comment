@@ -28,6 +28,7 @@ async function updateComment(
   index,
   comment,
   updateCodeAndComment = _updateCodeAndComment,
+  updateCodeAndComments = _updateCodeAndComments,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   putRecord = _putRecord
@@ -56,6 +57,10 @@ async function updateComment(
     getObjectStore,
     putRecord
   )
+  const repository = getRepository(state.path)
+  if (state.searchRepository === repository) {
+    updateCodeAndComments(state.searchRepository)
+  }
   return { comments }
 }
 
