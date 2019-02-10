@@ -10,26 +10,26 @@ function noop() {}
 describe('actions/edit', () => {
   describe('updateComment', () => {
     it('changes comments', async function(){
-      let result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'A', noop)
+      let result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, 'A', noop, noop)
       expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
 
-      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, '', noop)
+      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, '', noop, noop)
       expect(result).to.deep.equal({ comments: { '2': 'b' } })
     })
 
     it('returns undefined if comments do not change', async function() {
-      let result = await actions().updateComment({ comments: { '2': 'b' } }, 1, '', noop)
+      let result = await actions().updateComment({ comments: { '2': 'b' }, path: '/a/b' }, 1, '', noop, noop)
       expect(result).to.be.undefined
 
-      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, 'a', noop)
+      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, 'a', noop, noop)
       expect(result).to.be.undefined
     })
 
     it('trims comment', async function() {
-      let result = await actions().updateComment({ comments: { '2': 'b' } }, 1, ' \n \n ', noop)
+      let result = await actions().updateComment({ comments: { '2': 'b' }, path: '/a/b' }, 1, ' \n \n ', noop, noop)
       expect(result).to.be.undefined
 
-      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' } }, 1, '  A\n ', noop)
+      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, '  A\n ', noop, noop)
       expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
     })
   })
