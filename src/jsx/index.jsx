@@ -5,7 +5,11 @@ import { Provider } from 'unistore/preact'
 import { route } from 'preact-router'
 
 import store from './store.jsx'
-import { updateRepositories } from './worker.jsx'
+import {
+  setRepositoriesWorker,
+  setCodeAndCommentsWorker,
+  updateRepositories
+} from './worker.jsx'
 import Start from './pages/start.jsx'
 import Edit from './pages/edit.jsx'
 import Publish from './pages/publish.jsx'
@@ -51,5 +55,8 @@ class CodeAndComment extends Component {
 
 render(<CodeAndComment />, document.body)
 
-
-updateRepositories(store)
+window.requestIdleCallback(() => {
+  setRepositoriesWorker(store)
+  updateRepositories()
+  setCodeAndCommentsWorker(store)
+})

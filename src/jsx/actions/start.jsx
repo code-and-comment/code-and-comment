@@ -63,7 +63,7 @@ async function getFile(
     const title = 'New Code and Comment'
     const state = { title, git, path, lines, comments }
     const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
-    updateRepositories(state)
+    updateRepositories()
     setTimeout(() => {
       route('/edit')
     }, 0)

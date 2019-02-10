@@ -21,7 +21,7 @@ async function edit(
   const { git, path, lines, comments } = state
   const _state = { title, git, path, lines, comments }
   const id = await saveCodeAndComment(_state, getDB, getObjectStore, addRecord)
-  updateRepositories(state)
+  updateRepositories()
   setTimeout(() => {
     route('/edit')
   }, 0)

@@ -6,8 +6,8 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run build:minify",
     "build:css": "node-sass src/scss/index.scss dist/app.css --output-style compressed",
-    "build:js": "rollup -c && rollup -c -i src/jsx/repositories.jsx -o dist/repositories.js",
-    "build:minify": "terser dist/app.js -c -m --ecma 8 -o dist/app.min.js && terser dist/repositories.js -c -m --ecma 8 -o dist/repositories.min.js",
+    "build:js": "rollup -c && rollup -c -i src/jsx/repositories.jsx -o dist/repositories.js && rollup -c -i src/jsx/codeAndComments.jsx -o dist/codeAndComments.js",
+    "build:minify": "terser dist/app.js -c -m --ecma 8 -o dist/app.min.js && terser dist/repositories.js -c -m --ecma 8 -o dist/repositories.min.js && terser dist/codeAndComments.js -c -m --ecma 8 -o dist/codeAndComments.min.js",
     "fix": "eslint src/jsx/**/*.jsx test/**/*.js --fix",
     "lint": "eslint src/jsx/**/*.jsx test/**/*.js",
     "test": "mocha --require @babel/register --recursive test --reporter spec"

@@ -56,7 +56,7 @@ async function deleteOne(
   }
   const _initialState = initialState()
   _initialState.codeAndComments = codeAndComments
-  updateRepositories(state)
+  updateRepositories()
   return _initialState
 }
 

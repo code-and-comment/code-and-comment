@@ -16,7 +16,10 @@ import {
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne
 } from '../utils.jsx'
-import { updateRepositories as _updateRepositories } from '../worker.jsx'
+import {
+  updateRepositories as _updateRepositories,
+  updateCodeAndComments as _updateCodeAndComments
+} from '../worker.jsx'
 import { initialState } from '../store.jsx'
 
 
@@ -129,7 +132,7 @@ async function deleteOne(
 ) {
   const _initialState = initialState()
   await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
-  updateRepositories(state)
+  updateRepositories()
   const { codeAndComments } = await transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout, bound)
   _initialState.codeAndComments = codeAndComments
   return _initialState
@@ -139,15 +142,11 @@ async function deleteOne(
 async function setCodeAndComments(
   state,
   repository,
-  getDB = _getDB,
-  getObjectStore = _getObjectStore,
-  getAllRecords = _getAllRecords,
-  bound = window.IDBKeyRange.bound
+  updateCodeAndComments = _updateCodeAndComments
 ) {
-  const conditions = { repository }
-  const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
+  updateCodeAndComments(repository)
   return {
-    codeAndComments
+    searchRepository: repository
   }
 }
 

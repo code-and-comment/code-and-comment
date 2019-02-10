@@ -17,7 +17,7 @@ export function initialState() {
     updated: false,
     codeAndComments: [],
     // for search
-    // This is changed at `actions.edit.list()`.
+    // This is changed at `actions.edit.list()` and `actions.edit.setCodeAndComments()`.
     searchRepository: '',
     // repositories: []
   }
