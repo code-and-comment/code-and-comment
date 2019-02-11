@@ -13,8 +13,6 @@ export function initialState() {
     loading: false,
     networkError: false,
     urlError: false,
-    saved: false,
-    updated: false,
     codeAndComments: [],
     // for search
     // This is changed at `actions.edit.list()` and `actions.edit.setCodeAndComments()`.
