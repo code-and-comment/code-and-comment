@@ -6,3 +6,5 @@ dist/app.js
 dist/app.js.map
 dist/repositories.js.map
 dist/repositories.js
+dist/codeAndComments.js.map
+dist/codeAndComments.js
