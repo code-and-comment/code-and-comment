@@ -145,6 +145,7 @@ async function deleteOne(
   updateRepositories()
   const { codeAndComments } = await transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout, bound)
   _initialState.codeAndComments = codeAndComments
+  _initialState.repositories = state.repositories
   return _initialState
 }
 

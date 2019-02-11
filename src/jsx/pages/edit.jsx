@@ -50,7 +50,6 @@ class _RepositorySelector extends Component {
   }
 
   render({ repositories }, { repository }) {
-    repositories = repositories ? repositories : []
     return (
       <div className="repository-selector">
         {

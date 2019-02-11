@@ -3,7 +3,7 @@ import { connect } from 'unistore/preact'
 
 
 export function RepositoriesDatalist({ repositories }) {
-  if (!repositories || !repositories.length) {
+  if (!repositories.length) {
     return
   }
   return (

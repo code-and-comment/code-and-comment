@@ -19,8 +19,15 @@ async function search(
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords
 ) {
+  let searchRepository = ''
+  if (conditions && conditions.repository) {
+    searchRepository = conditions.repository
+  }
   const codeAndComments = await _search(conditions, getDB, getObjectStore, getAllRecords)
-  return { codeAndComments }
+  return {
+    codeAndComments,
+    searchRepository
+  }
 }
 
 
@@ -57,6 +64,8 @@ async function deleteOne(
   }
   const _initialState = initialState()
   _initialState.codeAndComments = codeAndComments
+  _initialState.repositories = state.repositories
+  _initialState.searchRepository = state.searchRepository
   return _initialState
 }
 
@@ -88,6 +97,7 @@ async function edit(
       lines: codeAndComment.lines,
       comments: codeAndComment.comments,
       codeAndComments: [],
+      searchRepository: ''
     }
   }
 }
