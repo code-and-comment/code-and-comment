@@ -18,7 +18,7 @@ export function initialState() {
     // This is changed at `actions.edit.list()` and `actions.edit.setCodeAndComments()`.
     // This is used when title is changed in the edit page.
     searchRepository: '',
-    // repositories: []
+    repositories: []
   }
 }
 
