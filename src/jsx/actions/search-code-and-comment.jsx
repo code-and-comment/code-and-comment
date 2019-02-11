@@ -49,6 +49,7 @@ async function deleteOne(
   search = _search
 ) {
   await _deleteOne(id, getDB, getObjectStore, deleteRecord)
+  updateRepositories()
   const conditions = { repository: state.searchRepository }
   const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords)
   if (state.id !== id) {
@@ -56,7 +57,6 @@ async function deleteOne(
   }
   const _initialState = initialState()
   _initialState.codeAndComments = codeAndComments
-  updateRepositories()
   return _initialState
 }
 
