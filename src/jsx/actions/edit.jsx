@@ -12,7 +12,6 @@ import {
 import {
   getRepository,
   search,
-  transfer,
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne
 } from '../utils.jsx'
@@ -130,22 +129,20 @@ async function deleteOne(
   state,
   id,
   event,
-  route = _route,
   getDB = _getDB,
   deleteOneFunc = _deleteOne,
   getObjectStore = _getObjectStore,
   deleteRecord = _deleteRecord,
-  getAllRecords = _getAllRecords,
   updateRepositories = _updateRepositories,
-  setTimeout = window.setTimeout,
-  bound = window.IDBKeyRange.bound
+  updateCodeAndComments = _updateCodeAndComments
 ) {
-  const _initialState = initialState()
   await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
   updateRepositories()
-  const { codeAndComments } = await transfer('/search_code_and_comment', route, getDB, getObjectStore, getAllRecords, setTimeout, bound)
-  _initialState.codeAndComments = codeAndComments
+  updateCodeAndComments(state.searchRepository)
+  const _initialState = initialState()
+  _initialState.codeAndComments = state.codeAndComments
   _initialState.repositories = state.repositories
+  _initialState.searchRepository = state.searchRepository
   return _initialState
 }
 
