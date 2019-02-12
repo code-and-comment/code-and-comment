@@ -127,6 +127,7 @@ class Edit extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.deleteOne = nextProps.deleteOne.bind(null, nextProps.id)
+    this.cancel()
   }
 
   deleting() {
@@ -144,6 +145,7 @@ class Edit extends Component {
   }
 
   render({
+    id,
     title,
     lines,
     comments,
@@ -173,34 +175,37 @@ class Edit extends Component {
             rightClick={ publish }
             rightDisabled={ Object.keys(comments).length < 1 }
           />
-          <Controls
-            cancel={ this.cancel }
-            deleting={ this.deleting }
-            deleteOne={ this.deleteOne }
-            isDeleting={ isDeleting }
-            list={ list }
-            toggleSelector={ this.toggleSelector }
-            isSelectorOpen={ isSelectorOpen }
-          />
-          <div>
-            Click the line. Add the comment by Markdown. Click Publish button.
-            When a line number is clicked, the comment is hidden.
-          </div>
-          <div>
-            Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
-          </div>
-          <div><CommentList /></div>
-          <div>{ path }</div>
-          <div className="file">
-            { lines.map((code, index) => <Line
-              key={ index }
-              code={ code }
-              comment={ comments[index + ''] }
-              index={ index }
-              updateComment={ updateComment }
-              editable={ true }/>
-            ) }
-          </div>
+          { id && [
+            (<Controls
+              key="1"
+              cancel={ this.cancel }
+              deleting={ this.deleting }
+              deleteOne={ this.deleteOne }
+              isDeleting={ isDeleting }
+              list={ list }
+              toggleSelector={ this.toggleSelector }
+              isSelectorOpen={ isSelectorOpen }
+            />),
+            (<div key="2">
+              Click the line. Add the comment by Markdown. Click Publish button.
+              When a line number is clicked, the comment is hidden.
+            </div>),
+            (<div key="3">
+              Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
+            </div>),
+            <div key="4"><CommentList /></div>,
+            <div key="5">{ path }</div>,
+            (<div className="file" key="6">
+              { lines.map((code, index) => <Line
+                key={ index }
+                code={ code }
+                comment={ comments[index + ''] }
+                index={ index }
+                updateComment={ updateComment }
+                editable={ true }/>
+              ) }
+            </div>)
+          ] }
         </div>
       </div>
     )
