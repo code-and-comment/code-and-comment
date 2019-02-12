@@ -13,13 +13,13 @@ import {
   getRepository,
   search,
   updateCodeAndComment as _updateCodeAndComment,
-  deleteOne as _deleteOne
+  deleteOne as _deleteOne,
+  getStateAfterDeleting
 } from '../utils.jsx'
 import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
 } from '../worker.jsx'
-import { initialState } from '../store.jsx'
 
 
 async function updateComment(
@@ -139,11 +139,7 @@ async function deleteOne(
   await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
   updateRepositories()
   updateCodeAndComments(state.searchRepository)
-  const _initialState = initialState()
-  _initialState.codeAndComments = state.codeAndComments
-  _initialState.repositories = state.repositories
-  _initialState.searchRepository = state.searchRepository
-  return _initialState
+  return getStateAfterDeleting(state, state.codeAndComments)
 }
 
 

@@ -1,5 +1,7 @@
 import { Base64 } from 'js-base64'
 
+import { initialState } from './store.jsx'
+
 
 export function createViewUrl(git, path, comments, location = window.location) {
   const data = {
@@ -120,4 +122,13 @@ export async function deleteOne(id, getDB, getObjectStore, deleteRecord) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   await deleteRecord(objectStore, id)
+}
+
+
+export function getStateAfterDeleting(state, codeAndComments) {
+  const _initialState = initialState()
+  _initialState.codeAndComments = codeAndComments
+  _initialState.repositories = state.repositories
+  _initialState.searchRepository = state.searchRepository
+  return _initialState
 }
