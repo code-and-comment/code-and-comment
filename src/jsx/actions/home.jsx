@@ -4,7 +4,7 @@ import { getDB as _getDB, getObjectStore as _getObjectStore, getAllRecords as _g
 import { transfer } from '../utils.jsx'
 
 
-function search_code_and_comment(
+function searchCodeAndComment(
   state,
   event,
   route = _route,
@@ -18,7 +18,7 @@ function search_code_and_comment(
 }
 
 
-function search_comment(
+function searchComment(
   state,
   event,
   route = _route,
@@ -32,10 +32,9 @@ function search_comment(
 }
 
 
-const actions = () => ({
-  search_code_and_comment,
-  search_comment,
-})
-
-
-export default actions
+export default function actions() {
+  return {
+    searchCodeAndComment,
+    searchComment,
+  }
+}

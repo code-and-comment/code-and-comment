@@ -89,12 +89,11 @@ async function getFile(
 }
 
 
-const actions = () => ({
-  back,
-  home,
-  setLoading,
-  getFile,
-})
-
-
-export default actions
+export default function actions() {
+  return {
+    back,
+    home,
+    setLoading,
+    getFile,
+  }
+}
