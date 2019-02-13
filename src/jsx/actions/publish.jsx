@@ -6,9 +6,8 @@ function back(state, event, route = _route) {
 }
 
 
-const actions = () => ({
-  back
-})
-
-
-export default actions
+export default function actions() {
+  return {
+    back
+  }
+}

@@ -180,16 +180,15 @@ async function changeCodeAndComment(
 }
 
 
-const actions = () => ({
-  updateComment,
-  updateTitle,
-  fileUrl,
-  list,
-  publish,
-  deleteOne,
-  setCodeAndComments,
-  changeCodeAndComment,
-})
-
-
-export default actions
+export default function actions() {
+  return {
+    updateComment,
+    updateTitle,
+    fileUrl,
+    list,
+    publish,
+    deleteOne,
+    setCodeAndComments,
+    changeCodeAndComment,
+  }
+}

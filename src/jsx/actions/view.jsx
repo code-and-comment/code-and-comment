@@ -69,10 +69,9 @@ async function getFile(state, paramJson, route = _route, fetch = window.fetch) {
 }
 
 
-const actions = () => ({
-  edit,
-  getFile,
-})
-
-
-export default actions
+export default function actions() {
+  return {
+    edit,
+    getFile,
+  }
+}

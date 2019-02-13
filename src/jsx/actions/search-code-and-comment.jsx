@@ -102,13 +102,12 @@ async function edit(
 }
 
 
-const actions = () => ({
-  search,
-  back,
-  home,
-  deleteOne,
-  edit,
-})
-
-
-export default actions
+export default function actions() {
+  return {
+    search,
+    back,
+    home,
+    deleteOne,
+    edit,
+  }
+}
