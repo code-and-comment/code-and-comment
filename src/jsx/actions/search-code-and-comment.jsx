@@ -7,9 +7,12 @@ import {
   deleteRecord as _deleteRecord,
   getAllRecords as _getAllRecords
 } from '../db.jsx'
-import { deleteOne as _deleteOne, search as _search } from '../utils.jsx'
+import {
+  deleteOne as _deleteOne,
+  search as _search,
+  getStateAfterDeleting
+} from '../utils.jsx'
 import { updateRepositories as _updateRepositories } from '../worker.jsx'
-import { initialState } from '../store.jsx'
 
 
 async function search(
@@ -62,11 +65,7 @@ async function deleteOne(
   if (state.id !== id) {
     return { codeAndComments }
   }
-  const _initialState = initialState()
-  _initialState.codeAndComments = codeAndComments
-  _initialState.repositories = state.repositories
-  _initialState.searchRepository = state.searchRepository
-  return _initialState
+  return getStateAfterDeleting(state, codeAndComments)
 }
 
 
