@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-import Button from '../parts/button.jsx'
+import Button from './button.jsx'
 
 
 function addAnchor(url, button) {
