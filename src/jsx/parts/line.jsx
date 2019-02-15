@@ -1,12 +1,8 @@
 import { h, Component } from 'preact'
-import marked from 'marked'
 
-import CommentList from '../parts/comment-list.jsx'
-import Button from '../parts/button.jsx'
-
-marked.setOptions({
-  sanitize: true
-})
+import markdown from '../markdown.jsx'
+import CommentList from './comment-list.jsx'
+import Button from './button.jsx'
 
 
 function Code({ number, content, edit, editable, isHidden, toggleHidden }) {
@@ -84,7 +80,7 @@ class Comment extends Component {
     if (comment && !isEditing) {
       return (
         <div className="comment">
-          <div className="display-markdown" dangerouslySetInnerHTML={ { __html: marked(comment) } } />
+          <div className="display-markdown" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
           <CommentList />
         </div>
       )
@@ -100,7 +96,7 @@ class Comment extends Component {
               </div>
             </div>
             { !isPreview && <textarea onChange={ this.setComment }>{ comment }</textarea> }
-            { isPreview && <div className="display-markdown" dangerouslySetInnerHTML={ { __html: marked(comment) } } /> }
+            { isPreview && <div className="display-markdown" dangerouslySetInnerHTML={ { __html: markdown(comment) } } /> }
           </div>
           <div className="controls">
             <Button onClick={ this.cancel }>Cancel</Button>

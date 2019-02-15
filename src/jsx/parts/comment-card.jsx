@@ -1,12 +1,7 @@
 import { h, Component } from 'preact'
-import marked from 'marked'
 
-import Button from '../parts/button.jsx'
-
-
-marked.setOptions({
-  sanitize: true
-})
+import markdown from '../markdown.jsx'
+import Button from './button.jsx'
 
 
 class CommentCard extends Component {
@@ -26,7 +21,7 @@ class CommentCard extends Component {
   render({ comment, codeAndComment }) {
     return (
       <div className="cc-comment-card">
-        <div className="comment" dangerouslySetInnerHTML={ { __html: marked(comment) } } />
+        <div className="comment" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
         <div>{ codeAndComment.repository }</div>
         <div>{ codeAndComment.path }</div>
         <div>{ codeAndComment.title }</div>
