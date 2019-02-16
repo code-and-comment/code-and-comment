@@ -4,11 +4,21 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/edit.jsx'
 import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
-import Navigator from '../parts/navigator.jsx'
 import Button from '../parts/button.jsx'
 
 
-function Controls({ cancel, deleteOne, deleting, isDeleting, list, toggleSelector, isSelectorOpen }) {
+function Controls({
+  cancel,
+  deleteOne,
+  deleting,
+  fileUrl,
+  publish,
+  publishDisabled,
+  isDeleting,
+  list,
+  toggleSelector,
+  isSelectorOpen
+}) {
   if (isDeleting) {
     return (
       <div className="controls">
@@ -24,9 +34,13 @@ function Controls({ cancel, deleteOne, deleting, isDeleting, list, toggleSelecto
       <div className="controls">
         <Button onClick={ toggleSelector }>{ isSelectorOpen ? 'Close' : 'Open' }</Button>
         { ' ' }
+        <Button onClick={ fileUrl }>New</Button>
+        { ' ' }
         <Button onClick={ deleting }>Delete</Button>
         { ' ' }
         <Button onClick={ list }>List</Button>
+        { ' ' }
+        <Button disabled={ publishDisabled } onClick={ publish }>Publish</Button>
       </div>
     )
   }
@@ -168,13 +182,6 @@ class Edit extends Component {
           <CodeAndCommentSelector />
         </div>
         <div className={ mainClassName }>
-          <Navigator
-            leftLabel={ 'Url' }
-            leftClick={ fileUrl }
-            rightLabel={ 'Publish' }
-            rightClick={ publish }
-            rightDisabled={ Object.keys(comments).length < 1 }
-          />
           { id && [
             (<Controls
               key="1"
@@ -185,6 +192,9 @@ class Edit extends Component {
               list={ list }
               toggleSelector={ this.toggleSelector }
               isSelectorOpen={ isSelectorOpen }
+              fileUrl={ fileUrl }
+              publish={ publish }
+              publishDisabled={ Object.keys(comments).length < 1 }
             />),
             (<div key="2">
               Click the line. Add the comment by Markdown. Click Publish button.
