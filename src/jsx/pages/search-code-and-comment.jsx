@@ -46,7 +46,7 @@ class Search extends Component {
 
 
 class SearchCodeAndComment extends Component {
-  render({ codeAndComments, deleteOne, search, git, back, edit, home, searchRepository }) {
+  render({ codeAndComments, deleteOne, search, back, edit, home, searchRepository }) {
     const list = []
     codeAndComments.forEach((c) => {
       list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
@@ -60,7 +60,6 @@ class SearchCodeAndComment extends Component {
           leftClick={ home }
           rightLabel={ 'Edit' }
           rightClick={ back }
-          rightDisabled={ !git }
         />
         <Search search={ search } searchRepository={ searchRepository } />
         <div className="list">
@@ -72,4 +71,4 @@ class SearchCodeAndComment extends Component {
 }
 
 
-export default connect(['git', 'codeAndComments', 'searchRepository'], actions)(SearchCodeAndComment)
+export default connect(['codeAndComments', 'searchRepository'], actions)(SearchCodeAndComment)

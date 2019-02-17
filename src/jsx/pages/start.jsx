@@ -22,7 +22,7 @@ class Start extends Component {
     this.props.setLoading(true)
     this.props.getFile(this.state.url)
   }
-  render({ back, home, loading, git, networkError, urlError }) {
+  render({ back, home, loading, networkError, urlError }) {
     return (
       <div className="cc-start">
         { !loading && [
@@ -32,7 +32,6 @@ class Start extends Component {
             leftClick={ home }
             rightLabel={ 'Edit' }
             rightClick={ back }
-            rightDisabled={ !git }
           />),
           (<div className="account" key='1'>
             Input the file url in Github<br/>
@@ -55,4 +54,4 @@ class Start extends Component {
 }
 
 
-export default connect(['git', 'loading', 'networkError', 'urlError'], actions)(Start)
+export default connect(['loading', 'networkError', 'urlError'], actions)(Start)

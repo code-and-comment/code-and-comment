@@ -83,5 +83,10 @@ describe('utils', () => {
       const repository = getRepository(path)
       expect(repository).to.equal('code-and-comment/foo')
     })
+    it('returns "" when path is ""', async function() {
+      const path = ''
+      const repository = getRepository(path)
+      expect(repository).to.equal('')
+    })
   })
 })
