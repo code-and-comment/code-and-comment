@@ -36,11 +36,10 @@ function Controls({
         { ' ' }
         <Button onClick={ fileUrl }>New</Button>
         { ' ' }
-        <Button onClick={ deleting }>Delete</Button>
-        { ' ' }
+        { deleting && [<Button key="1" onClick={ deleting }>Delete</Button>,  ' '] }
         <Button onClick={ list }>List</Button>
         { ' ' }
-        <Button disabled={ publishDisabled } onClick={ publish }>Publish</Button>
+        { publish && [<Button key="1" disabled={ publishDisabled } onClick={ publish }>Publish</Button>, ' '] }
       </div>
     )
   }
@@ -182,6 +181,13 @@ class Edit extends Component {
           <CodeAndCommentSelector />
         </div>
         <div className={ mainClassName }>
+          { !id && <Controls
+            list={ list }
+            toggleSelector={ this.toggleSelector }
+            isSelectorOpen={ isSelectorOpen }
+            fileUrl={ fileUrl }
+          />
+          }
           { id && [
             (<Controls
               key="1"

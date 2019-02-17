@@ -69,6 +69,9 @@ export async function transfer(
 
 
 export function getRepository(path) {
+  if (!path) {
+    return ''
+  }
   const parts = path.split('/')
   return `${parts[1]}/${parts[2]}`
 }
