@@ -97,12 +97,10 @@ class SearchComment extends Component {
     })
     this.props.search({ repository })
   }
-  render({ back, codeAndComments, edit, home }, { comment }) {
+  render({ back, codeAndComments, edit }, { comment }) {
     return (
       <div className="cc-search-comment">
         <Navigator
-          leftLabel={ 'Home' }
-          leftClick={ home }
           rightLabel={ 'Edit' }
           rightClick={ back }
         />

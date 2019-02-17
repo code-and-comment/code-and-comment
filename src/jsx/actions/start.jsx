@@ -11,11 +11,6 @@ function back(state, event, route = _route) {
 }
 
 
-function home(state, event, route = _route) {
-  route('/home')
-}
-
-
 function setLoading(state, loading) {
   return { loading }
 }
@@ -92,7 +87,6 @@ async function getFile(
 export default function actions() {
   return {
     back,
-    home,
     setLoading,
     getFile,
   }
