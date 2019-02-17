@@ -42,11 +42,6 @@ function back(state, event, route = _route, setTimeout = window.setTimeout) {
 }
 
 
-function home(state, event, route = _route) {
-  route('/home')
-}
-
-
 async function deleteOne(
   state,
   id,
@@ -106,7 +101,6 @@ export default function actions() {
   return {
     search,
     back,
-    home,
     deleteOne,
     edit,
   }

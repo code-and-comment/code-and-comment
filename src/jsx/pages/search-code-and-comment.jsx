@@ -46,7 +46,7 @@ class Search extends Component {
 
 
 class SearchCodeAndComment extends Component {
-  render({ codeAndComments, deleteOne, search, back, edit, home, searchRepository }) {
+  render({ codeAndComments, deleteOne, search, back, edit, searchRepository }) {
     const list = []
     codeAndComments.forEach((c) => {
       list.push(<CodeAndCommentCard key={ c.id } codeAndComment={ c } edit={ edit } deleteOne={ deleteOne } />)
@@ -56,8 +56,6 @@ class SearchCodeAndComment extends Component {
     return (
       <div className="cc-search-code-and-comment">
         <Navigator
-          leftLabel={ 'Home' }
-          leftClick={ home }
           rightLabel={ 'Edit' }
           rightClick={ back }
         />

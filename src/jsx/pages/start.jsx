@@ -22,14 +22,12 @@ class Start extends Component {
     this.props.setLoading(true)
     this.props.getFile(this.state.url)
   }
-  render({ back, home, loading, networkError, urlError }) {
+  render({ back, loading, networkError, urlError }) {
     return (
       <div className="cc-start">
         { !loading && [
           (<Navigator
             key={ '0' }
-            leftLabel={ 'Home' }
-            leftClick={ home }
             rightLabel={ 'Edit' }
             rightClick={ back }
           />),

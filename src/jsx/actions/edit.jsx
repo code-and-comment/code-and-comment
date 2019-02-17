@@ -95,7 +95,30 @@ function fileUrl(state, event, route = _route) {
 }
 
 
-async function list(
+async function _search(
+  state,
+  url,
+  route,
+  getDB,
+  getObjectStore,
+  getAllRecords,
+  setTimeout,
+  bound
+) {
+  const repository = getRepository(state.path)
+  const conditions = { repository }
+  const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
+  setTimeout(() => {
+    route(url)
+  }, 0)
+  return {
+    codeAndComments,
+    searchRepository: repository
+  }
+}
+
+
+function list(
   state,
   event,
   route = _route,
@@ -105,16 +128,39 @@ async function list(
   setTimeout = window.setTimeout,
   bound = window.IDBKeyRange.bound
 ) {
-  const repository = getRepository(state.path)
-  const conditions = { repository }
-  const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
-  setTimeout(() => {
-    route('/search_code_and_comment')
-  }, 0)
-  return {
-    codeAndComments,
-    searchRepository: repository
-  }
+  return _search(
+    state,
+    '/search_code_and_comment',
+    route,
+    getDB,
+    getObjectStore,
+    getAllRecords,
+    setTimeout,
+    bound
+  )
+}
+
+
+function searchComment(
+  state,
+  event,
+  route = _route,
+  getDB = _getDB,
+  getObjectStore = _getObjectStore,
+  getAllRecords = _getAllRecords,
+  setTimeout = window.setTimeout,
+  bound = window.IDBKeyRange.bound
+) {
+  return _search(
+    state,
+    '/search_comment',
+    route,
+    getDB,
+    getObjectStore,
+    getAllRecords,
+    setTimeout,
+    bound
+  )
 }
 
 
@@ -186,6 +232,7 @@ export default function actions() {
     updateTitle,
     fileUrl,
     list,
+    searchComment,
     publish,
     deleteOne,
     setCodeAndComments,

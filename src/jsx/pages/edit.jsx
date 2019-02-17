@@ -16,6 +16,7 @@ function Controls({
   publishDisabled,
   isDeleting,
   list,
+  searchComment,
   toggleSelector,
   isSelectorOpen
 }) {
@@ -38,6 +39,8 @@ function Controls({
         { ' ' }
         { deleting && [<Button key="1" onClick={ deleting }>Delete</Button>,  ' '] }
         <Button onClick={ list }>List</Button>
+        { ' ' }
+        <Button onClick={ searchComment }>Comments</Button>
         { ' ' }
         { publish && [<Button key="1" disabled={ publishDisabled } onClick={ publish }>Publish</Button>, ' '] }
       </div>
@@ -167,7 +170,8 @@ class Edit extends Component {
     updateTitle,
     fileUrl,
     publish,
-    list
+    list,
+    searchComment
   }, {
     isDeleting,
     isSelectorOpen
@@ -181,13 +185,20 @@ class Edit extends Component {
           <CodeAndCommentSelector />
         </div>
         <div className={ mainClassName }>
-          { !id && <Controls
-            list={ list }
-            toggleSelector={ this.toggleSelector }
-            isSelectorOpen={ isSelectorOpen }
-            fileUrl={ fileUrl }
-          />
-          }
+          { !id && [
+            (<Controls
+              key="1"
+              list={ list }
+              searchComment={ searchComment }
+              toggleSelector={ this.toggleSelector }
+              isSelectorOpen={ isSelectorOpen }
+              fileUrl={ fileUrl }
+            />),
+            (<div key="2">
+              The status of this application is pre-alpha.<br />
+              Click New button.
+            </div>)
+          ] }
           { id && [
             (<Controls
               key="1"
@@ -196,6 +207,7 @@ class Edit extends Component {
               deleteOne={ this.deleteOne }
               isDeleting={ isDeleting }
               list={ list }
+              searchComment={ searchComment }
               toggleSelector={ this.toggleSelector }
               isSelectorOpen={ isSelectorOpen }
               fileUrl={ fileUrl }
@@ -203,6 +215,7 @@ class Edit extends Component {
               publishDisabled={ Object.keys(comments).length < 1 }
             />),
             (<div key="2">
+              The status of this application is pre-alpha.<br />
               Click the line. Add the comment by Markdown. Click Publish button.
               When a line number is clicked, the comment is hidden.
             </div>),
