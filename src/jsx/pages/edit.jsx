@@ -15,7 +15,7 @@ function Controls({
   publish,
   publishDisabled,
   isDeleting,
-  list,
+  searchCodeAndComment,
   searchComment,
   toggleSelector,
   isSelectorOpen
@@ -38,7 +38,7 @@ function Controls({
         <Button onClick={ fileUrl }>New</Button>
         { ' ' }
         { deleting && [<Button key="1" onClick={ deleting }>Delete</Button>,  ' '] }
-        <Button onClick={ list }>List</Button>
+        <Button onClick={ searchCodeAndComment }>List</Button>
         { ' ' }
         <Button onClick={ searchComment }>Comments</Button>
         { ' ' }
@@ -170,7 +170,7 @@ class Edit extends Component {
     updateTitle,
     fileUrl,
     publish,
-    list,
+    searchCodeAndComment,
     searchComment
   }, {
     isDeleting,
@@ -188,7 +188,7 @@ class Edit extends Component {
           { !id && [
             (<Controls
               key="1"
-              list={ list }
+              searchCodeAndComment={ searchCodeAndComment }
               searchComment={ searchComment }
               toggleSelector={ this.toggleSelector }
               isSelectorOpen={ isSelectorOpen }
@@ -206,7 +206,7 @@ class Edit extends Component {
               deleting={ this.deleting }
               deleteOne={ this.deleteOne }
               isDeleting={ isDeleting }
-              list={ list }
+              searchCodeAndComment={ searchCodeAndComment }
               searchComment={ searchComment }
               toggleSelector={ this.toggleSelector }
               isSelectorOpen={ isSelectorOpen }

@@ -65,7 +65,7 @@ describe('actions/edit', () => {
     })
   })
 
-  describe('list', () => {
+  describe('searchCodeAndComment', () => {
     it('transfers to the search code and comment page', async function() {
       const route = spy()
       const noop = function() {}
@@ -79,7 +79,8 @@ describe('actions/edit', () => {
       const path = '/a/b'
       const state = { path }
       const searchRepository = 'a/b'
-      const result = await actions().list(state, null, route, noop, noop, getAllRecords, setTimeout, noop)
+      const result = await actions().searchCodeAndComment(
+        state, null, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true
       expect(result).to.deep.equal({ codeAndComments, searchRepository })
