@@ -12,7 +12,7 @@ class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      repository: '',
+      repository: props.searchRepository,
       comment: ''
     }
     this.search = this.search.bind(this)
@@ -97,14 +97,14 @@ class SearchComment extends Component {
     })
     this.props.search({ repository })
   }
-  render({ back, codeAndComments, edit }, { comment }) {
+  render({ back, codeAndComments, edit, searchRepository }, { comment }) {
     return (
       <div className="cc-search-comment">
         <Navigator
           rightLabel={ 'Edit' }
           rightClick={ back }
         />
-        <Search search={ this.search } />
+        <Search search={ this.search } searchRepository={ searchRepository } />
         <CommentList codeAndComments={ codeAndComments } commentPattern={ comment } edit={ edit } />
       </div>
     )
@@ -112,4 +112,4 @@ class SearchComment extends Component {
 }
 
 
-export default connect(['codeAndComments'], actions)(SearchComment)
+export default connect(['codeAndComments', 'searchRepository'], actions)(SearchComment)

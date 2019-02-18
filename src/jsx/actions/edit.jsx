@@ -118,7 +118,7 @@ async function _search(
 }
 
 
-function list(
+function searchCodeAndComment(
   state,
   event,
   route = _route,
@@ -231,7 +231,7 @@ export default function actions() {
     updateComment,
     updateTitle,
     fileUrl,
-    list,
+    searchCodeAndComment,
     searchComment,
     publish,
     deleteOne,
