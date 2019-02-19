@@ -53,7 +53,15 @@ class CodeAndCommentCard extends Component {
     return (
       <div className="cc-code-and-comment-card">
         <div>{ codeAndComment.repository }</div>
-        <div>{ codeAndComment.path }</div>
+        <div>
+          <a
+            href={ `https://github.com${codeAndComment.path}` }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            { codeAndComment.path }
+          </a>
+        </div>
         <div>{ codeAndComment.title }</div>
         <div>{ codeAndComment.updated_at.toLocaleString() }</div>
         { controls }
