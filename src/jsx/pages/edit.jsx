@@ -222,8 +222,16 @@ class Edit extends Component {
             (<div key="3">
               Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
             </div>),
-            <div key="4"><CommentList /></div>,
-            <div key="5">{ path }</div>,
+            (<div key="4">
+              <a
+                href={ `https://github.com${path}` }
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                { path }
+              </a>
+            </div>),
+            <div key="5"><CommentList /></div>,
             (<div className="file" key="6">
               { lines.map((code, index) => <Line
                 key={ index }

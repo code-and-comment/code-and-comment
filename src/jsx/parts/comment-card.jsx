@@ -23,7 +23,15 @@ class CommentCard extends Component {
       <div className="cc-comment-card">
         <div className="comment" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
         <div>{ codeAndComment.repository }</div>
-        <div>{ codeAndComment.path }</div>
+        <div>
+          <a
+            href={ `https://github.com${codeAndComment.path}` }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            { codeAndComment.path }
+          </a>
+        </div>
         <div>{ codeAndComment.title }</div>
         <div>{ codeAndComment.updated_at.toLocaleString() }</div>
         <div className="controls">
