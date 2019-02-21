@@ -37,12 +37,12 @@ function Controls({
         { ' ' }
         <Button onClick={ fileUrl }>New</Button>
         { ' ' }
-        { deleting && [<Button key="1" onClick={ deleting }>Delete</Button>,  ' '] }
+        { deleting && [<Button key="delete" onClick={ deleting }>Delete</Button>,  ' '] }
         <Button onClick={ searchCodeAndComment }>List</Button>
         { ' ' }
         <Button onClick={ searchComment }>Comments</Button>
         { ' ' }
-        { publish && [<Button key="1" disabled={ publishDisabled } onClick={ publish }>Publish</Button>, ' '] }
+        { publish && [<Button key="publish" disabled={ publishDisabled } onClick={ publish }>Publish</Button>, ' '] }
       </div>
     )
   }
@@ -133,7 +133,6 @@ class Edit extends Component {
     super(props)
     this.state = {
       isDeleting: false,
-      isSelectorOpen: true,
     }
     this.deleting = this.deleting.bind(this)
     this.cancel = this.cancel.bind(this)
@@ -155,9 +154,7 @@ class Edit extends Component {
   }
 
   toggleSelector() {
-    this.setState({
-      isSelectorOpen: !this.state.isSelectorOpen
-    })
+    this.props.setIsSelectorOpen(!this.props.isSelectorOpen)
   }
 
   render({
@@ -171,10 +168,10 @@ class Edit extends Component {
     fileUrl,
     publish,
     searchCodeAndComment,
-    searchComment
+    searchComment,
+    isSelectorOpen
   }, {
     isDeleting,
-    isSelectorOpen
   }) {
     const selectorClassName = isSelectorOpen ? 'selectors' : 'selectors display-none'
     const mainClassName = isSelectorOpen ? 'main' : 'main margin-left-0'
@@ -250,4 +247,4 @@ class Edit extends Component {
 }
 
 
-export default connect(['id', 'title', 'lines', 'comments', 'path'], actions)(Edit)
+export default connect(['id', 'title', 'lines', 'comments', 'path', 'isSelectorOpen'], actions)(Edit)

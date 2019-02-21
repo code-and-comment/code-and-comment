@@ -226,6 +226,11 @@ async function changeCodeAndComment(
 }
 
 
+function setIsSelectorOpen(state, isSelectorOpen) {
+  return { isSelectorOpen }
+}
+
+
 export default function actions() {
   return {
     updateComment,
@@ -237,5 +242,6 @@ export default function actions() {
     deleteOne,
     setCodeAndComments,
     changeCodeAndComment,
+    setIsSelectorOpen,
   }
 }

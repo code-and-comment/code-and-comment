@@ -22,7 +22,8 @@ export function initialState() {
   }
 }
 
-const store = createStore(initialState())
+const state = initialState()
+state.isSelectorOpen = true
 
 
-export default store
+export default createStore(state)
