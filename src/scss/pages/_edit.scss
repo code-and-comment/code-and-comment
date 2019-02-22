@@ -7,7 +7,6 @@ $code-and-cooment-selector-width: 270px;
 
 .cc-edit {
   @extend .cc-outer-file;
-  @extend .cc-center;
   width: fit#{"-"}content;
   .display-none {
     display: none!important;
