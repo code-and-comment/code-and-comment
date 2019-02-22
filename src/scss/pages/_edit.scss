@@ -65,7 +65,8 @@ $code-and-cooment-selector-width: 270px;
   }
   > .main {
     width: 1000px;
-    margin-left: $repository-selector-width + $code-and-cooment-selector-width + 12px;
+    margin-left: $repository-selector-width + $code-and-cooment-selector-width;
+    padding-left: 12px;
     .title {
       width: 400px;
     }
