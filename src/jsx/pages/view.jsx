@@ -14,13 +14,21 @@ function View({ lines, comments, path, edit, getFile }) {
   if (lines.length) {
     content = [
       (<Navigator
-        key='navigator'
+        key="navigator"
         leftLabel={ 'Edit' }
         leftClick={ edit }
       />),
-      <div key='comment-list'><CommentList /></div>,
-      <div key='path'>{ path }</div>,
-      (<div key='file' className="file">
+      (<div key="path">
+        <a
+          href={ `https://github.com${path}` }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          { path }
+        </a>
+      </div>),
+      <div key="comment-list"><CommentList /></div>,
+      (<div key="file" className="file">
         { lines.map((code, index) => <Line
           key={ index }
           code={ code }
