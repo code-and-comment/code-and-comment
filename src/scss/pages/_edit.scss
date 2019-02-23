@@ -1,8 +1,8 @@
 @import '../variables';
 
 
-$repository-selector-width: 260px;
-$code-and-cooment-selector-width: 270px;
+$repository-selector-width: 270px;
+$code-and-cooment-selector-width: 280px;
 
 
 .cc-edit {
@@ -15,6 +15,14 @@ $code-and-cooment-selector-width: 270px;
     position: fixed;
     height: 100%;
     > .repository-selector {
+      > .application-name {
+        padding: 16px 0px;
+        font-size: 24px;
+        font-family: Caladea, serif;
+        width: fit#{"-"}content;
+        margin-left: auto;
+        margin-right: auto;
+      }
       overflow-y: auto;
       border: $border;
       border-top: 0px;
@@ -26,7 +34,7 @@ $code-and-cooment-selector-width: 270px;
       color: #ffffff;
       .repository {
         cursor: pointer;
-        padding: 6px 6px;
+        padding: 6px 8px;
         word-break: break-all;
         &:hover {
           background-color: #303030;
@@ -49,7 +57,7 @@ $code-and-cooment-selector-width: 270px;
       .code-and-comment {
         font-size: 12px;
         cursor: pointer;
-        padding: 6px 6px;
+        padding: 6px 8px;
         word-break: break-all;
         &:hover {
           background-color: #f7f8f9;

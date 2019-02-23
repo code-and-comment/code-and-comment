@@ -68,6 +68,7 @@ class _RepositorySelector extends Component {
   render({ repositories }, { repository }) {
     return (
       <div className="repository-selector">
+        <div key="application-name" className="application-name">{ 'Code and Comment' }</div>
         {
           repositories.map((r) => {
             const className = r === repository ? 'repository selected' : 'repository'
