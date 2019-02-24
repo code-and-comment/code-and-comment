@@ -5,20 +5,29 @@ import CommentList from './comment-list.jsx'
 import Button from './button.jsx'
 
 
-function Code({ number, content, edit, editable, isHidden, toggleHidden }) {
-  const className = isHidden ? 'number hidden' : 'number'
+function Code({
+  number,
+  content,
+  edit,
+  editable,
+  isHidden,
+  isHighlight,
+  toggleHidden
+}) {
+  const numberClassName = isHidden ? 'number hidden' : 'number'
+  const contentClassName = isHighlight ? 'content highlight' : 'content'
   return (
     <div
       className="code"
       onClick={ editable ? edit : null }
     >
       <span
-        className={ className }
+        className={ numberClassName }
         onClick={ toggleHidden }
       >
         { number + 1 }
       </span>
-      <span className="content">
+      <span className={ contentClassName }>
         { content }
       </span>
     </div>
@@ -76,12 +85,12 @@ class Comment extends Component {
     this.setState({ isPreview: !this.state.isPreview })
   }
 
-  render({ isEditing }, { comment, isPreview }) {
+  render({ isEditing, setHighlightLineNumber }, { comment, isPreview }) {
     if (comment && !isEditing) {
       return (
         <div className="comment">
           <div className="display-markdown" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
-          <CommentList />
+          <CommentList handler={ setHighlightLineNumber } />
         </div>
       )
     }
@@ -126,12 +135,15 @@ class Line extends Component {
     this.toggleHidden = this.toggleHidden.bind(this)
   }
 
-  shouldComponentUpdate({ index, code, comment }, { isEditing, isHidden }) {
+  shouldComponentUpdate({ index, code, comment, isHighlight }, { isEditing, isHidden }) {
     return !(this.props.index === index
         && this.props.code === code
         && this.props.comment === comment
-        && this.state.isEditing === isEditing === false
-        && this.state.isHidden === isHidden === false)
+        && this.props.isHighlight === isHighlight
+        && this.state.isEditing === isEditing
+        && isEditing === false
+        && this.state.isHidden === isHidden
+        && isHidden === false)
   }
 
   componentWillReceiveProps() {
@@ -166,7 +178,7 @@ class Line extends Component {
     this.props.updateComment(index, '')
   }
 
-  render({ index, code, comment, editable }, { isEditing, isHidden }) {
+  render({ index, code, comment, editable, isHighlight, setHighlightLineNumber }, { isEditing, isHidden }) {
     return (
       <div className="cc-line">
         <Code
@@ -175,6 +187,7 @@ class Line extends Component {
           edit={ this.edit }
           editable={ editable }
           isHidden={ isHidden }
+          isHighlight={ isHighlight }
           toggleHidden={ comment && this.toggleHidden }
         />
         { !isHidden && <Comment
@@ -183,6 +196,7 @@ class Line extends Component {
           cancel={ this.cancel }
           save={ this.save }
           delete={ this.delete }
+          setHighlightLineNumber={ setHighlightLineNumber }
         /> }
       </div>
     )

@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/view.jsx'
@@ -9,49 +9,65 @@ import Navigator from '../parts/navigator.jsx'
 import Loading from '../parts/loading.jsx'
 
 
-function View({ lines, comments, path, edit, getFile }) {
-  let content
-  if (lines.length) {
-    content = [
-      (<Navigator
-        key="navigator"
-        leftLabel={ 'Edit' }
-        leftClick={ edit }
-      />),
-      (<div key="path">
-        <a
-          href={ `https://github.com${path}` }
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          { path }
-        </a>
-      </div>),
-      <div key="comment-list"><CommentList /></div>,
-      (<div key="file" className="file">
-        { lines.map((code, index) => <Line
-          key={ index }
-          code={ code }
-          comment={ comments[index + ''] }
-          index={ index }
-          editable={ false }/>
-        ) }
-      </div>)
-    ]
-    setTimeout(() => {
-      document.querySelector('.comment').scrollIntoView({ block: 'center' })
-    }, 0)
+class View extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      highlightLineNumber: 0
+    }
+    this.setHighlightLineNumber = this.setHighlightLineNumber.bind(this)
   }
-  else {
-    getFile(location.hash.substring(12))
-    content = <Loading />
+
+  setHighlightLineNumber(event) {
+    const highlightLineNumber = event.target.value - 0
+    this.setState({ highlightLineNumber })
   }
-  return (
-    <div className="cc-view">
-      <Header />
-      { content }
-    </div>
-  )
+
+  render({ lines, comments, path, edit, getFile }, { highlightLineNumber }) {
+    let content
+    if (lines.length) {
+      content = [
+        (<Navigator
+          key="navigator"
+          leftLabel={ 'Edit' }
+          leftClick={ edit }
+        />),
+        (<div key="path">
+          <a
+            href={ `https://github.com${path}` }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            { path }
+          </a>
+        </div>),
+        <div key="comment-list"><CommentList handler={ this.setHighlightLineNumber } /></div>,
+        (<div key="file" className="file">
+          { lines.map((code, index) => {
+            return (<Line
+              key={ index }
+              code={ code }
+              comment={ comments[index + ''] }
+              index={ index }
+              editable={ false }
+              isHighlight={ highlightLineNumber === (index + 1) }
+              setHighlightLineNumber={ this.setHighlightLineNumber }
+            />)
+          }) }
+        </div>)
+      ]
+    }
+    else {
+      getFile(location.hash.substring(12))
+      content = <Loading />
+    }
+    return (
+      <div className="cc-view">
+        <Header />
+        { content }
+      </div>
+    )
+  }
 }
 
 

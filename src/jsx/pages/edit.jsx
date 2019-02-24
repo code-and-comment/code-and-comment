@@ -134,15 +134,20 @@ class Edit extends Component {
     super(props)
     this.state = {
       isDeleting: false,
+      highlightLineNumber: 0
     }
     this.deleting = this.deleting.bind(this)
     this.cancel = this.cancel.bind(this)
     this.deleteOne = props.deleteOne.bind(null, props.id)
     this.toggleSelector = this.toggleSelector.bind(this)
+    this.setHighlightLineNumber = this.setHighlightLineNumber.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
     this.deleteOne = nextProps.deleteOne.bind(null, nextProps.id)
+    this.setState({
+      highlightLineNumber: 0
+    })
     this.cancel()
   }
 
@@ -156,6 +161,11 @@ class Edit extends Component {
 
   toggleSelector() {
     this.props.setIsSelectorOpen(!this.props.isSelectorOpen)
+  }
+
+  setHighlightLineNumber(event) {
+    const highlightLineNumber = event.target.value - 0
+    this.setState({ highlightLineNumber })
   }
 
   render({
@@ -173,6 +183,7 @@ class Edit extends Component {
     isSelectorOpen
   }, {
     isDeleting,
+    highlightLineNumber
   }) {
     const selectorClassName = isSelectorOpen ? 'selectors' : 'selectors display-none'
     const mainClassName = isSelectorOpen ? 'main' : 'main margin-left-0'
@@ -229,15 +240,20 @@ class Edit extends Component {
                 { path }
               </a>
             </div>),
-            <div key="5"><CommentList /></div>,
+            <div key="5"><CommentList handler={ this.setHighlightLineNumber } /></div>,
             (<div className="file" key="6">
-              { lines.map((code, index) => <Line
-                key={ index }
-                code={ code }
-                comment={ comments[index + ''] }
-                index={ index }
-                updateComment={ updateComment }
-                editable={ true }/>
+              { lines.map((code, index) => {
+                return (<Line
+                  key={ index }
+                  code={ code }
+                  comment={ comments[index + ''] }
+                  index={ index }
+                  updateComment={ updateComment }
+                  editable={ true }
+                  isHighlight={ highlightLineNumber === (index + 1) }
+                  setHighlightLineNumber={ this.setHighlightLineNumber }
+                />)
+              }
               ) }
             </div>)
           ] }

@@ -18,7 +18,7 @@
       border-right: $border;
       user-select: none;
     }
-    .hidden {
+    .hidden, .highlight {
       background-color: rgba(255, 152, 2, 0.45);
     }
     .content {
