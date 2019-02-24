@@ -144,11 +144,13 @@ class Edit extends Component {
   }
 
   componentWillReceiveProps({ id, deleteOne }) {
-    this.deleteOne = deleteOne.bind(null, id)
-    this.setState({
-      highlightLineNumber: 0
-    })
-    this.cancel()
+    if (this.props.id !== id) {
+      this.deleteOne = deleteOne.bind(null, id)
+      this.setState({
+        highlightLineNumber: 0
+      })
+      this.cancel()
+    }
   }
 
   deleting() {
