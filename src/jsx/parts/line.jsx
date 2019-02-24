@@ -49,9 +49,9 @@ class Comment extends Component {
     this.togglePreview = this.togglePreview.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps({ comment }) {
     this.setState({
-      comment: nextProps.comment,
+      comment,
       isPreview: false,
     })
   }
@@ -146,11 +146,13 @@ class Line extends Component {
         && isHidden === false)
   }
 
-  componentWillReceiveProps() {
-    this.setState({
-      isEditing: false,
-      isHidden: false
-    })
+  componentWillReceiveProps({ id }) {
+    if (this.props.id !== id) {
+      this.setState({
+        isEditing: false,
+        isHidden: false
+      })
+    }
   }
 
   toggleHidden(event) {

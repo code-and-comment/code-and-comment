@@ -143,8 +143,8 @@ class Edit extends Component {
     this.setHighlightLineNumber = this.setHighlightLineNumber.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.deleteOne = nextProps.deleteOne.bind(null, nextProps.id)
+  componentWillReceiveProps({ id, deleteOne }) {
+    this.deleteOne = deleteOne.bind(null, id)
     this.setState({
       highlightLineNumber: 0
     })
@@ -244,6 +244,7 @@ class Edit extends Component {
             (<div className="file" key="6">
               { lines.map((code, index) => {
                 return (<Line
+                  id={ id }
                   key={ index }
                   code={ code }
                   comment={ comments[index + ''] }
