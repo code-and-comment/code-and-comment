@@ -53,6 +53,10 @@ $border: solid 1px rgba(24, 24, 24, 0.2);
     background-color: rgba(237, 237, 237, 0.85);
     font-family: inherit;
   }
+  pre > code {
+    display: block;
+    padding: 8px;
+  }
 }
 
 
