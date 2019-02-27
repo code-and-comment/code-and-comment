@@ -19,9 +19,7 @@ $code-and-cooment-selector-width: 280px;
         padding: 12px 0px;
         font-size: 24px;
         font-family: Caladea, serif;
-        width: fit#{"-"}content;
-        margin-left: auto;
-        margin-right: auto;
+        text-align: center;
       }
       overflow-y: auto;
       border: $border;
