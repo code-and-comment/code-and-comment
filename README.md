@@ -16,7 +16,7 @@ You should not use this application as product.
 
 ## Support
 
-* Chrome@71+
+* Chrome@72+
 
 ## Contribution
 
