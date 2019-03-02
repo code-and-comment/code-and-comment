@@ -135,3 +135,37 @@ export function getStateAfterDeleting(state, codeAndComments) {
   _initialState.searchRepository = state.searchRepository
   return _initialState
 }
+
+
+export async function edit(
+  id,
+  highlightLineNumber,
+  route,
+  setTimeout,
+  getDB,
+  getObjectStore,
+  getRecord
+) {
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  const request = await getRecord(objectStore, id)
+  // TODO error process
+  if (request.target.result) {
+    const codeAndComment = request.target.result
+    setTimeout(() => {
+      route('/edit')
+    })
+    return {
+      id: codeAndComment.id,
+      highlightLineNumber,
+      title: codeAndComment.title,
+      git: codeAndComment.git,
+      path: codeAndComment.path,
+      lines: codeAndComment.lines,
+      comments: codeAndComment.comments,
+      codeAndComments: [],
+      searchRepository: ''
+    }
+  }
+  route('/edit')
+}

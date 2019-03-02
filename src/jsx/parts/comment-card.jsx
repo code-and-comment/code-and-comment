@@ -7,7 +7,7 @@ import Button from './button.jsx'
 class CommentCard extends Component {
   constructor(props) {
     super(props)
-    this.edit = props.edit.bind(null, props.codeAndComment.id)
+    this.edit = props.edit.bind(null, props.codeAndComment.id, props.lineNumber)
   }
 
   shouldComponentUpdate({ comment, codeAndComment }) {
@@ -21,6 +21,7 @@ class CommentCard extends Component {
   render({ comment, codeAndComment }) {
     return (
       <div className="cc-comment-card">
+        <div>ID: { codeAndComment.id }</div>
         <div className="comment" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
         <div>{ codeAndComment.repository }</div>
         <div>

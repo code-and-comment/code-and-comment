@@ -83,7 +83,7 @@ describe('actions/edit', () => {
         state, null, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true
-      expect(result).to.deep.equal({ codeAndComments, searchRepository })
+      expect(result).to.deep.equal({ codeAndComments, searchRepository, highlightLineNumber: 0 })
     })
   })
 })
