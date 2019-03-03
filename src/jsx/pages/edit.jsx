@@ -115,6 +115,7 @@ class _CodeAndCommentSelector extends Component {
                 onClick={ this.changeCodeAndComment }
                 className={ className }
               >
+                <div>ID: { codeAndComment.id }</div>
                 <div>{ codeAndComment.title }</div>
                 <div>{ codeAndComment.path }</div>
                 <div>{ codeAndComment.updated_at.toLocaleString() }</div>
@@ -134,7 +135,13 @@ class Edit extends Component {
     super(props)
     this.state = {
       isDeleting: false,
-      highlightLineNumber: 0
+      highlightLineNumber: props.highlightLineNumber || 0
+    }
+    if (props.highlightLineNumber) {
+      window.setTimeout(() => {
+        const selector = `.cc-line:nth-child(${props.highlightLineNumber})`
+        document.querySelector(selector).scrollIntoView({ center: true })
+      })
     }
     this.deleting = this.deleting.bind(this)
     this.cancel = this.cancel.bind(this)
@@ -231,6 +238,7 @@ class Edit extends Component {
               When a line number is clicked, the comment is hidden.
             </div>),
             (<div key="3">
+              ID: { id }<br />
               Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
             </div>),
             (<div key="4">
@@ -267,4 +275,15 @@ class Edit extends Component {
 }
 
 
-export default connect(['id', 'title', 'lines', 'comments', 'path', 'isSelectorOpen'], actions)(Edit)
+const mapStateToProps = [
+  'id',
+  'title',
+  'lines',
+  'comments',
+  'path',
+  'isSelectorOpen',
+  'highlightLineNumber'
+]
+
+
+export default connect(mapStateToProps, actions)(Edit)

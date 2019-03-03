@@ -10,6 +10,7 @@ import {
 import {
   deleteOne as _deleteOne,
   search as _search,
+  edit as _edit,
   getStateAfterDeleting
 } from '../utils.jsx'
 import { updateRepositories as _updateRepositories } from '../worker.jsx'
@@ -64,9 +65,10 @@ async function deleteOne(
 }
 
 
-async function edit(
+function edit(
   state,
   id,
+  highlightLineNumber,
   event,
   route = _route,
   setTimeout = window.setTimeout,
@@ -74,26 +76,10 @@ async function edit(
   getObjectStore = _getObjectStore,
   getRecord = _getRecord
 ) {
-  const db = await getDB()
-  const objectStore = await getObjectStore(db)
-  const request = await getRecord(objectStore, id)
-  // TODO error process
-  if (request.target.result) {
-    const codeAndComment = request.target.result
-    setTimeout(() => {
-      route('/edit')
-    })
-    return {
-      id: codeAndComment.id,
-      title: codeAndComment.title,
-      git: codeAndComment.git,
-      path: codeAndComment.path,
-      lines: codeAndComment.lines,
-      comments: codeAndComment.comments,
-      codeAndComments: [],
-      searchRepository: ''
-    }
-  }
+  id -= 0
+  highlightLineNumber -= 0
+  return _edit(
+    id, highlightLineNumber, route, setTimeout, getDB, getObjectStore, getRecord)
 }
 
 

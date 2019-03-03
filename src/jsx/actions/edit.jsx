@@ -112,6 +112,7 @@ async function _search(
     route(url)
   }, 0)
   return {
+    highlightLineNumber: 0,
     codeAndComments,
     searchRepository: repository
   }
@@ -216,6 +217,7 @@ async function changeCodeAndComment(
     const codeAndComment = request.target.result
     return {
       id: codeAndComment.id,
+      highlightLineNumber: 0,
       title: codeAndComment.title,
       git: codeAndComment.git,
       path: codeAndComment.path,

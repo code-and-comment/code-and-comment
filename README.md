@@ -11,8 +11,14 @@
 The status of this application is pre-alpha.  
 Many breaking changes will be added to this application.  
 `https://code-and-comment.github.io/code-and-comment/` is demo.  
+This is at experiment stage.  
 You should not use this application as product.
 
+## Usage
+
+### permalink for a line
+
+`/#/r/:id/:line_number`
 
 ## Support
 

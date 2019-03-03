@@ -4,6 +4,7 @@ import createStore from 'unistore'
 export function initialState() {
   return {
     id: null,
+    highlightLineNumber: 0,
     title: 'New Code and Comment',
     git: '',
     path: '',

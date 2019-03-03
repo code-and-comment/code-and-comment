@@ -66,11 +66,19 @@ function CommentList({ codeAndComments, commentPattern, edit }) {
     re = new RegExp(commentPattern)
   }
   codeAndComments.forEach((c) => {
-    Object.values(c.comments).forEach((comment, i) => {
+    Object.keys(c.comments).forEach((key) => {
+      const comment = c.comments[key]
+      const lineNumber = key - 0 + 1
       if (re && !comment.match(re)) {
         return
       }
-      list.push(<CommentCard key={ `${c.id}_${i}` } comment={ comment } codeAndComment={ c } edit={ edit } />)
+      list.push(<CommentCard
+        key={ `${c.id}_${key}` }
+        lineNumber={ lineNumber }
+        comment={ comment }
+        codeAndComment={ c }
+        edit={ edit }
+      />)
       list.push(<hr />)
     })
   })

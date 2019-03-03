@@ -10,7 +10,7 @@ class CodeAndCommentCard extends Component {
     this.deleting = this.deleting.bind(this)
     this.cancel = this.cancel.bind(this)
     this.deleteOne = props.deleteOne.bind(null, props.codeAndComment.id)
-    this.edit = props.edit.bind(null, props.codeAndComment.id)
+    this.edit = props.edit.bind(null, props.codeAndComment.id, 0)
   }
 
   deleting() {
@@ -52,6 +52,7 @@ class CodeAndCommentCard extends Component {
     }
     return (
       <div className="cc-code-and-comment-card">
+        <div>ID: { codeAndComment.id }</div>
         <div>{ codeAndComment.repository }</div>
         <div>
           <a
