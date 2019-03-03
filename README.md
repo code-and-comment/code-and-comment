@@ -18,7 +18,7 @@ You should not use this application as product.
 
 ### permalink for a line
 
-`/#/r/:id/:line_number`
+`https://code-and-comment.github.io/code-and-comment/#/r/:id/:line_number`
 
 ## Support
 
