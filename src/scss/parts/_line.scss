@@ -1,5 +1,8 @@
 @import '../variables';
 
+.cc-highlight {
+  background-color: rgba(240, 240, 0, 0.1);
+}
 
 .cc-line {
   font-family: Consolas, SFMono-Regular, Menlo, "Roboto Mono", monospace;
@@ -18,7 +21,7 @@
       border-right: $border;
       user-select: none;
     }
-    .hidden, .highlight {
+    .hidden {
       background-color: rgba(255, 152, 2, 0.45);
     }
     .content {
@@ -38,7 +41,7 @@
     border-top: $border;
     border-bottom: $border;
     border-right: $border;
-    background-color: rgba(24, 24, 24, 0.1);
+    background-color: #e8e8e8;
     width: 900px;
     .tab-navigator {
       border-bottom: $border;

@@ -11,11 +11,9 @@ function Code({
   edit,
   editable,
   isHidden,
-  isHighlight,
   toggleHidden
 }) {
   const numberClassName = isHidden ? 'number hidden' : 'number'
-  const contentClassName = isHighlight ? 'content highlight' : 'content'
   return (
     <div
       className="code"
@@ -27,7 +25,7 @@ function Code({
       >
         { number + 1 }
       </span>
-      <span className={ contentClassName }>
+      <span className="content">
         { content }
       </span>
     </div>
@@ -181,15 +179,15 @@ class Line extends Component {
   }
 
   render({ index, code, comment, editable, isHighlight, setHighlightLineNumber }, { isEditing, isHidden }) {
+    const className = isHighlight ? 'cc-line cc-highlight' : 'cc-line'
     return (
-      <div className="cc-line">
+      <div className={ className }>
         <Code
           number={ index }
           content={ code }
           edit={ this.edit }
           editable={ editable }
           isHidden={ isHidden }
-          isHighlight={ isHighlight }
           toggleHidden={ comment && this.toggleHidden }
         />
         { !isHidden && <Comment
