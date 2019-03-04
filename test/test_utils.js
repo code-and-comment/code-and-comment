@@ -7,6 +7,7 @@ import {
   getIndexName,
   getRepository,
   getRange,
+  search,
 } from '../src/jsx/utils.jsx'
 
 describe('utils', () => {
@@ -55,6 +56,36 @@ describe('utils', () => {
       expect(bound.args[0][0][1]).to.be.an.instanceof(Date)
       expect(bound.args[0][1][0]).to.equal(repository)
       expect(bound.args[0][1][1]).to.be.an.instanceof(Date)
+    })
+  })
+
+  describe('search', () => {
+    it('returns codeAndComments', async function() {
+      const bound = function() {}
+      const getDB = spy(async function() {
+        return 'db'
+      })
+      const getObjectStore = spy(async function() {
+        return 'objectStore'
+      })
+      const codeAndComments = [{}, {}]
+      const getAllRecords = spy(async function() {
+        return codeAndComments
+      })
+      const result = await search(
+        {},
+        getDB,
+        getObjectStore,
+        getAllRecords,
+        bound
+      )
+      expect(getDB.calledOnce).to.be.true
+      expect(getDB.calledWith()).to.be.true
+      expect(getObjectStore.calledOnce).to.be.true
+      expect(getObjectStore.calledWith('db')).to.be.true
+      expect(getAllRecords.calledOnce).to.be.true
+      expect(getAllRecords.calledWith('objectStore', 'updated_at', undefined)).to.be.true
+      expect(result).to.equal(codeAndComments)
     })
   })
 
