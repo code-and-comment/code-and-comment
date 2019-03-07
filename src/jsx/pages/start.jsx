@@ -34,8 +34,9 @@ class Start extends Component {
           (<div className="account" key='1'>
             Input the file url in Github<br/>
             Example:<br/>
-            https://github.com/developit/preact/blob/377e31b5c6d42c4ca92085571d5d4f0c9dbe4ba2/src/vdom/component.js<br/>
-            https://github.com/developit/preact/blob/master/src/vdom/component.js<br/>
+            https://github.com/developit/preact/blob/10.0.0-alpha.0/src/component.js<br />
+            https://github.com/developit/preact/blob/c66ec75176ac5df60824adbe6152ed577fa7b74f/src/component.js<br/>
+            https://github.com/developit/preact/blob/master/src/component.js<br/>
           </div>),
           (<div className="controls" key="2">
             <input type="text" className="url" onChange={ this.setUrl }/>
