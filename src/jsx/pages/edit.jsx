@@ -5,6 +5,8 @@ import actions from '../actions/edit.jsx'
 import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
 import Button from '../parts/button.jsx'
+import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
+import RepositorySelector from '../parts/repository-selector.jsx'
 
 
 function Controls({
@@ -47,87 +49,6 @@ function Controls({
     )
   }
 }
-
-
-class _RepositorySelector extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      repository: ''
-    }
-    this.setCodeAndComments = this.setCodeAndComments.bind(this)
-  }
-
-  setCodeAndComments(event) {
-    event.stopPropagation()
-    const repository = event.currentTarget.dataset.repository
-    this.props.setCodeAndComments(repository)
-    this.setState({ repository })
-  }
-
-  render({ repositories }, { repository }) {
-    return (
-      <div className="repository-selector">
-        <div key="application-name" className="application-name">{ 'Code and Comment' }</div>
-        {
-          repositories.map((r) => {
-            const className = r === repository ? 'repository selected' : 'repository'
-            return (
-              <div key={ r }  data-repository={ r } onClick={ this.setCodeAndComments } className={ className }>
-                { r }
-              </div>
-            )
-          })
-        }
-      </div>
-    )
-  }
-}
-const RepositorySelector = connect(['repositories'], actions)(_RepositorySelector)
-
-
-class _CodeAndCommentSelector extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      id: props.id
-    }
-    this.changeCodeAndComment = this.changeCodeAndComment.bind(this)
-  }
-
-  changeCodeAndComment(event) {
-    event.stopPropagation()
-    const id = event.currentTarget.dataset.id - 0
-    this.props.changeCodeAndComment(id)
-    this.setState({ id })
-  }
-
-  render({ codeAndComments }, { id }) {
-    return (
-      <div className="code-and-comment-selector">
-        {
-          codeAndComments.map((codeAndComment) => {
-            const className = codeAndComment.id === id ? 'code-and-comment selected' : 'code-and-comment'
-            return (
-              <div
-                key={ codeAndComment.id }
-                data-id={ codeAndComment.id }
-                onClick={ this.changeCodeAndComment }
-                className={ className }
-              >
-                <div>ID: { codeAndComment.id }</div>
-                <div>{ codeAndComment.title }</div>
-                <div>{ codeAndComment.path }</div>
-                <div>{ codeAndComment.updated_at.toLocaleString() }</div>
-              </div>
-            )
-          })
-        }
-      </div>
-    )
-  }
-}
-const CodeAndCommentSelector = connect(['id', 'codeAndComments'], actions)(_CodeAndCommentSelector)
 
 
 class Edit extends Component {

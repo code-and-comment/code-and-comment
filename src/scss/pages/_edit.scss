@@ -1,10 +1,6 @@
 @import '../variables';
 
 
-$repository-selector-width: 280px;
-$code-and-cooment-selector-width: 280px;
-
-
 .cc-edit {
   @extend .cc-outer-file;
   width: fit#{"-"}content;
@@ -14,34 +10,6 @@ $code-and-cooment-selector-width: 280px;
   > .selectors {
     position: fixed;
     height: 100%;
-    > .repository-selector {
-      > .application-name {
-        padding: 12px 0px;
-        font-size: 24px;
-        font-family: Caladea, serif;
-        text-align: center;
-      }
-      overflow-y: auto;
-      border: $border;
-      border-top: 0px;
-      border-bottom: 0px;
-      width: $repository-selector-width;
-      height: 100%;
-      float: left;
-      background-color: rgba(0, 0, 0, 0.9);
-      color: #ffffff;
-      .repository {
-        cursor: pointer;
-        padding: 6px 12px;
-        word-break: break-all;
-        &:hover {
-          background-color: #303030;
-        }
-      }
-      .selected {
-        background-color: #333333;
-      }
-    }
     > .code-and-comment-selector {
       overflow-y: auto;
       border: $border;
