@@ -64,4 +64,5 @@ dist/
 *.sw[op]
 package-lock.json
 move.sh
+dev.sh
 *~
