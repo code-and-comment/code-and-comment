@@ -5,7 +5,7 @@ module.exports = {
     repositories: './src/jsx/repositories.jsx',
     codeAndComments: './src/jsx/codeAndComments.jsx',
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -23,7 +23,7 @@ module.exports = {
         }
       },
       {
-        test: /\.jsx?$/,
+        test: /(\.mjs$|\.js$|\.jsx$)/,
         use: ['source-map-loader'],
         enforce: 'pre'
       }
