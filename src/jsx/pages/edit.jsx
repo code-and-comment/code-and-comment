@@ -9,7 +9,7 @@ import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
 import RepositorySelector from '../parts/repository-selector.jsx'
 
 
-function Controls({
+function MenuBar({
   cancel,
   deleteOne,
   deleting,
@@ -24,7 +24,7 @@ function Controls({
 }) {
   if (isDeleting) {
     return (
-      <div className="controls">
+      <div className="menu-bar deleting">
         <div className="message">This code and comment is removed.</div>
         <Button onClick={ deleteOne }>OK</Button>
         { ' ' }
@@ -34,17 +34,13 @@ function Controls({
   }
   else {
     return (
-      <div className="controls">
-        <Button onClick={ toggleSelector }>{ isSelectorOpen ? 'Close' : 'Open' }</Button>
-        { ' ' }
-        <Button onClick={ fileUrl }>New</Button>
-        { ' ' }
-        { deleting && [<Button key="delete" onClick={ deleting }>Delete</Button>,  ' '] }
-        <Button onClick={ searchCodeAndComment }>List</Button>
-        { ' ' }
-        <Button onClick={ searchComment }>Comments</Button>
-        { ' ' }
-        { publish && [<Button key="publish" disabled={ publishDisabled } onClick={ publish }>Publish</Button>, ' '] }
+      <div className="menu-bar">
+        <span className="label" onClick={ toggleSelector }>{ isSelectorOpen ? 'Close' : 'Open' }</span>
+        <span className="label" onClick={ fileUrl }>New</span>
+        <span className="label" onClick={ searchCodeAndComment }>List</span>
+        <span className="label" onClick={ searchComment }>Comments</span>
+        { deleting && <span className="label" onClick={ deleting }>Delete</span> }
+        { publish && !publishDisabled && <span className="label" onClick={ publish }>Publish</span> }
       </div>
     )
   }
@@ -125,7 +121,7 @@ class Edit extends Component {
         </div>
         { !id && (
           <div className={ mainClassName }>
-            <Controls
+            <MenuBar
               searchCodeAndComment={ searchCodeAndComment }
               searchComment={ searchComment }
               toggleSelector={ this.toggleSelector }
@@ -135,14 +131,14 @@ class Edit extends Component {
             <div className="body">
               <div>
                 The status of this application is pre-alpha.<br />
-                Click New button.
+                Click { '"New"' }.
               </div>
             </div>
           </div>
         ) }
         { id && (
           <div className={ mainClassName }>
-            <Controls
+            <MenuBar
               cancel={ this.cancel }
               deleting={ this.deleting }
               deleteOne={ this.deleteOne }
@@ -158,7 +154,7 @@ class Edit extends Component {
             <div className="body">
               <div>
               The status of this application is pre-alpha.<br />
-              Click the line. Add the comment by Markdown. Click Publish button.
+              Click the line. Add the comment by Markdown.
               When a line number is clicked, the comment is hidden.
               </div>
               <div>
