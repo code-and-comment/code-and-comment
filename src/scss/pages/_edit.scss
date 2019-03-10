@@ -10,45 +10,25 @@
   > .selectors {
     position: fixed;
     height: 100%;
-    > .code-and-comment-selector {
-      overflow-y: auto;
-      border: $border;
-      border-left: 0px;
-      border-top: 0px;
-      border-bottom: 0px;
-      width: $code-and-cooment-selector-width;
-      height: 100%;
-      float: left;
-      background-color: #ececef;
-      .code-and-comment {
-        font-size: 12px;
-        cursor: pointer;
-        padding: 6px 8px;
-        word-break: break-all;
-        &:hover {
-          background-color: #f7f8f9;
-        }
-      }
-      .selected {
-        background-color: #f9f9fb;
-      }
-    }
   }
   .margin-left-0 {
     margin-left: 0px!important;
   }
   > .main {
-    width: 1000px;
+    width: 100%;
     margin-left: $repository-selector-width + $code-and-cooment-selector-width;
-    padding-left: 18px;
-    .title {
-      width: 400px;
-    }
     > .controls {
       padding: 10px 0px;
       .message {
         padding-bottom: 14px;
         color: $red;
+      }
+    }
+    > .body {
+      width: 1000px;
+      padding-left: 18px;
+      .title {
+        width: 400px;
       }
     }
   }
