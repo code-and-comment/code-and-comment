@@ -123,24 +123,26 @@ class Edit extends Component {
           <RepositorySelector />
           <CodeAndCommentSelector />
         </div>
-        <div className={ mainClassName }>
-          { !id && [
-            (<Controls
-              key="1"
+        { !id && (
+          <div className={ mainClassName }>
+            <Controls
               searchCodeAndComment={ searchCodeAndComment }
               searchComment={ searchComment }
               toggleSelector={ this.toggleSelector }
               isSelectorOpen={ isSelectorOpen }
               fileUrl={ fileUrl }
-            />),
-            (<div key="2">
-              The status of this application is pre-alpha.<br />
-              Click New button.
-            </div>)
-          ] }
-          { id && [
-            (<Controls
-              key="1"
+            />
+            <div className="body">
+              <div>
+                The status of this application is pre-alpha.<br />
+                Click New button.
+              </div>
+            </div>
+          </div>
+        ) }
+        { id && (
+          <div className={ mainClassName }>
+            <Controls
               cancel={ this.cancel }
               deleting={ this.deleting }
               deleteOne={ this.deleteOne }
@@ -152,44 +154,48 @@ class Edit extends Component {
               fileUrl={ fileUrl }
               publish={ publish }
               publishDisabled={ Object.keys(comments).length < 1 }
-            />),
-            (<div key="2">
+            />
+            <div className="body">
+              <div>
               The status of this application is pre-alpha.<br />
               Click the line. Add the comment by Markdown. Click Publish button.
               When a line number is clicked, the comment is hidden.
-            </div>),
-            (<div key="3">
+              </div>
+              <div>
               ID: { id }<br />
               Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
-            </div>),
-            (<div key="4">
-              <a
-                href={ `https://github.com${path}` }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                { path }
-              </a>
-            </div>),
-            <div key="5"><CommentList handler={ this.setHighlightLineNumber } /></div>,
-            (<div className="file" key="6">
-              { lines.map((code, index) => {
-                return (<Line
-                  id={ id }
-                  key={ index }
-                  code={ code }
-                  comment={ comments[index + ''] }
-                  index={ index }
-                  updateComment={ updateComment }
-                  editable={ true }
-                  isHighlight={ highlightLineNumber === (index + 1) }
-                  setHighlightLineNumber={ this.setHighlightLineNumber }
-                />)
-              }
-              ) }
-            </div>)
-          ] }
-        </div>
+              </div>
+              <div>
+                <a
+                  href={ `https://github.com${path}` }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  { path }
+                </a>
+              </div>
+              <div>
+                <CommentList handler={ this.setHighlightLineNumber } />
+              </div>
+              <div className="file">
+                { lines.map((code, index) => {
+                  return (<Line
+                    id={ id }
+                    key={ index }
+                    code={ code }
+                    comment={ comments[index + ''] }
+                    index={ index }
+                    updateComment={ updateComment }
+                    editable={ true }
+                    isHighlight={ highlightLineNumber === (index + 1) }
+                    setHighlightLineNumber={ this.setHighlightLineNumber }
+                  />)
+                }
+                ) }
+              </div>
+            </div>
+          </div>
+        ) }
       </div>
     )
   }
