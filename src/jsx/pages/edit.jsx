@@ -24,7 +24,7 @@ function MenuBar({
 }) {
   if (isDeleting) {
     return (
-      <div className="menu-bar deleting">
+      <div key="menubar" className="menu-bar deleting">
         <div className="message">This code and comment is removed.</div>
         <Button onClick={ deleteOne }>OK</Button>
         { ' ' }
@@ -34,7 +34,7 @@ function MenuBar({
   }
   else {
     return (
-      <div className="menu-bar">
+      <div key="menubar" className="menu-bar">
         <span className="label" onClick={ toggleSelector }>{ isSelectorOpen ? 'Close' : 'Open' }</span>
         <span className="label" onClick={ fileUrl }>New</span>
         <span className="label" onClick={ searchCodeAndComment }>List</span>
