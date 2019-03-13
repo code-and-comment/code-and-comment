@@ -4,47 +4,9 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/edit.jsx'
 import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
-import Button from '../parts/button.jsx'
 import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
 import RepositorySelector from '../parts/repository-selector.jsx'
-
-
-function MenuBar({
-  cancel,
-  deleteOne,
-  deleting,
-  fileUrl,
-  publish,
-  publishDisabled,
-  isDeleting,
-  searchCodeAndComment,
-  searchComment,
-  toggleSelector,
-  isSelectorOpen
-}) {
-  if (isDeleting) {
-    return (
-      <div key="menubar" className="menu-bar deleting">
-        <div className="message">This code and comment is removed.</div>
-        <Button onClick={ deleteOne }>OK</Button>
-        { ' ' }
-        <Button onClick={ cancel }>Cancel</Button>
-      </div>
-    )
-  }
-  else {
-    return (
-      <div key="menubar" className="menu-bar">
-        <span className="label" onClick={ toggleSelector }>{ isSelectorOpen ? 'Close' : 'Open' }</span>
-        <span className="label" onClick={ fileUrl }>New</span>
-        <span className="label" onClick={ searchCodeAndComment }>List</span>
-        <span className="label" onClick={ searchComment }>Comments</span>
-        { deleting && <span className="label" onClick={ deleting }>Delete</span> }
-        { publish && !publishDisabled && <span className="label" onClick={ publish }>Publish</span> }
-      </div>
-    )
-  }
-}
+import MenuBar from '../parts/menu-bar.jsx'
 
 
 class Edit extends Component {
