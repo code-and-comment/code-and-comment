@@ -19,33 +19,6 @@
     width: calc(100% - #{$repository-selector-width} - #{$code-and-cooment-selector-width});
     margin-left: $repository-selector-width + $code-and-cooment-selector-width;
     transition: margin-left 0.2s ease 0s;
-    > .menu-bar {
-      font-size: 16px;
-      border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
-      box-shadow: -3px 3px 6px -3px rgba(0, 0, 0, 0.25);
-      height: 56px;
-      width: 100%;
-      padding: 18px 18px 18px 42px;
-      overflow: hidden;
-      transition: height 0.12s ease 0s;
-      .message {
-        padding-bottom: 14px;
-        color: $red;
-      }
-      .label {
-        margin-right: 24px;
-        cursor: pointer;
-        user-select: none;
-        color: #67777f;
-      }
-      .label:hover {
-        color: #111111;
-      }
-    }
-    > .deleting {
-      height: 97px;
-      padding: 20px 0px 24px 20px!important;
-    }
     > .body {
       width: 1000px;
       padding-top: 18px;
