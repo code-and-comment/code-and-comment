@@ -18,7 +18,7 @@
   > .main {
     width: calc(100% - #{$repository-selector-width} - #{$code-and-cooment-selector-width});
     margin-left: $repository-selector-width + $code-and-cooment-selector-width;
-    transition: margin-left 0.2s ease 0s;
+    transition: margin-left 0.16s ease 0s;
     > .body {
       width: 1000px;
       padding-top: 18px;

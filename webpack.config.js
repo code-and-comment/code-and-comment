@@ -23,7 +23,7 @@ module.exports = {
         }
       },
       {
-        test: /(\.mjs$|\.js$|\.jsx$)/,
+        test: /(\.mjs$|\.js$)/,
         use: ['source-map-loader'],
         enforce: 'pre'
       }

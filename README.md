@@ -16,6 +16,10 @@ You should not use this application as product.
 
 ## Usage
 
+Click "New".  
+Click the line. Add the comment by Markdown.  
+When a line number is clicked, the comment is hidden.
+
 ### permalink for a line
 
 `https://code-and-comment.github.io/code-and-comment/#/r/:id/:line_number`
