@@ -93,7 +93,9 @@ class Edit extends Component {
             <div className="body">
               <div>
                 The status of this application is pre-alpha.<br />
-                Click { '"New"' }.
+                Click { '"New"' }.<br />
+                Click the line. Add the comment by Markdown.<br />
+                When a line number is clicked, the comment is hidden.
               </div>
             </div>
           </div>
@@ -115,13 +117,7 @@ class Edit extends Component {
             />
             <div className="body">
               <div>
-              The status of this application is pre-alpha.<br />
-              Click the line. Add the comment by Markdown.
-              When a line number is clicked, the comment is hidden.
-              </div>
-              <div>
-              ID: { id }<br />
-              Title: <input type="text" className="title" value={ title } onChange={ updateTitle } />
+                ID: { id } { ' ' } <input type="text" className="title" value={ title } onChange={ updateTitle } />
               </div>
               <div>
                 <a
