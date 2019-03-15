@@ -7,7 +7,9 @@ export function _onChange(event) {
     return
   }
   const selector = `.cc-line:nth-child(${number})`
-  document.querySelector(selector).scrollIntoView({ center: true })
+  document.querySelector(selector).scrollIntoView({
+    block: 'center',
+  })
 }
 
 export function CommentList({ comments, lines, handler }) {
