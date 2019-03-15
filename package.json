@@ -41,8 +41,8 @@
     "history": "^4.7.2",
     "js-base64": "^2.5.1",
     "marked": "^0.6.1",
-    "preact": "^8.4.2",
-    "preact-router": "^2.6.1",
-    "unistore": "^3.1.0"
+    "preact": "10.0.0-alpha.2",
+    "preact-router": "^3.0.0",
+    "unistore": "^3.4.1"
   }
 }
