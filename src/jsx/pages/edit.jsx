@@ -19,7 +19,9 @@ class Edit extends Component {
     if (props.highlightLineNumber) {
       window.setTimeout(() => {
         const selector = `.cc-line:nth-child(${props.highlightLineNumber})`
-        document.querySelector(selector).scrollIntoView({ center: true })
+        document.querySelector(selector).scrollIntoView({
+          block: 'center',
+        })
       })
     }
     this.deleting = this.deleting.bind(this)
