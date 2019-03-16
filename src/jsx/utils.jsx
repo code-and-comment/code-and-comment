@@ -169,3 +169,11 @@ export async function edit(
   }
   route('/edit')
 }
+
+
+export function scrollIntoView(highlightLineNumber) {
+  const selector = `.cc-line:nth-child(${highlightLineNumber})`
+  document.querySelector(selector).scrollIntoView({
+    block: 'center',
+  })
+}

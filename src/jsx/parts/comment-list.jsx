@@ -1,15 +1,15 @@
 import { h } from 'preact'
 import { connect } from 'unistore/preact'
 
+import { scrollIntoView } from '../utils.jsx'
+
+
 export function _onChange(event) {
   const number = event.target.value
   if (number === '0') {
     return
   }
-  const selector = `.cc-line:nth-child(${number})`
-  document.querySelector(selector).scrollIntoView({
-    block: 'center',
-  })
+  scrollIntoView(number)
 }
 
 export function CommentList({ comments, lines, handler }) {

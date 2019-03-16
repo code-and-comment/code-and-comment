@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/edit.jsx'
+import { scrollIntoView } from '../utils.jsx'
 import CommentList from '../parts/comment-list.jsx'
 import Line from '../parts/line.jsx'
 import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
@@ -18,10 +19,7 @@ class Edit extends Component {
     }
     if (props.highlightLineNumber) {
       window.setTimeout(() => {
-        const selector = `.cc-line:nth-child(${props.highlightLineNumber})`
-        document.querySelector(selector).scrollIntoView({
-          block: 'center',
-        })
+        scrollIntoView(props.highlightLineNumber)
       })
     }
     this.deleting = this.deleting.bind(this)
