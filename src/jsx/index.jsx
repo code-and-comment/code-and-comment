@@ -1,6 +1,6 @@
 import { h, render, Component } from 'preact'
 import Router from 'preact-router'
-import createHashHistory from 'history/createHashHistory'
+import { createHashHistory } from 'history'
 import { Provider } from 'unistore/preact'
 import { route } from 'preact-router'
 
