@@ -4,7 +4,8 @@ let codeAndCommentsWorker
 
 export function setRepositoriesWorker(store) {
   if (!repositoriesWorker) {
-    repositoriesWorker = new Worker('dist/repositories.min.js')
+    const extension = process.env.NODE_ENV === 'development' ? 'js' : 'min.js' 
+    repositoriesWorker = new Worker(`dist/repositories.${extension}`)
     repositoriesWorker.addEventListener('message', (event) => {
       store.setState({ repositories: event.data })
     }, false)
@@ -20,7 +21,8 @@ export function updateRepositories() {
 
 export function setCodeAndCommentsWorker(store) {
   if (!codeAndCommentsWorker) {
-    codeAndCommentsWorker = new Worker('dist/codeAndComments.min.js')
+    const extension = process.env.NODE_ENV === 'development' ? 'js' : 'min.js' 
+    codeAndCommentsWorker = new Worker(`dist/codeAndComments.${extension}`)
     codeAndCommentsWorker.addEventListener('message', (event) => {
       store.setState({ codeAndComments: event.data })
     }, false)
