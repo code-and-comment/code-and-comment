@@ -31,7 +31,9 @@ class CodeAndComment extends Component {
 
   changeRoute(event) {
     if (this.isFirst && REDIRECT_URLS.includes(event.url)) {
-      route('/edit')
+      setTimeout(() => {
+        route('/edit')
+      })
     }
     this.isFirst = false
   }

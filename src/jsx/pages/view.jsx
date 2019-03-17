@@ -29,7 +29,7 @@ class View extends Component {
       content = [
         (<Navigator
           key="navigator"
-          leftLabel={ 'Edit' }
+          leftLabel="Edit"
           leftClick={ edit }
         />),
         (<div key="path">

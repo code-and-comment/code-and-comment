@@ -6,6 +6,7 @@ import Navigator from '../parts/navigator.jsx'
 import Loading from '../parts/loading.jsx'
 import Button from '../parts/button.jsx'
 
+
 class Start extends Component {
   constructor(props) {
     super(props)
@@ -27,11 +28,11 @@ class Start extends Component {
       <div className="cc-start">
         { !loading && [
           (<Navigator
-            key={ '0' }
-            rightLabel={ 'Edit' }
+            key="0"
+            rightLabel="Edit"
             rightClick={ back }
           />),
-          (<div className="account" key='1'>
+          (<div className="account" key="1">
             Input the file url in Github<br/>
             Example:<br/>
             https://github.com/developit/preact/blob/10.0.0-alpha.0/src/component.js<br />
