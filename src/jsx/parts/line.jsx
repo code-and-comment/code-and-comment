@@ -6,7 +6,7 @@ import Button from './button.jsx'
 
 
 function Code({
-  number,
+  lineNumber,
   content,
   edit,
   editable,
@@ -23,7 +23,7 @@ function Code({
         className={ numberClassName }
         onClick={ toggleHidden }
       >
-        { number + 1 }
+        { lineNumber }
       </span>
       <span className="content">
         { content }
@@ -45,6 +45,7 @@ class Comment extends Component {
     this.delete = this.delete.bind(this)
     this.setComment = this.setComment.bind(this)
     this.togglePreview = this.togglePreview.bind(this)
+    this.copyPermalink = this.copyPermalink.bind(this)
   }
 
   componentWillReceiveProps({ comment }) {
@@ -83,6 +84,12 @@ class Comment extends Component {
     this.setState({ isPreview: !this.state.isPreview })
   }
 
+  copyPermalink() {
+    const { id, lineNumber } = this.props
+    const permalink = `${location.origin}${location.pathname}#/r/${id}/${lineNumber}`
+    window.navigator.clipboard.writeText(permalink)
+  }
+
   render({ isEditing, setHighlightLineNumber }, { comment, isPreview }) {
     if (comment && !isEditing) {
       return (
@@ -111,6 +118,8 @@ class Comment extends Component {
             <Button onClick={ this.save }>Save</Button>
             { ' ' }
             <Button onClick={ this.delete }>Delete</Button>
+            { ' ' }
+            <Button onClick={ this.copyPermalink }>Permalink</Button>
           </div>
         </div>
       )
@@ -133,8 +142,9 @@ class Line extends Component {
     this.toggleHidden = this.toggleHidden.bind(this)
   }
 
-  shouldComponentUpdate({ index, code, comment, isHighlight }, { isEditing, isHidden }) {
-    return !(this.props.index === index
+  shouldComponentUpdate({ id, index, code, comment, isHighlight }, { isEditing, isHidden }) {
+    return !(this.props.id === id
+        && this.props.index === index
         && this.props.code === code
         && this.props.comment === comment
         && this.props.isHighlight === isHighlight
@@ -178,12 +188,13 @@ class Line extends Component {
     this.props.updateComment(index, '')
   }
 
-  render({ index, code, comment, editable, isHighlight, setHighlightLineNumber }, { isEditing, isHidden }) {
+  render({ id, index, code, comment, editable, isHighlight, setHighlightLineNumber }, { isEditing, isHidden }) {
     const className = isHighlight ? 'cc-line cc-highlight' : 'cc-line'
+    const lineNumber = index + 1
     return (
       <div className={ className }>
         <Code
-          number={ index }
+          lineNumber={ lineNumber }
           content={ code }
           edit={ this.edit }
           editable={ editable }
@@ -191,6 +202,8 @@ class Line extends Component {
           toggleHidden={ comment && this.toggleHidden }
         />
         { !isHidden && <Comment
+          id={ id }
+          lineNumber={ lineNumber }
           comment={ comment || '' }
           isEditing={ isEditing }
           cancel={ this.cancel }
