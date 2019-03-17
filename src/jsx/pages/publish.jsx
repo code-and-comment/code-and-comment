@@ -9,9 +9,9 @@ function Publish({ viewUrl, back }) {
   return (
     <div className="cc-publish">
       <Navigator
-        leftLabel={ 'Back' }
+        leftLabel="Back"
         leftClick={ back }
-        rightLabel={ 'View' }
+        rightLabel="View"
         rightUrl={ viewUrl }
       />
       <div>
