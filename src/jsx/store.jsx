@@ -11,7 +11,6 @@ export function initialState() {
     lines: [],
     comments: {},
     viewUrl: '',
-    loading: false,
     networkError: false,
     urlError: false,
     codeAndComments: [],

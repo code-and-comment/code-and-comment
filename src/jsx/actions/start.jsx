@@ -11,11 +11,6 @@ function back(state, event, route = _route) {
 }
 
 
-function setLoading(state, loading) {
-  return { loading }
-}
-
-
 async function getFile(
   state,
   url,
@@ -34,7 +29,6 @@ async function getFile(
 
   if (!matches) {
     return {
-      loading: false,
       networkError: false,
       urlError: true
     }
@@ -64,7 +58,6 @@ async function getFile(
     }, 0)
     return {
       id,
-      loading: false,
       title,
       git,
       path,
@@ -77,7 +70,6 @@ async function getFile(
   }
 
   return {
-    loading: false,
     networkError: true,
     urlError: false
   }
@@ -87,7 +79,6 @@ async function getFile(
 export default function actions() {
   return {
     back,
-    setLoading,
     getFile,
   }
 }
