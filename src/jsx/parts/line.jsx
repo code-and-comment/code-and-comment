@@ -45,7 +45,7 @@ class Comment extends Component {
     this.delete = this.delete.bind(this)
     this.setComment = this.setComment.bind(this)
     this.togglePreview = this.togglePreview.bind(this)
-    this.copyPermalink = this.copyPermalink.bind(this)
+    this.copyLink = this.copyLink.bind(this)
   }
 
   componentWillReceiveProps({ comment }) {
@@ -84,10 +84,10 @@ class Comment extends Component {
     this.setState({ isPreview: !this.state.isPreview })
   }
 
-  copyPermalink() {
+  copyLink() {
     const { id, lineNumber } = this.props
-    const permalink = `${location.origin}${location.pathname}#/r/${id}/${lineNumber}`
-    window.navigator.clipboard.writeText(permalink)
+    const link = `#/r/${id}/${lineNumber}`
+    window.navigator.clipboard.writeText(link)
   }
 
   render({ isEditing, setHighlightLineNumber }, { comment, isPreview }) {
@@ -119,7 +119,7 @@ class Comment extends Component {
             { ' ' }
             <Button onClick={ this.delete }>Delete</Button>
             { ' ' }
-            <Button onClick={ this.copyPermalink }>Permalink</Button>
+            <Button onClick={ this.copyLink }>Link</Button>
           </div>
         </div>
       )
