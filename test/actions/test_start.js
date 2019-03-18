@@ -7,12 +7,6 @@ import actions from '../../src/jsx/actions/start.jsx'
 describe('actions/start', () => {
   function noop() {}
 
-  describe('setLoading', () => {
-    it('returns object which has loading key', () => {
-      expect(actions().setLoading(null, true)).to.deep.equal({ loading: true })
-    })
-  })
-
   describe('getFile', () => {
     function setTimeout(func) {
       func()
@@ -21,7 +15,6 @@ describe('actions/start', () => {
     it('returns urlError if url is invalid', async function() {
       const result = await actions().getFile(null, 'https://example.com/index.html', null, null, null)
       expect(result).to.deep.equal({
-        loading: false,
         networkError: false,
         urlError: true
       })
@@ -58,7 +51,6 @@ describe('actions/start', () => {
       expect(fetch.calledWith(requestUrl)).to.be.true
       expect(result).to.deep.equal({
         id,
-        loading: false,
         git,
         title: 'New Code and Comment',
         path: '/code-and-comment/test/blob/master/foo/bar.js',
@@ -79,7 +71,6 @@ describe('actions/start', () => {
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
       const result = await actions().getFile(null, url, null, fetch, setTimeout)
       expect(result).to.deep.equal({
-        loading: false,
         networkError: true,
         urlError: false
       })

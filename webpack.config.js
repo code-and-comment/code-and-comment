@@ -1,3 +1,6 @@
+const WebpackModules = require('webpack-modules');
+
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -32,5 +35,8 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: __dirname + '/dist'
-  }
+  },
+  plugins: [
+    new WebpackModules()
+  ]
 };
