@@ -74,9 +74,13 @@ function CommentList({ codeAndComments, commentPattern, edit }) {
       }
       list.push(<CommentCard
         key={ `${c.id}_${key}` }
-        lineNumber={ lineNumber }
+        id={ c.id }
+        path={ c.path }
+        title={ c.title }
         comment={ comment }
-        codeAndComment={ c }
+        repository={ c.repository }
+        lineNumber={ lineNumber }
+        updated_at={ c.updated_at }
         edit={ edit }
       />)
       list.push(<hr />)
