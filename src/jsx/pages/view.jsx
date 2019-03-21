@@ -32,16 +32,18 @@ class View extends Component {
           leftLabel="Edit"
           leftClick={ edit }
         />),
-        (<div key="path">
-          <a
-            href={ `https://github.com${path}` }
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            { path }
-          </a>
+        (<div key="file-header" className="file-header">
+          <div>
+            <a
+              href={ `https://github.com${path}` }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              { path }
+            </a>
+          </div>
+          <div><CommentList handler={ this.setHighlightLineNumber } /></div>
         </div>),
-        <div key="comment-list"><CommentList handler={ this.setHighlightLineNumber } /></div>,
         (<div key="file" className="file">
           { lines.map((code, index) => {
             return (<Line

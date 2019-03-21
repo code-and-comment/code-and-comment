@@ -119,17 +119,19 @@ class Edit extends Component {
               <div>
                 ID: { id } { ' ' } <input type="text" className="title" value={ title } onChange={ updateTitle } />
               </div>
-              <div>
-                <a
-                  href={ `https://github.com${path}` }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  { path }
-                </a>
-              </div>
-              <div>
-                <CommentList handler={ this.setHighlightLineNumber } />
+              <div className="file-header">
+                <div>
+                  <a
+                    href={ `https://github.com${path}` }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    { path }
+                  </a>
+                </div>
+                <div>
+                  <CommentList handler={ this.setHighlightLineNumber } />
+                </div>
               </div>
               <div className="file">
                 { lines.map((code, index) => {
