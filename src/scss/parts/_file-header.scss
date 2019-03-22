@@ -1,0 +1,17 @@
+@import '../variables';
+
+
+.cc-file-header {
+  margin-top: 12px;
+  border: $border;
+  border-bottom: none;
+  padding: 12px;
+  border-radius: 4px 4px 0px 0px;
+  background-color: #e8e8e8;
+  div:first-child {
+    margin-bottom: 8px;
+  }
+  a {
+    color: #111111;
+  }
+}

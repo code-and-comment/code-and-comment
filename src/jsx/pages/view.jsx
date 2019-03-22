@@ -2,7 +2,7 @@ import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/view.jsx'
-import CommentList from '../parts/comment-list.jsx'
+import FileHeader from '../parts/file-header.jsx'
 import Line from '../parts/line.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
@@ -32,18 +32,11 @@ class View extends Component {
           leftLabel="Edit"
           leftClick={ edit }
         />),
-        (<div key="file-header" className="file-header">
-          <div>
-            <a
-              href={ `https://github.com${path}` }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              { path }
-            </a>
-          </div>
-          <div><CommentList handler={ this.setHighlightLineNumber } /></div>
-        </div>),
+        (<FileHeader
+          key="file-header"
+          path={ path }
+          setHighlightLineNumber={ this.setHighlightLineNumber }
+        />),
         (<div key="file" className="file">
           { lines.map((code, index) => {
             return (<Line
