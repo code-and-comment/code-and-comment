@@ -3,7 +3,7 @@ import { connect } from 'unistore/preact'
 
 import actions from '../actions/edit.jsx'
 import { scrollIntoView } from '../utils.jsx'
-import CommentList from '../parts/comment-list.jsx'
+import FileHeader from '../parts/file-header.jsx'
 import Line from '../parts/line.jsx'
 import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
 import RepositorySelector from '../parts/repository-selector.jsx'
@@ -119,20 +119,10 @@ class Edit extends Component {
               <div>
                 ID: { id } { ' ' } <input type="text" className="title" value={ title } onChange={ updateTitle } />
               </div>
-              <div className="file-header">
-                <div>
-                  <a
-                    href={ `https://github.com${path}` }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    { path }
-                  </a>
-                </div>
-                <div>
-                  <CommentList handler={ this.setHighlightLineNumber } />
-                </div>
-              </div>
+              <FileHeader
+                path={ path }
+                setHighlightLineNumber={ this.setHighlightLineNumber }
+              />
               <div className="file">
                 { lines.map((code, index) => {
                   return (<Line
