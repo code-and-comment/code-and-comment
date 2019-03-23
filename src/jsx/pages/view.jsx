@@ -3,7 +3,7 @@ import { connect } from 'unistore/preact'
 
 import actions from '../actions/view.jsx'
 import FileHeader from '../parts/file-header.jsx'
-import Line from '../parts/line.jsx'
+import FileBody from '../parts/file-body.jsx'
 import Header from '../parts/header.jsx'
 import Navigator from '../parts/navigator.jsx'
 import Loading from '../parts/loading.jsx'
@@ -37,19 +37,14 @@ class View extends Component {
           path={ path }
           setHighlightLineNumber={ this.setHighlightLineNumber }
         />),
-        (<div key="file" className="file">
-          { lines.map((code, index) => {
-            return (<Line
-              key={ index }
-              code={ code }
-              comment={ comments[index + ''] }
-              index={ index }
-              editable={ false }
-              isHighlight={ highlightLineNumber === (index + 1) }
-              setHighlightLineNumber={ this.setHighlightLineNumber }
-            />)
-          }) }
-        </div>)
+        (<FileBody
+          key="file-body"
+          lines={ lines }
+          comments={ comments }
+          editable={ false }
+          highlightLineNumber={ highlightLineNumber }
+          setHighlightLineNumber={ this.setHighlightLineNumber }
+        />)
       ]
     }
     else {
