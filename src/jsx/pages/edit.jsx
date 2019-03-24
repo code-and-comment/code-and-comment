@@ -4,7 +4,7 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/edit.jsx'
 import { scrollIntoView } from '../utils.jsx'
 import FileHeader from '../parts/file-header.jsx'
-import Line from '../parts/line.jsx'
+import FileBody from '../parts/file-body.jsx'
 import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
 import RepositorySelector from '../parts/repository-selector.jsx'
 import MenuBar from '../parts/menu-bar.jsx'
@@ -123,22 +123,15 @@ class Edit extends Component {
                 path={ path }
                 setHighlightLineNumber={ this.setHighlightLineNumber }
               />
-              <div className="file">
-                { lines.map((code, index) => {
-                  return (<Line
-                    id={ id }
-                    key={ index }
-                    code={ code }
-                    comment={ comments[index + ''] }
-                    index={ index }
-                    updateComment={ updateComment }
-                    editable={ true }
-                    isHighlight={ highlightLineNumber === (index + 1) }
-                    setHighlightLineNumber={ this.setHighlightLineNumber }
-                  />)
-                }
-                ) }
-              </div>
+              <FileBody
+                id={ id }
+                lines={ lines }
+                comments={ comments }
+                updateComment={ updateComment }
+                editable={ true }
+                highlightLineNumber={ highlightLineNumber }
+                setHighlightLineNumber={ this.setHighlightLineNumber }
+              />
             </div>
           </div>
         ) }

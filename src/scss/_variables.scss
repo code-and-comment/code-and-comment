@@ -3,15 +3,6 @@ $border: solid 1px rgba(24, 24, 24, 0.2);
 $repository-selector-width: 280px;
 $code-and-cooment-selector-width: 280px;
 
-.cc-outer-file {
-  height: 100%;
-  .file {
-    font-size: 12px;
-    overflow-x: auto;
-    border: $border;
-    margin-bottom: 36px;
-  }
-}
 
 .cc-display-markdown {
   font-family: Roboto, sans-serif;

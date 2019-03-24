@@ -1,7 +1,7 @@
 @import '../variables';
 
 .cc-view {
-  @extend .cc-outer-file;
   @extend .cc-center;
+  height: 100%;
   width: 1000px
 }
