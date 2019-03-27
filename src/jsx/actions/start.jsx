@@ -64,6 +64,7 @@ async function getFile(
       lines,
       comments,
       codeAndComments: [],
+      highlightLineNumber: 0,
       networkError: false,
       urlError: false
     }

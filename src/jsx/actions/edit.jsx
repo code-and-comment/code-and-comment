@@ -1,6 +1,5 @@
 import { route as _route } from 'preact-router'
 
-import { createViewUrl } from '../utils.jsx'
 import {
   getDB as _getDB,
   getRecord as _getRecord,
@@ -165,13 +164,6 @@ function searchComment(
 }
 
 
-function publish(state, event, route = _route, location = window.location) {
-  const viewUrl = createViewUrl(state.git, state.path, state.comments, location)
-  route('/publish')
-  return { viewUrl }
-}
-
-
 async function deleteOne(
   state,
   id,
@@ -240,7 +232,6 @@ export default function actions() {
     fileUrl,
     searchCodeAndComment,
     searchComment,
-    publish,
     deleteOne,
     setCodeAndComments,
     changeCodeAndComment,

@@ -65,7 +65,6 @@ class Edit extends Component {
     updateComment,
     updateTitle,
     fileUrl,
-    publish,
     searchCodeAndComment,
     searchComment,
     isSelectorOpen
@@ -112,8 +111,6 @@ class Edit extends Component {
               toggleSelector={ this.toggleSelector }
               isSelectorOpen={ isSelectorOpen }
               fileUrl={ fileUrl }
-              publish={ publish }
-              publishDisabled={ Object.keys(comments).length < 1 }
             />
             <div className="body">
               <div>

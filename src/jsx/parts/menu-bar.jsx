@@ -8,8 +8,6 @@ function MenuBar({
   deleteOne,
   deleting,
   fileUrl,
-  publish,
-  publishDisabled,
   isDeleting,
   searchCodeAndComment,
   searchComment,
@@ -34,7 +32,6 @@ function MenuBar({
         <span className="label" onClick={ searchCodeAndComment }>List</span>
         <span className="label" onClick={ searchComment }>Comments</span>
         { deleting && <span className="label" onClick={ deleting }>Delete</span> }
-        { publish && !publishDisabled && <span className="label" onClick={ publish }>Publish</span> }
       </div>
     )
   }

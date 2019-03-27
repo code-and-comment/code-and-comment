@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "history": "^4.9.0",
-    "js-base64": "^2.5.1",
     "marked": "^0.6.1",
     "preact": "10.0.0-alpha.2",
     "preact-router": "^3.0.0",
