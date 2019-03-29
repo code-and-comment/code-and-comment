@@ -12,14 +12,12 @@ import {
 } from './worker.jsx'
 import Start from './pages/start.jsx'
 import Edit from './pages/edit.jsx'
-import Publish from './pages/publish.jsx'
-import View from './pages/view.jsx'
 import SearchCodeAndComment from './pages/search-code-and-comment.jsx'
 import SearchComment from './pages/search-comment.jsx'
 import Reference from './pages/reference.jsx'
 
 
-const REDIRECT_URLS = ['/publish', '/search_code_and_comment', '/search_comment']
+const REDIRECT_URLS = ['/search_code_and_comment', '/search_comment']
 
 
 class CodeAndComment extends Component {
@@ -42,8 +40,6 @@ class CodeAndComment extends Component {
     return (
       <Provider store={ store }>
         <Router history={ createHashHistory() } onChange={ this.changeRoute }>
-          <Publish path="/publish" />
-          <View path="/view" />
           <Start path="/start" />
           <SearchCodeAndComment path="/search_code_and_comment" />
           <SearchComment path="/search_comment" />

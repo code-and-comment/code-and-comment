@@ -56,6 +56,7 @@ describe('actions/start', () => {
         path: '/code-and-comment/test/blob/master/foo/bar.js',
         lines: ['ああああ', '1', '2'],
         codeAndComments: [],
+        highlightLineNumber: 0,
         comments: {},
         networkError: false,
         urlError: false

@@ -44,27 +44,6 @@ describe('actions/edit', () => {
     })
   })
 
-  describe('publish', () => {
-    it('returns viewUrl', () => {
-      const route = spy()
-      const state = {
-        git: 'https://api.github.com/repos/code-and-comment/test/git/blobs/df8ea659b9e30b8c6e0f5efd686e0165670524b5',
-        path: '/code-and-comment/test/bar',
-        comments: { '1': 'a',  '2': 'b' }
-      }
-      const location = {
-        origin: 'http://example.com/',
-        pathname: 'foo'
-      }
-      const result = actions().publish(state, null, route, location)
-      expect(route.calledOnce).to.be.true
-      expect(route.calledWith('/publish')).to.be.true
-      expect(result).to.deep.equal({
-        viewUrl: 'http://example.com/foo#/view?data=eyJnaXQiOiJodHRwczovL2FwaS5naXRodWIuY29tL3JlcG9zL2NvZGUtYW5kLWNvbW1lbnQvdGVzdC9naXQvYmxvYnMvZGY4ZWE2NTliOWUzMGI4YzZlMGY1ZWZkNjg2ZTAxNjU2NzA1MjRiNSIsInBhdGgiOiIvY29kZS1hbmQtY29tbWVudC90ZXN0L2JhciIsImNvbW1lbnRzIjp7IjEiOiJhIiwiMiI6ImIifX0'
-      })
-    })
-  })
-
   describe('searchCodeAndComment', () => {
     it('transfers to the search code and comment page', async function() {
       const route = spy()
