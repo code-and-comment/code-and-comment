@@ -16,9 +16,14 @@ You should not use this application as product.
 
 ## Usage
 
-Click "New".  
-Click the line. Add the comment by Markdown.  
-When a line number is clicked, the comment is hidden.
+* Click "New". 
+* Input the file url in Github.  
+Example:  
+https://github.com/developit/preact/blob/10.0.0-alpha.2/src/component.js  
+https://github.com/developit/preact/blob/c66ec75176ac5df60824adbe6152ed577fa7b74f/src/component.js  
+https://github.com/developit/preact/blob/master/src/component.js  
+* Click the line. Add the comment by Markdown.  
+* When a line number is clicked, the comment is hidden.
 
 ### Link for a line
 
