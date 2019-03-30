@@ -32,7 +32,7 @@ function Start({ back, networkError, urlError, getFile }) {
         (<div className="account" key="1">
           Input the file url in Github<br/>
           Example:<br/>
-          https://github.com/developit/preact/blob/10.0.0-alpha.0/src/component.js<br />
+          https://github.com/developit/preact/blob/10.0.0-alpha.2/src/component.js<br />
           https://github.com/developit/preact/blob/c66ec75176ac5df60824adbe6152ed577fa7b74f/src/component.js<br/>
           https://github.com/developit/preact/blob/master/src/component.js<br/>
         </div>),
