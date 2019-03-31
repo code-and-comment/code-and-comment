@@ -1,5 +1,6 @@
 import { expect } from 'chai'
 import { spy } from 'sinon'
+import { Base64 } from 'js-base64'
 
 import actions from '../../src/jsx/actions/edit.jsx'
 
@@ -8,6 +9,79 @@ function noop() {}
 
 
 describe('actions/edit', () => {
+  function noop() {}
+
+  describe('getFile', () => {
+    function setTimeout(func) {
+      func()
+    }
+
+    it('returns urlError if url is invalid', async function() {
+      const result = await actions().getFile(null, 'https://example.com/index.html', null, null, null)
+      expect(result).to.deep.equal({
+        networkError: false,
+        urlError: true
+      })
+    })
+
+    it('returns the file data if request is success', async function() {
+      const git = 'https://api.github.com/repos/code-and-comment/test/git/blobs/df8ea659b9e30b8c6e0f5efd686e0165670524b5'
+      const content = 'ああああ\n1\n2'
+      const base64Content = Base64.encode(content)
+      const route = spy()
+      const fetch = spy(async function() {
+        return {
+          ok: true,
+          json() {
+            return {
+              type: 'file',
+              content: base64Content,
+              _links: { git }
+            }
+          }
+        }
+      })
+      const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
+      const id = 1
+      async function saveCodeAndComment() {
+        return id
+      }
+      const result = await actions()
+        .getFile(null, url, route, fetch, setTimeout, saveCodeAndComment, noop, noop, noop, noop)
+      expect(route.calledOnce).to.be.true
+      expect(route.calledWith('/edit')).to.be.true
+      expect(fetch.calledOnce).to.be.true
+      const requestUrl = 'https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master'
+      expect(fetch.calledWith(requestUrl)).to.be.true
+      expect(result).to.deep.equal({
+        id,
+        git,
+        title: 'New Code and Comment',
+        path: '/code-and-comment/test/blob/master/foo/bar.js',
+        lines: ['ああああ', '1', '2'],
+        codeAndComments: [],
+        highlightLineNumber: 0,
+        comments: {},
+        networkError: false,
+        urlError: false
+      })
+    })
+
+    it('returns networkError if url is invalid', async function() {
+      const fetch = spy(async function() {
+        return {
+          ok: false
+        }
+      })
+      const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
+      const result = await actions().getFile(null, url, null, fetch, setTimeout)
+      expect(result).to.deep.equal({
+        networkError: true,
+        urlError: false
+      })
+    })
+  })
+
   describe('updateComment', () => {
     it('changes comments', async function(){
       let result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, 'A', noop, noop)
@@ -31,16 +105,6 @@ describe('actions/edit', () => {
 
       result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, '  A\n ', noop, noop)
       expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
-    })
-  })
-
-  describe('fileUrl', () => {
-    it('returns initial state', () => {
-      const route = spy()
-      const result = actions().fileUrl(null, null, route)
-      expect(route.calledOnce).to.be.true
-      expect(route.calledWith('/start')).to.be.true
-      expect(result).to.be.undefined
     })
   })
 

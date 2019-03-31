@@ -1,6 +1,8 @@
+import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
 
 import {
+  addRecord as _addRecord,
   getDB as _getDB,
   getRecord as _getRecord,
   getObjectStore as _getObjectStore,
@@ -11,6 +13,7 @@ import {
 import {
   getRepository,
   search,
+  saveCodeAndComment as _saveCodeAndComment,
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne,
   getStateAfterDeleting
@@ -86,11 +89,6 @@ async function updateTitle(
     }
     return { title }
   }
-}
-
-
-function fileUrl(state, event, route = _route) {
-  route('/start')
 }
 
 
@@ -201,6 +199,9 @@ async function changeCodeAndComment(
   getObjectStore = _getObjectStore,
   getRecord = _getRecord
 ) {
+  if (state.loading) {
+    return
+  }
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   const request = await getRecord(objectStore, id)
@@ -224,12 +225,87 @@ function setIsSelectorOpen(state, isSelectorOpen) {
   return { isSelectorOpen }
 }
 
+async function getFile(
+  state,
+  url,
+  route = _route,
+  fetch = window.fetch,
+  setTimeout = window.setTimeout,
+  saveCodeAndComment = _saveCodeAndComment,
+  getDB = _getDB,
+  getObjectStore = _getObjectStore,
+  addRecord = _addRecord,
+  updateRepositories = _updateRepositories
+) {
+  url = url.trim()
+  const re = /^https:\/\/github.com\/(.+)\/blob\/([^/]+)\/(.+)/
+  const matches = url.match(re)
+
+  if (!matches) {
+    return {
+      loading: false,
+      networkError: false,
+      urlError: true
+    }
+  }
+
+  const apiUrl = `https://api.github.com/repos/${matches[1]}/contents/${matches[3]}?ref=${matches[2]}`
+
+  const data = await fetch(apiUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      return null
+    })
+
+  if (data && data.type === 'file') {
+    const git = data._links.git
+    const path = url.substring(18)
+    const lines = Base64.decode(data.content).split('\n')
+    const comments = {}
+    const title = 'New Code and Comment'
+    const state = { title, git, path, lines, comments }
+    const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
+    updateRepositories()
+    setTimeout(() => {
+      route('/edit')
+    }, 0)
+    return {
+      id,
+      title,
+      git,
+      path,
+      lines,
+      comments,
+      codeAndComments: [],
+      highlightLineNumber: 0,
+      loading: false,
+      networkError: false,
+      urlError: false
+    }
+  }
+
+  return {
+    loading: false,
+    networkError: true,
+    urlError: false
+  }
+}
+
+function setLoading() {
+  return {
+    loading: true,
+  }
+}
+
 
 export default function actions() {
   return {
+    getFile,
+    setLoading,
     updateComment,
     updateTitle,
-    fileUrl,
     searchCodeAndComment,
     searchComment,
     deleteOne,

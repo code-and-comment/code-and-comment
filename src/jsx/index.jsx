@@ -10,7 +10,6 @@ import {
   setCodeAndCommentsWorker,
   updateRepositories
 } from './worker.jsx'
-import Start from './pages/start.jsx'
 import Edit from './pages/edit.jsx'
 import SearchCodeAndComment from './pages/search-code-and-comment.jsx'
 import SearchComment from './pages/search-comment.jsx'
@@ -40,7 +39,6 @@ class CodeAndComment extends Component {
     return (
       <Provider store={ store }>
         <Router history={ createHashHistory() } onChange={ this.changeRoute }>
-          <Start path="/start" />
           <SearchCodeAndComment path="/search_code_and_comment" />
           <SearchComment path="/search_comment" />
           <Reference path="/r/:id/:lineNumber" />
