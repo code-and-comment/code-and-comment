@@ -14,7 +14,6 @@ class Edit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isDeleting: false,
       highlightLineNumber: props.highlightLineNumber || 0
     }
     if (props.highlightLineNumber) {
@@ -22,8 +21,6 @@ class Edit extends Component {
         scrollIntoView(props.highlightLineNumber)
       })
     }
-    this.deleting = this.deleting.bind(this)
-    this.cancel = this.cancel.bind(this)
     this.deleteOne = props.deleteOne.bind(null, props.id)
     this.toggleSelector = this.toggleSelector.bind(this)
     this.setHighlightLineNumber = this.setHighlightLineNumber.bind(this)
@@ -35,16 +32,7 @@ class Edit extends Component {
       this.setState({
         highlightLineNumber: 0
       })
-      this.cancel()
     }
-  }
-
-  deleting() {
-    this.setState({ isDeleting: true })
-  }
-
-  cancel() {
-    this.setState({ isDeleting: false })
   }
 
   toggleSelector() {
@@ -69,7 +57,6 @@ class Edit extends Component {
     searchComment,
     isSelectorOpen
   }, {
-    isDeleting,
     highlightLineNumber
   }) {
     const selectorClassName = isSelectorOpen ? 'selectors' : 'selectors display-none'
@@ -110,10 +97,8 @@ class Edit extends Component {
         { id && (
           <div className={ mainClassName }>
             <MenuBar
-              cancel={ this.cancel }
-              deleting={ this.deleting }
+              id={ id }
               deleteOne={ this.deleteOne }
-              isDeleting={ isDeleting }
               searchCodeAndComment={ searchCodeAndComment }
               searchComment={ searchComment }
               toggleSelector={ this.toggleSelector }
