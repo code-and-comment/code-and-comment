@@ -24,7 +24,34 @@
     color: #111111;
   }
 }
+
+.cc-menu-bar.creating {
+  height: 102px;
+  padding: 20px 0px 0px 20px;
+  p {
+    margin-top: 0px;
+    margin-bottom: 6px;
+  }
+  .url {
+    width: 545px;
+    border-radius: 3px 0px 0px 3px;
+  }
+  .cc-button:nth-child(3) {
+    border-radius: 0px;
+    border-left: 0px;
+    border-right: 0px;
+  }
+  .cc-button:last-child {
+    border-radius: 0px 3px 3px 0px;
+  }
+}
+
 .cc-menu-bar.deleting {
   height: 97px;
+  padding: 20px 0px 24px 20px!important;
+}
+
+.cc-menu-bar.loading {
+  height: 81px;
   padding: 20px 0px 24px 20px!important;
 }

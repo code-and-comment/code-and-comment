@@ -48,14 +48,18 @@ class Edit extends Component {
     id,
     title,
     lines,
+    loading,
     comments,
     path,
     updateComment,
     updateTitle,
-    fileUrl,
     searchCodeAndComment,
     searchComment,
-    isSelectorOpen
+    isSelectorOpen,
+    setLoading,
+    getFile,
+    networkError,
+    urlError
   }, {
     highlightLineNumber
   }) {
@@ -67,15 +71,21 @@ class Edit extends Component {
           <RepositorySelector />
           <CodeAndCommentSelector />
         </div>
-        { !id && (
-          <div className={ mainClassName }>
-            <MenuBar
-              searchCodeAndComment={ searchCodeAndComment }
-              searchComment={ searchComment }
-              toggleSelector={ this.toggleSelector }
-              isSelectorOpen={ isSelectorOpen }
-              fileUrl={ fileUrl }
-            />
+        <div className={ mainClassName }>
+          <MenuBar
+            id={ id }
+            loading={ loading }
+            deleteOne={ this.deleteOne }
+            searchCodeAndComment={ searchCodeAndComment }
+            searchComment={ searchComment }
+            toggleSelector={ this.toggleSelector }
+            isSelectorOpen={ isSelectorOpen }
+            setLoading={ setLoading }
+            getFile={ getFile }
+            networkError={ networkError }
+            urlError={ urlError }
+          />
+          { !id && (
             <div className="body">
               <div>
                 The status of this application is pre-alpha.<br />
@@ -92,19 +102,8 @@ class Edit extends Component {
                 When a line number is clicked, the comment is hidden.
               </div>
             </div>
-          </div>
-        ) }
-        { id && (
-          <div className={ mainClassName }>
-            <MenuBar
-              id={ id }
-              deleteOne={ this.deleteOne }
-              searchCodeAndComment={ searchCodeAndComment }
-              searchComment={ searchComment }
-              toggleSelector={ this.toggleSelector }
-              isSelectorOpen={ isSelectorOpen }
-              fileUrl={ fileUrl }
-            />
+          ) }
+          { id && (
             <div className="body">
               <div>
                 ID: { id } { ' ' } <input type="text" className="title" value={ title } onChange={ updateTitle } />
@@ -123,8 +122,8 @@ class Edit extends Component {
                 setHighlightLineNumber={ this.setHighlightLineNumber }
               />
             </div>
-          </div>
-        ) }
+          ) }
+        </div>
       </div>
     )
   }
@@ -135,10 +134,13 @@ const mapStateToProps = [
   'id',
   'title',
   'lines',
+  'loading',
   'comments',
   'path',
   'isSelectorOpen',
-  'highlightLineNumber'
+  'highlightLineNumber',
+  'networkError',
+  'urlError',
 ]
 
 
