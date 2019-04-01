@@ -5,9 +5,6 @@ import { Base64 } from 'js-base64'
 import actions from '../../src/jsx/actions/edit.jsx'
 
 
-function noop() {}
-
-
 describe('actions/edit', () => {
   function noop() {}
 
@@ -19,6 +16,7 @@ describe('actions/edit', () => {
     it('returns urlError if url is invalid', async function() {
       const result = await actions().getFile(null, 'https://example.com/index.html', null, null, null)
       expect(result).to.deep.equal({
+        loading: false,
         networkError: false,
         urlError: true
       })
@@ -57,6 +55,7 @@ describe('actions/edit', () => {
         id,
         git,
         title: 'New Code and Comment',
+        loading: false,
         path: '/code-and-comment/test/blob/master/foo/bar.js',
         lines: ['ああああ', '1', '2'],
         codeAndComments: [],
@@ -76,6 +75,7 @@ describe('actions/edit', () => {
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
       const result = await actions().getFile(null, url, null, fetch, setTimeout)
       expect(result).to.deep.equal({
+        loading: false,
         networkError: true,
         urlError: false
       })
