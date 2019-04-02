@@ -7,6 +7,9 @@ import actions from '../../src/jsx/actions/edit.jsx'
 
 describe('actions/edit', () => {
   function noop() {}
+  const event = {
+    stopPropagation() {}
+  }
 
   describe('getFile', () => {
     function setTimeout(func) {
@@ -123,7 +126,7 @@ describe('actions/edit', () => {
       const state = { path }
       const searchRepository = 'a/b'
       const result = await actions().searchCodeAndComment(
-        state, null, route, noop, noop, getAllRecords, setTimeout, noop)
+        state, event, route, noop, noop, getAllRecords, setTimeout, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true
       expect(result).to.deep.equal({ codeAndComments, searchRepository, highlightLineNumber: 0 })
