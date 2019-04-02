@@ -61,18 +61,21 @@ class Comment extends Component {
     })
   }
 
-  cancel() {
+  cancel(event) {
+    event.stopPropagation()
     this.setState({
       comment: this.props.comment
     })
     this.props.cancel()
   }
 
-  save() {
+  save(event) {
+    event.stopPropagation()
     this.props.save(this.state.comment)
   }
 
-  delete() {
+  delete(event) {
+    event.stopPropagation()
     this.setState({
       comment: ''
     })
@@ -84,7 +87,8 @@ class Comment extends Component {
     this.setState({ isPreview: !this.state.isPreview })
   }
 
-  copyLink() {
+  copyLink(event) {
+    event.stopPropagation()
     const { id, lineNumber } = this.props
     const link = `#/r/${id}/${lineNumber}`
     window.navigator.clipboard.writeText(link)

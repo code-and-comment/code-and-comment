@@ -33,11 +33,13 @@ class MenuBar extends Component {
         && this.state.isDeleting === isDeleting)
   }
 
-  deleting() {
+  deleting(event) {
+    event.stopPropagation()
     this.setState({ isDeleting: true })
   }
 
-  creating() {
+  creating(event) {
+    event.stopPropagation()
     this.setState({ isCreating: true })
   }
 
@@ -53,7 +55,8 @@ class MenuBar extends Component {
     this.setState({ url: event.target.value })
   }
 
-  create() {
+  create(event) {
+    event.stopPropagation()
     this.props.setLoading()
     this.props.getFile(this.state.url)
   }

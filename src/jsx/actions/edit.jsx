@@ -126,6 +126,7 @@ function searchCodeAndComment(
   setTimeout = window.setTimeout,
   bound = window.IDBKeyRange.bound
 ) {
+  event.stopPropagation()
   return _search(
     state,
     '/search_code_and_comment',
@@ -149,6 +150,7 @@ function searchComment(
   setTimeout = window.setTimeout,
   bound = window.IDBKeyRange.bound
 ) {
+  event.stopPropagation()
   return _search(
     state,
     '/search_comment',
@@ -173,6 +175,7 @@ async function deleteOne(
   updateRepositories = _updateRepositories,
   updateCodeAndComments = _updateCodeAndComments
 ) {
+  event.stopPropagation()
   await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
   updateRepositories()
   updateCodeAndComments(state.searchRepository)

@@ -36,6 +36,7 @@ async function search(
 
 
 function back(state, event, route = _route, setTimeout = window.setTimeout) {
+  event.stopPropagation()
   setTimeout(() => {
     route('/edit')
   }, 0)
@@ -54,6 +55,7 @@ async function deleteOne(
   updateRepositories = _updateRepositories,
   search = _search
 ) {
+  event.stopPropagation()
   await _deleteOne(id, getDB, getObjectStore, deleteRecord)
   updateRepositories()
   const conditions = { repository: state.searchRepository }
@@ -76,6 +78,7 @@ function edit(
   getObjectStore = _getObjectStore,
   getRecord = _getRecord
 ) {
+  event.stopPropagation()
   id -= 0
   highlightLineNumber -= 0
   return _edit(

@@ -13,11 +13,13 @@ class CodeAndCommentCard extends Component {
     this.edit = props.edit.bind(null, props.codeAndComment.id, 0)
   }
 
-  deleting() {
+  deleting(event) {
+    event.stopPropagation()
     this.setState({ isDeleting: true })
   }
 
-  cancel() {
+  cancel(event) {
+    event.stopPropagation()
     this.setState({ isDeleting: false })
   }
 

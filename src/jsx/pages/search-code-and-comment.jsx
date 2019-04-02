@@ -22,7 +22,8 @@ class Search extends Component {
       repository: event.target.value
     })
   }
-  search() {
+  search(event) {
+    event.stopPropagation()
     this.props.search(this.state)
   }
   render(_, { repository }) {
