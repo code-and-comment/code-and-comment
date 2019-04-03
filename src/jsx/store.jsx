@@ -14,9 +14,7 @@ export function initialState() {
     networkError: false,
     urlError: false,
     codeAndComments: [],
-    // for search
-    // This is changed at `actions.edit.list()` and `actions.edit.setCodeAndComments()`.
-    // This is used when title is changed in the edit page.
+    // for search and RepositorySelector component
     searchRepository: '',
     repositories: []
   }

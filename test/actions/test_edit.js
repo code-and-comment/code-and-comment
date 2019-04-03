@@ -62,6 +62,7 @@ describe('actions/edit', () => {
         path: '/code-and-comment/test/blob/master/foo/bar.js',
         lines: ['ああああ', '1', '2'],
         codeAndComments: [],
+        searchRepository: '',
         highlightLineNumber: 0,
         comments: {},
         networkError: false,
