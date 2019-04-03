@@ -25,10 +25,12 @@ class MenuBar extends Component {
     }
   }
 
-  shouldComponentUpdate({ id, loading, isSelectorOpen }, { isCreating, isDeleting }) {
+  shouldComponentUpdate({ id, loading, isSelectorOpen, networkError, urlError }, { isCreating, isDeleting }) {
     return !(this.props.id === id
         && this.props.loading === loading
         && this.props.isSelectorOpen === isSelectorOpen
+        && this.props.networkError === networkError
+        && this.props.urlError === urlError
         && this.state.isCreating === isCreating
         && this.state.isDeleting === isDeleting)
   }
@@ -40,6 +42,7 @@ class MenuBar extends Component {
 
   creating(event) {
     event.stopPropagation()
+    this.props.clearErrors()
     this.setState({ isCreating: true })
   }
 

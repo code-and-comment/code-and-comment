@@ -228,6 +228,7 @@ function setIsSelectorOpen(state, isSelectorOpen) {
   return { isSelectorOpen }
 }
 
+
 async function getFile(
   state,
   url,
@@ -281,6 +282,7 @@ async function getFile(
       path,
       lines,
       comments,
+      searchRepository: '',
       codeAndComments: [],
       highlightLineNumber: 0,
       loading: false,
@@ -296,9 +298,18 @@ async function getFile(
   }
 }
 
+
 function setLoading() {
   return {
     loading: true,
+  }
+}
+
+
+function clearErrors() {
+  return {
+    networkError: false,
+    urlError: false
   }
 }
 
@@ -315,5 +326,6 @@ export default function actions() {
     setCodeAndComments,
     changeCodeAndComment,
     setIsSelectorOpen,
+    clearErrors
   }
 }

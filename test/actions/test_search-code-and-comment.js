@@ -17,7 +17,10 @@ describe('actions/search-code-and-comment', () => {
       const result = actions().back(null, event, route, setTimeout)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/edit')).to.be.true
-      expect(result).to.deep.equal({ codeAndComments: [] })
+      expect(result).to.deep.equal({
+        codeAndComments: [],
+        searchRepository: ''
+      })
     })
   })
 })

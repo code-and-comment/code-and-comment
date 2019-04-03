@@ -10,7 +10,6 @@ import {
 import {
   deleteOne as _deleteOne,
   search as _search,
-  edit as _edit,
   getStateAfterDeleting
 } from '../utils.jsx'
 import { updateRepositories as _updateRepositories } from '../worker.jsx'
@@ -40,7 +39,10 @@ function back(state, event, route = _route, setTimeout = window.setTimeout) {
   setTimeout(() => {
     route('/edit')
   }, 0)
-  return { codeAndComments: [] }
+  return {
+    codeAndComments: [],
+    searchRepository: ''
+  }
 }
 
 
@@ -67,7 +69,7 @@ async function deleteOne(
 }
 
 
-function edit(
+async function edit(
   state,
   id,
   highlightLineNumber,
@@ -81,8 +83,28 @@ function edit(
   event.stopPropagation()
   id -= 0
   highlightLineNumber -= 0
-  return _edit(
-    id, highlightLineNumber, route, setTimeout, getDB, getObjectStore, getRecord)
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  const request = await getRecord(objectStore, id)
+  // TODO error process
+  if (request.target.result) {
+    const codeAndComment = request.target.result
+    setTimeout(() => {
+      route('/edit')
+    })
+    return {
+      id: codeAndComment.id,
+      highlightLineNumber,
+      title: codeAndComment.title,
+      git: codeAndComment.git,
+      path: codeAndComment.path,
+      lines: codeAndComment.lines,
+      comments: codeAndComment.comments,
+      codeAndComments: [],
+      searchRepository: ''
+    }
+  }
+  route('/edit')
 }
 
 
