@@ -7,7 +7,7 @@
   box-shadow: -3px 3px 6px -3px rgba(0, 0, 0, 0.25);
   height: 56px;
   width: 100%;
-  padding: 18px 18px 18px 42px;
+  padding: 18px 18px 18px 36px;
   overflow: hidden;
   transition: height 0.1s ease 0s;
   .message {
@@ -27,7 +27,7 @@
 
 .cc-menu-bar.creating {
   height: 102px;
-  padding: 20px 0px 0px 20px;
+  padding: 20px 0px 0px 36px;
   p {
     margin-top: 0px;
     margin-bottom: 6px;
@@ -48,10 +48,10 @@
 
 .cc-menu-bar.deleting {
   height: 97px;
-  padding: 20px 0px 24px 20px!important;
+  padding: 20px 0px 24px 36px!important;
 }
 
 .cc-menu-bar.loading {
   height: 81px;
-  padding: 20px 0px 24px 20px!important;
+  padding: 20px 0px 24px 36px!important;
 }
