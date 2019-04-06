@@ -26,6 +26,12 @@ class CodeAndCommentSelector extends Component {
     }
   }
 
+  shouldComponentUpdate({ codeAndComments }, { id }) {
+    return !(
+      this.state.id === id
+      && this.props.codeAndComments === codeAndComments)
+  }
+
   render({ codeAndComments }, { id }) {
     return (
       <div className="cc-code-and-comment-selector">
