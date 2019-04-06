@@ -5,10 +5,16 @@ import {
   getObjectStore as _getObjectStore,
   getRecord as _getRecord,
 } from '../db.jsx'
-import { edit as _edit } from '../utils.jsx'
+import {
+  updateRepositories as _updateRepositories,
+  updateCodeAndComments as _updateCodeAndComments
+} from '../worker.jsx'
+import {
+  getRepository,
+} from '../utils.jsx'
 
 
-function edit(
+export async function edit(
   state,
   id,
   highlightLineNumber,
@@ -16,14 +22,38 @@ function edit(
   setTimeout = window.setTimeout,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
-  getRecord = _getRecord
+  getRecord = _getRecord,
+  updateRepositories = _updateRepositories,
+  updateCodeAndComments = _updateCodeAndComments,
 ) {
   id -= 0
   highlightLineNumber -= 0
-  return _edit(
-    id, highlightLineNumber, route, setTimeout, getDB, getObjectStore, getRecord)
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  const request = await getRecord(objectStore, id)
+  // TODO error process
+  if (request.target.result) {
+    const codeAndComment = request.target.result
+    const repository = getRepository(codeAndComment.path)
+    setTimeout(() => {
+      updateRepositories()
+      updateCodeAndComments(repository)
+      route('/edit')
+    })
+    return {
+      id: codeAndComment.id,
+      highlightLineNumber,
+      title: codeAndComment.title,
+      git: codeAndComment.git,
+      path: codeAndComment.path,
+      lines: codeAndComment.lines,
+      comments: codeAndComment.comments,
+      codeAndComments: [],
+      searchRepository: repository,
+    }
+  }
+  route('/edit')
 }
-
 
 export default function actions() {
   return {
