@@ -17,7 +17,7 @@ describe('actions/edit', () => {
     }
 
     it('returns urlError if url is invalid', async function() {
-      const result = await actions().getFile(null, 'https://example.com/index.html', null, null, null)
+      const result = await actions().getFile(null, 'https://example.com/index.html', noop, noop, noop, noop, noop, noop, noop, noop)
       expect(result).to.deep.equal({
         loading: false,
         networkError: false,
@@ -29,7 +29,6 @@ describe('actions/edit', () => {
       const git = 'https://api.github.com/repos/code-and-comment/test/git/blobs/df8ea659b9e30b8c6e0f5efd686e0165670524b5'
       const content = 'ああああ\n1\n2'
       const base64Content = Base64.encode(content)
-      const route = spy()
       const fetch = spy(async function() {
         return {
           ok: true,
@@ -48,9 +47,7 @@ describe('actions/edit', () => {
         return id
       }
       const result = await actions()
-        .getFile(null, url, route, fetch, setTimeout, saveCodeAndComment, noop, noop, noop, noop)
-      expect(route.calledOnce).to.be.true
-      expect(route.calledWith('/edit')).to.be.true
+        .getFile(null, url, fetch, setTimeout, saveCodeAndComment, noop, noop, noop, noop, noop)
       expect(fetch.calledOnce).to.be.true
       const requestUrl = 'https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master'
       expect(fetch.calledWith(requestUrl)).to.be.true
@@ -62,7 +59,7 @@ describe('actions/edit', () => {
         path: '/code-and-comment/test/blob/master/foo/bar.js',
         lines: ['ああああ', '1', '2'],
         codeAndComments: [],
-        searchRepository: '',
+        searchRepository: 'code-and-comment/test',
         highlightLineNumber: 0,
         comments: {},
         networkError: false,
@@ -77,7 +74,7 @@ describe('actions/edit', () => {
         }
       })
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
-      const result = await actions().getFile(null, url, null, fetch, setTimeout)
+      const result = await actions().getFile(null, url, fetch, setTimeout)
       expect(result).to.deep.equal({
         loading: false,
         networkError: true,

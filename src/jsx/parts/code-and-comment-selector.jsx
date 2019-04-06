@@ -20,6 +20,12 @@ class CodeAndCommentSelector extends Component {
     this.setState({ id })
   }
 
+  componentWillReceiveProps({ id }) {
+    if (this.props.id !== id) {
+      this.setState({ id })
+    }
+  }
+
   render({ codeAndComments }, { id }) {
     return (
       <div className="cc-code-and-comment-selector">
