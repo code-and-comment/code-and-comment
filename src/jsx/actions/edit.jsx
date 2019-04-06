@@ -1,6 +1,7 @@
 import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
 
+
 import {
   addRecord as _addRecord,
   getDB as _getDB,
@@ -232,14 +233,14 @@ function setIsSelectorOpen(state, isSelectorOpen) {
 async function getFile(
   state,
   url,
-  route = _route,
   fetch = window.fetch,
   setTimeout = window.setTimeout,
   saveCodeAndComment = _saveCodeAndComment,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   addRecord = _addRecord,
-  updateRepositories = _updateRepositories
+  updateRepositories = _updateRepositories,
+  updateCodeAndComments = _updateCodeAndComments,
 ) {
   url = url.trim()
   const re = /^https:\/\/github.com\/(.+)\/blob\/([^/]+)\/(.+)/
@@ -266,15 +267,16 @@ async function getFile(
   if (data && data.type === 'file') {
     const git = data._links.git
     const path = url.substring(18)
+    const repository = getRepository(path)
     const lines = Base64.decode(data.content).split('\n')
     const comments = {}
     const title = 'New Code and Comment'
     const state = { title, git, path, lines, comments }
     const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
-    updateRepositories()
-    setTimeout(() => {
-      route('/edit')
-    }, 0)
+    setTimeout(function() {
+      updateRepositories()
+      updateCodeAndComments(repository)
+    })
     return {
       id,
       title,
@@ -282,7 +284,7 @@ async function getFile(
       path,
       lines,
       comments,
-      searchRepository: '',
+      searchRepository: repository,
       codeAndComments: [],
       highlightLineNumber: 0,
       loading: false,
