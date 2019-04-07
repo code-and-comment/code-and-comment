@@ -18,7 +18,7 @@ class CodeAndCommentSelector extends Component {
 
   shouldComponentUpdate({ id, codeAndComments }) {
     return !(
-        this.props.id === id
+      this.props.id === id
         && this.props.codeAndComments === codeAndComments)
   }
 
