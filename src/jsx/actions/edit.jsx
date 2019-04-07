@@ -285,7 +285,6 @@ async function getFile(
       lines,
       comments,
       searchRepository: repository,
-      codeAndComments: [],
       highlightLineNumber: 0,
       loading: false,
       networkError: false,
