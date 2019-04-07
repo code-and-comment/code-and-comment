@@ -7,9 +7,6 @@ import actions from '../actions/edit.jsx'
 class CodeAndCommentSelector extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      id: props.id
-    }
     this.changeCodeAndComment = this.changeCodeAndComment.bind(this)
   }
 
@@ -17,16 +14,15 @@ class CodeAndCommentSelector extends Component {
     event.stopPropagation()
     const id = event.currentTarget.dataset.id - 0
     this.props.changeCodeAndComment(id)
-    this.setState({ id })
   }
 
-  componentWillReceiveProps({ id }) {
-    if (this.props.id !== id) {
-      this.setState({ id })
-    }
+  shouldComponentUpdate({ id, codeAndComments }) {
+    return !(
+        this.props.id === id
+        && this.props.codeAndComments === codeAndComments)
   }
 
-  render({ codeAndComments }, { id }) {
+  render({ id, codeAndComments }) {
     return (
       <div className="cc-code-and-comment-selector">
         {
