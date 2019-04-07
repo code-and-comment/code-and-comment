@@ -48,7 +48,6 @@ export async function edit(
       path: codeAndComment.path,
       lines: codeAndComment.lines,
       comments: codeAndComment.comments,
-      codeAndComments: [],
       searchRepository: repository,
     }
   }
