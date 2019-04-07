@@ -19,7 +19,7 @@ export async function edit(
   id,
   highlightLineNumber,
   route = _route,
-  setTimeout = window.setTimeout,
+  requestIdleCallback = window.requestIdleCallback,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getRecord = _getRecord,
@@ -35,7 +35,7 @@ export async function edit(
   if (request.target.result) {
     const codeAndComment = request.target.result
     const repository = getRepository(codeAndComment.path)
-    setTimeout(() => {
+    requestIdleCallback(() => {
       updateRepositories()
       updateCodeAndComments(repository)
       route('/edit')
