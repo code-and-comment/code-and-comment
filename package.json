@@ -27,7 +27,7 @@
     "eslint-plugin-react": "^7.12.4",
     "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
-    "rollup": "^1.7.3",
+    "rollup": "^1.9.3",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.2.2",
     "rollup-plugin-node-resolve": "^4.0.1",
