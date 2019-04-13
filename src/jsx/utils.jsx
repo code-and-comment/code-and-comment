@@ -140,6 +140,7 @@ export async function edit(
   getDB,
   getObjectStore,
   getRecord,
+  getRepository,
   updateRepositories,
   updateCodeAndComments,
 ) {

@@ -2,8 +2,8 @@ import { route as _route } from 'preact-router'
 
 import {
   getDB as _getDB,
-  getObjectStore as _getObjectStore,
   getRecord as _getRecord,
+  getObjectStore as _getObjectStore,
 } from '../db.jsx'
 import {
   updateRepositories as _updateRepositories,
@@ -11,7 +11,7 @@ import {
 } from '../worker.jsx'
 import {
   edit as _edit,
-  getRepository,
+  getRepository as _getRepository,
 } from '../utils.jsx'
 
 
@@ -24,6 +24,7 @@ export function edit(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getRecord = _getRecord,
+  getRepository = _getRepository,
   updateRepositories = _updateRepositories,
   updateCodeAndComments = _updateCodeAndComments,
 ) {
@@ -35,6 +36,7 @@ export function edit(
     getDB,
     getObjectStore,
     getRecord,
+    getRepository,
     updateRepositories,
     updateCodeAndComments,
   )

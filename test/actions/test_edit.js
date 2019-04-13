@@ -12,7 +12,7 @@ describe('actions/edit', () => {
   }
 
   describe('getFile', () => {
-    function setTimeout(func) {
+    function requestIdleCallback(func) {
       func()
     }
 
@@ -47,7 +47,7 @@ describe('actions/edit', () => {
         return id
       }
       const result = await actions()
-        .getFile(null, url, fetch, setTimeout, saveCodeAndComment, noop, noop, noop, noop, noop)
+        .getFile(null, url, fetch, requestIdleCallback, saveCodeAndComment, noop, noop, noop, noop, noop)
       expect(fetch.calledOnce).to.be.true
       const requestUrl = 'https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master'
       expect(fetch.calledWith(requestUrl)).to.be.true
@@ -73,7 +73,7 @@ describe('actions/edit', () => {
         }
       })
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
-      const result = await actions().getFile(null, url, fetch, setTimeout)
+      const result = await actions().getFile(null, url, fetch, requestIdleCallback)
       expect(result).to.deep.equal({
         loading: false,
         networkError: true,
@@ -116,14 +116,14 @@ describe('actions/edit', () => {
       const getAllRecords = async function() {
         return codeAndComments
       }
-      function setTimeout(func) {
+      function requestIdleCallback(func) {
         func()
       }
       const path = '/a/b'
       const state = { path }
       const searchRepository = 'a/b'
       const result = await actions().searchCodeAndComment(
-        state, event, route, noop, noop, getAllRecords, setTimeout, noop)
+        state, event, route, noop, noop, getAllRecords, requestIdleCallback, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true
       expect(result).to.deep.equal({ codeAndComments, searchRepository, highlightLineNumber: 0 })

@@ -83,10 +83,10 @@ describe('utils', () => {
       async function getAllRecords() {
         return codeAndComments
       }
-      function setTimeout(func) {
+      function requestIdleCallback(func) {
         func()
       }
-      const result = await transfer('/foo', route, noop, noop, getAllRecords, setTimeout, noop)
+      const result = await transfer('/foo', route, noop, noop, getAllRecords, requestIdleCallback, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/foo')).to.be.true
       expect(result).to.deep.equal({ codeAndComments, searchRepository })

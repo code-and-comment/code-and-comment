@@ -2,14 +2,14 @@ import { route as _route } from 'preact-router'
 
 import {
   getDB as _getDB,
-  getObjectStore as _getObjectStore,
   getRecord as _getRecord,
+  getObjectStore as _getObjectStore,
   deleteRecord as _deleteRecord,
   getAllRecords as _getAllRecords
 } from '../db.jsx'
 import {
   edit as _edit,
-  getRepository,
+  getRepository as _getRepository,
   deleteOne as _deleteOne,
   search as _search,
   getStateAfterDeleting
@@ -39,7 +39,7 @@ async function search(
 }
 
 
-function back(state, event, route = _route, setTimeout = window.setTimeout) {
+function back(state, event, route = _route, requestIdleCallback = window.requestIdleCallback) {
   event.stopPropagation()
   if (state.id) {
     return edit(
@@ -49,9 +49,9 @@ function back(state, event, route = _route, setTimeout = window.setTimeout) {
       event
     )
   }
-  setTimeout(() => {
+  requestIdleCallback(() => {
     route('/edit')
-  }, 0)
+  })
   return {
     codeAndComments: [],
     searchRepository: ''
@@ -92,6 +92,7 @@ function edit(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getRecord = _getRecord,
+  getRepository = _getRepository,
   updateRepositories = _updateRepositories,
   updateCodeAndComments = _updateCodeAndComments,
 ) {
@@ -104,6 +105,7 @@ function edit(
     getDB,
     getObjectStore,
     getRecord,
+    getRepository,
     updateRepositories,
     updateCodeAndComments,
   )
