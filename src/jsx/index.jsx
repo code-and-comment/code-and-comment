@@ -28,7 +28,7 @@ class CodeAndComment extends Component {
 
   changeRoute(event) {
     if (this.isFirst && REDIRECT_URLS.includes(event.url)) {
-      setTimeout(() => {
+      requestIdleCallback(() => {
         route('/edit')
       })
     }

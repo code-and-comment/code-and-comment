@@ -17,7 +17,7 @@ class Edit extends Component {
       highlightLineNumber: props.highlightLineNumber || 0
     }
     if (props.highlightLineNumber) {
-      window.setTimeout(() => {
+      window.requestIdleCallback(() => {
         scrollIntoView(props.highlightLineNumber)
       })
     }

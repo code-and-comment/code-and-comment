@@ -100,15 +100,15 @@ async function _search(
   getDB,
   getObjectStore,
   getAllRecords,
-  setTimeout,
+  requestIdleCallback,
   bound
 ) {
   const repository = getRepository(state.path)
   const conditions = { repository }
   const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
-  setTimeout(() => {
+  requestIdleCallback(() => {
     route(url)
-  }, 0)
+  })
   return {
     highlightLineNumber: 0,
     codeAndComments,
@@ -124,7 +124,7 @@ function searchCodeAndComment(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
-  setTimeout = window.setTimeout,
+  requestIdleCallback = window.requestIdleCallback,
   bound = window.IDBKeyRange.bound
 ) {
   event.stopPropagation()
@@ -135,7 +135,7 @@ function searchCodeAndComment(
     getDB,
     getObjectStore,
     getAllRecords,
-    setTimeout,
+    requestIdleCallback,
     bound
   )
 }
@@ -148,7 +148,7 @@ function searchComment(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
-  setTimeout = window.setTimeout,
+  requestIdleCallback = window.requestIdleCallback,
   bound = window.IDBKeyRange.bound
 ) {
   event.stopPropagation()
@@ -159,7 +159,7 @@ function searchComment(
     getDB,
     getObjectStore,
     getAllRecords,
-    setTimeout,
+    requestIdleCallback,
     bound
   )
 }
@@ -234,7 +234,7 @@ async function getFile(
   state,
   url,
   fetch = window.fetch,
-  setTimeout = window.setTimeout,
+  requestIdleCallback = window.requestIdleCallback,
   saveCodeAndComment = _saveCodeAndComment,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
@@ -273,7 +273,7 @@ async function getFile(
     const title = 'New Code and Comment'
     const state = { title, git, path, lines, comments }
     const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
-    setTimeout(function() {
+    requestIdleCallback(function() {
       updateRepositories()
       updateCodeAndComments(searchRepository)
     })
