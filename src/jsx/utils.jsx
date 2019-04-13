@@ -130,3 +130,43 @@ export function scrollIntoView(highlightLineNumber) {
     block: 'center',
   })
 }
+
+
+export async function edit(
+  id,
+  highlightLineNumber,
+  route,
+  requestIdleCallback,
+  getDB,
+  getObjectStore,
+  getRecord,
+  updateRepositories,
+  updateCodeAndComments,
+) {
+  id -= 0
+  highlightLineNumber -= 0
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  const request = await getRecord(objectStore, id)
+  // TODO error process
+  if (request.target.result) {
+    const codeAndComment = request.target.result
+    const searchRepository = getRepository(codeAndComment.path)
+    requestIdleCallback(() => {
+      updateRepositories()
+      updateCodeAndComments(searchRepository)
+      route('/edit')
+    })
+    return {
+      id: codeAndComment.id,
+      highlightLineNumber,
+      title: codeAndComment.title,
+      git: codeAndComment.git,
+      path: codeAndComment.path,
+      lines: codeAndComment.lines,
+      comments: codeAndComment.comments,
+      searchRepository,
+    }
+  }
+  route('/edit')
+}

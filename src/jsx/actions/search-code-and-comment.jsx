@@ -8,11 +8,16 @@ import {
   getAllRecords as _getAllRecords
 } from '../db.jsx'
 import {
+  edit as _edit,
+  getRepository,
   deleteOne as _deleteOne,
   search as _search,
   getStateAfterDeleting
 } from '../utils.jsx'
-import { updateRepositories as _updateRepositories } from '../worker.jsx'
+import {
+  updateRepositories as _updateRepositories,
+  updateCodeAndComments as _updateCodeAndComments
+} from '../worker.jsx'
 
 
 async function search(
@@ -36,6 +41,14 @@ async function search(
 
 function back(state, event, route = _route, setTimeout = window.setTimeout) {
   event.stopPropagation()
+  if (state.id) {
+    return edit(
+      state,
+      state.id,
+      0,
+      event
+    )
+  }
   setTimeout(() => {
     route('/edit')
   }, 0)
@@ -69,42 +82,31 @@ async function deleteOne(
 }
 
 
-async function edit(
+function edit(
   state,
   id,
   highlightLineNumber,
   event,
   route = _route,
-  setTimeout = window.setTimeout,
+  requestIdleCallback = window.requestIdleCallback,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
-  getRecord = _getRecord
+  getRecord = _getRecord,
+  updateRepositories = _updateRepositories,
+  updateCodeAndComments = _updateCodeAndComments,
 ) {
   event.stopPropagation()
-  id -= 0
-  highlightLineNumber -= 0
-  const db = await getDB()
-  const objectStore = await getObjectStore(db)
-  const request = await getRecord(objectStore, id)
-  // TODO error process
-  if (request.target.result) {
-    const codeAndComment = request.target.result
-    setTimeout(() => {
-      route('/edit')
-    })
-    return {
-      id: codeAndComment.id,
-      highlightLineNumber,
-      title: codeAndComment.title,
-      git: codeAndComment.git,
-      path: codeAndComment.path,
-      lines: codeAndComment.lines,
-      comments: codeAndComment.comments,
-      codeAndComments: [],
-      searchRepository: ''
-    }
-  }
-  route('/edit')
+  return _edit(
+    id,
+    highlightLineNumber,
+    route,
+    requestIdleCallback,
+    getDB,
+    getObjectStore,
+    getRecord,
+    updateRepositories,
+    updateCodeAndComments,
+  )
 }
 
 

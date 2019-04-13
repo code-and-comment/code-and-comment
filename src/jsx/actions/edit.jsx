@@ -267,7 +267,7 @@ async function getFile(
   if (data && data.type === 'file') {
     const git = data._links.git
     const path = url.substring(18)
-    const repository = getRepository(path)
+    const searchRepository = getRepository(path)
     const lines = Base64.decode(data.content).split('\n')
     const comments = {}
     const title = 'New Code and Comment'
@@ -275,7 +275,7 @@ async function getFile(
     const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
     setTimeout(function() {
       updateRepositories()
-      updateCodeAndComments(repository)
+      updateCodeAndComments(searchRepository)
     })
     return {
       id,
@@ -284,7 +284,7 @@ async function getFile(
       path,
       lines,
       comments,
-      searchRepository: repository,
+      searchRepository,
       highlightLineNumber: 0,
       loading: false,
       networkError: false,
