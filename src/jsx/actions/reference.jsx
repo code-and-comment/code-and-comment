@@ -10,11 +10,12 @@ import {
   updateCodeAndComments as _updateCodeAndComments
 } from '../worker.jsx'
 import {
+  edit as _edit,
   getRepository,
 } from '../utils.jsx'
 
 
-export async function edit(
+export function edit(
   state,
   id,
   highlightLineNumber,
@@ -26,32 +27,17 @@ export async function edit(
   updateRepositories = _updateRepositories,
   updateCodeAndComments = _updateCodeAndComments,
 ) {
-  id -= 0
-  highlightLineNumber -= 0
-  const db = await getDB()
-  const objectStore = await getObjectStore(db)
-  const request = await getRecord(objectStore, id)
-  // TODO error process
-  if (request.target.result) {
-    const codeAndComment = request.target.result
-    const repository = getRepository(codeAndComment.path)
-    requestIdleCallback(() => {
-      updateRepositories()
-      updateCodeAndComments(repository)
-      route('/edit')
-    })
-    return {
-      id: codeAndComment.id,
-      highlightLineNumber,
-      title: codeAndComment.title,
-      git: codeAndComment.git,
-      path: codeAndComment.path,
-      lines: codeAndComment.lines,
-      comments: codeAndComment.comments,
-      searchRepository: repository,
-    }
-  }
-  route('/edit')
+  return _edit(
+    id,
+    highlightLineNumber,
+    route,
+    requestIdleCallback,
+    getDB,
+    getObjectStore,
+    getRecord,
+    updateRepositories,
+    updateCodeAndComments,
+  )
 }
 
 export default function actions() {
