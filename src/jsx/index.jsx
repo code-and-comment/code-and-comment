@@ -29,7 +29,7 @@ class CodeAndComment extends Component {
   changeRoute(event) {
     if (this.isFirst && REDIRECT_URLS.includes(event.url)) {
       requestIdleCallback(() => {
-        route('/edit')
+        route('/')
       })
     }
     this.isFirst = false

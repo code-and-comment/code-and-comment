@@ -156,7 +156,7 @@ export async function edit(
     requestIdleCallback(() => {
       updateRepositories()
       updateCodeAndComments(searchRepository)
-      route('/edit')
+      route('/')
     })
     return {
       id: codeAndComment.id,
@@ -169,5 +169,5 @@ export async function edit(
       searchRepository,
     }
   }
-  route('/edit')
+  route('/')
 }
