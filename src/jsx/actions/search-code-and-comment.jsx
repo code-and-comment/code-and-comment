@@ -50,7 +50,7 @@ function back(state, event, route = _route, requestIdleCallback = window.request
     )
   }
   requestIdleCallback(() => {
-    route('/edit')
+    route('/')
   })
   return {
     codeAndComments: [],
