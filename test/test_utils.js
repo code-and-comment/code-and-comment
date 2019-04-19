@@ -8,6 +8,7 @@ import {
   getRepository,
   getRange,
   search,
+  edit
 } from '../src/jsx/utils.jsx'
 
 describe('utils', () => {
@@ -29,6 +30,7 @@ describe('utils', () => {
       const range = getRange({}, noop)
       expect(range).to.be.undefined
     })
+
     it('returns undefined when the arguments does not have condition', function() {
       const repository = 'code-and-comment/foo'
       const bound = spy(function() {
@@ -99,10 +101,100 @@ describe('utils', () => {
       const repository = getRepository(path)
       expect(repository).to.equal('code-and-comment/foo')
     })
+
     it('returns "" when path is ""', async function() {
       const path = ''
       const repository = getRepository(path)
       expect(repository).to.equal('')
+    })
+  })
+
+  describe('edit', () => {
+    let request
+    const id = '123'
+    const highlightLineNumber = '456'
+    const db = {}
+    const objectStore = {}
+    const repository = 'code-and-comment/code-and-comment'
+    const route = spy()
+    const requestIdleCallback = spy(func => func())
+    const getDB = spy(() => db)
+    const getObjectStore = spy(() => objectStore)
+    const getRecord = spy(() => request)
+    const getRepository = spy(() => repository)
+    const updateRepositories = spy()
+    const updateCodeAndComments = spy()
+    beforeEach(() => {
+      request = {
+        target: {}
+      }
+      route.resetHistory()
+      requestIdleCallback.resetHistory()
+      getDB.resetHistory()
+      getObjectStore.resetHistory()
+      getRecord.resetHistory()
+      getRepository.resetHistory()
+      updateRepositories.resetHistory()
+      updateCodeAndComments.resetHistory()
+    })
+
+    it('does nothing when there is no record', async function() {
+      await edit(
+        id,
+        highlightLineNumber,
+        route,
+        requestIdleCallback,
+        getDB,
+        getObjectStore,
+        getRecord,
+        getRepository,
+        updateRepositories,
+        updateCodeAndComments,
+      )
+      const functions = [
+        requestIdleCallback,
+        getRepository,
+        updateRepositories,
+        updateCodeAndComments,
+      ]
+      functions.forEach(f => expect(f.notCalled).to.be.true)
+      expect(route.calledOnceWith('/')).to.be.true
+    })
+
+    it('updates state when there is a record', async function() {
+      const codeAndComment = {
+        id: id - 0,
+        title: 'title1',
+        git: 'git1',
+        path: 'path1',
+        lines: ['l1', 'l2'],
+        comments: ['c1', 'c1'],
+      }
+      request.target.result = codeAndComment
+      const state = await edit(
+        id,
+        highlightLineNumber,
+        route,
+        requestIdleCallback,
+        getDB,
+        getObjectStore,
+        getRecord,
+        getRepository,
+        updateRepositories,
+        updateCodeAndComments,
+      )
+      expect(getDB.calledOnce).to.be.true
+      expect(getObjectStore.calledOnceWith(db)).to.be.true
+      expect(getRecord.calledOnceWith(objectStore, id - 0)).to.be.true
+      expect(getRepository.calledOnceWith(codeAndComment.path)).to.be.true
+      expect(updateRepositories.calledOnceWith()).to.be.true
+      expect(updateCodeAndComments.calledOnceWith(repository)).to.be.true
+      expect(route.calledOnceWith('/')).to.be.true
+      expect(state).to.deep.equal({
+        ...codeAndComment,
+        highlightLineNumber: highlightLineNumber - 0,
+        searchRepository: repository
+      })
     })
   })
 })
