@@ -8,7 +8,8 @@ import {
   getRepository,
   getRange,
   search,
-  edit
+  edit,
+  scrollIntoView
 } from '../src/jsx/utils.jsx'
 
 describe('utils', () => {
@@ -106,6 +107,23 @@ describe('utils', () => {
       const path = ''
       const repository = getRepository(path)
       expect(repository).to.equal('')
+    })
+  })
+
+  describe('edit', () => {
+    it('executes scrollIntoView()', () => {
+      const _scrollIntoView = spy()
+      const querySelector = spy(() => {
+        return {
+          scrollIntoView: _scrollIntoView,
+        }
+      })
+      const document = {
+        querySelector
+      }
+      const highlightLineNumber = 123
+      scrollIntoView(highlightLineNumber, document)
+      expect(document.querySelector.calledOnceWith('.cc-line:nth-child(123)')).to.be.true
     })
   })
 
