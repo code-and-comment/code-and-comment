@@ -124,9 +124,9 @@ export function getStateAfterDeleting(state, codeAndComments) {
 }
 
 
-export function scrollIntoView(highlightLineNumber) {
+export function scrollIntoView(highlightLineNumber, _document = document) {
   const selector = `.cc-line:nth-child(${highlightLineNumber})`
-  document.querySelector(selector).scrollIntoView({
+  _document.querySelector(selector).scrollIntoView({
     block: 'center',
   })
 }
