@@ -31,7 +31,7 @@ https://github.com/developit/preact/blob/master/src/component.js
 
 ## Support
 
-* Chrome@72+
+* Chrome@73+
 
 ## Contribution
 
