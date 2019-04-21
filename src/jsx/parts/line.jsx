@@ -183,13 +183,17 @@ class Line extends Component {
   }
 
   save(index, comment) {
-    this.setState({ isEditing: false })
     this.props.updateComment(index, comment)
+    window.requestIdleCallback(() => {
+      this.setState({ isEditing: false })
+    })
   }
 
   delete(index) {
-    this.setState({ isEditing: false })
     this.props.updateComment(index, '')
+    window.requestIdleCallback(() => {
+      this.setState({ isEditing: false })
+    })
   }
 
   render({ id, index, code, comment, editable, isHighlight, setHighlightLineNumber }, { isEditing, isHidden }) {
