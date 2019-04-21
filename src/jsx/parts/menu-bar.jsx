@@ -110,11 +110,11 @@ class MenuBar extends Component {
     else {
       return (
         <div className="cc-menu-bar">
-          <span className="label" onClick={ toggleSelector }>{ isSelectorOpen ? 'Close' : 'Open' }</span>
-          <span className="label" onClick={ this.creating }>New</span>
-          <span className="label" onClick={ searchCodeAndComment }>List</span>
-          <span className="label" onClick={ searchComment }>Comments</span>
-          { id && <span className="label" onClick={ this.deleting }>Delete</span> }
+          <span className="label" onClick={ toggleSelector }><span className="icon open-and-close" />{ isSelectorOpen ? 'Close' : 'Open' }</span>
+          <span className="label" onClick={ this.creating }><span className="icon new" />New</span>
+          <span className="label" onClick={ searchCodeAndComment }><span className="icon list" />List</span>
+          <span className="label" onClick={ searchComment }><span className="icon comment" />Comments</span>
+          { id && <span className="label" onClick={ this.deleting }><span className="icon delete" />Delete</span> }
         </div>
       )
     }
