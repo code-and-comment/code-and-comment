@@ -68,7 +68,8 @@
         font-family: Roboto, sans-serif;
         font-size: 14px;
         background-color: #fff;
-        width: 100%;
+        min-width: 803px;
+        max-width: 803px;
         height: 144px;
         padding: 8px;
         border: $border;
