@@ -71,7 +71,9 @@ class Comment extends Component {
 
   save(event) {
     event.stopPropagation()
-    this.props.save(this.state.comment)
+    window.requestIdleCallback(() => {
+      this.props.save(this.state.comment)
+    })
   }
 
   delete(event) {
