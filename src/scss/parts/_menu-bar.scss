@@ -28,19 +28,19 @@
       display: inline-block;
     }
     .open-and-close {
-      -webkit-mask-image: url("/dist/open_and_close.svg")
+      -webkit-mask-image: url("dist/open_and_close.svg")
     }
     .new {
-      -webkit-mask-image: url("/dist/new.svg")
+      -webkit-mask-image: url("dist/new.svg")
     }
     .list {
-      -webkit-mask-image: url("/dist/list.svg")
+      -webkit-mask-image: url("dist/list.svg")
     }
     .delete {
-      -webkit-mask-image: url("/dist/delete.svg")
+      -webkit-mask-image: url("dist/delete.svg")
     }
     .comment {
-      -webkit-mask-image: url("/dist/comment.svg")
+      -webkit-mask-image: url("dist/comment.svg")
     }
   }
   .label:hover {
