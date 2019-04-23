@@ -2,10 +2,10 @@
 
 
 .cc-menu-bar {
-  font-size: 17px;
+  font-size: 16px;
   border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
   box-shadow: -3px 3px 6px -3px rgba(0, 0, 0, 0.25);
-  height: 58px;
+  height: 56px;
   width: 100%;
   padding: 18px 18px 18px 36px;
   overflow: hidden;
@@ -19,35 +19,9 @@
     cursor: pointer;
     user-select: none;
     color: #67777f;
-    vertical-align: top;
-    .icon:before {
-      height: 17px;
-      width: 17px;
-      background-color: #67777f;
-      content: "";
-      display: inline-block;
-    }
-    .open-and-close {
-      -webkit-mask-image: url("open_and_close.svg")
-    }
-    .new {
-      -webkit-mask-image: url("new.svg")
-    }
-    .list {
-      -webkit-mask-image: url("list.svg")
-    }
-    .delete {
-      -webkit-mask-image: url("delete.svg")
-    }
-    .comment {
-      -webkit-mask-image: url("comment.svg")
-    }
   }
   .label:hover {
     color: #111111;
-    .icon:before {
-      background-color: #111111;
-    }
   }
 }
 
