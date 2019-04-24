@@ -110,7 +110,7 @@ describe('utils', () => {
     })
   })
 
-  describe('edit', () => {
+  describe('scrollIntoView', () => {
     it('executes scrollIntoView()', () => {
       const _scrollIntoView = spy()
       const querySelector = spy(() => {
