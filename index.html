@@ -26,5 +26,10 @@
       }
     </script>
     <script src="dist/app.min.js?v=0319" defer></script>
+    <script defer>
+      window.requestIdleCallback(() => {
+        navigator.serviceWorker.register('serviceWorker.js')
+      })
+    </script>
   </body>
 </html>
