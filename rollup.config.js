@@ -13,8 +13,7 @@ export default {
   },
   plugins: [
     nodeResolve({
-      jsnext: true,
-      main: true
+      mainFields: ['module', 'main', 'jsnext:main']
     }),
     babel({
       sourceMap: true,
