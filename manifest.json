@@ -1,0 +1,16 @@
+{
+  "name": "Code and Comment",
+  "short_name": "Code and Comment",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff",
+  "theme_color": "#f1f7fe",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-const VERSION = '0319';
+const VERSION = '0320';
 
 
 self.addEventListener('install', (event) => {
