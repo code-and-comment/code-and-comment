@@ -7,7 +7,7 @@ self.addEventListener('install', (event) => {
       return cache.addAll([
         `/`,
         `dist/app.css?v=${VERSION}`,
-        `dist/app.js?v=${VERSION}`,
+        `dist/app.min.js?v=${VERSION}`,
         'dist/codeAndComments.min.js',
         'dist/repositories.min.js',
         'dist/arrow-forward.svg'
