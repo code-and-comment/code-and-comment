@@ -5,7 +5,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(VERSION).then((cache) => {
       return cache.addAll([
-        `/`,
+        './',
         `dist/app.css?v=${VERSION}`,
         `dist/app.min.js?v=${VERSION}`,
         'dist/codeAndComments.min.js',
