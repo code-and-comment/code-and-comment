@@ -8,8 +8,8 @@ self.addEventListener('install', (event) => {
         `/`,
         `dist/app.css?v=${VERSION}`,
         `dist/app.js?v=${VERSION}`,
-        `dist/codeAndComments.js`,
-        `dist/repositories.js`,
+        'dist/codeAndComments.min.js',
+        'dist/repositories.min.js',
         'dist/arrow-forward.svg'
       ])
     })
