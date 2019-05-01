@@ -107,7 +107,8 @@ export function getAllRecords(
   objectStore,
   indexName = 'updated_at',
   range,
-  direction = 'prev'
+  direction = 'prev',
+  withLines = false
 ) {
   const p = new Promise((resolve, reject) => {
     const index = objectStore.index(indexName)
@@ -116,7 +117,9 @@ export function getAllRecords(
     cursor.addEventListener('success', (event) => {
       const cursor = event.target.result
       if (cursor) {
-        delete cursor.value.lines
+        if (!withLines) {
+          delete cursor.value.lines
+        }
         records.push(cursor.value)
         cursor.continue()
       }

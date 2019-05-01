@@ -27,13 +27,15 @@ export async function search(
   getDB,
   getObjectStore,
   getAllRecords,
-  bound = IDBKeyRange.bound
+  bound = IDBKeyRange.bound,
+  direction = 'prev',
+  withLines = false
 ) {
   const indexName = getIndexName(conditions)
   const range = getRange(conditions, bound)
   const db = await getDB()
   const objectStore = await getObjectStore(db)
-  const codeAndComments = await getAllRecords(objectStore, indexName, range)
+  const codeAndComments = await getAllRecords(objectStore, indexName, range, direction, withLines)
   return codeAndComments
 }
 
