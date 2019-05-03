@@ -1,4 +1,4 @@
-const VERSION = '0320';
+const VERSION = '0321';
 
 
 self.addEventListener('install', (event) => {
@@ -10,7 +10,9 @@ self.addEventListener('install', (event) => {
         `dist/app.min.js?v=${VERSION}`,
         'dist/codeAndComments.min.js',
         'dist/repositories.min.js',
-        'dist/arrow-forward.svg'
+        'dist/arrow-forward.svg',
+        'https://fonts.googleapis.com/css?family=Roboto',
+        'https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu4mxK.woff2',
       ])
     })
   )
