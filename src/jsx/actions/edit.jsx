@@ -1,7 +1,6 @@
 import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
 
-
 import {
   addRecord as _addRecord,
   getDB as _getDB,
@@ -90,6 +89,24 @@ async function updateTitle(
     }
     return { title }
   }
+}
+
+
+async function exportData(
+  state,
+  event,
+  getDB = _getDB,
+  getObjectStore = _getObjectStore,
+  getAllRecords = _getAllRecords,
+  bound = window.IDBKeyRange.bound
+) {
+  event.stopPropagation()
+  const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound, 'prev', true)
+  const data = JSON.stringify(codeAndComments)
+  const elem = document.createElement('a')
+  elem.href = `data:text/plain;charset=utf-8,${data}`
+  elem.download = 'code-and-comment.json'
+  elem.click()
 }
 
 
@@ -327,6 +344,7 @@ export default function actions() {
     setCodeAndComments,
     changeCodeAndComment,
     setIsSelectorOpen,
-    clearErrors
+    clearErrors,
+    exportData
   }
 }

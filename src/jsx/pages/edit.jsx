@@ -58,6 +58,7 @@ class Edit extends Component {
     isSelectorOpen,
     setLoading,
     getFile,
+    exportData,
     clearErrors,
     networkError,
     urlError
@@ -83,6 +84,7 @@ class Edit extends Component {
             isSelectorOpen={ isSelectorOpen }
             setLoading={ setLoading }
             getFile={ getFile }
+            exportData={ exportData }
             clearErrors={ clearErrors }
             networkError={ networkError }
             urlError={ urlError }

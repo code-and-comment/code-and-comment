@@ -73,6 +73,7 @@ class MenuBar extends Component {
     toggleSelector,
     isSelectorOpen,
     networkError,
+    exportData,
     urlError
   }, {
     isCreating,
@@ -114,6 +115,7 @@ class MenuBar extends Component {
           <span className="label" onClick={ this.creating }>New</span>
           <span className="label" onClick={ searchCodeAndComment }>List</span>
           <span className="label" onClick={ searchComment }>Comments</span>
+          <span className="label" onClick={ exportData }>Export</span>
           { id && <span className="label" onClick={ this.deleting }>Delete</span> }
         </div>
       )
