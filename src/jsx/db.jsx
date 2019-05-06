@@ -54,6 +54,23 @@ export function getObjectStore(db) {
 }
 
 
+export function clearObjectStore(objectStore) {
+  const p = new Promise((resolve, reject) => {
+    const request = objectStore.clear()
+
+    request.addEventListener('success', () => {
+      resolve(true)
+    })
+
+    request.addEventListener('error', () => {
+      alert('objectStore clear error')
+      reject(false)
+    })
+  })
+  return p
+}
+
+
 function setEvent(request, resolve, reject) {
   request.addEventListener('success', (event) => {
     resolve(event)
