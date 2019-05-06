@@ -101,13 +101,22 @@ export function addRecord(objectStore, data) {
 }
 
 
-export function putRecord(objectStore, data) {
-  data.updated_at = new Date()
+export function putRecord(objectStore, data, updatedAt = true) {
+  if (updatedAt) {
+    data.updated_at = new Date()
+  }
   const p = new Promise((resolve, reject) => {
     const request = objectStore.put(data)
     setEvent(request, resolve, reject)
   })
   return p
+}
+
+
+export async function putRecords(objectStore, data) {
+  for (let d of data) {
+    await putRecord(objectStore, d, false)
+  }
 }
 
 
