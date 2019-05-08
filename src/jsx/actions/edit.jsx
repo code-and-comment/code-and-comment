@@ -102,7 +102,7 @@ async function exportData(
 ) {
   event.stopPropagation()
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound, 'prev', true)
-  const data = JSON.stringify(codeAndComments)
+  const data = encodeURIComponent(JSON.stringify(codeAndComments))
   const elem = document.createElement('a')
   elem.href = `data:text/plain;charset=utf-8,${data}`
   elem.download = 'code-and-comment.json'
