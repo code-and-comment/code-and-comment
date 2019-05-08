@@ -25,14 +25,16 @@
   }
 }
 
-.cc-menu-bar.creating {
-  height: 102px;
-  padding: 20px 0px 0px 36px;
+.cc-menu-bar.input {
   p {
     margin-top: 0px;
     margin-bottom: 6px;
   }
-  .url {
+  padding: 22px 0px 0px 36px;
+}
+
+.cc-menu-bar.creating {
+  input {
     width: 545px;
     border-radius: 3px 0px 0px 3px;
   }
@@ -43,6 +45,14 @@
   }
   .cc-button:last-child {
     border-radius: 0px 3px 3px 0px;
+  }
+  height: 104px;
+}
+
+.cc-menu-bar.importing {
+  height: 170px;
+  .input-file {
+    margin-bottom: 20px;
   }
 }
 
