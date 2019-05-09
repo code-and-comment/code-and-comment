@@ -8,6 +8,8 @@ import {
   getObjectStore as _getObjectStore,
   getAllRecords as _getAllRecords,
   putRecord as _putRecord,
+  putRecords as _putRecords,
+  clearObjectStore as _clearObjectStore,
   deleteRecord as _deleteRecord
 } from '../db.jsx'
 import {
@@ -22,6 +24,7 @@ import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
 } from '../worker.jsx'
+import { initialState } from '../store.jsx'
 
 
 async function updateComment(
@@ -107,6 +110,27 @@ async function exportData(
   elem.href = `data:text/plain;charset=utf-8,${data}`
   elem.download = 'code-and-comment.json'
   elem.click()
+}
+
+
+async function importData(
+  state,
+  data,
+  getDB = _getDB,
+  getObjectStore = _getObjectStore,
+  clearObjectStore = _clearObjectStore,
+  putRecords = _putRecords,
+  updateRepositories = _updateRepositories,
+  requestIdleCallback = window.requestIdleCallback
+) {
+  const db = await getDB()
+  const objectStore = await getObjectStore(db)
+  await clearObjectStore(objectStore)
+  await putRecords(objectStore, data)
+  requestIdleCallback(() => {
+    updateRepositories()
+  })
+  return initialState()
 }
 
 
@@ -345,6 +369,7 @@ export default function actions() {
     changeCodeAndComment,
     setIsSelectorOpen,
     clearErrors,
-    exportData
+    exportData,
+    importData
   }
 }

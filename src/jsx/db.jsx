@@ -115,6 +115,8 @@ export function putRecord(objectStore, data, updatedAt = true) {
 
 export async function putRecords(objectStore, data) {
   for (let d of data) {
+    d.created_at = new Date(d.created_at)
+    d.updated_at = new Date(d.updated_at)
     await putRecord(objectStore, d, false)
   }
 }

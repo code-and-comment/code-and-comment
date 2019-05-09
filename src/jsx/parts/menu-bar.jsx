@@ -19,6 +19,7 @@ class MenuBar extends Component {
     this.cancel = this.cancel.bind(this)
     this.create = this.create.bind(this)
     this.setUrl = this.setUrl.bind(this)
+    this.import = this.import.bind(this)
   }
 
   componentWillReceiveProps({ id }) {
@@ -27,7 +28,10 @@ class MenuBar extends Component {
     }
   }
 
-  shouldComponentUpdate({ id, loading, isSelectorOpen, networkError, urlError }, { isCreating, isDeleting, isImporting }) {
+  shouldComponentUpdate(
+    { id, loading, isSelectorOpen, networkError, urlError },
+    { isCreating, isDeleting, isImporting }
+  ) {
     return !(this.props.id === id
         && this.props.loading === loading
         && this.props.isSelectorOpen === isSelectorOpen
@@ -56,13 +60,18 @@ class MenuBar extends Component {
 
   import(event) {
     event.stopPropagation()
+    const file = document.getElementById('code-and-comment-input-file').files[0]
+    if (!file) {
+      return
+    }
+    this.cancel()
     const reader = new FileReader()
     reader.addEventListener('load',() => {
       // TODO add error process
       const data = JSON.parse(reader.result + '')
-      console.dir(data)
+      this.props.importData(data)
     })
-    reader.readAsText(event.target.files[0])
+    reader.readAsText(file)
   }
 
   cancel(event) {
@@ -138,9 +147,9 @@ class MenuBar extends Component {
           <p>Input a file of Code and Comment.</p>
           <div className="message">Existing data is removed.</div>
           <div className="input-file">
-            <input type="file" onChange={ this.import } />
+            <input id="code-and-comment-input-file" type="file" />
           </div>
-          <Button >Import</Button>
+          <Button onClick={ this.import }>Import</Button>
           { ' ' }
           <Button onClick={ this.cancel }>Cancel</Button>
         </div>
