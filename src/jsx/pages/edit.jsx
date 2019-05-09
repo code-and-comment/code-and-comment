@@ -59,6 +59,7 @@ class Edit extends Component {
     setLoading,
     getFile,
     exportData,
+    importData,
     clearErrors,
     networkError,
     urlError
@@ -85,6 +86,7 @@ class Edit extends Component {
             setLoading={ setLoading }
             getFile={ getFile }
             exportData={ exportData }
+            importData={ importData }
             clearErrors={ clearErrors }
             networkError={ networkError }
             urlError={ urlError }
