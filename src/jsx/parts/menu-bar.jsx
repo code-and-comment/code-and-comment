@@ -60,6 +60,7 @@ class MenuBar extends Component {
 
   import(event) {
     event.stopPropagation()
+    this.props.setLoading()
     const file = document.getElementById('code-and-comment-input-file').files[0]
     if (!file) {
       return

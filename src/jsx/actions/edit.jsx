@@ -127,6 +127,7 @@ async function importData(
   const objectStore = await getObjectStore(db)
   await clearObjectStore(objectStore)
   await putRecords(objectStore, data)
+  window.alert('Importing data is complete.')
   requestIdleCallback(() => {
     updateRepositories()
   })
