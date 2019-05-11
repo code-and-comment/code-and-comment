@@ -4,7 +4,7 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/edit.jsx'
 
 
-class RepositorySelector extends Component {
+export class RepositorySelector extends Component {
   constructor(props) {
     super(props)
     this.setCodeAndComments = this.setCodeAndComments.bind(this)
