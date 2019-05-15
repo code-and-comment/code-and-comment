@@ -13,7 +13,7 @@ export class RepositorySelector extends Component {
   shouldComponentUpdate({ repositories, searchRepository }) {
     return !(
       this.props.repositories === repositories
-      && this.props.selectedRepository === searchRepository)
+      && this.props.searchRepository === searchRepository)
   }
 
   setCodeAndComments(event) {
