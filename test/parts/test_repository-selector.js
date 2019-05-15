@@ -26,5 +26,14 @@ describe('parts/repository-selector', () => {
       repository.simulate('click')
       expect(setCodeAndComments.args[0][0]).to.equal('b')
     })
+
+    it('shouldComponentUpdate', () => {
+      const repositories = []
+      const searchRepository = 'foo'
+      const repositorySelector = new RepositorySelector({ repositories, searchRepository })
+      expect(repositorySelector.shouldComponentUpdate({ repositories, searchRepository })).to.be.false
+      expect(repositorySelector.shouldComponentUpdate({ repositories: [], searchRepository })).to.be.true
+      expect(repositorySelector.shouldComponentUpdate({ repositories, searchRepository: 'bar' })).to.be.true
+    })
   })
 })
