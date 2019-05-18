@@ -6,3 +6,8 @@ install:
 script:
     - npm run lint
     - npm run test
+after_success:
+    - npm run build:js
+    - npm run build:minify
+    - gzip dist/app.min.js
+    - sizereport --config
