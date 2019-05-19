@@ -97,18 +97,17 @@ async function updateTitle(
 
 async function exportData(
   state,
-  event,
+  fileName,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
   bound = window.IDBKeyRange.bound
 ) {
-  event.stopPropagation()
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound, 'prev', true)
   const data = encodeURIComponent(JSON.stringify(codeAndComments))
   const elem = document.createElement('a')
   elem.href = `data:text/plain;charset=utf-8,${data}`
-  elem.download = 'code-and-comment.json'
+  elem.download = fileName
   elem.click()
 }
 
