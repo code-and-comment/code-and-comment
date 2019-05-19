@@ -9,17 +9,22 @@ class MenuBar extends Component {
     super(props)
     this.state = {
       url: '',
+      exportFileName: 'code-and-comment.json',
       isDeleting: false,
       isCreating: false,
       isImporting: false,
+      isExporting: false,
     }
     this.creating = this.creating.bind(this)
     this.deleting = this.deleting.bind(this)
     this.importing = this.importing.bind(this)
+    this.exporting = this.exporting.bind(this)
     this.cancel = this.cancel.bind(this)
     this.create = this.create.bind(this)
     this.setUrl = this.setUrl.bind(this)
+    this.setExportFileName = this.setExportFileName.bind(this)
     this.import = this.import.bind(this)
+    this.export = this.export.bind(this)
   }
 
   componentWillReceiveProps({ id }) {
@@ -30,7 +35,7 @@ class MenuBar extends Component {
 
   shouldComponentUpdate(
     { id, loading, isSelectorOpen, networkError, urlError },
-    { isCreating, isDeleting, isImporting }
+    { isCreating, isDeleting, isExporting, isImporting }
   ) {
     return !(this.props.id === id
         && this.props.loading === loading
@@ -39,7 +44,8 @@ class MenuBar extends Component {
         && this.props.urlError === urlError
         && this.state.isCreating === isCreating
         && this.state.isDeleting === isDeleting
-        && this.state.isImporting === isImporting)
+        && this.state.isImporting === isImporting
+        && this.state.isExporting === isExporting)
   }
 
   deleting(event) {
@@ -56,6 +62,11 @@ class MenuBar extends Component {
   importing(event) {
     event.stopPropagation()
     this.setState({ isImporting: true })
+  }
+
+  exporting(event) {
+    event.stopPropagation()
+    this.setState({ isExporting: true })
   }
 
   import(event) {
@@ -75,6 +86,15 @@ class MenuBar extends Component {
     reader.readAsText(file)
   }
 
+  export(event) {
+    event.stopPropagation()
+    if (!this.state.exportFileName) {
+      return
+    }
+    this.cancel()
+    this.props.exportData(this.state.exportFileName)
+  }
+
   cancel(event) {
     if (event) {
       event.stopPropagation()
@@ -83,12 +103,17 @@ class MenuBar extends Component {
       url: '',
       isDeleting: false,
       isCreating: false,
+      isExporting: false,
       isImporting: false,
     })
   }
 
   setUrl(event) {
     this.setState({ url: event.target.value })
+  }
+
+  setExportFileName(event) {
+    this.setState({ exportFileName: event.target.value })
   }
 
   create(event) {
@@ -106,11 +131,12 @@ class MenuBar extends Component {
     toggleSelector,
     isSelectorOpen,
     networkError,
-    exportData,
     urlError
   }, {
+    exportFileName,
     isCreating,
     isDeleting,
+    isExporting,
     isImporting,
   }) {
     if (loading) {
@@ -133,12 +159,22 @@ class MenuBar extends Component {
     else if (isCreating) {
       return (
         <div className="cc-menu-bar input creating">
-          <p>Input the file url in Github.</p>
-          <input type="text" className="url" onChange={ this.setUrl }/>
+          <p>Input a file url in Github.</p>
+          <input type="text" onChange={ this.setUrl }/>
           <Button onClick={ this.create }>Create</Button>
           <Button onClick={ this.cancel }>Cancel</Button>
           { networkError && <div>The file data is not got.</div> }
           { urlError && <div>Url is invalid.</div> }
+        </div>
+      )
+    }
+    else if (isExporting) {
+      return (
+        <div className="cc-menu-bar input exporting">
+          <p>Input a file name.</p>
+          <input type="text" value={ exportFileName } onChange={ this.setExportFileName }/>
+          <Button onClick={ this.export }>Create</Button>
+          <Button onClick={ this.cancel }>Cancel</Button>
         </div>
       )
     }
@@ -163,7 +199,7 @@ class MenuBar extends Component {
           <span className="label" onClick={ this.creating }>New</span>
           <span className="label" onClick={ searchCodeAndComment }>List</span>
           <span className="label" onClick={ searchComment }>Comments</span>
-          <span className="label" onClick={ exportData }>Export</span>
+          <span className="label" onClick={ this.exporting }>Export</span>
           <span className="label" onClick={ this.importing }>Import</span>
           { id && <span className="label" onClick={ this.deleting }>Delete</span> }
         </div>
