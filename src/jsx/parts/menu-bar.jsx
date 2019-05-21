@@ -4,7 +4,7 @@ import Button from '../parts/button.jsx'
 import Loading from '../parts/loading.jsx'
 
 
-class MenuBar extends Component {
+export class MenuBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
