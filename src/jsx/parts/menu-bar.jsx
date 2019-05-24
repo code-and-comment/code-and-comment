@@ -173,7 +173,7 @@ export class MenuBar extends Component {
         <div className="cc-menu-bar input exporting">
           <p>Input a file name.</p>
           <input type="text" value={ exportFileName } onChange={ this.setExportFileName }/>
-          <Button onClick={ this.export }>Create</Button>
+          <Button onClick={ this.export }>Export</Button>
           <Button onClick={ this.cancel }>Cancel</Button>
         </div>
       )
