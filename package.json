@@ -2,7 +2,7 @@
   "name": "code-and-comment",
   "version": "0.3.23",
   "author": "38elements",
-  "description": "Code and Comment is the application to add the comments to a file in Github.",
+  "description": "PWA to add comment to Github file.",
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run build:minify",
     "build:dev": "webpack --config webpack.config.js",

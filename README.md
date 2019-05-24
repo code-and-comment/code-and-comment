@@ -1,6 +1,6 @@
 # Code and Comment
 
-`Code and Comment` is the application which add the comments to a file in Github.
+`Code and Comment` is PWA to add comment to Github file.
 
 ## Demo
 
