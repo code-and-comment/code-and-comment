@@ -5,6 +5,7 @@ import actions from '../actions/edit.jsx'
 import { scrollIntoView } from '../utils.jsx'
 import FileHeader from '../parts/file-header.jsx'
 import FileBody from '../parts/file-body.jsx'
+import Button from '../parts/button.jsx'
 import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
 import RepositorySelector from '../parts/repository-selector.jsx'
 import MenuBar from '../parts/menu-bar.jsx'
@@ -14,6 +15,7 @@ class Edit extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      hiddenSignal: false,
       highlightLineNumber: props.highlightLineNumber || 0
     }
     if (props.highlightLineNumber) {
@@ -22,6 +24,7 @@ class Edit extends Component {
       })
     }
     this.deleteOne = props.deleteOne.bind(null, props.id)
+    this.emitHiddenSignal = this.emitHiddenSignal.bind(this)
     this.toggleSelector = this.toggleSelector.bind(this)
     this.setHighlightLineNumber = this.setHighlightLineNumber.bind(this)
   }
@@ -33,6 +36,17 @@ class Edit extends Component {
         highlightLineNumber: 0
       })
     }
+  }
+
+  emitHiddenSignal() {
+    this.setState({
+      hiddenSignal: true
+    })
+    window.requestIdleCallback(() => {
+      this.setState({
+        hiddenSignal: false
+      })
+    })
   }
 
   toggleSelector() {
@@ -64,6 +78,7 @@ class Edit extends Component {
     networkError,
     urlError
   }, {
+    hiddenSignal,
     highlightLineNumber
   }) {
     const selectorClassName = isSelectorOpen ? 'selectors' : 'selectors display-none'
@@ -112,7 +127,9 @@ class Edit extends Component {
           { id && (
             <div className="body">
               <div>
-                ID: { id } { ' ' } <input type="text" className="title" value={ title } onChange={ updateTitle } />
+                ID: { id } { ' ' }
+                <input type="text" className="title" value={ title } onChange={ updateTitle } /> { ' ' }
+                <Button onClick={ this.emitHiddenSignal }>Hide</Button>
               </div>
               <FileHeader
                 path={ path }
@@ -124,6 +141,7 @@ class Edit extends Component {
                 comments={ comments }
                 updateComment={ updateComment }
                 editable={ true }
+                hiddenSignal={ hiddenSignal }
                 highlightLineNumber={ highlightLineNumber }
                 setHighlightLineNumber={ this.setHighlightLineNumber }
               />
