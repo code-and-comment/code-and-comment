@@ -160,11 +160,16 @@ class Line extends Component {
         && isHidden === false)
   }
 
-  componentWillReceiveProps({ id }) {
+  componentWillReceiveProps({ id, comment, hiddenSignal }) {
     if (this.props.id !== id) {
       this.setState({
         isEditing: false,
         isHidden: false
+      })
+    }
+    if (comment && hiddenSignal) {
+      this.setState({
+        isHidden: true
       })
     }
   }

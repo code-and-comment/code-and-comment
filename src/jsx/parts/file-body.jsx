@@ -9,6 +9,7 @@ function FileBody({
   comments,
   updateComment,
   editable,
+  hiddenSignal,
   highlightLineNumber,
   setHighlightLineNumber
 }) {
@@ -23,6 +24,7 @@ function FileBody({
           index={ index }
           updateComment={ updateComment }
           editable={ editable }
+          hiddenSignal={ hiddenSignal }
           isHighlight={ highlightLineNumber === (index + 1) }
           setHighlightLineNumber={ setHighlightLineNumber }
         />)
