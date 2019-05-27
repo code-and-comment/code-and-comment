@@ -1,6 +1,7 @@
 import { h } from 'preact'
 import { mount } from 'enzyme'
 import { expect } from 'chai'
+import { spy } from 'sinon'
 
 import { MenuBar } from '../../src/jsx/parts/menu-bar.jsx'
 
@@ -36,10 +37,12 @@ describe('parts/menu-bar', () => {
     })
 
     it('displays creating', () => {
-      const wrapper = mount(<MenuBar loading={ false } />)
-      wrapper.setState({
-        isCreating: true,
-      })
+      const clearErrors = spy()
+      const wrapper = mount(<MenuBar loading={ false } clearErrors={ clearErrors } />)
+      wrapper.find('.label').at(1).simulate('click')
+
+      expect(clearErrors.calledOnce).to.be.true
+      expect(wrapper.state().isCreating).to.be.true
       expect(wrapper.exists('.creating')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
     })
