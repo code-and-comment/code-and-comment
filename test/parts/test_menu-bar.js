@@ -19,12 +19,21 @@ describe('parts/menu-bar', () => {
     })
 
     it('do nothing at initial', () => {
-      const wrapper = mount(<MenuBar loading={ false } />)
+      const wrapper = mount(<MenuBar />)
+      wrapper.setProps({
+        isSelectorOpen: false,
+        loading: false,
+      })
       expect(wrapper.state().isDeleting).to.be.false
       expect(wrapper.state().isCreating).to.be.false
       expect(wrapper.state().isImporting).to.be.false
       expect(wrapper.state().isExporting).to.be.false
-      expect(wrapper.html()).to.equal('<div class="cc-menu-bar"><span class="label">Open</span><span class="label">New</span><span class="label">List</span><span class="label">Comments</span><span class="label">Export</span><span class="label">Import</span></div>')
+      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImport')
+      wrapper.setProps({
+        isSelectorOpen: true,
+        loading: false,
+      })
+      expect(wrapper.text()).to.equal('CloseNewListCommentsExportImport')
     })
 
     it('displays deleting', () => {
