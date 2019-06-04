@@ -120,7 +120,10 @@ class Edit extends Component {
                 https://github.com/developit/preact/blob/master/src/component.js<br />
                 <br />
                 Click the line. Add the comment by Markdown.<br />
-                When a line number is clicked, the comment is hidden.
+                When a line number is clicked, the comment is hidden.<br />
+                <br />
+                Link for a line<br />
+                #/r/:id/:line_number
               </div>
             </div>
           ) }
