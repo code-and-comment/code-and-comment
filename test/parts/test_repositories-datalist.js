@@ -6,9 +6,9 @@ import { RepositoriesDatalist } from '../../src/jsx/parts/repositories-datalist.
 
 describe('parts/repositories-datalist', () => {
   describe('<RepositoriesDatalist />', () => {
-    it('returns null when repositories is empty', () => {
+    it('returns "" when repositories is empty', () => {
       const wrapper = mount(<RepositoriesDatalist repositories={ [] } />)
-      expect(wrapper.html()).to.equal(null)
+      expect(wrapper.html()).to.equal('')
     })
 
     it('returns datalist', () => {
