@@ -29,18 +29,24 @@ describe('parts/menu-bar', () => {
       expect(wrapper.state().isImporting).to.be.false
       expect(wrapper.state().isExporting).to.be.false
       expect(wrapper.text()).to.equal('OpenNewListCommentsExportImport')
+
       wrapper.setProps({
         isSelectorOpen: true,
         loading: false,
       })
       expect(wrapper.text()).to.equal('CloseNewListCommentsExportImport')
+
+      wrapper.setProps({
+        id: 1,
+      })
+      expect(wrapper.text()).to.equal('CloseNewListCommentsExportImportDelete')
     })
 
     it('displays deleting', () => {
-      const wrapper = mount(<MenuBar loading={ false } />)
-      wrapper.setState({
-        isDeleting: true,
-      })
+      const wrapper = mount(<MenuBar id={ 1 }loading={ false } />)
+      wrapper.find('.label').at(6).simulate('click')
+
+      expect(wrapper.state().isDeleting).to.be.true
       expect(wrapper.exists('.deleting')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
     })
@@ -58,18 +64,18 @@ describe('parts/menu-bar', () => {
 
     it('displays importing', () => {
       const wrapper = mount(<MenuBar loading={ false } />)
-      wrapper.setState({
-        isImporting: true,
-      })
+      wrapper.find('.label').at(5).simulate('click')
+
+      expect(wrapper.state().isImporting).to.be.true
       expect(wrapper.exists('.importing')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
     })
 
     it('displays exporting', () => {
       const wrapper = mount(<MenuBar loading={ false } />)
-      wrapper.setState({
-        isExporting: true,
-      })
+      wrapper.find('.label').at(4).simulate('click')
+
+      expect(wrapper.state().isExporting).to.be.true
       expect(wrapper.exists('.exporting')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
     })
