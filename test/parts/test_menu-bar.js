@@ -51,6 +51,15 @@ describe('parts/menu-bar', () => {
       expect(wrapper.exists('.loading')).to.be.false
     })
 
+    it('cancels deleting', () => {
+      const wrapper = mount(<MenuBar isSelectorOpen={ false } id={ 1 } loading={ false } />)
+      wrapper.find('.label').at(6).simulate('click')
+      wrapper.find('.cc-button').at(1).simulate('click')
+
+      expect(wrapper.state().isDeleting).to.be.false
+      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
+    })
+
     it('displays creating', () => {
       const clearErrors = spy()
       const wrapper = mount(<MenuBar loading={ false } clearErrors={ clearErrors } />)
@@ -62,6 +71,15 @@ describe('parts/menu-bar', () => {
       expect(wrapper.exists('.loading')).to.be.false
     })
 
+    it('cancels creating', () => {
+      const wrapper = mount(<MenuBar isSelectorOpen={ false } id={ 1 } loading={ false } clearErrors={ () => {} } />)
+      wrapper.find('.label').at(1).simulate('click')
+      wrapper.find('.cc-button').at(1).simulate('click')
+
+      expect(wrapper.state().isCreating).to.be.false
+      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
+    })
+
     it('displays importing', () => {
       const wrapper = mount(<MenuBar loading={ false } />)
       wrapper.find('.label').at(5).simulate('click')
@@ -71,6 +89,15 @@ describe('parts/menu-bar', () => {
       expect(wrapper.exists('.loading')).to.be.false
     })
 
+    it('cancels importing', () => {
+      const wrapper = mount(<MenuBar isSelectorOpen={ false } id={ 1 } loading={ false } />)
+      wrapper.find('.label').at(5).simulate('click')
+      wrapper.find('.cc-button').at(1).simulate('click')
+
+      expect(wrapper.state().isImporting).to.be.false
+      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
+    })
+
     it('displays exporting', () => {
       const wrapper = mount(<MenuBar loading={ false } />)
       wrapper.find('.label').at(4).simulate('click')
@@ -78,6 +105,15 @@ describe('parts/menu-bar', () => {
       expect(wrapper.state().isExporting).to.be.true
       expect(wrapper.exists('.exporting')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
+    })
+
+    it('cancels exporting', () => {
+      const wrapper = mount(<MenuBar isSelectorOpen={ false } id={ 1 } loading={ false } />)
+      wrapper.find('.label').at(4).simulate('click')
+      wrapper.find('.cc-button').at(1).simulate('click')
+
+      expect(wrapper.state().isExporting).to.be.false
+      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
     })
   })
 })
