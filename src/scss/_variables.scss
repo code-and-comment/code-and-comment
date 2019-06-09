@@ -1,12 +1,14 @@
 $red: #cc2222;
+$comment-font-size: 12px;
+$comment-font-family: Roboto, sans-serif;
 $border: solid 1px rgba(24, 24, 24, 0.2);
 $repository-selector-width: 280px;
 $code-and-cooment-selector-width: 280px;
 
 
 .cc-display-markdown {
-  font-family: Roboto, sans-serif;
-  font-size: 14px;
+  font-family: $comment-font-family;
+  font-size: $comment-font-size;
   background-color: #fff;
   border: $border;
   line-height: initial;

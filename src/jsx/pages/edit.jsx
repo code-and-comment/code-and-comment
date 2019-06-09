@@ -146,7 +146,6 @@ class Edit extends Component {
                 editable={ true }
                 hiddenSignal={ hiddenSignal }
                 highlightLineNumber={ highlightLineNumber }
-                setHighlightLineNumber={ this.setHighlightLineNumber }
               />
             </div>
           ) }

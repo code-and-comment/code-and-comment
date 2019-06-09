@@ -1,7 +1,6 @@
 import { h, Component } from 'preact'
 
 import markdown from '../markdown.jsx'
-import CommentList from './comment-list.jsx'
 import Button from './button.jsx'
 
 
@@ -96,18 +95,17 @@ class Comment extends Component {
     window.navigator.clipboard.writeText(link)
   }
 
-  render({ isEditing, setHighlightLineNumber }, { comment, isPreview }) {
+  render({ isEditing }, { comment, isPreview }) {
     if (comment && !isEditing) {
       return (
         <div className="comment">
           <div className="display-markdown" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
-          <CommentList handler={ setHighlightLineNumber } />
         </div>
       )
     }
     else if (isEditing) {
       return (
-        <div className="comment">
+        <div className="comment editing">
           <div className="input">
             <div className="tab-navigator">
               <div className="tabs">
@@ -203,7 +201,7 @@ class Line extends Component {
     })
   }
 
-  render({ id, index, code, comment, editable, isHighlight, setHighlightLineNumber }, { isEditing, isHidden }) {
+  render({ id, index, code, comment, editable, isHighlight }, { isEditing, isHidden }) {
     const className = isHighlight ? 'cc-line cc-highlight' : 'cc-line'
     const lineNumber = index + 1
     return (
@@ -224,7 +222,6 @@ class Line extends Component {
           cancel={ this.cancel }
           save={ this.save }
           delete={ this.delete }
-          setHighlightLineNumber={ setHighlightLineNumber }
         /> }
       </div>
     )

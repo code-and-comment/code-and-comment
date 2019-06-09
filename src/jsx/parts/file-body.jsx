@@ -11,7 +11,6 @@ function FileBody({
   editable,
   hiddenSignal,
   highlightLineNumber,
-  setHighlightLineNumber
 }) {
   return (
     <div className="cc-file-body">
@@ -26,7 +25,6 @@ function FileBody({
           editable={ editable }
           hiddenSignal={ hiddenSignal }
           isHighlight={ highlightLineNumber === (index + 1) }
-          setHighlightLineNumber={ setHighlightLineNumber }
         />)
       }
       ) }
