@@ -32,14 +32,17 @@
   }
 
   .comment {
-    font-family: Roboto, sans-serif;
-    padding: 12px 48px;
-    border-left: none;
-    border-top: $border;
-    border-bottom: $border;
-    border-right: $border;
-    background-color: #e8e8e8;
+    font-family: $comment-font-family;
+    padding: 0px 32px;
     width: 900px;
+    &.editing {
+      background-color: #e8e8e8;
+      padding: 12px 32px;
+      border-left: none;
+      border-top: $border;
+      border-bottom: $border;
+      border-right: $border;
+    }
     .tab-navigator {
       border-bottom: $border;
       .tabs {
@@ -62,11 +65,13 @@
     }
     .display-markdown {
       @extend .cc-display-markdown;
+      border: none!important;
+      padding-left: 9px!important;
     }
     .input {
       textarea {
         font-family: Roboto, sans-serif;
-        font-size: 14px;
+        font-size: $comment-font-size;
         background-color: #fff;
         width: 803px;
         resize: vertical;
