@@ -132,7 +132,7 @@ class Edit extends Component {
               <div>
                 ID: { id } { ' ' }
                 <input type="text" className="title" value={ title } onChange={ updateTitle } /> { ' ' }
-                <Button onClick={ this.emitHiddenSignal }>Hide</Button>
+                <Button onClick={ this.emitHiddenSignal }>Hide all comments</Button>
               </div>
               <FileHeader
                 path={ path }
