@@ -23,7 +23,7 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
-    "css-loader": "^2.1.1",
+    "css-loader": "^3.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-preact-pure": "^1.13.3",
     "eslint": "^5.14.1",
@@ -40,9 +40,9 @@
     "sass-loader": "^7.1.0",
     "sinon": "^7.2.2",
     "source-map-loader": "^0.2.4",
-    "terser": "^3.14.1",
+    "terser": "^4.0.0",
     "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.4"
   },
   "dependencies": {
     "history": "^4.9.0",
