@@ -7,6 +7,8 @@ import { MenuBar } from '../../src/jsx/parts/menu-bar.jsx'
 
 describe('parts/menu-bar', () => {
   describe('<MenuBar />', () => {
+    const LABELS = 'OpenNewListCommentsExportImportDelete'
+
     it('displays loading', () => {
       const wrapper = mount(<MenuBar loading={ true } />)
       wrapper.setState({
@@ -57,7 +59,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.cc-button').at(1).simulate('click')
 
       expect(wrapper.state().isDeleting).to.be.false
-      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
+      expect(wrapper.text()).to.equal(LABELS)
     })
 
     it('displays creating', () => {
@@ -77,7 +79,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.cc-button').at(1).simulate('click')
 
       expect(wrapper.state().isCreating).to.be.false
-      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
+      expect(wrapper.text()).to.equal(LABELS)
     })
 
     it('displays importing', () => {
@@ -95,7 +97,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.cc-button').at(1).simulate('click')
 
       expect(wrapper.state().isImporting).to.be.false
-      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
+      expect(wrapper.text()).to.equal(LABELS)
     })
 
     it('displays exporting', () => {
@@ -105,6 +107,12 @@ describe('parts/menu-bar', () => {
       expect(wrapper.state().isExporting).to.be.true
       expect(wrapper.exists('.exporting')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
+
+      expect(wrapper.find('input').at(0).instance().value).to.equal('code-and-comment.json')
+      const value = 'foo.json'
+      wrapper.find('input').at(0).instance().value = value
+      wrapper.find('input').at(0).simulate('change')
+      expect(wrapper.state().exportFileName).to.equal(value)
     })
 
     it('cancels exporting', () => {
@@ -113,7 +121,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.cc-button').at(1).simulate('click')
 
       expect(wrapper.state().isExporting).to.be.false
-      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportDelete')
+      expect(wrapper.text()).to.equal(LABELS)
     })
   })
 })
