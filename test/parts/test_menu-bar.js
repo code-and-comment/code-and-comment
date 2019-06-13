@@ -71,6 +71,13 @@ describe('parts/menu-bar', () => {
       expect(wrapper.state().isCreating).to.be.true
       expect(wrapper.exists('.creating')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
+
+      const input = wrapper.find('input').at(0).instance()
+      expect(input.value).to.equal('')
+      const url = 'https://github.com/code-and-comment/code-and-comment/blob/master/src/jsx/index.jsx'
+      input.value = url
+      wrapper.find('input').at(0).simulate('change')
+      expect(wrapper.state().url).to.equal(url)
     })
 
     it('cancels creating', () => {
@@ -108,9 +115,10 @@ describe('parts/menu-bar', () => {
       expect(wrapper.exists('.exporting')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
 
-      expect(wrapper.find('input').at(0).instance().value).to.equal('code-and-comment.json')
+      const input = wrapper.find('input').at(0).instance()
+      expect(input.value).to.equal('code-and-comment.json')
       const value = 'foo.json'
-      wrapper.find('input').at(0).instance().value = value
+      input.value = value
       wrapper.find('input').at(0).simulate('change')
       expect(wrapper.state().exportFileName).to.equal(value)
     })
