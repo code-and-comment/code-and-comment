@@ -16,6 +16,7 @@ export function CommentList({ comments, lines, handler }) {
   function onChange(event) {
     handler(event)
     _onChange(event)
+    event.target.blur()
   }
   return (
     <select className="cc-comment-list" onChange={ onChange }>
