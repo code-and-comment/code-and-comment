@@ -122,8 +122,16 @@ class Edit extends Component {
                 Click the line. Add the comment by Markdown.<br />
                 When a line number is clicked, the comment is hidden.<br />
                 <br />
+                <br />
                 Link for a line<br />
-                #/r/:id/:line_number
+                #/r/:id/:line_number<br />
+                <br />
+                <br />
+                Keyboard shortcuts<br />
+                <br />
+                On code<br />
+                <kbd>m</kbd>: marking to line<br />
+                <kbd>g</kbd>: scrolling to marked line
               </div>
             </div>
           ) }

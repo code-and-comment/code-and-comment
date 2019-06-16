@@ -29,6 +29,13 @@ https://github.com/developit/preact/blob/master/src/component.js
 
 `#/r/:id/:line_number`
 
+### Keyboard shortcuts
+
+#### On code
+
+* <kbd>m</kbd>: marking to line
+* <kbd>g</kbd>: scrolling to marked line
+
 ## Support
 
 * Chrome@73+

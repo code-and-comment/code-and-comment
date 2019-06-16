@@ -4,31 +4,63 @@ import markdown from '../markdown.jsx'
 import Button from './button.jsx'
 
 
-function Code({
-  lineNumber,
-  content,
-  edit,
-  editable,
-  isHidden,
-  toggleHidden
-}) {
-  const numberClassName = isHidden ? 'number hidden' : 'number'
-  return (
-    <div
-      className="code"
-      onClick={ editable ? edit : null }
-    >
-      <span
-        className={ numberClassName }
-        onClick={ toggleHidden }
+class Code extends Component {
+  constructor(props) {
+    super(props)
+    this.keydownHandler = this.keydownHandler.bind(this)
+  }
+
+  keydownHandler(event) {
+    event.stopPropagation()
+    if (event.keyCode === 71) {
+      this.props.scrollToMarkedLineNumber()
+    }
+    else if (event.keyCode === 77) {
+      this.props.setMarkedLineNumber(event)
+    }
+  }
+
+  mouseoverHandler(event) {
+    event.stopPropagation()
+    event.currentTarget.focus()
+  }
+
+  mouseoutHandler(event) {
+    event.stopPropagation()
+    event.currentTarget.blur()
+  }
+
+  render({
+    lineNumber,
+    content,
+    edit,
+    editable,
+    isHidden,
+    toggleHidden
+  }) {
+    const numberClassName = isHidden ? 'number hidden' : 'number'
+    return (
+      <div
+        tabIndex={ lineNumber }
+        data-line-number={ lineNumber }
+        className="code"
+        onClick={ editable ? edit : null }
+        onKeydown={ this.keydownHandler }
+        onMouseover={ this.mouseoverHandler }
+        onMouseout={ this.mouseoutHandler }
       >
-        { lineNumber }
-      </span>
-      <span className="content">
-        { content }
-      </span>
-    </div>
-  )
+        <span
+          className={ numberClassName }
+          onClick={ toggleHidden }
+        >
+          { lineNumber }
+        </span>
+        <span className="content">
+          { content }
+        </span>
+      </div>
+    )
+  }
 }
 
 
@@ -146,12 +178,13 @@ class Line extends Component {
     this.toggleHidden = this.toggleHidden.bind(this)
   }
 
-  shouldComponentUpdate({ id, index, code, comment, isHighlight }, { isEditing, isHidden }) {
+  shouldComponentUpdate({ id, index, code, comment, isHighlight, isMarked }, { isEditing, isHidden }) {
     return !(this.props.id === id
         && this.props.index === index
         && this.props.code === code
         && this.props.comment === comment
         && this.props.isHighlight === isHighlight
+        && this.props.isMarked === isMarked
         && this.state.isEditing === isEditing
         && isEditing === false
         && this.state.isHidden === isHidden
@@ -201,8 +234,28 @@ class Line extends Component {
     })
   }
 
-  render({ id, index, code, comment, editable, isHighlight }, { isEditing, isHidden }) {
-    const className = isHighlight ? 'cc-line cc-highlight' : 'cc-line'
+  render({
+    id,
+    index,
+    code,
+    comment,
+    editable,
+    isHighlight,
+    isMarked,
+    setMarkedLineNumber,
+    scrollToMarkedLineNumber,
+  },
+  {
+    isEditing,
+    isHidden
+  }) {
+    let className = 'cc-line'
+    if (isMarked) {
+      className += ' cc-marked'
+    }
+    else if (isHighlight) {
+      className += ' cc-highlight'
+    }
     const lineNumber = index + 1
     return (
       <div className={ className }>
@@ -213,6 +266,8 @@ class Line extends Component {
           editable={ editable }
           isHidden={ isHidden }
           toggleHidden={ comment && this.toggleHidden }
+          setMarkedLineNumber={ setMarkedLineNumber }
+          scrollToMarkedLineNumber={ scrollToMarkedLineNumber }
         />
         { !isHidden && <Comment
           id={ id }
