@@ -4,6 +4,10 @@
   background-color: rgba(220, 220, 55, 0.1);
 }
 
+.cc-marked {
+  background-color: rgba(88, 244, 155, 0.2);
+}
+
 .cc-line {
   font-family: Consolas, SFMono-Regular, Menlo, "Roboto Mono", monospace;
   font-size: 12px;
@@ -28,6 +32,9 @@
       white-space: pre;
       display: inline-block;
       padding-left: 9px;
+    }
+    &:hover {
+      outline: none;
     }
   }
 
