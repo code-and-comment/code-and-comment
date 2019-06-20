@@ -40,7 +40,7 @@ class Code extends Component {
       <div
         tabIndex={ lineNumber }
         data-line-number={ lineNumber }
-        className="code"
+        className="cc-code"
         onClick={ editable ? edit : null }
         onKeydown={ this.keydownHandler }
         onMouseover={ this.mouseoverHandler }
