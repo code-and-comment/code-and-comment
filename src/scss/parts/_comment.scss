@@ -1,0 +1,64 @@
+@import '../variables';
+
+
+.cc-comment {
+  font-family: $comment-font-family;
+  padding: 0px 32px;
+  width: 900px;
+  &.editing {
+    background-color: #e8e8e8;
+    padding: 12px 32px;
+    border-left: none;
+    border-top: $border;
+    border-bottom: $border;
+    border-right: $border;
+  }
+  .tab-navigator {
+    border-bottom: $border;
+    .tabs {
+      margin-bottom: -2px;
+      .tab {
+        cursor: pointer;
+        user-select: none;
+        border: solid 1px transparent;
+        border-radius: 3px 3px 0px 0px;
+        padding: 7px 12px 3px 12px;
+        font-size: 14px;
+        display: inline-block;
+      }
+      .selected {
+        border: $border;
+        border-bottom: 0px;
+        background-color: #ffffff;
+      }
+    }
+  }
+  .display-markdown {
+    @extend .cc-display-markdown;
+    border: none!important;
+    padding-left: 9px!important;
+  }
+  .input {
+    textarea {
+      font-family: Roboto, sans-serif;
+      font-size: $comment-font-size;
+      background-color: #fff;
+      width: 835px;
+      resize: vertical;
+      height: 144px;
+      padding: 8px;
+      border: $border;
+      border-top: 0px;
+      &:focus {
+        outline: none;
+      }
+    }
+    .display-markdown {
+      border: $border!important;
+      border-top: 0px!important;
+    }
+  }
+  > .controls {
+    padding-top: 6px;
+  }
+}
