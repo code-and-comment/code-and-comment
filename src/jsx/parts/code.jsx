@@ -9,9 +9,11 @@ class Code extends Component {
 
   keydownHandler(event) {
     event.stopPropagation()
+    // g
     if (event.keyCode === 71) {
       this.props.scrollToMarkedLineNumber()
     }
+    // m
     else if (event.keyCode === 77) {
       this.props.setMarkedLineNumber(event)
     }
