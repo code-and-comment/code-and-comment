@@ -7,6 +7,11 @@ import Code from '../../src/jsx/parts/code.jsx'
 
 describe('parts/code', () => {
   describe('<Code />', () => {
+    it('displays code', () => {
+      const wrapper = mount(<Code lineNumber={ 1 } content={ 'a' } isHidden={ false }/>)
+      expect(wrapper.html()).to.equal('<div class="cc-code" data-line-number="1" tabindex="1"><span class="number">1</span><span class="content">a</span></div>')
+    })
+
     it('is focused when it is mouseovered', () => {
       const wrapper = mount(<Code />)
       const code = wrapper.find('.cc-code').at(0)
