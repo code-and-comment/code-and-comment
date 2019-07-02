@@ -27,5 +27,10 @@ describe('parts/code', () => {
       code.simulate('mouseout')
       expect(code.getDOMNode().blur.calledOnce).to.be.true
     })
+
+    it('is hidden when isHidden is true', () => {
+      const wrapper = mount(<Code isHidden={ true } />)
+      expect(wrapper.exists('.number.hidden')).to.be.true
+    })
   })
 })
