@@ -237,6 +237,8 @@ async function setCodeAndComments(
 }
 
 
+// Set Code and Comment record for editing.
+// This is used by CodeAndCommentSelector.
 async function changeCodeAndComment(
   state,
   id,
