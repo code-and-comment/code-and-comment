@@ -46,5 +46,19 @@ describe('parts/code', () => {
       wrapper.find('.cc-code').at(0).simulate('keydown', { keyCode: 77 })
       expect(setMarkedLineNumber.calledOnce).to.be.true
     })
+
+    it('executes edit() when editable is true', () => {
+      const edit = spy()
+      const wrapper = mount(<Code edit={ edit } editable={ true }/>)
+      wrapper.find('.cc-code').at(0).simulate('click')
+      expect(edit.calledOnce).to.be.true
+    })
+
+    it('does not execute edit() when editable is false', () => {
+      const edit = spy()
+      const wrapper = mount(<Code edit={ edit } editable={ false }/>)
+      wrapper.find('.cc-code').at(0).simulate('click')
+      expect(edit.notCalled).to.be.true
+    })
   })
 })
