@@ -9,7 +9,7 @@ describe('parts/code', () => {
   describe('<Code />', () => {
     it('displays code', () => {
       const wrapper = mount(<Code lineNumber={ 1 } content={ 'a' } isHidden={ false }/>)
-      expect(wrapper.html()).to.equal('<div class="cc-code" data-line-number="1" tabindex="1"><span class="number">1</span><span class="content">a</span></div>')
+      expect(wrapper.html()).to.equal('<div tabindex="1" data-line-number="1" class="cc-code"><span class="number">1</span><span class="content">a</span></div>')
     })
 
     it('is focused when it is mouseovered', () => {

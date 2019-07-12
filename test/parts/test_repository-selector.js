@@ -10,8 +10,7 @@ describe('parts/repository-selector', () => {
     it('displays repositories', () => {
       const setCodeAndComments = function() {}
       let wrapper = mount(<RepositorySelector repositories={ ['a', 'b'] } searchRepository={ 'b' } setCodeAndComments={ setCodeAndComments } />)
-      let html = '<div class="cc-repository-selector"><div class="application-name">Code and Comment</div>'
-      + '<div class="repository" data-repository="a">a</div><div class="repository selected" data-repository="b">b</div></div>'
+      let html = '<div class="cc-repository-selector"><div class="application-name">Code and Comment</div><div data-repository="a" class="repository">a</div><div data-repository="b" class="repository selected">b</div></div>'
       expect(wrapper.html()).to.equal(html)
 
       wrapper = mount(<RepositorySelector repositories={ [] } searchRepository={ 'b' } setCodeAndComments={ setCodeAndComments } />)
