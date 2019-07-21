@@ -8,7 +8,7 @@ export default {
     format: 'iife',
     file: 'dist/app.js',
     name: 'app',
-    sourcemap: true,
+    sourcemap: false,
     strict: true
   },
   plugins: [
@@ -16,7 +16,7 @@ export default {
       mainFields: ['module', 'main', 'jsnext:main']
     }),
     babel({
-      sourceMap: true,
+      sourceMap: false,
       exclude: 'node_modules/**',
       babelrc: false,
       plugins: [
