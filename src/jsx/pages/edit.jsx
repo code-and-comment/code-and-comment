@@ -1,14 +1,14 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/edit.jsx'
-import { scrollIntoView } from '../utils.jsx'
-import FileHeader from '../parts/file-header.jsx'
-import FileBody from '../parts/file-body.jsx'
-import Button from '../parts/button.jsx'
-import CodeAndCommentSelector from '../parts/code-and-comment-selector.jsx'
-import RepositorySelector from '../parts/repository-selector.jsx'
-import MenuBar from '../parts/menu-bar.jsx'
+import actions from '../actions/edit'
+import { scrollIntoView } from '../utils'
+import FileHeader from '../parts/file-header'
+import FileBody from '../parts/file-body'
+import Button from '../parts/button'
+import CodeAndCommentSelector from '../parts/code-and-comment-selector'
+import RepositorySelector from '../parts/repository-selector'
+import MenuBar from '../parts/menu-bar'
 
 
 class Edit extends Component {

@@ -1,11 +1,11 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/search-code-and-comment.jsx'
-import Navigator from '../parts/navigator.jsx'
-import CommentCard from '../parts/comment-card.jsx'
-import Button from '../parts/button.jsx'
-import RepositoriesDatalist from '../parts/repositories-datalist.jsx'
+import actions from '../actions/search-code-and-comment'
+import Navigator from '../parts/navigator'
+import CommentCard from '../parts/comment-card'
+import Button from '../parts/button'
+import RepositoriesDatalist from '../parts/repositories-datalist'
 
 
 class Search extends Component {

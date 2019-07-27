@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { mount } from 'enzyme'
 import { expect } from 'chai'
 
-import { RepositoriesDatalist } from '../../src/jsx/parts/repositories-datalist.jsx'
+import { RepositoriesDatalist } from '../../src/jsx/parts/repositories-datalist'
 
 describe('parts/repositories-datalist', () => {
   describe('<RepositoriesDatalist />', () => {

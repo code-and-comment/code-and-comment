@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
-import Button from '../parts/button.jsx'
-import Loading from '../parts/loading.jsx'
+import Button from '../parts/button'
+import Loading from '../parts/loading'
 
 
 export class MenuBar extends Component {

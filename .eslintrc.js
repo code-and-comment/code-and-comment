@@ -1,5 +1,5 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   globals: {
     global: true,
   },
@@ -8,8 +8,8 @@ module.exports = {
     es6: true,
     mocha: true
   },
-  plugins: ['react'],
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  plugins: ['@typescript-eslint', 'react'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:@typescript-eslint/eslint-recommended'],
   parserOptions: {
     ecmaFeatures: {
       'jsx': true
@@ -24,6 +24,8 @@ module.exports = {
     },
   },
   rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
     'max-len': [
       "error", {
         'code': 120,
