@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { mount } from 'enzyme'
 import { expect } from 'chai'
 
-import Header from '../../src/jsx/parts/header.jsx'
+import Header from '../../src/jsx/parts/header'
 
 describe('parts/header', () => {
   describe('<Header />', () => {

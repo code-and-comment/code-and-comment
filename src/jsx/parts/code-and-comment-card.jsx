@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import Button from './button.jsx'
+import Button from './button'
 
 
 class CodeAndCommentCard extends Component {

@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { spy } from 'sinon'
 import { Base64 } from 'js-base64'
 
-import actions from '../../src/jsx/actions/edit.jsx'
+import actions from '../../src/jsx/actions/edit'
 
 
 describe('actions/edit', () => {

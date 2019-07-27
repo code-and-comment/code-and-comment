@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
-import markdown from '../markdown.jsx'
-import Button from './button.jsx'
+import markdown from '../markdown'
+import Button from './button'
 
 
 class CommentCard extends Component {

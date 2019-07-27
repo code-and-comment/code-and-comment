@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -15,21 +16,27 @@ module.exports = {
     index: './src/scss/index.scss',
   },
   devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /(\.jsx?$|\.tsx?$)/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             babelrc: false,
             sourceMap: true,
+            presets: [
+              ['@babel/preset-typescript', { isTSX: true, allExtensions: true, jsxPragma: 'h' }]
+            ],
             plugins: [
-              ['@babel/plugin-transform-react-jsx', {'pragma': 'h'}],
+              ['@babel/plugin-transform-react-jsx', {pragma: 'h', pragmaFrag: 'Fragment',}],
             ]
           }
-        }
+        },
       },
       {
         test: /\.scss$/,
@@ -40,7 +47,7 @@ module.exports = {
         ] 
       },
       {
-        test: /(\.mjs$|\.js$)/,
+        test: /(\.mjs$|\.js$|\.ts$)/,
         use: ['source-map-loader'],
         enforce: 'pre'
       }
@@ -50,6 +57,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'app.css',
     }),
+    new ForkTsCheckerWebpackPlugin()
   ],
   output: {
     filename: '[name].js',

@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import { expect } from 'chai'
 import { spy } from 'sinon'
 
-import { MenuBar } from '../../src/jsx/parts/menu-bar.jsx'
+import { MenuBar } from '../../src/jsx/parts/menu-bar'
 
 describe('parts/menu-bar', () => {
   describe('<MenuBar />', () => {

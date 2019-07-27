@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-import Button from './button.jsx'
+import Button from './button'
 
 
 function Navigator({

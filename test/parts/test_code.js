@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import { expect } from 'chai'
 import { spy } from 'sinon'
 
-import Code from '../../src/jsx/parts/code.jsx'
+import Code from '../../src/jsx/parts/code'
 
 describe('parts/code', () => {
   describe('<Code />', () => {
