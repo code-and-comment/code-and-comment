@@ -1,4 +1,4 @@
-import { initialState } from './store.jsx'
+import { initialState } from './store'
 
 
 export function getIndexName(conditions) {

@@ -4,7 +4,7 @@ import { createHashHistory } from 'history'
 import { Provider } from 'unistore/preact'
 import { route } from 'preact-router'
 
-import store from './store.jsx'
+import store from './store'
 import {
   setRepositoriesWorker,
   setCodeAndCommentsWorker,

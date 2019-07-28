@@ -24,7 +24,7 @@ import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
 } from '../worker.jsx'
-import { initialState } from '../store.jsx'
+import { initialState } from '../store'
 
 
 async function updateComment(
@@ -225,6 +225,8 @@ async function deleteOne(
 }
 
 
+// Select repository for displaying Code and Comment list in CodeAndCommentSelector.
+// This is used by RepositorySelector.
 async function setCodeAndComments(
   state,
   repository,
