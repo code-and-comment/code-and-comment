@@ -1,5 +1,17 @@
 import createStore from 'unistore'
 
+
+export type CodeAndComment = {
+  id: number,
+  comments: Record<string, string>,
+  git: string,
+  repository: string,
+  path: string,
+  title: string,
+  updated_at: Date
+}
+
+
 export type State = {
   id: number | null,
   highlightLineNumber: number,
@@ -12,11 +24,12 @@ export type State = {
   networkError: boolean,
   urlError: boolean,
   // TODO
-  codeAndComments: object[],
+  codeAndComments: CodeAndComment[],
   searchRepository: string,
   repositories: string[],
   isSelectorOpen?: boolean
 }
+
 
 export function initialState(): State {
   return {
@@ -36,6 +49,7 @@ export function initialState(): State {
     repositories: []
   }
 }
+
 
 const state = initialState()
 state.isSelectorOpen = true
