@@ -2,32 +2,32 @@ import createStore from 'unistore'
 
 
 export type CodeAndComment = {
-  id: number,
-  comments: Record<string, string>,
-  git: string,
-  repository: string,
-  path: string,
-  title: string,
-  updated_at: Date
+  id: number;
+  comments: Record<string, string>;
+  git: string;
+  repository: string;
+  path: string;
+  title: string;
+  updated_at: Date;
 }
 
 
 export type State = {
-  id: number | null,
-  highlightLineNumber: number,
-  title: string,
-  lines: string[],
-  git: string,
-  path: string,
-  comments: Record<string, string>,
-  loading: boolean,
-  networkError: boolean,
-  urlError: boolean,
+  id: number | null;
+  highlightLineNumber: number;
+  title: string;
+  lines: string[];
+  git: string;
+  path: string;
+  comments: Record<string, string>;
+  loading: boolean;
+  networkError: boolean;
+  urlError: boolean;
   // TODO
-  codeAndComments: CodeAndComment[],
-  searchRepository: string,
-  repositories: string[],
-  isSelectorOpen?: boolean
+  codeAndComments: CodeAndComment[];
+  searchRepository: string;
+  repositories: string[];
+  isSelectorOpen?: boolean;
 }
 
 

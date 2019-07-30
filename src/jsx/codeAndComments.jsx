@@ -3,7 +3,7 @@ import {
   getObjectStore,
   getAllRecords
 } from './db.jsx'
-import { search } from './utils.jsx'
+import { search } from './utils'
 
 
 self.addEventListener('message', async function(event) {

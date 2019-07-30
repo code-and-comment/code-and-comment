@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { connect } from 'unistore/preact'
 
-import { scrollIntoView } from '../utils.jsx'
+import { scrollIntoView } from '../utils'
 
 
 export function _onChange(event) {
