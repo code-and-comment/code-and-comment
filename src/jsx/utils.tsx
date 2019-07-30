@@ -1,7 +1,12 @@
-import { initialState } from './store'
+import { initialState, State, CodeAndComment } from './store'
 
 
-export function getIndexName(conditions) {
+export type Conditions = {
+  repository?: string;
+}
+
+
+export function getIndexName(conditions: Conditions) {
   let { repository } = conditions
   repository = repository && repository.trim()
   if (repository) {
@@ -13,7 +18,7 @@ export function getIndexName(conditions) {
 }
 
 
-export function getRange(conditions, bound) {
+export function getRange(conditions: Conditions, bound: typeof IDBKeyRange.bound) {
   let { repository } = conditions
   repository = repository && repository.trim()
   if (repository) {
@@ -23,13 +28,13 @@ export function getRange(conditions, bound) {
 
 
 export async function search(
-  conditions,
+  conditions: Conditions,
   getDB,
   getObjectStore,
   getAllRecords,
-  bound = IDBKeyRange.bound,
-  direction = 'prev',
-  withLines = false
+  bound: typeof IDBKeyRange.bound  = IDBKeyRange.bound,
+  direction: string = 'prev',
+  withLines: boolean  = false
 ) {
   const indexName = getIndexName(conditions)
   const range = getRange(conditions, bound)
@@ -41,13 +46,13 @@ export async function search(
 
 
 export async function transfer(
-  path,
+  path: string,
   route,
   getDB,
   getObjectStore,
   getAllRecords,
   setTimeout,
-  bound
+  bound: typeof IDBKeyRange.bound
 ) {
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound)
   setTimeout(() => {
@@ -57,7 +62,7 @@ export async function transfer(
 }
 
 
-export function getRepository(path) {
+export function getRepository(path: string) {
   if (!path) {
     return ''
   }
@@ -67,7 +72,7 @@ export function getRepository(path) {
 
 
 export async function saveCodeAndComment(
-  state,
+  state: State,
   getDB,
   getObjectStore,
   addRecord
@@ -89,7 +94,7 @@ export async function saveCodeAndComment(
 
 
 export async function updateCodeAndComment(
-  state,
+  state: State,
   getDB,
   getObjectStore,
   putRecord
@@ -110,14 +115,14 @@ export async function updateCodeAndComment(
 }
 
 
-export async function deleteOne(id, getDB, getObjectStore, deleteRecord) {
+export async function deleteOne(id: number, getDB, getObjectStore, deleteRecord) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   await deleteRecord(objectStore, id)
 }
 
 
-export function getStateAfterDeleting(state, codeAndComments) {
+export function getStateAfterDeleting(state: State, codeAndComments: CodeAndComment[]) {
   const _initialState = initialState()
   _initialState.codeAndComments = codeAndComments
   _initialState.repositories = state.repositories
@@ -126,7 +131,7 @@ export function getStateAfterDeleting(state, codeAndComments) {
 }
 
 
-export function scrollIntoView(highlightLineNumber, _document = document) {
+export function scrollIntoView(highlightLineNumber: number, _document = document) {
   const selector = `.cc-line:nth-child(${highlightLineNumber})`
   _document.querySelector(selector).scrollIntoView({
     block: 'center',

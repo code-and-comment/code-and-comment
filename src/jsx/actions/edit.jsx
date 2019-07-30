@@ -19,7 +19,7 @@ import {
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne,
   getStateAfterDeleting
-} from '../utils.jsx'
+} from '../utils'
 import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments

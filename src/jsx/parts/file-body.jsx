@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
 import Line from './line.jsx'
-import { scrollIntoView } from '../utils.jsx'
+import { scrollIntoView } from '../utils'
 
 
 class FileBody extends Component {

@@ -12,7 +12,7 @@ import {
 import {
   edit as _edit,
   getRepository as _getRepository,
-} from '../utils.jsx'
+} from '../utils'
 
 
 export function edit(
