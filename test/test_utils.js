@@ -10,7 +10,7 @@ import {
   search,
   edit,
   scrollIntoView
-} from '../src/jsx/utils.jsx'
+} from '../src/jsx/utils'
 
 describe('utils', () => {
   function noop() {}
