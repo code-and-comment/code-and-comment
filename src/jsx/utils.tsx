@@ -29,9 +29,9 @@ export function getRange(conditions: Conditions, bound: typeof IDBKeyRange.bound
 
 export async function search(
   conditions: Conditions,
-  getDB,
-  getObjectStore,
-  getAllRecords,
+  getDB: Function,
+  getObjectStore: Function,
+  getAllRecords: Function,
   bound: typeof IDBKeyRange.bound  = IDBKeyRange.bound,
   direction: string = 'prev',
   withLines: boolean  = false
@@ -47,17 +47,17 @@ export async function search(
 
 export async function transfer(
   path: string,
-  route,
-  getDB,
-  getObjectStore,
-  getAllRecords,
-  setTimeout,
+  route: Function,
+  getDB: Function,
+  getObjectStore: Function,
+  getAllRecords: Function,
+  setTimeout: typeof window.setTimeout,
   bound: typeof IDBKeyRange.bound
 ) {
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound)
   setTimeout(() => {
     route(path)
-  }, 0)
+  })
   return { codeAndComments, searchRepository: '' }
 }
 
@@ -73,9 +73,9 @@ export function getRepository(path: string) {
 
 export async function saveCodeAndComment(
   state: State,
-  getDB,
-  getObjectStore,
-  addRecord
+  getDB: Function,
+  getObjectStore: Function,
+  addRecord: Function
 ) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
@@ -95,9 +95,9 @@ export async function saveCodeAndComment(
 
 export async function updateCodeAndComment(
   state: State,
-  getDB,
-  getObjectStore,
-  putRecord
+  getDB: Function,
+  getObjectStore: Function,
+  putRecord: Function
 ) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
@@ -115,7 +115,12 @@ export async function updateCodeAndComment(
 }
 
 
-export async function deleteOne(id: number, getDB, getObjectStore, deleteRecord) {
+export async function deleteOne(
+  id: number,
+  getDB: Function,
+  getObjectStore: Function,
+  deleteRecord: Function
+) {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   await deleteRecord(objectStore, id)
@@ -131,7 +136,7 @@ export function getStateAfterDeleting(state: State, codeAndComments: CodeAndComm
 }
 
 
-export function scrollIntoView(highlightLineNumber: number, _document = document) {
+export function scrollIntoView(highlightLineNumber: number, _document: Document = document) {
   const selector = `.cc-line:nth-child(${highlightLineNumber})`
   _document.querySelector(selector).scrollIntoView({
     block: 'center',
@@ -140,16 +145,16 @@ export function scrollIntoView(highlightLineNumber: number, _document = document
 
 
 export async function edit(
-  id,
-  highlightLineNumber,
-  route,
-  requestIdleCallback,
-  getDB,
-  getObjectStore,
-  getRecord,
-  getRepository,
-  updateRepositories,
-  updateCodeAndComments,
+  id: any,
+  highlightLineNumber: any,
+  route: Function,
+  requestIdleCallback: Function,
+  getDB: Function,
+  getObjectStore: Function,
+  getRecord: Function,
+  getRepository: Function,
+  updateRepositories: Function,
+  updateCodeAndComments: Function,
 ) {
   id -= 0
   highlightLineNumber -= 0
