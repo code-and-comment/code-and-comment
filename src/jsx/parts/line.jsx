@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import Code from './code.jsx'
+import Code from './code'
 import Comment from './comment.jsx'
 
 

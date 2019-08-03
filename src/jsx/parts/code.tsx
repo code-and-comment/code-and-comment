@@ -1,13 +1,25 @@
 import { h, Component } from 'preact'
 
 
-class Code extends Component {
+type Props = {
+  lineNumber: number;
+  content: string;
+  edit: Function;
+  editable: boolean;
+  isHidden: boolean;
+  toggleHidden: Function;
+  setMarkedLineNumber: Function;
+  scrollToMarkedLineNumber: Function;
+}
+
+
+class Code extends Component<Props> {
   constructor(props) {
     super(props)
     this.keydownHandler = this.keydownHandler.bind(this)
   }
 
-  keydownHandler(event) {
+  keydownHandler(event: KeyboardEvent) {
     event.stopPropagation()
     // g
     if (event.keyCode === 71) {
@@ -19,13 +31,15 @@ class Code extends Component {
     }
   }
 
-  mouseoverHandler(event) {
+  mouseoverHandler(event: MouseEvent) {
     event.stopPropagation()
+    // @ts-ignore
     event.currentTarget.focus()
   }
 
-  mouseoutHandler(event) {
+  mouseoutHandler(event: MouseEvent) {
     event.stopPropagation()
+    // @ts-ignore
     event.currentTarget.blur()
   }
 
@@ -44,9 +58,9 @@ class Code extends Component {
         data-line-number={ lineNumber }
         className="cc-code"
         onClick={ editable ? edit : null }
-        onKeydown={ this.keydownHandler }
-        onMouseover={ this.mouseoverHandler }
-        onMouseout={ this.mouseoutHandler }
+        onKeyDown={ this.keydownHandler }
+        onMouseOver={ this.mouseoverHandler }
+        onMouseOut={ this.mouseoutHandler }
       >
         <span
           className={ numberClassName }
