@@ -5,8 +5,9 @@ export type Conditions = {
   repository?: string;
 }
 
+export type IndexName = 'repository' | 'updated_at'
 
-export function getIndexName(conditions: Conditions) {
+export function getIndexName(conditions: Conditions): IndexName {
   let { repository } = conditions
   repository = repository && repository.trim()
   if (repository) {
@@ -35,7 +36,7 @@ export async function search(
   bound: typeof IDBKeyRange.bound  = IDBKeyRange.bound,
   direction: string = 'prev',
   withLines: boolean  = false
-) {
+): Promise<CodeAndComment[]> {
   const indexName = getIndexName(conditions)
   const range = getRange(conditions, bound)
   const db = await getDB()
@@ -53,7 +54,7 @@ export async function transfer(
   getAllRecords: Function,
   setTimeout: typeof window.setTimeout,
   bound: typeof IDBKeyRange.bound
-) {
+): Promise<{ codeAndComments: CodeAndComment[], searchRepository: '' }> {
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound)
   setTimeout(() => {
     route(path)
@@ -62,7 +63,7 @@ export async function transfer(
 }
 
 
-export function getRepository(path: string) {
+export function getRepository(path: string): string {
   if (!path) {
     return ''
   }
@@ -76,7 +77,7 @@ export async function saveCodeAndComment(
   getDB: Function,
   getObjectStore: Function,
   addRecord: Function
-) {
+): Promise<number> {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   const repository = getRepository(state.path)
@@ -127,7 +128,7 @@ export async function deleteOne(
 }
 
 
-export function getStateAfterDeleting(state: State, codeAndComments: CodeAndComment[]) {
+export function getStateAfterDeleting(state: State, codeAndComments: CodeAndComment[]): State {
   const _initialState = initialState()
   _initialState.codeAndComments = codeAndComments
   _initialState.repositories = state.repositories
@@ -155,7 +156,7 @@ export async function edit(
   getRepository: Function,
   updateRepositories: Function,
   updateCodeAndComments: Function,
-) {
+): Pick<State, 'id' | 'highlightLineNumber' | 'title' | 'git' | 'path' | 'lines' | 'comments' | 'searchRepository'> | void {
   id -= 0
   highlightLineNumber -= 0
   const db = await getDB()
