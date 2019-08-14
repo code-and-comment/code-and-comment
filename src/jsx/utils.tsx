@@ -146,8 +146,8 @@ export function scrollIntoView(highlightLineNumber: number, _document: Document 
 
 
 export async function edit(
-  id: any,
-  highlightLineNumber: any,
+  id: string | number,
+  highlightLineNumber: string | number,
   route: Function,
   requestIdleCallback: Function,
   getDB: Function,
@@ -157,7 +157,9 @@ export async function edit(
   updateRepositories: Function,
   updateCodeAndComments: Function,
 ): Pick<State, 'id' | 'highlightLineNumber' | 'title' | 'git' | 'path' | 'lines' | 'comments' | 'searchRepository'> | void {
+  // @ts-ignore
   id -= 0
+  // @ts-ignore
   highlightLineNumber -= 0
   const db = await getDB()
   const objectStore = await getObjectStore(db)
