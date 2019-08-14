@@ -1,9 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/reference.jsx'
-import Header from '../parts/header.jsx'
-import Loading from '../parts/loading.jsx'
+import actions from '../actions/reference'
+import Header from '../parts/header'
+import Loading from '../parts/loading'
 
 
 class Reference extends Component {

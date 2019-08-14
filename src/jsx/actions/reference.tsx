@@ -1,14 +1,15 @@
 import { route as _route } from 'preact-router'
 
+import { State } from '../store'
 import {
   getDB as _getDB,
   getRecord as _getRecord,
   getObjectStore as _getObjectStore,
-} from '../db.jsx'
+} from '../db'
 import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
-} from '../worker.jsx'
+} from '../worker'
 import {
   edit as _edit,
   getRepository as _getRepository,
@@ -16,18 +17,19 @@ import {
 
 
 export function edit(
-  state,
-  id,
-  highlightLineNumber,
-  route = _route,
-  requestIdleCallback = window.requestIdleCallback,
-  getDB = _getDB,
-  getObjectStore = _getObjectStore,
-  getRecord = _getRecord,
-  getRepository = _getRepository,
-  updateRepositories = _updateRepositories,
-  updateCodeAndComments = _updateCodeAndComments,
-) {
+  state: State,
+  id: string | number,
+  highlightLineNumber: string | number,
+  route: Function = _route,
+  // @ts-ignore
+  requestIdleCallback: Function = window.requestIdleCallback,
+  getDB: Function = _getDB,
+  getObjectStore: Function = _getObjectStore,
+  getRecord: Function = _getRecord,
+  getRepository: Function = _getRepository,
+  updateRepositories: Function = _updateRepositories,
+  updateCodeAndComments: Function = _updateCodeAndComments,
+): ReturnType<typeof _edit> {
   return _edit(
     id,
     highlightLineNumber,
