@@ -4,10 +4,18 @@ import { connect } from 'unistore/preact'
 import actions from '../actions/reference'
 import Header from '../parts/header'
 import Loading from '../parts/loading'
+import { State } from '../store'
 
 
-class Reference extends Component {
-  constructor(props) {
+type Props = {
+  id: string | number;
+  lineNumber: string | number;
+  edit: Function;
+}
+
+
+class Reference extends Component<Props> {
+  constructor(props: Props) {
     super(props)
     props.edit(props.id, props.lineNumber)
   }
@@ -23,4 +31,4 @@ class Reference extends Component {
 }
 
 
-export default connect([], actions)(Reference)
+export default connect<Pick<Props, 'id' | 'lineNumber'>, {}, State, Pick<Props, 'edit'>>([], actions)(Reference)

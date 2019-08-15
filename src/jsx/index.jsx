@@ -9,11 +9,11 @@ import {
   setRepositoriesWorker,
   setCodeAndCommentsWorker,
   updateRepositories
-} from './worker.jsx'
-import Edit from './pages/edit.jsx'
-import SearchCodeAndComment from './pages/search-code-and-comment.jsx'
-import SearchComment from './pages/search-comment.jsx'
-import Reference from './pages/reference.jsx'
+} from './worker'
+import Edit from './pages/edit'
+import SearchCodeAndComment from './pages/search-code-and-comment'
+import SearchComment from './pages/search-comment'
+import Reference from './pages/reference'
 
 
 const REDIRECT_URLS = ['/search_code_and_comment', '/search_comment']
