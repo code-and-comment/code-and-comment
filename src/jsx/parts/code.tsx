@@ -1,20 +1,20 @@
-import { h, Component } from 'preact'
+import { h, Component, JSX } from 'preact'
 
 
 type Props = {
   lineNumber: number;
   content: string;
-  edit: Function;
+  edit: JSX.EventHandler<MouseEvent>;
   editable: boolean;
   isHidden: boolean;
-  toggleHidden: Function;
+  toggleHidden: JSX.EventHandler<MouseEvent>;
   setMarkedLineNumber: Function;
   scrollToMarkedLineNumber: Function;
 }
 
 
 class Code extends Component<Props> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
     this.keydownHandler = this.keydownHandler.bind(this)
   }
@@ -50,14 +50,14 @@ class Code extends Component<Props> {
     editable,
     isHidden,
     toggleHidden
-  }) {
+  }: Props) {
     const numberClassName = isHidden ? 'number hidden' : 'number'
     return (
       <div
         tabIndex={ lineNumber }
         data-line-number={ lineNumber }
         className="cc-code"
-        onClick={ editable ? edit : null }
+        onClick={ editable ? edit : undefined }
         onKeyDown={ this.keydownHandler }
         onMouseOver={ this.mouseoverHandler }
         onMouseOut={ this.mouseoutHandler }
