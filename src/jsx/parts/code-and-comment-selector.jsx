@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/edit.jsx'
+import actions from '../actions/edit'
 
 
 class CodeAndCommentSelector extends Component {
