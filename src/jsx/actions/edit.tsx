@@ -11,7 +11,7 @@ import {
   putRecords as _putRecords,
   clearObjectStore as _clearObjectStore,
   deleteRecord as _deleteRecord
-} from '../db.jsx'
+} from '../db'
 import {
   getRepository,
   search,
@@ -23,12 +23,12 @@ import {
 import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
-} from '../worker.jsx'
-import { initialState } from '../store'
+} from '../worker'
+import { initialState, State } from '../store'
 
 
 async function updateComment(
-  state,
+  state: State,
   index,
   comment,
   updateCodeAndComment = _updateCodeAndComment,
@@ -101,7 +101,7 @@ async function exportData(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
-  bound = window.IDBKeyRange.bound
+  bound = IDBKeyRange.bound
 ) {
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound, 'prev', true)
   const data = encodeURIComponent(JSON.stringify(codeAndComments))
@@ -120,6 +120,7 @@ async function importData(
   clearObjectStore = _clearObjectStore,
   putRecords = _putRecords,
   updateRepositories = _updateRepositories,
+  // @ts-ignore
   requestIdleCallback = window.requestIdleCallback
 ) {
   const db = await getDB()
@@ -165,8 +166,9 @@ function searchCodeAndComment(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
+  // @ts-ignore
   requestIdleCallback = window.requestIdleCallback,
-  bound = window.IDBKeyRange.bound
+  bound = IDBKeyRange.bound
 ) {
   event.stopPropagation()
   return _search(
@@ -189,8 +191,9 @@ function searchComment(
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords,
+  // @ts-ignore
   requestIdleCallback = window.requestIdleCallback,
-  bound = window.IDBKeyRange.bound
+  bound = IDBKeyRange.bound
 ) {
   event.stopPropagation()
   return _search(
@@ -276,9 +279,10 @@ function setIsSelectorOpen(state, isSelectorOpen) {
 
 
 async function getFile(
-  state,
+  state: State,
   url,
   fetch = window.fetch,
+  // @ts-ignore
   requestIdleCallback = window.requestIdleCallback,
   saveCodeAndComment = _saveCodeAndComment,
   getDB = _getDB,
@@ -317,6 +321,7 @@ async function getFile(
     const comments = {}
     const title = 'New Code and Comment'
     const state = { title, git, path, lines, comments }
+    // @ts-ignore
     const id = await saveCodeAndComment(state, getDB, getObjectStore, addRecord)
     requestIdleCallback(function() {
       updateRepositories()
@@ -345,14 +350,14 @@ async function getFile(
 }
 
 
-function setLoading() {
+function setLoading(): Pick<State, 'loading'> {
   return {
     loading: true,
   }
 }
 
 
-function clearErrors() {
+function clearErrors(): Pick<State, 'networkError' | 'urlError'> {
   return {
     networkError: false,
     urlError: false
