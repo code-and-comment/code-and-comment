@@ -29,14 +29,14 @@ import { initialState, State } from '../store'
 
 async function updateComment(
   state: State,
-  index,
-  comment,
-  updateCodeAndComment = _updateCodeAndComment,
-  updateCodeAndComments = _updateCodeAndComments,
-  getDB = _getDB,
-  getObjectStore = _getObjectStore,
-  putRecord = _putRecord
-) {
+  index: number | string,
+  comment: string,
+  updateCodeAndComment: Function = _updateCodeAndComment,
+  updateCodeAndComments: Function = _updateCodeAndComments,
+  getDB: Function = _getDB,
+  getObjectStore: Function = _getObjectStore,
+  putRecord: Function = _putRecord
+): Pick<State, 'comments'> | void {
   let comments = state.comments
   comment = comment.trim()
   index += ''
