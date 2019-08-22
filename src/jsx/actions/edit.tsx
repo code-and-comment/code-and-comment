@@ -31,8 +31,8 @@ async function updateComment(
   state: State,
   index: number | string,
   comment: string,
-  updateCodeAndComment: Function = _updateCodeAndComment,
-  updateCodeAndComments: Function = _updateCodeAndComments,
+  updateCodeAndComment: typeof _updateCodeAndComment = _updateCodeAndComment,
+  updateCodeAndComments: typeof _updateCodeAndComments = _updateCodeAndComments,
   getDB: Function = _getDB,
   getObjectStore: Function = _getObjectStore,
   putRecord: Function = _putRecord
@@ -70,14 +70,15 @@ async function updateComment(
 
 
 async function updateTitle(
-  state,
-  event,
-  updateCodeAndComment = _updateCodeAndComment,
-  updateCodeAndComments = _updateCodeAndComments,
-  getDB = _getDB,
-  getObjectStore = _getObjectStore,
-  putRecord = _putRecord
-) {
+  state: State,
+  event: Event,
+  updateCodeAndComment: typeof _updateCodeAndComment = _updateCodeAndComment,
+  updateCodeAndComments: typeof _updateCodeAndComments = _updateCodeAndComments,
+  getDB: Function = _getDB,
+  getObjectStore: Function = _getObjectStore,
+  putRecord: Function = _putRecord
+): Pick<State, 'title'> | void {
+  // @ts-ignore
   const title = event.target.value.trim()
   if (title) {
     await updateCodeAndComment(
