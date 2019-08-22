@@ -23,7 +23,6 @@ export type State = {
   loading: boolean;
   networkError: boolean;
   urlError: boolean;
-  // TODO
   codeAndComments: CodeAndComment[];
   searchRepository: string;
   repositories: string[];
