@@ -36,7 +36,7 @@ async function updateComment(
   getDB: Function = _getDB,
   getObjectStore: Function = _getObjectStore,
   putRecord: Function = _putRecord
-): Pick<State, 'comments'> | void {
+): Promise<Pick<State, 'comments'> | void> {
   let comments = state.comments
   comment = comment.trim()
   index += ''
@@ -77,7 +77,7 @@ async function updateTitle(
   getDB: Function = _getDB,
   getObjectStore: Function = _getObjectStore,
   putRecord: Function = _putRecord
-): Pick<State, 'title'> | void {
+): Promise<Pick<State, 'title'> | void> {
   // @ts-ignore
   const title = event.target.value.trim()
   if (title) {
@@ -97,13 +97,13 @@ async function updateTitle(
 
 
 async function exportData(
-  state,
-  fileName,
-  getDB = _getDB,
-  getObjectStore = _getObjectStore,
-  getAllRecords = _getAllRecords,
-  bound = IDBKeyRange.bound
-) {
+  state: State,
+  fileName: string,
+  getDB: Function = _getDB,
+  getObjectStore: Function = _getObjectStore,
+  getAllRecords: Function = _getAllRecords,
+  bound: typeof IDBKeyRange.bound = IDBKeyRange.bound
+): Promise<void> {
   const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound, 'prev', true)
   const data = encodeURIComponent(JSON.stringify(codeAndComments))
   const elem = document.createElement('a')
