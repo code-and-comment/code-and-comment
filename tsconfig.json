@@ -8,6 +8,7 @@
     "noEmit": true,
     "strict": false,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["types"]
   }
 }
