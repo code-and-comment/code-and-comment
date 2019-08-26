@@ -112,11 +112,9 @@ function edit(
 }
 
 
-export default function actions() {
-  return {
-    search,
-    back,
-    deleteOne,
-    edit,
-  }
+export default {
+  search,
+  back,
+  deleteOne,
+  edit,
 }

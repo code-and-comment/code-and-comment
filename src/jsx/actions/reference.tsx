@@ -44,8 +44,6 @@ export function edit(
   )
 }
 
-export default function actions() {
-  return {
-    edit,
-  }
+export default {
+  edit,
 }

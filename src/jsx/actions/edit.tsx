@@ -366,20 +366,18 @@ function clearErrors(): Pick<State, 'networkError' | 'urlError'> {
 }
 
 
-export default function actions() {
-  return {
-    getFile,
-    setLoading,
-    updateComment,
-    updateTitle,
-    searchCodeAndComment,
-    searchComment,
-    deleteOne,
-    setCodeAndComments,
-    changeCodeAndComment,
-    setIsSelectorOpen,
-    clearErrors,
-    exportData,
-    importData
-  }
+export default {
+  getFile,
+  setLoading,
+  updateComment,
+  updateTitle,
+  searchCodeAndComment,
+  searchComment,
+  deleteOne,
+  setCodeAndComments,
+  changeCodeAndComment,
+  setIsSelectorOpen,
+  clearErrors,
+  exportData,
+  importData
 }
