@@ -18,13 +18,17 @@ import {
   saveCodeAndComment as _saveCodeAndComment,
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne,
-  getStateAfterDeleting
+  getStateAfterDeleting,
 } from '../utils'
 import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
 } from '../worker'
-import { initialState, State } from '../store'
+import {
+  initialState,
+  State,
+  CodeAndComment
+} from '../store'
 
 
 async function updateComment(
@@ -114,8 +118,8 @@ async function exportData(
 
 
 async function importData(
-  state,
-  data,
+  state: State,
+  data: CodeAndComment[],
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   clearObjectStore = _clearObjectStore,
@@ -123,7 +127,7 @@ async function importData(
   updateRepositories = _updateRepositories,
   // @ts-ignore
   requestIdleCallback = window.requestIdleCallback
-) {
+): Promise<State> {
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   await clearObjectStore(objectStore)
@@ -137,15 +141,15 @@ async function importData(
 
 
 async function _search(
-  state,
-  url,
-  route,
-  getDB,
-  getObjectStore,
-  getAllRecords,
-  requestIdleCallback,
-  bound
-) {
+  state: State,
+  url: string,
+  route: typeof _route,
+  getDB: Function,
+  getObjectStore: Function,
+  getAllRecords: Function,
+  requestIdleCallback: Function,
+  bound: typeof IDBKeyRange.bound
+): Promise<Pick<State, 'highlightLineNumber' | 'codeAndComments' | 'searchRepository'>> {
   const repository = getRepository(state.path)
   const conditions = { repository }
   const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
@@ -161,16 +165,16 @@ async function _search(
 
 
 function searchCodeAndComment(
-  state,
-  event,
-  route = _route,
-  getDB = _getDB,
-  getObjectStore = _getObjectStore,
-  getAllRecords = _getAllRecords,
+  state: State,
+  event: Event,
+  route: typeof _route = _route,
+  getDB: Function = _getDB,
+  getObjectStore: Function = _getObjectStore,
+  getAllRecords: Function = _getAllRecords,
   // @ts-ignore
-  requestIdleCallback = window.requestIdleCallback,
-  bound = IDBKeyRange.bound
-) {
+  requestIdleCallback: Function = window.requestIdleCallback,
+  bound: typeof IDBKeyRange.bound = IDBKeyRange.bound
+): ReturnType<typeof _search> {
   event.stopPropagation()
   return _search(
     state,
@@ -186,8 +190,8 @@ function searchCodeAndComment(
 
 
 function searchComment(
-  state,
-  event,
+  state: State,
+  event: Event,
   route = _route,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
@@ -211,15 +215,15 @@ function searchComment(
 
 
 async function deleteOne(
-  state,
-  id,
-  event,
-  getDB = _getDB,
-  deleteOneFunc = _deleteOne,
-  getObjectStore = _getObjectStore,
-  deleteRecord = _deleteRecord,
-  updateRepositories = _updateRepositories,
-  updateCodeAndComments = _updateCodeAndComments
+  state: State,
+  id: number,
+  event: Event,
+  getDB: Function = _getDB,
+  deleteOneFunc: Function = _deleteOne,
+  getObjectStore: Function = _getObjectStore,
+  deleteRecord: Function = _deleteRecord,
+  updateRepositories: typeof _updateRepositories = _updateRepositories,
+  updateCodeAndComments: typeof _updateCodeAndComments = _updateCodeAndComments
 ) {
   event.stopPropagation()
   await deleteOneFunc(id, getDB, getObjectStore, deleteRecord)
@@ -232,8 +236,8 @@ async function deleteOne(
 // Select repository for displaying Code and Comment list in CodeAndCommentSelector.
 // This is used by RepositorySelector.
 async function setCodeAndComments(
-  state,
-  repository,
+  state: State,
+  repository: string,
   updateCodeAndComments = _updateCodeAndComments
 ) {
   updateCodeAndComments(repository)
@@ -246,8 +250,8 @@ async function setCodeAndComments(
 // Set Code and Comment record for editing.
 // This is used by CodeAndCommentSelector.
 async function changeCodeAndComment(
-  state,
-  id,
+  state: State,
+  id: number,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getRecord = _getRecord
@@ -274,14 +278,14 @@ async function changeCodeAndComment(
 }
 
 
-function setIsSelectorOpen(state, isSelectorOpen) {
+function setIsSelectorOpen(state: State, isSelectorOpen: boolean) {
   return { isSelectorOpen }
 }
 
 
 async function getFile(
   state: State,
-  url,
+  url: string,
   fetch = window.fetch,
   // @ts-ignore
   requestIdleCallback = window.requestIdleCallback,
