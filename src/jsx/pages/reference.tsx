@@ -1,16 +1,16 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/reference'
+import actions, { editFunc } from '../actions/reference'
 import Header from '../parts/header'
 import Loading from '../parts/loading'
 import { State } from '../store'
 
 
 type Props = {
-  id: string | number;
-  lineNumber: string | number;
-  edit: Function;
+  id: string | number
+  lineNumber: string | number
+  edit: editFunc
 }
 
 

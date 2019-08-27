@@ -17,7 +17,7 @@ describe('actions/edit', () => {
     }
 
     it('returns urlError if url is invalid', async function() {
-      const result = await actions().getFile(null, 'https://example.com/index.html', noop, noop, noop, noop, noop, noop, noop, noop)
+      const result = await actions.getFile(null, 'https://example.com/index.html', noop, noop, noop, noop, noop, noop, noop, noop)
       expect(result).to.deep.equal({
         loading: false,
         networkError: false,
@@ -46,7 +46,7 @@ describe('actions/edit', () => {
       async function saveCodeAndComment() {
         return id
       }
-      const result = await actions()
+      const result = await actions
         .getFile(null, url, fetch, requestIdleCallback, saveCodeAndComment, noop, noop, noop, noop, noop)
       expect(fetch.calledOnce).to.be.true
       const requestUrl = 'https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master'
@@ -73,7 +73,7 @@ describe('actions/edit', () => {
         }
       })
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
-      const result = await actions().getFile(null, url, fetch, requestIdleCallback)
+      const result = await actions.getFile(null, url, fetch, requestIdleCallback)
       expect(result).to.deep.equal({
         loading: false,
         networkError: true,
@@ -84,26 +84,26 @@ describe('actions/edit', () => {
 
   describe('updateComment', () => {
     it('changes comments', async function(){
-      let result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, 'A', noop, noop)
+      let result = await actions.updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, 'A', noop, noop)
       expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
 
-      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, '', noop, noop)
+      result = await actions.updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, '', noop, noop)
       expect(result).to.deep.equal({ comments: { '2': 'b' } })
     })
 
     it('returns undefined if comments do not change', async function() {
-      let result = await actions().updateComment({ comments: { '2': 'b' }, path: '/a/b' }, 1, '', noop, noop)
+      let result = await actions.updateComment({ comments: { '2': 'b' }, path: '/a/b' }, 1, '', noop, noop)
       expect(result).to.be.undefined
 
-      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, 'a', noop, noop)
+      result = await actions.updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, 'a', noop, noop)
       expect(result).to.be.undefined
     })
 
     it('trims comment', async function() {
-      let result = await actions().updateComment({ comments: { '2': 'b' }, path: '/a/b' }, 1, ' \n \n ', noop, noop)
+      let result = await actions.updateComment({ comments: { '2': 'b' }, path: '/a/b' }, 1, ' \n \n ', noop, noop)
       expect(result).to.be.undefined
 
-      result = await actions().updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, '  A\n ', noop, noop)
+      result = await actions.updateComment({ comments: { '1': 'a',  '2': 'b' }, path: '/a/b' }, 1, '  A\n ', noop, noop)
       expect(result).to.deep.equal({ comments: { '1': 'A',  '2': 'b' } })
     })
   })
@@ -122,7 +122,7 @@ describe('actions/edit', () => {
       const path = '/a/b'
       const state = { path }
       const searchRepository = 'a/b'
-      const result = await actions().searchCodeAndComment(
+      const result = await actions.searchCodeAndComment(
         state, event, route, noop, noop, getAllRecords, requestIdleCallback, noop)
       expect(route.calledOnce).to.be.true
       expect(route.calledWith('/search_code_and_comment')).to.be.true

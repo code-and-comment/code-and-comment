@@ -1,28 +1,37 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/edit'
+import actions, { setCodeAndCommentsFunc } from '../actions/edit'
+import { State } from '../store'
 
 
-export class RepositorySelector extends Component {
-  constructor(props) {
+type Props = {
+  repositories: State['repositories'],
+  searchRepository: State['searchRepository'],
+  setCodeAndComments: setCodeAndCommentsFunc
+}
+
+export class RepositorySelector extends Component<Props, {}> {
+  constructor(props: Props) {
     super(props)
     this.setCodeAndComments = this.setCodeAndComments.bind(this)
   }
 
-  shouldComponentUpdate({ repositories, searchRepository }) {
+  shouldComponentUpdate({ repositories, searchRepository }: Props) {
     return !(
       this.props.repositories === repositories
       && this.props.searchRepository === searchRepository)
   }
 
-  setCodeAndComments(event) {
+  setCodeAndComments(event: MouseEvent) {
+    // @ts-ignore
     event.stopPropagation()
+    // @ts-ignore
     const repository = event.currentTarget.dataset.repository
     this.props.setCodeAndComments(repository)
   }
 
-  render({ repositories, searchRepository }) {
+  render({ repositories, searchRepository }: Props) {
     return (
       <div className="cc-repository-selector">
         <div key="application-name" className="application-name">{ 'Code and Comment' }</div>
@@ -42,4 +51,4 @@ export class RepositorySelector extends Component {
 }
 
 
-export default connect(['repositories', 'searchRepository'], actions)(RepositorySelector)
+export default connect<{}, {}, State, Props>(['repositories', 'searchRepository'], actions)(RepositorySelector)

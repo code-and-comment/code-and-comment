@@ -247,6 +247,9 @@ async function setCodeAndComments(
 }
 
 
+export type setCodeAndCommentsFunc = (repository: string) => ReturnType<typeof setCodeAndComments>
+
+
 // Set Code and Comment record for editing.
 // This is used by CodeAndCommentSelector.
 async function changeCodeAndComment(
