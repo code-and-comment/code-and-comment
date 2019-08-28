@@ -8,6 +8,7 @@ import {
   getAllRecords as _getAllRecords
 } from '../db.jsx'
 import {
+  Conditions,
   edit as _edit,
   getRepository as _getRepository,
   deleteOne as _deleteOne,
@@ -18,11 +19,14 @@ import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
 } from '../worker.jsx'
+import {
+  State,
+} from '../store'
 
 
 async function search(
-  state,
-  conditions,
+  state: State,
+  conditions: Conditions,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   getAllRecords = _getAllRecords
@@ -39,7 +43,13 @@ async function search(
 }
 
 
-function back(state, event, route = _route, requestIdleCallback = window.requestIdleCallback) {
+function back(
+  state: State,
+  event: Event,
+  route = _route,
+  // @ts-ignore
+  requestIdleCallback = window.requestIdleCallback
+) {
   event.stopPropagation()
   if (state.id) {
     return edit(
@@ -60,9 +70,9 @@ function back(state, event, route = _route, requestIdleCallback = window.request
 
 
 async function deleteOne(
-  state,
-  id,
-  event,
+  state: State,
+  id: number,
+  event: Event,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
   deleteRecord = _deleteRecord,
@@ -83,11 +93,12 @@ async function deleteOne(
 
 
 function edit(
-  state,
-  id,
-  highlightLineNumber,
-  event,
+  state: State,
+  id: number,
+  highlightLineNumber: number,
+  event: Event,
   route = _route,
+  // @ts-ignore
   requestIdleCallback = window.requestIdleCallback,
   getDB = _getDB,
   getObjectStore = _getObjectStore,
