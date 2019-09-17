@@ -1,9 +1,15 @@
-import { h } from 'preact'
+import { h, FunctionalComponent } from 'preact'
 
 import Button from './button'
 
 
-function Navigator({
+type Props = {
+  rightLabel: string,
+  rightClick: (event: MouseEvent) => any,
+  rightDisabled: boolean,
+}
+
+const Navigator: FunctionalComponent<Props> = function Navigator({
   rightLabel,
   rightClick,
   rightDisabled,
