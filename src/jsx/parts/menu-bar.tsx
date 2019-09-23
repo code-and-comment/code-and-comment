@@ -10,7 +10,7 @@ type Props = {
   loading: boolean
   deleteOne: (event: MouseEvent) => _State
   searchCodeAndComment: JSX.EventHandler<MouseEvent>
-  searchComment: JSX.EventHandler<MouseEvent> 
+  searchComment: JSX.EventHandler<MouseEvent>
   toggleSelector: JSX.EventHandler<MouseEvent>
   isSelectorOpen: boolean
   setLoading: Function
@@ -28,8 +28,8 @@ type State = {
   exportFileName: string
   isDeleting: boolean
   isCreating: boolean
-  isImporting: boolean 
-  isExporting: boolean 
+  isImporting: boolean
+  isExporting: boolean
 }
 
 
