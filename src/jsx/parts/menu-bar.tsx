@@ -1,11 +1,40 @@
-import { h, Component } from 'preact'
+import { h, Component, JSX } from 'preact'
 
 import Button from '../parts/button'
 import Loading from '../parts/loading'
+import { State as _State } from '../store'
 
 
-export class MenuBar extends Component {
-  constructor(props) {
+type Props = {
+  id: number
+  loading: boolean
+  deleteOne: (event: MouseEvent) => _State
+  searchCodeAndComment: JSX.EventHandler<MouseEvent>
+  searchComment: JSX.EventHandler<MouseEvent> 
+  toggleSelector: JSX.EventHandler<MouseEvent>
+  isSelectorOpen: boolean
+  setLoading: Function
+  getFile: Function
+  exportData: Function
+  importData: Function
+  clearErrors: Function
+  networkError: boolean
+  urlError: boolean
+}
+
+
+type State = {
+  url: string
+  exportFileName: string
+  isDeleting: boolean
+  isCreating: boolean
+  isImporting: boolean 
+  isExporting: boolean 
+}
+
+
+export class MenuBar extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     this.state = {
       url: '',
@@ -27,15 +56,15 @@ export class MenuBar extends Component {
     this.export = this.export.bind(this)
   }
 
-  componentWillReceiveProps({ id }) {
+  componentWillReceiveProps({ id }: Props) {
     if (this.props.id !== id) {
       this.cancel()
     }
   }
 
   shouldComponentUpdate(
-    { id, loading, isSelectorOpen, networkError, urlError },
-    { isCreating, isDeleting, isExporting, isImporting }
+    { id, loading, isSelectorOpen, networkError, urlError }: Props,
+    { isCreating, isDeleting, isExporting, isImporting }: State
   ) {
     return !(this.props.id === id
         && this.props.loading === loading
@@ -48,29 +77,30 @@ export class MenuBar extends Component {
         && this.state.isExporting === isExporting)
   }
 
-  deleting(event) {
+  deleting(event: Event) {
     event.stopPropagation()
     this.setState({ isDeleting: true })
   }
 
-  creating(event) {
+  creating(event: Event) {
     event.stopPropagation()
     this.props.clearErrors()
     this.setState({ isCreating: true })
   }
 
-  importing(event) {
+  importing(event: Event) {
     event.stopPropagation()
     this.setState({ isImporting: true })
   }
 
-  exporting(event) {
+  exporting(event: Event) {
     event.stopPropagation()
     this.setState({ isExporting: true })
   }
 
-  import(event) {
+  import(event: Event) {
     event.stopPropagation()
+    // @ts-ignore
     const file = document.getElementById('code-and-comment-input-file').files[0]
     if (!file) {
       return
@@ -86,7 +116,7 @@ export class MenuBar extends Component {
     reader.readAsText(file)
   }
 
-  export(event) {
+  export(event: Event) {
     event.stopPropagation()
     if (!this.state.exportFileName) {
       return
@@ -95,7 +125,7 @@ export class MenuBar extends Component {
     this.props.exportData(this.state.exportFileName)
   }
 
-  cancel(event) {
+  cancel(event?: Event) {
     if (event) {
       event.stopPropagation()
     }
@@ -108,15 +138,17 @@ export class MenuBar extends Component {
     })
   }
 
-  setUrl(event) {
+  setUrl(event: Event) {
+    // @ts-ignore
     this.setState({ url: event.target.value })
   }
 
-  setExportFileName(event) {
+  setExportFileName(event: Event) {
+    // @ts-ignore
     this.setState({ exportFileName: event.target.value })
   }
 
-  create(event) {
+  create(event: Event) {
     event.stopPropagation()
     this.props.setLoading()
     this.props.getFile(this.state.url)
@@ -132,13 +164,13 @@ export class MenuBar extends Component {
     isSelectorOpen,
     networkError,
     urlError
-  }, {
+  }: Props, {
     exportFileName,
     isCreating,
     isDeleting,
     isExporting,
     isImporting,
-  }) {
+  }: State) {
     if (loading) {
       return(
         <div className="cc-menu-bar loading">
