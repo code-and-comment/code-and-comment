@@ -1,29 +1,44 @@
 import { h, Component } from 'preact'
 
 import Button from './button'
+import { CodeAndComment } from '../store'
 
 
-class CodeAndCommentCard extends Component {
-  constructor(props) {
+type Props = {
+  codeAndComment: CodeAndComment
+  deleteOne: Function
+  edit: Function
+}
+
+
+type State = {
+  isDeleting: boolean
+}
+
+
+class CodeAndCommentCard extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     this.state = { isDeleting: false }
     this.deleting = this.deleting.bind(this)
     this.cancel = this.cancel.bind(this)
+    // @ts-ignore
     this.deleteOne = props.deleteOne.bind(null, props.codeAndComment.id)
+    // @ts-ignore
     this.edit = props.edit.bind(null, props.codeAndComment.id, 0)
   }
 
-  deleting(event) {
+  deleting(event: Event) {
     event.stopPropagation()
     this.setState({ isDeleting: true })
   }
 
-  cancel(event) {
+  cancel(event: Event) {
     event.stopPropagation()
     this.setState({ isDeleting: false })
   }
 
-  shouldComponentUpdate({ codeAndComment }, { isDeleting }) {
+  shouldComponentUpdate({ codeAndComment }: Props, { isDeleting }: State) {
     return !(
       this.state.isDeleting === isDeleting
       && this.props.codeAndComment.id === codeAndComment.id
@@ -31,12 +46,13 @@ class CodeAndCommentCard extends Component {
     )
   }
 
-  render({ codeAndComment }, { isDeleting }) {
+  render({ codeAndComment }: Props, { isDeleting }: State) {
     let controls
     if (isDeleting) {
       controls = (
         <div className="controls">
           <div className="message">This code and comment is removed.</div>
+          // @ts-ignore
           <Button onClick={ this.deleteOne }>OK</Button>
           { ' ' }
           <Button onClick={ this.cancel }>Cancel</Button>
@@ -46,6 +62,7 @@ class CodeAndCommentCard extends Component {
     else {
       controls = (
         <div className="controls">
+          // @ts-ignore
           <Button onClick={ this.edit }>Edit</Button>
           { ' ' }
           <Button onClick={ this.deleting }>Delete</Button>
