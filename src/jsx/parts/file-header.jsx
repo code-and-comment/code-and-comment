@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import CommentList from '../parts/comment-list.jsx'
+import CommentList from '../parts/comment-list'
 
 
 class FileHeader extends Component {
