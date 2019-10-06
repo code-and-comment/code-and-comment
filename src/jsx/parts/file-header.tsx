@@ -3,16 +3,22 @@ import { h, Component } from 'preact'
 import CommentList from '../parts/comment-list'
 
 
-class FileHeader extends Component {
+type Props = {
+  path: string
+  setHighlightLineNumber: (event: Event) => void
+}
 
-  shouldComponentUpdate({ path, setHighlightLineNumber }) {
+
+class FileHeader extends Component<Props> {
+
+  shouldComponentUpdate({ path, setHighlightLineNumber }: Props) {
     return !(
       this.props.path === path
       && this.props.setHighlightLineNumber === setHighlightLineNumber
     )
   }
 
-  render({ path, setHighlightLineNumber }) {
+  render({ path, setHighlightLineNumber }: Props) {
     return (
       <div className="cc-file-header">
         <div>

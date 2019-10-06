@@ -10,7 +10,7 @@ type I = {
 }
 
 type T = {
-  handler: Function
+  handler: (event: Event) => void
 }
 
 type Props = T & I
