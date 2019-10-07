@@ -4,8 +4,29 @@ import Code from './code'
 import Comment from './comment.jsx'
 
 
-class Line extends Component {
-  constructor(props) {
+type Props = {
+  id: number
+  index: number
+  code: string
+  hiddenSignal: boolean
+  comment: string
+  editable: boolean
+  isHighlight: boolean
+  isMarked: boolean
+  setMarkedLineNumber: Function
+  scrollToMarkedLineNumber: Function
+  updateComment: Function
+}
+
+
+type State = {
+  isEditing: boolean
+  isHidden: boolean
+}
+
+
+class Line extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     this.state = {
       isEditing: false,
@@ -13,12 +34,13 @@ class Line extends Component {
     }
     this.edit = this.edit.bind(this)
     this.cancel = this.cancel.bind(this)
+    // @ts-ignore
     this.save = this.save.bind(this, props.index)
     this.delete = this.delete.bind(this, props.index)
     this.toggleHidden = this.toggleHidden.bind(this)
   }
 
-  shouldComponentUpdate({ id, index, code, comment, isHighlight, isMarked }, { isEditing, isHidden }) {
+  shouldComponentUpdate({ id, index, code, comment, isHighlight, isMarked }: Props, { isEditing, isHidden }: State) {
     return !(this.props.id === id
         && this.props.index === index
         && this.props.code === code
@@ -31,7 +53,7 @@ class Line extends Component {
         && isHidden === false)
   }
 
-  componentWillReceiveProps({ id, comment, hiddenSignal }) {
+  componentWillReceiveProps({ id, comment, hiddenSignal }: Props) {
     if (this.props.id !== id) {
       this.setState({
         isEditing: false,
@@ -45,12 +67,13 @@ class Line extends Component {
     }
   }
 
-  toggleHidden(event) {
+  toggleHidden(event: MouseEvent) {
     event.stopPropagation()
     this.setState({ isHidden: !this.state.isHidden })
   }
 
   edit() {
+    // @ts-ignore
     if (window.getSelection().isCollapsed) {
       this.setState({ isEditing: true })
     }
@@ -60,15 +83,17 @@ class Line extends Component {
     this.setState({ isEditing: false })
   }
 
-  save(index, comment) {
+  save(index: number, comment: string) {
     this.props.updateComment(index, comment)
+    // @ts-ignore
     window.requestIdleCallback(() => {
       this.setState({ isEditing: false })
     })
   }
 
-  delete(index) {
+  delete(index: number) {
     this.props.updateComment(index, '')
+    // @ts-ignore
     window.requestIdleCallback(() => {
       this.setState({ isEditing: false })
     })
@@ -84,11 +109,11 @@ class Line extends Component {
     isMarked,
     setMarkedLineNumber,
     scrollToMarkedLineNumber,
-  },
+  }: Props,
   {
     isEditing,
     isHidden
-  }) {
+  }: State) {
     let className = 'cc-line'
     if (isMarked) {
       className += ' cc-marked'
@@ -105,7 +130,7 @@ class Line extends Component {
           edit={ this.edit }
           editable={ editable }
           isHidden={ isHidden }
-          toggleHidden={ comment && this.toggleHidden }
+          toggleHidden={ comment ? this.toggleHidden : undefined }
           setMarkedLineNumber={ setMarkedLineNumber }
           scrollToMarkedLineNumber={ scrollToMarkedLineNumber }
         />

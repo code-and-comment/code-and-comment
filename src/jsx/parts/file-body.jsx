@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import Line from './line.jsx'
+import Line from './line'
 import { scrollIntoView } from '../utils'
 
 

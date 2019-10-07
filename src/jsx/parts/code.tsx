@@ -7,7 +7,7 @@ type Props = {
   edit: JSX.EventHandler<MouseEvent>;
   editable: boolean;
   isHidden: boolean;
-  toggleHidden: JSX.EventHandler<MouseEvent>;
+  toggleHidden: JSX.EventHandler<MouseEvent> | undefined;
   setMarkedLineNumber: Function;
   scrollToMarkedLineNumber: Function;
 }
