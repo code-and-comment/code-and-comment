@@ -34,8 +34,7 @@ class Line extends Component<Props, State> {
     }
     this.edit = this.edit.bind(this)
     this.cancel = this.cancel.bind(this)
-    // @ts-ignore
-    this.save = this.save.bind(this, props.index)
+    this.save = this._save.bind(this, props.index)
     this.delete = this.delete.bind(this, props.index)
     this.toggleHidden = this.toggleHidden.bind(this)
   }
@@ -83,7 +82,11 @@ class Line extends Component<Props, State> {
     this.setState({ isEditing: false })
   }
 
-  save(index: number, comment: string) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  save(comment: string) {
+  }
+
+  _save(index: number, comment: string) {
     this.props.updateComment(index, comment)
     // @ts-ignore
     window.requestIdleCallback(() => {
