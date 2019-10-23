@@ -23,7 +23,7 @@
     "@babel/register": "^7.4.0",
     "@types/js-base64": "^2.3.1",
     "@types/tapable": "^1.0.4",
-    "@types/webpack": "^4.32.1",
+    "@types/webpack": "^4.39.5",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
     "@typescript-eslint/parser": "^2.4.0",
     "babel-eslint": "^10.0.3",
@@ -40,24 +40,24 @@
     "mini-css-extract-plugin": "^0.7.0",
     "mocha": "^6.1.4",
     "node-sass": "^4.12.0",
-    "rollup": "^1.19.4",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.2",
-    "rollup-plugin-node-resolve": "^4.0.1",
-    "sass-loader": "^7.2.0",
-    "sinon": "^7.2.2",
+    "rollup": "^1.25.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sass-loader": "^8.0.0",
+    "sinon": "^7.5.0",
     "source-map-loader": "^0.2.4",
-    "terser": "^4.0.0",
+    "terser": "^4.3.9",
     "typescript": "^3.6.4",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
   },
   "dependencies": {
     "history": "^4.10.1",
     "js-base64": "^2.5.1",
     "marked": "^0.7.0",
     "preact": "10.0.1",
-    "preact-router": "^3.0.1",
+    "preact-router": "^3.1.0",
     "unistore": "^3.5.0"
   }
 }
