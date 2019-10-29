@@ -7,12 +7,12 @@ marked.setOptions({
   sanitize: true
 })
 
-renderer.link = function link(href, title, text) {
+renderer.link = function link(href: string, title: string, text: string): string {
   const a = _link.call(renderer, href, title, text)
   return a.replace(/^<a/, '<a target="_blank" rel="noopener noreferrer"')
 }
 
 
-export default function markdown(comment) {
+export default function markdown(comment: string): string {
   return marked(comment, { renderer })
 }
