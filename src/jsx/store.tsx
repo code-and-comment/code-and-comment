@@ -1,7 +1,7 @@
 import createStore from 'unistore'
 
 
-export type CodeAndComment = {
+export interface CodeAndComment {
   id: number;
   comments: Record<string, string>;
   git: string;
@@ -12,7 +12,7 @@ export type CodeAndComment = {
 }
 
 
-export type State = {
+export interface State {
   id: number | null;
   highlightLineNumber: number;
   title: string;
