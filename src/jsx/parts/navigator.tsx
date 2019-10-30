@@ -3,7 +3,7 @@ import { h, FunctionalComponent } from 'preact'
 import Button from './button'
 
 
-type Props = {
+interface Props {
   rightLabel: string,
   rightClick: (event: MouseEvent) => any,
   rightDisabled: boolean,

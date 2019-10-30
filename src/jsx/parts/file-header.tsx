@@ -3,7 +3,7 @@ import { h, Component } from 'preact'
 import CommentList from '../parts/comment-list'
 
 
-type Props = {
+interface Props {
   path: string
   setHighlightLineNumber: (event: Event) => void
 }

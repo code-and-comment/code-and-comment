@@ -2,7 +2,7 @@ import { h, FunctionalComponent } from 'preact'
 import { connect } from 'unistore/preact'
 
 
-type Props = { repositories: string[] }
+interface Props { repositories: string[] }
 
 
 export const RepositoriesDatalist: FunctionalComponent<Props> =  function ({ repositories }) {

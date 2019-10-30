@@ -4,14 +4,14 @@ import Button from './button'
 import { CodeAndComment } from '../store'
 
 
-type Props = {
+interface Props {
   codeAndComment: CodeAndComment
   deleteOne: Function
   edit: Function
 }
 
 
-type State = {
+interface State {
   isDeleting: boolean
 }
 

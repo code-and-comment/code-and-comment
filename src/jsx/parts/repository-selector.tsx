@@ -5,7 +5,7 @@ import actions, { setCodeAndCommentsFunc } from '../actions/edit'
 import { State } from '../store'
 
 
-type Props = {
+interface Props {
   repositories: State['repositories'],
   searchRepository: State['searchRepository'],
   setCodeAndComments: setCodeAndCommentsFunc

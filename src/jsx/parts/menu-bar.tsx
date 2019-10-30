@@ -5,7 +5,7 @@ import Loading from '../parts/loading'
 import { State as _State } from '../store'
 
 
-type Props = {
+interface Props {
   id: number
   loading: boolean
   deleteOne: (event: MouseEvent) => _State
@@ -23,7 +23,7 @@ type Props = {
 }
 
 
-type State = {
+interface State {
   url: string
   exportFileName: string
   isDeleting: boolean

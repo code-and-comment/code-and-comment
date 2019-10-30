@@ -4,12 +4,12 @@ import { connect } from 'unistore/preact'
 import { scrollIntoView } from '../utils'
 
 
-type I = {
+interface I {
   comments: Record<string, string>
   lines: string
 }
 
-type T = {
+interface T {
   handler: (event: Event) => void
 }
 

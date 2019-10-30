@@ -4,7 +4,7 @@ import Line from './line'
 import { scrollIntoView } from '../utils'
 
 
-type Props = {
+interface Props {
   id: number
   lines: string[]
   comments: Record<string, string>
@@ -15,7 +15,7 @@ type Props = {
 }
 
 
-type State = {
+interface State {
   markedLineNumber: number
 }
 

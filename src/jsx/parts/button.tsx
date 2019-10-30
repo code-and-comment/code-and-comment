@@ -1,7 +1,7 @@
 import { h, FunctionalComponent, ComponentChildren } from 'preact'
 
-type clickHandler = (event: MouseEvent) => any
-type Props = { disabled?: boolean, onClick?: clickHandler, children: ComponentChildren }
+interface Props { disabled?: boolean, onClick?: (event: MouseEvent) => any, children: ComponentChildren }
+
 
 const Button: FunctionalComponent<Props> = function ({ disabled, onClick, children }) {
   const className = disabled ? 'cc-button cc-button-disabled' : 'cc-button'
