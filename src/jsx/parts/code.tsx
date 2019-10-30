@@ -1,7 +1,7 @@
 import { h, Component, JSX } from 'preact'
 
 
-type Props = {
+interface Props {
   lineNumber: number;
   content: string;
   edit: JSX.EventHandler<MouseEvent>;

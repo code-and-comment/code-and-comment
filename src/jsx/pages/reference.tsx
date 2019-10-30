@@ -7,7 +7,7 @@ import Loading from '../parts/loading'
 import { State } from '../store'
 
 
-type Props = {
+interface Props {
   id: string | number
   lineNumber: string | number
   edit: editFunc

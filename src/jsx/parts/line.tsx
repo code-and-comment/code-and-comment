@@ -4,7 +4,7 @@ import Code from './code'
 import Comment from './comment.jsx'
 
 
-type Props = {
+interface Props {
   id: number
   index: number
   code: string
@@ -19,7 +19,7 @@ type Props = {
 }
 
 
-type State = {
+interface State {
   isEditing: boolean
   isHidden: boolean
 }
