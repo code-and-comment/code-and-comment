@@ -4,8 +4,25 @@ import markdown from '../markdown'
 import Button from './button'
 
 
-class Comment extends Component {
-  constructor(props) {
+interface Props {
+  id: number
+  lineNumber: number
+  comment: string
+  isEditing: boolean
+  cancel: Function
+  save: Function
+  delete: Function
+}
+
+
+interface State {
+  comment: string
+  isPreview: boolean
+}
+
+
+class Comment extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     this.state = {
       comment: props.comment,
@@ -19,20 +36,21 @@ class Comment extends Component {
     this.copyLink = this.copyLink.bind(this)
   }
 
-  componentWillReceiveProps({ comment }) {
+  componentWillReceiveProps({ comment }: Props) {
     this.setState({
       comment,
       isPreview: false,
     })
   }
 
-  setComment(event) {
+  setComment(event: Event) {
     this.setState({
+      // @ts-ignore
       comment: event.target.value
     })
   }
 
-  cancel(event) {
+  cancel(event: Event) {
     event.stopPropagation()
     this.setState({
       comment: this.props.comment
@@ -40,14 +58,15 @@ class Comment extends Component {
     this.props.cancel()
   }
 
-  save(event) {
+  save(event: Event) {
     event.stopPropagation()
+    // @ts-ignore
     window.requestIdleCallback(() => {
       this.props.save(this.state.comment)
     })
   }
 
-  delete(event) {
+  delete(event: Event) {
     event.stopPropagation()
     this.setState({
       comment: ''
@@ -55,19 +74,19 @@ class Comment extends Component {
     this.props.delete()
   }
 
-  togglePreview(event) {
+  togglePreview(event: Event) {
     event.stopPropagation()
     this.setState({ isPreview: !this.state.isPreview })
   }
 
-  copyLink(event) {
+  copyLink(event: Event) {
     event.stopPropagation()
     const { id, lineNumber } = this.props
     const link = `#/r/${id}/${lineNumber}`
     window.navigator.clipboard.writeText(link)
   }
 
-  render({ isEditing }, { comment, isPreview }) {
+  render({ isEditing }: Props, { comment, isPreview }: State) {
     if (comment && !isEditing) {
       return (
         <div className="cc-comment">
@@ -81,8 +100,8 @@ class Comment extends Component {
           <div className="input">
             <div className="tab-navigator">
               <div className="tabs">
-                <span className={ isPreview ? 'tab' : 'tab selected' } onClick={ isPreview && this.togglePreview }>Edit</span>
-                <span className={ isPreview ? 'tab selected' : 'tab' } onClick={ !isPreview && this.togglePreview }>Preview</span>
+                <span className={ isPreview ? 'tab' : 'tab selected' } onClick={ isPreview ? this.togglePreview : undefined }>Edit</span>
+                <span className={ isPreview ? 'tab selected' : 'tab' } onClick={ !isPreview ? this.togglePreview : undefined }>Preview</span>
               </div>
             </div>
             { !isPreview && <textarea onChange={ this.setComment }>{ comment }</textarea> }
