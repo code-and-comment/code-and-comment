@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
 import Code from './code'
-import Comment from './comment.jsx'
+import Comment from './comment'
 
 
 interface Props {
