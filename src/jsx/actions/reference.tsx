@@ -45,10 +45,12 @@ export function edit(
 }
 
 
-export type editFunc = (
-  id: string | number,
-  highlightLineNumber: string | number
-) => ReturnType<typeof edit>
+export interface editFunc{
+  (
+    id: string | number,
+    highlightLineNumber: string | number
+  ): ReturnType<typeof edit>
+}
 
 
 export default {
