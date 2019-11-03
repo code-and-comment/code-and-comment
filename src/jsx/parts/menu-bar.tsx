@@ -5,6 +5,15 @@ import Loading from '../parts/loading'
 import { State as _State } from '../store'
 
 
+export enum Mode {
+  Initial,
+  Delete,
+  Create,
+  Import,
+  Export
+}
+
+
 interface Props {
   id: number
   loading: boolean
@@ -26,10 +35,7 @@ interface Props {
 interface State {
   url: string
   exportFileName: string
-  isDeleting: boolean
-  isCreating: boolean
-  isImporting: boolean
-  isExporting: boolean
+  mode: Mode
 }
 
 
@@ -39,10 +45,7 @@ export class MenuBar extends Component<Props, State> {
     this.state = {
       url: '',
       exportFileName: 'code-and-comment.json',
-      isDeleting: false,
-      isCreating: false,
-      isImporting: false,
-      isExporting: false,
+      mode: Mode.Initial
     }
     this.creating = this.creating.bind(this)
     this.deleting = this.deleting.bind(this)
@@ -64,38 +67,35 @@ export class MenuBar extends Component<Props, State> {
 
   shouldComponentUpdate(
     { id, loading, isSelectorOpen, networkError, urlError }: Props,
-    { isCreating, isDeleting, isExporting, isImporting }: State
+    { mode }: State
   ) {
     return !(this.props.id === id
         && this.props.loading === loading
         && this.props.isSelectorOpen === isSelectorOpen
         && this.props.networkError === networkError
         && this.props.urlError === urlError
-        && this.state.isCreating === isCreating
-        && this.state.isDeleting === isDeleting
-        && this.state.isImporting === isImporting
-        && this.state.isExporting === isExporting)
+        && this.state.mode === mode)
   }
 
   deleting(event: Event) {
     event.stopPropagation()
-    this.setState({ isDeleting: true })
+    this.setState({ mode: Mode.Delete })
   }
 
   creating(event: Event) {
     event.stopPropagation()
     this.props.clearErrors()
-    this.setState({ isCreating: true })
+    this.setState({ mode: Mode.Create })
   }
 
   importing(event: Event) {
     event.stopPropagation()
-    this.setState({ isImporting: true })
+    this.setState({ mode: Mode.Import })
   }
 
   exporting(event: Event) {
     event.stopPropagation()
-    this.setState({ isExporting: true })
+    this.setState({ mode: Mode.Export })
   }
 
   import(event: Event) {
@@ -131,10 +131,7 @@ export class MenuBar extends Component<Props, State> {
     }
     this.setState({
       url: '',
-      isDeleting: false,
-      isCreating: false,
-      isExporting: false,
-      isImporting: false,
+      mode: Mode.Initial
     })
   }
 
@@ -166,10 +163,7 @@ export class MenuBar extends Component<Props, State> {
     urlError
   }: Props, {
     exportFileName,
-    isCreating,
-    isDeleting,
-    isExporting,
-    isImporting,
+    mode,
   }: State) {
     if (loading) {
       return(
@@ -178,7 +172,7 @@ export class MenuBar extends Component<Props, State> {
         </div>
       )
     }
-    else if (isDeleting) {
+    else if (mode === Mode.Delete) {
       return (
         <div className="cc-menu-bar deleting">
           <div className="message">This code and comment is removed.</div>
@@ -188,7 +182,7 @@ export class MenuBar extends Component<Props, State> {
         </div>
       )
     }
-    else if (isCreating) {
+    else if (mode === Mode.Create) {
       return (
         <div className="cc-menu-bar input creating">
           <p>Input a file url in Github.</p>
@@ -200,7 +194,7 @@ export class MenuBar extends Component<Props, State> {
         </div>
       )
     }
-    else if (isExporting) {
+    else if (mode === Mode.Export) {
       return (
         <div className="cc-menu-bar input exporting">
           <p>Input a file name.</p>
@@ -210,7 +204,7 @@ export class MenuBar extends Component<Props, State> {
         </div>
       )
     }
-    else if (isImporting) {
+    else if (mode === Mode.Import) {
       return (
         <div className="cc-menu-bar input importing">
           <p>Input a file of Code and Comment.</p>
