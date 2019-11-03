@@ -7,7 +7,7 @@ import { MenuBar, Mode } from '../../src/jsx/parts/menu-bar'
 
 describe('parts/menu-bar', () => {
   describe('<MenuBar />', () => {
-    const LABELS = 'OpenNewListCommentsExportImportDelete'
+    const LABELS = 'OpenNewListCommentsExportImportTokenDelete'
 
     it('displays loading', () => {
       const wrapper = mount(<MenuBar loading={ true } />)
@@ -24,23 +24,23 @@ describe('parts/menu-bar', () => {
         loading: false,
       })
       expect(wrapper.state().mode).to.equal(Mode.Initial)
-      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImport')
+      expect(wrapper.text()).to.equal('OpenNewListCommentsExportImportToken')
 
       wrapper.setProps({
         isSelectorOpen: true,
         loading: false,
       })
-      expect(wrapper.text()).to.equal('CloseNewListCommentsExportImport')
+      expect(wrapper.text()).to.equal('CloseNewListCommentsExportImportToken')
 
       wrapper.setProps({
         id: 1,
       })
-      expect(wrapper.text()).to.equal('CloseNewListCommentsExportImportDelete')
+      expect(wrapper.text()).to.equal('CloseNewListCommentsExportImportTokenDelete')
     })
 
     it('displays deleting', () => {
       const wrapper = mount(<MenuBar id={ 1 }loading={ false } />)
-      wrapper.find('.label').at(6).simulate('click')
+      wrapper.find('.label').at(7).simulate('click')
 
       expect(wrapper.state().mode).to.equal(Mode.Delete)
       expect(wrapper.exists('.deleting')).to.be.true

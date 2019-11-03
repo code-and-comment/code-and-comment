@@ -373,9 +373,20 @@ function clearErrors(): Pick<State, 'networkError' | 'urlError'> {
 }
 
 
+function setToken(
+  state: State,
+  token: string
+): Pick<State, 'token'> {
+  return {
+    token,
+  }
+}
+
+
 export default {
   getFile,
   setLoading,
+  setToken,
   updateComment,
   updateTitle,
   searchCodeAndComment,

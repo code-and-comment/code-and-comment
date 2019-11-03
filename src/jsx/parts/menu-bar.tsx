@@ -10,7 +10,8 @@ export enum Mode {
   Delete,
   Create,
   Import,
-  Export
+  Export,
+  Token
 }
 
 
@@ -23,6 +24,7 @@ interface Props {
   toggleSelector: JSX.EventHandler<MouseEvent>
   isSelectorOpen: boolean
   setLoading: Function
+  setToken: Function
   getFile: Function
   exportData: Function
   importData: Function
@@ -34,6 +36,7 @@ interface Props {
 
 interface State {
   url: string
+  token: string
   exportFileName: string
   mode: Mode
 }
@@ -44,6 +47,7 @@ export class MenuBar extends Component<Props, State> {
     super(props)
     this.state = {
       url: '',
+      token: '',
       exportFileName: 'code-and-comment.json',
       mode: Mode.Initial
     }
@@ -51,12 +55,15 @@ export class MenuBar extends Component<Props, State> {
     this.deleting = this.deleting.bind(this)
     this.importing = this.importing.bind(this)
     this.exporting = this.exporting.bind(this)
+    this.tokenizing = this.tokenizing.bind(this)
     this.cancel = this.cancel.bind(this)
     this.create = this.create.bind(this)
     this.setUrl = this.setUrl.bind(this)
+    this.setToken = this.setToken.bind(this)
     this.setExportFileName = this.setExportFileName.bind(this)
     this.import = this.import.bind(this)
     this.export = this.export.bind(this)
+    this.tokenize = this.tokenize.bind(this)
   }
 
   componentWillReceiveProps({ id }: Props) {
@@ -96,6 +103,11 @@ export class MenuBar extends Component<Props, State> {
   exporting(event: Event) {
     event.stopPropagation()
     this.setState({ mode: Mode.Export })
+  }
+
+  tokenizing(event: Event) {
+    event.stopPropagation()
+    this.setState({ mode: Mode.Token })
   }
 
   import(event: Event) {
@@ -140,6 +152,11 @@ export class MenuBar extends Component<Props, State> {
     this.setState({ url: event.target.value })
   }
 
+  setToken(event: Event) {
+    // @ts-ignore
+    this.setState({ token: event.target.value })
+  }
+
   setExportFileName(event: Event) {
     // @ts-ignore
     this.setState({ exportFileName: event.target.value })
@@ -149,6 +166,12 @@ export class MenuBar extends Component<Props, State> {
     event.stopPropagation()
     this.props.setLoading()
     this.props.getFile(this.state.url)
+  }
+
+  tokenize(event: Event) {
+    event.stopPropagation()
+    this.props.setToken(this.state.token)
+    this.cancel()
   }
 
   render({
@@ -194,6 +217,16 @@ export class MenuBar extends Component<Props, State> {
         </div>
       )
     }
+    else if (mode === Mode.Token) {
+      return (
+        <div className="cc-menu-bar input tokenizing">
+          <p>Input a Github personal access token</p>
+          <input type="text" onChange={ this.setToken }/>
+          <Button onClick={ this.tokenize }>&nbsp;Set&nbsp;</Button>
+          <Button onClick={ this.cancel }>Cancel</Button>
+        </div>
+      )
+    }
     else if (mode === Mode.Export) {
       return (
         <div className="cc-menu-bar input exporting">
@@ -227,6 +260,7 @@ export class MenuBar extends Component<Props, State> {
           <span className="label" onClick={ searchComment }>Comments</span>
           <span className="label" onClick={ this.exporting }>Export</span>
           <span className="label" onClick={ this.importing }>Import</span>
+          <span className="label" onClick={ this.tokenizing }>Token</span>
           { id && <span className="label" onClick={ this.deleting }>Delete</span> }
         </div>
       )
