@@ -71,6 +71,7 @@ class Edit extends Component {
     searchComment,
     isSelectorOpen,
     setLoading,
+    setToken,
     getFile,
     exportData,
     importData,
@@ -99,6 +100,7 @@ class Edit extends Component {
             toggleSelector={ this.toggleSelector }
             isSelectorOpen={ isSelectorOpen }
             setLoading={ setLoading }
+            setToken={ setToken }
             getFile={ getFile }
             exportData={ exportData }
             importData={ importData }

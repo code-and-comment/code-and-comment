@@ -27,6 +27,7 @@ export interface State {
   searchRepository: string;
   repositories: string[];
   isSelectorOpen?: boolean;
+  token?: string;
 }
 
 
@@ -52,6 +53,7 @@ export function initialState(): State {
 
 const state = initialState()
 state.isSelectorOpen = true
+state.token = ''
 
 
 export default createStore(state)
