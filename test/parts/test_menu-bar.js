@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import { expect } from 'chai'
 import { spy } from 'sinon'
 
-import { MenuBar } from '../../src/jsx/parts/menu-bar'
+import { MenuBar, Mode } from '../../src/jsx/parts/menu-bar'
 
 describe('parts/menu-bar', () => {
   describe('<MenuBar />', () => {
@@ -12,10 +12,7 @@ describe('parts/menu-bar', () => {
     it('displays loading', () => {
       const wrapper = mount(<MenuBar loading={ true } />)
       wrapper.setState({
-        isDeleting: true,
-        isCreating: true,
-        isImporting: true,
-        isExporting: true,
+        mode: Mode.Create,
       })
       expect(wrapper.html()).to.equal('<div class="cc-menu-bar loading"><div class="cc-loading"></div></div>')
     })
@@ -26,10 +23,7 @@ describe('parts/menu-bar', () => {
         isSelectorOpen: false,
         loading: false,
       })
-      expect(wrapper.state().isDeleting).to.be.false
-      expect(wrapper.state().isCreating).to.be.false
-      expect(wrapper.state().isImporting).to.be.false
-      expect(wrapper.state().isExporting).to.be.false
+      expect(wrapper.state().mode).to.equal(Mode.Initial)
       expect(wrapper.text()).to.equal('OpenNewListCommentsExportImport')
 
       wrapper.setProps({
@@ -48,7 +42,7 @@ describe('parts/menu-bar', () => {
       const wrapper = mount(<MenuBar id={ 1 }loading={ false } />)
       wrapper.find('.label').at(6).simulate('click')
 
-      expect(wrapper.state().isDeleting).to.be.true
+      expect(wrapper.state().mode).to.equal(Mode.Delete)
       expect(wrapper.exists('.deleting')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
     })
@@ -58,7 +52,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.label').at(6).simulate('click')
       wrapper.find('.cc-button').at(1).simulate('click')
 
-      expect(wrapper.state().isDeleting).to.be.false
+      expect(wrapper.state().mode).to.equal(Mode.Initial)
       expect(wrapper.text()).to.equal(LABELS)
     })
 
@@ -68,7 +62,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.label').at(1).simulate('click')
 
       expect(clearErrors.calledOnce).to.be.true
-      expect(wrapper.state().isCreating).to.be.true
+      expect(wrapper.state().mode).to.equal(Mode.Create)
       expect(wrapper.exists('.creating')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
 
@@ -85,7 +79,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.label').at(1).simulate('click')
       wrapper.find('.cc-button').at(1).simulate('click')
 
-      expect(wrapper.state().isCreating).to.be.false
+      expect(wrapper.state().mode).to.equal(Mode.Initial)
       expect(wrapper.text()).to.equal(LABELS)
     })
 
@@ -93,7 +87,7 @@ describe('parts/menu-bar', () => {
       const wrapper = mount(<MenuBar loading={ false } />)
       wrapper.find('.label').at(5).simulate('click')
 
-      expect(wrapper.state().isImporting).to.be.true
+      expect(wrapper.state().mode).to.equal(Mode.Import)
       expect(wrapper.exists('.importing')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
     })
@@ -103,7 +97,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.label').at(5).simulate('click')
       wrapper.find('.cc-button').at(1).simulate('click')
 
-      expect(wrapper.state().isImporting).to.be.false
+      expect(wrapper.state().mode).to.equal(Mode.Initial)
       expect(wrapper.text()).to.equal(LABELS)
     })
 
@@ -111,7 +105,7 @@ describe('parts/menu-bar', () => {
       const wrapper = mount(<MenuBar loading={ false } />)
       wrapper.find('.label').at(4).simulate('click')
 
-      expect(wrapper.state().isExporting).to.be.true
+      expect(wrapper.state().mode).to.equal(Mode.Export)
       expect(wrapper.exists('.exporting')).to.be.true
       expect(wrapper.exists('.loading')).to.be.false
 
@@ -128,7 +122,7 @@ describe('parts/menu-bar', () => {
       wrapper.find('.label').at(4).simulate('click')
       wrapper.find('.cc-button').at(1).simulate('click')
 
-      expect(wrapper.state().isExporting).to.be.false
+      expect(wrapper.state().mode).to.equal(Mode.Initial)
       expect(wrapper.text()).to.equal(LABELS)
     })
   })
