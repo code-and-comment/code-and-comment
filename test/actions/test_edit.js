@@ -17,7 +17,7 @@ describe('actions/edit', () => {
     }
 
     it('returns urlError if url is invalid', async function() {
-      const result = await actions.getFile(null, 'https://example.com/index.html', noop, noop, noop, noop, noop, noop, noop, noop)
+      const result = await actions.getFile({}, 'https://example.com/index.html', noop, noop, noop, noop, noop, noop, noop, noop)
       expect(result).to.deep.equal({
         loading: false,
         networkError: false,
@@ -47,7 +47,7 @@ describe('actions/edit', () => {
         return id
       }
       const result = await actions
-        .getFile(null, url, fetch, requestIdleCallback, saveCodeAndComment, noop, noop, noop, noop, noop)
+        .getFile({}, url, fetch, requestIdleCallback, saveCodeAndComment, noop, noop, noop, noop, noop)
       expect(fetch.calledOnce).to.be.true
       const requestUrl = 'https://api.github.com/repos/code-and-comment/test/contents/foo/bar.js?ref=master'
       expect(fetch.calledWith(requestUrl)).to.be.true
@@ -73,7 +73,7 @@ describe('actions/edit', () => {
         }
       })
       const url = 'https://github.com/code-and-comment/test/blob/master/foo/bar.js'
-      const result = await actions.getFile(null, url, fetch, requestIdleCallback)
+      const result = await actions.getFile({}, url, fetch, requestIdleCallback)
       expect(result).to.deep.equal({
         loading: false,
         networkError: true,

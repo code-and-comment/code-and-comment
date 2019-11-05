@@ -313,7 +313,9 @@ async function getFile(
 
   const apiUrl = `https://api.github.com/repos/${matches[1]}/contents/${matches[3]}?ref=${matches[2]}`
 
-  const data = await fetch(apiUrl)
+  const request = state.token ? fetch(apiUrl, { headers: { Authorization: `token ${state.token}` } }) : fetch(apiUrl)
+
+  const data = await request
     .then(response => {
       if (response.ok) {
         return response.json()

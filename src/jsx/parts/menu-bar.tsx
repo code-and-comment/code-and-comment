@@ -149,17 +149,17 @@ export class MenuBar extends Component<Props, State> {
 
   setUrl(event: Event) {
     // @ts-ignore
-    this.setState({ url: event.target.value })
+    this.setState({ url: event.target.value.trim() })
   }
 
   setToken(event: Event) {
     // @ts-ignore
-    this.setState({ token: event.target.value })
+    this.setState({ token: event.target.value.trim() })
   }
 
   setExportFileName(event: Event) {
     // @ts-ignore
-    this.setState({ exportFileName: event.target.value })
+    this.setState({ exportFileName: event.target.value.trim() })
   }
 
   create(event: Event) {
@@ -208,7 +208,7 @@ export class MenuBar extends Component<Props, State> {
     else if (mode === Mode.Create) {
       return (
         <div className="cc-menu-bar input creating">
-          <p>Input a file url in Github.</p>
+          <p>Input a file url in Github. (The content of a file in Github is saved in browser.)</p>
           <input type="text" onChange={ this.setUrl }/>
           <Button onClick={ this.create }>Create</Button>
           <Button onClick={ this.cancel }>Cancel</Button>
