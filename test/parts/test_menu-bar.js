@@ -49,6 +49,24 @@ describe('parts/menu-bar', () => {
 
     it('cancels deleting', () => {
       const wrapper = mount(<MenuBar isSelectorOpen={ false } id={ 1 } loading={ false } />)
+      wrapper.find('.label').at(7).simulate('click')
+      wrapper.find('.cc-button').at(1).simulate('click')
+
+      expect(wrapper.state().mode).to.equal(Mode.Initial)
+      expect(wrapper.text()).to.equal(LABELS)
+    })
+
+    it('displays token', () => {
+      const wrapper = mount(<MenuBar id={ 1 }loading={ false } />)
+      wrapper.find('.label').at(6).simulate('click')
+
+      expect(wrapper.state().mode).to.equal(Mode.Token)
+      expect(wrapper.exists('.tokenizing')).to.be.true
+      expect(wrapper.exists('.loading')).to.be.false
+    })
+
+    it('cancels token', () => {
+      const wrapper = mount(<MenuBar isSelectorOpen={ false } id={ 1 } loading={ false } />)
       wrapper.find('.label').at(6).simulate('click')
       wrapper.find('.cc-button').at(1).simulate('click')
 
