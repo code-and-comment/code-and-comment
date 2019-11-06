@@ -10,7 +10,7 @@ module.exports = {
     ignored: ['node_modules', 'dist']
   },
   entry: {
-    app: './src/jsx/index.jsx',
+    app: './src/jsx/index.tsx',
     repositories: './src/jsx/repositories.jsx',
     codeAndComments: './src/jsx/codeAndComments.jsx',
     index: './src/scss/index.scss',
