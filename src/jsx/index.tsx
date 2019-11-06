@@ -2,7 +2,7 @@ import { h, render, Component } from 'preact'
 import Router from 'preact-router'
 import { createHashHistory } from 'history'
 import { Provider } from 'unistore/preact'
-import { route } from 'preact-router'
+import { route, RouterOnChangeArgs } from 'preact-router'
 
 import store from './store'
 import {
@@ -19,15 +19,21 @@ import Reference from './pages/reference'
 const REDIRECT_URLS = ['/search_code_and_comment', '/search_comment']
 
 
-class CodeAndComment extends Component {
-  constructor(props) {
+interface Props {}
+
+
+class CodeAndComment extends Component<Props> {
+  isFirst: boolean
+
+  constructor(props: Props) {
     super(props)
     this.isFirst = true
     this.changeRoute = this.changeRoute.bind(this)
   }
 
-  changeRoute(event) {
+  changeRoute(event: RouterOnChangeArgs) {
     if (this.isFirst && REDIRECT_URLS.includes(event.url)) {
+      // @ts-ignore
       requestIdleCallback(() => {
         route('/')
       })
@@ -51,7 +57,8 @@ class CodeAndComment extends Component {
 
 render(<CodeAndComment />, document.body)
 
-window.requestIdleCallback(() => {
+// @ts-ignore
+requestIdleCallback(() => {
   setRepositoriesWorker(store)
   updateRepositories()
   setCodeAndCommentsWorker(store)

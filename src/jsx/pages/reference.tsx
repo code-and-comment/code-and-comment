@@ -10,6 +10,7 @@ import { State } from '../store'
 interface Props {
   id: string | number
   lineNumber: string | number
+  path: string
   edit: editFunc
 }
 
@@ -31,4 +32,4 @@ class Reference extends Component<Props> {
 }
 
 
-export default connect<Pick<Props, 'id' | 'lineNumber'>, {}, State, Pick<Props, 'edit'>>([], actions)(Reference)
+export default connect<Pick<Props, 'path'>, {}, State, Pick<Props, 'id' | 'lineNumber' | 'edit'>>([], actions)(Reference)
