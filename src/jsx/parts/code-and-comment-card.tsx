@@ -17,6 +17,7 @@ interface State {
 
 
 class CodeAndCommentCard extends Component<Props, State> {
+  edit: (event: Event) => void
   constructor(props: Props) {
     super(props)
     this.state = { isDeleting: false }
@@ -62,7 +63,6 @@ class CodeAndCommentCard extends Component<Props, State> {
     else {
       controls = (
         <div className="controls">
-          // @ts-ignore
           <Button onClick={ this.edit }>Edit</Button>
           { ' ' }
           <Button onClick={ this.deleting }>Delete</Button>
