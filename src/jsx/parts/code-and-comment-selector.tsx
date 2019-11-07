@@ -2,27 +2,36 @@ import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/edit'
+import { CodeAndComment, State } from '../store'
 
 
-class CodeAndCommentSelector extends Component {
-  constructor(props) {
+interface Props {
+  id: number
+  codeAndComments: CodeAndComment[]
+  changeCodeAndComment: Function
+}
+
+
+class CodeAndCommentSelector extends Component<Props> {
+  constructor(props: Props) {
     super(props)
     this.changeCodeAndComment = this.changeCodeAndComment.bind(this)
   }
 
-  changeCodeAndComment(event) {
+  changeCodeAndComment(event: Event) {
     event.stopPropagation()
+    // @ts-ignore
     const id = event.currentTarget.dataset.id - 0
     this.props.changeCodeAndComment(id)
   }
 
-  shouldComponentUpdate({ id, codeAndComments }) {
+  shouldComponentUpdate({ id, codeAndComments }: Props) {
     return !(
       this.props.id === id
         && this.props.codeAndComments === codeAndComments)
   }
 
-  render({ id, codeAndComments }) {
+  render({ id, codeAndComments }: Props) {
     return (
       <div className="cc-code-and-comment-selector">
         {
@@ -49,4 +58,4 @@ class CodeAndCommentSelector extends Component {
 }
 
 
-export default connect(['id', 'codeAndComments'], actions)(CodeAndCommentSelector)
+export default connect<{}, {}, State, Props>(['id', 'codeAndComments'], actions)(CodeAndCommentSelector)
