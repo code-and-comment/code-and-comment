@@ -17,6 +17,7 @@ interface Props {
 
 
 class CommentCard extends Component<Props> {
+  edit: (event: MouseEvent) => any
   constructor(props: Props) {
     super(props)
     // @ts-ignore
@@ -50,7 +51,6 @@ class CommentCard extends Component<Props> {
         <div>{ title }</div>
         <div>{ updated_at.toLocaleString() }</div>
         <div className="controls">
-          // @ts-ignore
           <Button onClick={ this.edit }>Edit</Button>
         </div>
       </div>
