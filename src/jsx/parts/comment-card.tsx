@@ -7,6 +7,7 @@ import Button from './button'
 interface Props {
   id: number
   lineNumber: number
+  code: string
   comment: string
   path: string
   title: string
@@ -24,19 +25,24 @@ class CommentCard extends Component<Props> {
     this.edit = props.edit.bind(null, props.id, props.lineNumber)
   }
 
-  shouldComponentUpdate({ id, comment, updated_at, lineNumber }: Props) {
+  shouldComponentUpdate({ id, code, comment, updated_at, lineNumber }: Props) {
     return !(
       this.props.lineNumber === lineNumber
+      && this.props.code === code
       && this.props.comment === comment
       && this.props.id === id
       && this.props.updated_at.getTime() === updated_at.getTime()
     )
   }
 
-  render({ id, comment, path, title, repository, updated_at }: Props) {
+  render({ id, code, comment, path, title, lineNumber, repository, updated_at }: Props) {
     return (
       <div className="cc-comment-card">
         <div>ID: { id }</div>
+        <div className="line">
+          <span className="number">{ lineNumber }</span>
+          <span className="content">{ code }</span>
+        </div>
         <div className="comment" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
         <div>{ repository }</div>
         <div>

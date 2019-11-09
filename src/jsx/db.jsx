@@ -145,8 +145,16 @@ export function getAllRecords(
     cursor.addEventListener('success', (event) => {
       const cursor = event.target.result
       if (cursor) {
-        if (!withLines) {
-          delete cursor.value.lines
+        if (!withLines && !Object.keys(cursor.value.comments).length) {
+          cursor.value.lines = []
+        }
+        else {
+          const lines = Array.from({ length: cursor.value.lines.length })
+          Object.keys(cursor.value.comments).forEach((i) => {
+            i -= 0
+            lines[i] = cursor.value.lines[i]
+          })
+          cursor.value.lines = lines
         }
         records.push(cursor.value)
         cursor.continue()

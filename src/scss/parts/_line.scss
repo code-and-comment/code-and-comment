@@ -9,9 +9,9 @@
 }
 
 .cc-line {
-  font-family: Consolas, SFMono-Regular, Menlo, "Roboto Mono", monospace;
-  font-size: 12px;
-  line-height: 18px;
+  font-family: $line-font-family;
+  font-size: $line-font-size;
+  line-height:  $line-line-height;
   min-width: 100%;
   width: max-content;
 }
