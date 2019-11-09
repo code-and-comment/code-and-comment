@@ -68,6 +68,7 @@ function CommentList({ codeAndComments, commentPattern, edit }) {
   codeAndComments.forEach((c) => {
     Object.keys(c.comments).forEach((key) => {
       const comment = c.comments[key]
+      const code = c.lines[key - 0]
       const lineNumber = key - 0 + 1
       if (re && !comment.match(re)) {
         return
@@ -77,6 +78,7 @@ function CommentList({ codeAndComments, commentPattern, edit }) {
         id={ c.id }
         path={ c.path }
         title={ c.title }
+        code={ code }
         comment={ comment }
         repository={ c.repository }
         lineNumber={ lineNumber }
