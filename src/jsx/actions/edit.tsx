@@ -108,7 +108,7 @@ async function exportData(
   getAllRecords: Function = _getAllRecords,
   bound: typeof IDBKeyRange.bound = IDBKeyRange.bound
 ): Promise<void> {
-  const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound, 'prev', true)
+  const codeAndComments = await search({}, getDB, getObjectStore, getAllRecords, bound, 'prev', null)
   const data = encodeURIComponent(JSON.stringify(codeAndComments))
   const elem = document.createElement('a')
   elem.href = `data:text/plain;charset=utf-8,${data}`

@@ -136,7 +136,7 @@ export function getAllRecords(
   indexName = 'updated_at',
   range,
   direction = 'prev',
-  withLines = false
+  callback = null
 ) {
   const p = new Promise((resolve, reject) => {
     const index = objectStore.index(indexName)
@@ -145,16 +145,8 @@ export function getAllRecords(
     cursor.addEventListener('success', (event) => {
       const cursor = event.target.result
       if (cursor) {
-        if (!withLines && !Object.keys(cursor.value.comments).length) {
-          cursor.value.lines = []
-        }
-        else {
-          const lines = Array.from({ length: cursor.value.lines.length })
-          Object.keys(cursor.value.comments).forEach((i) => {
-            i -= 0
-            lines[i] = cursor.value.lines[i]
-          })
-          cursor.value.lines = lines
+        if (callback) {
+          callback(cursor)
         }
         records.push(cursor.value)
         cursor.continue()
