@@ -3,6 +3,8 @@ node_modules/
 package-lock.json
 move.sh
 dev.sh
+dist/index.js
+dist/index.js.map
 dist/app.js
 dist/app.js.map
 dist/repositories.js.map
