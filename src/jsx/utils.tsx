@@ -40,7 +40,7 @@ export async function search(
   getAllRecords: Function,
   bound: typeof IDBKeyRange.bound  = IDBKeyRange.bound,
   direction: string = 'prev',
-  callback = deleteLines
+  callback: Function | null = deleteLines
 ): Promise<CodeAndComment[]> {
   const indexName = getIndexName(conditions)
   const range = getRange(conditions, bound)
