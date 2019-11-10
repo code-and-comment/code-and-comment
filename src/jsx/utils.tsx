@@ -28,6 +28,11 @@ export function getRange(conditions: Conditions, bound: typeof IDBKeyRange.bound
 }
 
 
+export function deleteLines(cursor: IDBCursorWithValue) {
+  cursor.value.lines = []
+}
+
+
 export async function search(
   conditions: Conditions,
   getDB: Function,
@@ -35,13 +40,13 @@ export async function search(
   getAllRecords: Function,
   bound: typeof IDBKeyRange.bound  = IDBKeyRange.bound,
   direction: string = 'prev',
-  withLines: boolean  = false
+  callback = deleteLines
 ): Promise<CodeAndComment[]> {
   const indexName = getIndexName(conditions)
   const range = getRange(conditions, bound)
   const db = await getDB()
   const objectStore = await getObjectStore(db)
-  const codeAndComments = await getAllRecords(objectStore, indexName, range, direction, withLines)
+  const codeAndComments = await getAllRecords(objectStore, indexName, range, direction, callback)
   return codeAndComments
 }
 

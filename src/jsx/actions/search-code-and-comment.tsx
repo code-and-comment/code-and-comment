@@ -35,7 +35,17 @@ async function search(
   if (conditions && conditions.repository) {
     searchRepository = conditions.repository
   }
-  const codeAndComments = await _search(conditions, getDB, getObjectStore, getAllRecords)
+  function callback(cursor: IDBCursorWithValue) {
+    const lines = Array.from({ length: cursor.value.lines.length })
+    Object.keys(cursor.value.comments).forEach((index: string) => {
+      // @ts-ignore
+      const i = index - 0
+      lines[i] = cursor.value.lines[i]
+    })
+    // @ts-ignore
+    cursor.value.lines = lines
+  }
+  const codeAndComments = await _search(conditions, getDB, getObjectStore, getAllRecords, IDBKeyRange.bound, 'prev', callback)
   return {
     codeAndComments,
     searchRepository
