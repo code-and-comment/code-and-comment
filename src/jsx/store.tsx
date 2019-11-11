@@ -9,6 +9,7 @@ export interface CodeAndComment {
   path: string;
   title: string;
   updated_at: Date;
+  created_at: Date;
 }
 
 

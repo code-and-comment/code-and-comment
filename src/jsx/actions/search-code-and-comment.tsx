@@ -6,7 +6,7 @@ import {
   getObjectStore as _getObjectStore,
   deleteRecord as _deleteRecord,
   getAllRecords as _getAllRecords
-} from '../db.jsx'
+} from '../db'
 import {
   Conditions,
   edit as _edit,

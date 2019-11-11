@@ -129,6 +129,7 @@ async function importData(
   requestIdleCallback = window.requestIdleCallback
 ): Promise<State> {
   const db = await getDB()
+  // @ts-ignore
   const objectStore = await getObjectStore(db)
   await clearObjectStore(objectStore)
   await putRecords(objectStore, data)
@@ -263,10 +264,13 @@ async function changeCodeAndComment(
     return
   }
   const db = await getDB()
+  // @ts-ignore
   const objectStore = await getObjectStore(db)
   const request = await getRecord(objectStore, id)
   // TODO error process
+  // @ts-ignore
   if (request.target.result) {
+    // @ts-ignore
     const codeAndComment = request.target.result
     return {
       id: codeAndComment.id,
