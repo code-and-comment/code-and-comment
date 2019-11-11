@@ -2,7 +2,7 @@ import {
   getDB,
   getObjectStore,
   getAllRecords
-} from './db.jsx'
+} from './db'
 import { search } from './utils'
 
 

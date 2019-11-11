@@ -1,8 +1,12 @@
-let db = null
+import { CodeAndComment } from './store'
 
 
-function onUpgradeneeded(event) {
-  const db = event.target.result
+let db: IDBDatabase | null = null
+
+
+function onUpgradeneeded(event: IDBVersionChangeEvent) {
+  // @ts-ignore
+  const db = event.target.result as IDBDatabase
   const store = db.createObjectStore('CodeAndComment', {
     keyPath: 'id',
     autoIncrement: true
@@ -24,17 +28,18 @@ function onUpgradeneeded(event) {
 }
 
 
-export function getDB() {
+export function getDB(): Promise<IDBDatabase | null> | IDBDatabase {
   if (db) {
     return db
   }
-  const p = new Promise((resolve, reject) => {
+  const p = new Promise<IDBDatabase | null>((resolve, reject) => {
     const request = indexedDB.open('CodeAndComment', 1)
 
     request.addEventListener('upgradeneeded', onUpgradeneeded)
 
     request.addEventListener('success', (event) => {
-      db = event.target.result
+      // @ts-ignore
+      db = event.target.result as IDBDatabase
       resolve(db)
     })
 
@@ -47,14 +52,14 @@ export function getDB() {
 }
 
 
-export function getObjectStore(db) {
+export function getObjectStore(db: IDBDatabase) {
   const transaction = db.transaction(['CodeAndComment'], 'readwrite')
   // TODO add transaction.onsuccess() and transaction.onerror()
   return transaction.objectStore('CodeAndComment')
 }
 
 
-export function clearObjectStore(objectStore) {
+export function clearObjectStore(objectStore: IDBObjectStore) {
   const p = new Promise((resolve, reject) => {
     const request = objectStore.clear()
 
@@ -71,7 +76,7 @@ export function clearObjectStore(objectStore) {
 }
 
 
-function setEvent(request, resolve, reject) {
+function setEvent(request: IDBRequest, resolve: Function, reject: Function) {
   request.addEventListener('success', (event) => {
     resolve(event)
   })
@@ -82,8 +87,8 @@ function setEvent(request, resolve, reject) {
 }
 
 
-export function getRecord(objectStore, key) {
-  const p = new Promise((resolve, reject) => {
+export function getRecord(objectStore: IDBObjectStore, key: number) {
+  const p = new Promise<Event>((resolve, reject) => {
     const request = objectStore.get(key)
     setEvent(request, resolve, reject)
   })
@@ -91,9 +96,9 @@ export function getRecord(objectStore, key) {
 }
 
 
-export function addRecord(objectStore, data) {
+export function addRecord(objectStore: IDBObjectStore, data: CodeAndComment) {
   data.created_at = data.updated_at = new Date()
-  const p = new Promise((resolve, reject) => {
+  const p = new Promise<Event>((resolve, reject) => {
     const request = objectStore.add(data)
     setEvent(request, resolve, reject)
   })
@@ -101,11 +106,11 @@ export function addRecord(objectStore, data) {
 }
 
 
-export function putRecord(objectStore, data, updatedAt = true) {
+export function putRecord(objectStore: IDBObjectStore, data: CodeAndComment, updatedAt = true) {
   if (updatedAt) {
     data.updated_at = new Date()
   }
-  const p = new Promise((resolve, reject) => {
+  const p = new Promise<Event>((resolve, reject) => {
     const request = objectStore.put(data)
     setEvent(request, resolve, reject)
   })
@@ -113,7 +118,7 @@ export function putRecord(objectStore, data, updatedAt = true) {
 }
 
 
-export async function putRecords(objectStore, data) {
+export async function putRecords(objectStore: IDBObjectStore, data: CodeAndComment[]) {
   for (let d of data) {
     d.created_at = new Date(d.created_at)
     d.updated_at = new Date(d.updated_at)
@@ -122,8 +127,8 @@ export async function putRecords(objectStore, data) {
 }
 
 
-export function deleteRecord(objectStore, key) {
-  const p = new Promise((resolve, reject) => {
+export function deleteRecord(objectStore: IDBObjectStore, key: number) {
+  const p = new Promise<Event>((resolve, reject) => {
     const request = objectStore.delete(key)
     setEvent(request, resolve, reject)
   })
@@ -132,20 +137,22 @@ export function deleteRecord(objectStore, key) {
 
 
 export function getAllRecords(
-  objectStore,
+  objectStore: IDBObjectStore,
   indexName = 'updated_at',
-  range,
-  direction = 'prev',
-  callback = null
+  range: IDBKeyRange,
+  direction: IDBCursorDirection = 'prev',
+  callback: ((cursor: IDBCursorWithValue) => void) | null = null
 ) {
-  const p = new Promise((resolve, reject) => {
+  const p = new Promise<CodeAndComment[] | null>((resolve, reject) => {
     const index = objectStore.index(indexName)
     const cursor = index.openCursor(range, direction)
-    const records = []
-    cursor.addEventListener('success', (event) => {
+    const records: CodeAndComment[] = []
+    cursor.addEventListener('success', (event: Event) => {
+      // @ts-ignore
       const cursor = event.target.result
       if (cursor) {
         if (callback) {
+          // @ts-ignore
           callback(cursor)
         }
         records.push(cursor.value)

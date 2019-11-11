@@ -1,7 +1,7 @@
 import {
   getDB,
   getObjectStore,
-} from './db.jsx'
+} from './db'
 
 
 self.addEventListener('message', async function() {
