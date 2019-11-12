@@ -11,8 +11,8 @@ module.exports = {
   },
   entry: {
     app: './src/jsx/index.tsx',
-    repositories: './src/jsx/repositories.jsx',
-    codeAndComments: './src/jsx/codeAndComments.jsx',
+    repositories: './src/jsx/repositories.tsx',
+    codeAndComments: './src/jsx/codeAndComments.tsx',
     index: './src/scss/index.scss',
   },
   devtool: 'source-map',

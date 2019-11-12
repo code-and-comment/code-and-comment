@@ -6,11 +6,13 @@ import {
 
 self.addEventListener('message', async function() {
   const db = await getDB()
+  // @ts-ignore
   const objectStore = await getObjectStore(db)
   const p = new Promise((resolve, reject) => {
     const cursor = objectStore.openCursor()
     const repositories = new Set()
-    cursor.addEventListener('success', (event) => {
+    cursor.addEventListener('success', (event: Event) => {
+      // @ts-ignore
       const cursor = event.target.result
       if (cursor) {
         repositories.add(cursor.value.repository)
@@ -25,5 +27,6 @@ self.addEventListener('message', async function() {
     })
   })
   const repositories = await p
-  self.postMessage(repositories)
+  const w: Worker = self as any
+  w.postMessage(repositories)
 }, false)
