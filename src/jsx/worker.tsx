@@ -1,8 +1,12 @@
-let repositoriesWorker
-let codeAndCommentsWorker
+import { Store } from 'unistore'
+import { State } from './store'
 
 
-export function setRepositoriesWorker(store) {
+let repositoriesWorker: Worker | null = null
+let codeAndCommentsWorker: Worker | null = null
+
+
+export function setRepositoriesWorker(store: Store<State>) {
   if (!repositoriesWorker) {
     const extension = process.env.NODE_ENV === 'development' ? 'js' : 'min.js' 
     repositoriesWorker = new Worker(`dist/repositories.${extension}`)
@@ -19,7 +23,7 @@ export function updateRepositories() {
 }
 
 
-export function setCodeAndCommentsWorker(store) {
+export function setCodeAndCommentsWorker(store: Store<State>) {
   if (!codeAndCommentsWorker) {
     const extension = process.env.NODE_ENV === 'development' ? 'js' : 'min.js' 
     codeAndCommentsWorker = new Worker(`dist/codeAndComments.${extension}`)
@@ -30,7 +34,7 @@ export function setCodeAndCommentsWorker(store) {
 }
 
 
-export function updateCodeAndComments(repository) {
+export function updateCodeAndComments(repository: string) {
   if (codeAndCommentsWorker) {
     codeAndCommentsWorker.postMessage(repository)
   }
