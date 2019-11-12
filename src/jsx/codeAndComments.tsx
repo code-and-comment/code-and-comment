@@ -6,8 +6,9 @@ import {
 import { search } from './utils'
 
 
-self.addEventListener('message', async function(event) {
+self.addEventListener('message', async function(event: MessageEvent) {
   const repository = event.data
   const codeAndComments = await search({ repository }, getDB, getObjectStore, getAllRecords)
-  self.postMessage(codeAndComments)
+  const w: Worker = self as any
+  w.postMessage(codeAndComments)
 }, false)
