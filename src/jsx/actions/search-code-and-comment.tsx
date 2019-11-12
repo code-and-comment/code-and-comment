@@ -18,7 +18,7 @@ import {
 import {
   updateRepositories as _updateRepositories,
   updateCodeAndComments as _updateCodeAndComments
-} from '../worker.jsx'
+} from '../worker'
 import {
   State,
 } from '../store'
