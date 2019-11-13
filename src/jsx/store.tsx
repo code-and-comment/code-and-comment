@@ -2,33 +2,34 @@ import createStore from 'unistore'
 
 
 export interface CodeAndComment {
-  id: number;
-  comments: Record<string, string>;
-  git: string;
-  repository: string;
-  path: string;
-  title: string;
-  updated_at: Date;
-  created_at: Date;
+  id: number
+  lines: string[]
+  comments: Record<string, string>
+  git: string
+  repository: string
+  path: string
+  title: string
+  updated_at: Date
+  created_at: Date
 }
 
 
 export interface State {
-  id: number | null;
-  highlightLineNumber: number;
-  title: string;
-  lines: string[];
-  git: string;
-  path: string;
-  comments: Record<string, string>;
-  loading: boolean;
-  networkError: boolean;
-  urlError: boolean;
-  codeAndComments: CodeAndComment[];
-  searchRepository: string;
-  repositories: string[];
-  isSelectorOpen?: boolean;
-  token?: string;
+  id: number | null
+  highlightLineNumber: number
+  title: string
+  lines: string[]
+  git: string
+  path: string
+  comments: Record<string, string>
+  loading: boolean
+  networkError: boolean
+  urlError: boolean
+  codeAndComments: CodeAndComment[]
+  searchRepository: string
+  repositories: string[]
+  isSelectorOpen?: boolean
+  token?: string
 }
 
 
