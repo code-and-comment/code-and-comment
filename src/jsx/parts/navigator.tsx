@@ -6,7 +6,7 @@ import Button from './button'
 interface Props {
   rightLabel: string,
   rightClick: (event: MouseEvent) => any,
-  rightDisabled: boolean,
+  rightDisabled?: boolean,
 }
 
 const Navigator: FunctionalComponent<Props> = function Navigator({

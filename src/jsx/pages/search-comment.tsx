@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component, ComponentChild } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/search-code-and-comment'
@@ -6,10 +6,23 @@ import Navigator from '../parts/navigator'
 import CommentCard from '../parts/comment-card'
 import Button from '../parts/button'
 import RepositoriesDatalist from '../parts/repositories-datalist'
+import { State, CodeAndComment } from '../store'
 
 
-class Search extends Component {
-  constructor(props) {
+type SearchProps = {
+  search: Function
+  searchRepository: string
+}
+
+
+interface SearchState {
+  repository: string
+  comment: string
+}
+
+
+class Search extends Component<SearchProps, SearchState> {
+  constructor(props: SearchProps) {
     super(props)
     this.state = {
       repository: props.searchRepository,
@@ -19,13 +32,15 @@ class Search extends Component {
     this.setRepository = this.setRepository.bind(this)
     this.setComment = this.setComment.bind(this)
   }
-  setRepository(event) {
+  setRepository(event: Event) {
     this.setState({
+      // @ts-ignore
       repository: event.target.value
     })
   }
-  setComment(event) {
+  setComment(event: Event) {
     this.setState({
+      // @ts-ignore
       comment: event.target.value
     })
   }
@@ -33,7 +48,7 @@ class Search extends Component {
     const { repository, comment } = this.state
     this.props.search(repository, comment)
   }
-  render(_, { repository, comment }) {
+  render(_: SearchProps, { repository, comment }: SearchState) {
     return (
       <div className="search">
         <div>
@@ -59,16 +74,25 @@ class Search extends Component {
 }
 
 
-function CommentList({ codeAndComments, commentPattern, edit }) {
-  const list = []
-  let re
+interface Props {
+  codeAndComments: CodeAndComment[]
+  commentPattern: string
+  edit: Function
+}
+
+
+function CommentList({ codeAndComments, commentPattern, edit }: Props) {
+  const list: ComponentChild[] = []
+  let re: RegExp
   if (commentPattern) {
     re = new RegExp(commentPattern)
   }
   codeAndComments.forEach((c) => {
     Object.keys(c.comments).forEach((key) => {
       const comment = c.comments[key]
+      // @ts-ignore
       const code = c.lines[key - 0]
+      // @ts-ignore
       const lineNumber = key - 0 + 1
       if (re && !comment.match(re)) {
         return
@@ -97,21 +121,35 @@ function CommentList({ codeAndComments, commentPattern, edit }) {
 }
 
 
-class SearchComment extends Component {
-  constructor(props) {
+interface I {
+  back: (event: MouseEvent) => any
+  codeAndComments: CodeAndComment[]
+  edit: Function
+  search: Function
+  searchRepository: string
+}
+
+
+interface S {
+  comment: string
+}
+
+
+class SearchComment extends Component<I, S> {
+  constructor(props: I) {
     super(props)
     this.state = {
       comment: ''
     }
     this.search = this.search.bind(this)
   }
-  search(repository, comment) {
+  search(repository: string, comment: string) {
     this.setState({
       comment
     })
     this.props.search({ repository })
   }
-  render({ back, codeAndComments, edit, searchRepository }, { comment }) {
+  render({ back, codeAndComments, edit, searchRepository }: I, { comment }: S) {
     return (
       <div className="cc-search-comment">
         <Navigator
@@ -126,4 +164,4 @@ class SearchComment extends Component {
 }
 
 
-export default connect(['codeAndComments', 'searchRepository'], actions)(SearchComment)
+export default connect<{}, S, State, I>(['codeAndComments', 'searchRepository'], actions)(SearchComment)
