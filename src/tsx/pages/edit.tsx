@@ -67,8 +67,7 @@ class Edit extends Component<Props, S> {
   }
 
   deleteOne(event: MouseEvent) {
-    event.stopPropagation()
-    this.props.deleteOne(null, this.props.id)
+    this.props.deleteOne(this.props.id, event)
   }
 
   emitHiddenSignal() {
