@@ -45,11 +45,11 @@ export function edit(
 }
 
 
-export interface editFunc{
+export interface IEdit{
   (
     id: string | number,
     highlightLineNumber: string | number
-  ): ReturnType<typeof edit>
+  ): void
 }
 
 

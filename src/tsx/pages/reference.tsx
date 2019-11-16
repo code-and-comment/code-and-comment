@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions, { editFunc } from '../actions/reference'
+import actions, { IEdit } from '../actions/reference'
 import Header from '../parts/header'
 import Loading from '../parts/loading'
 import { State } from '../store'
@@ -11,7 +11,7 @@ interface Props {
   id: string | number
   lineNumber: string | number
   path: string
-  edit: editFunc
+  edit: IEdit
 }
 
 

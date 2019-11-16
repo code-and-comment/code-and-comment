@@ -31,6 +31,14 @@ import {
 } from '../store'
 
 
+export interface IUpdateComment {
+  (
+    index: number | string,
+    comment: string,
+  ): void
+}
+
+
 async function updateComment(
   state: State,
   index: number | string,
@@ -70,6 +78,13 @@ async function updateComment(
     updateCodeAndComments(state.searchRepository)
   }
   return { comments }
+}
+
+
+export interface IUpdateTitle {
+  (
+    event: Event,
+  ): void
 }
 
 
