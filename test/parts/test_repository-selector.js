@@ -3,7 +3,7 @@ import { spy } from 'sinon'
 import { mount } from 'enzyme'
 import { expect } from 'chai'
 
-import { RepositorySelector } from '../../src/jsx/parts/repository-selector'
+import { RepositorySelector } from '../../src/tsx/parts/repository-selector'
 
 describe('parts/repository-selector', () => {
   describe('<RepositorySelector />', () => {

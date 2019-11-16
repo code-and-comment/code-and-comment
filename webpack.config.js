@@ -10,9 +10,9 @@ module.exports = {
     ignored: ['node_modules', 'dist']
   },
   entry: {
-    app: './src/jsx/index.tsx',
-    repositories: './src/jsx/repositories.tsx',
-    codeAndComments: './src/jsx/codeAndComments.tsx',
+    app: './src/tsx/index.tsx',
+    repositories: './src/tsx/repositories.tsx',
+    codeAndComments: './src/tsx/codeAndComments.tsx',
     index: './src/scss/index.scss',
   },
   devtool: 'source-map',

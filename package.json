@@ -7,10 +7,10 @@
     "build": "npm run build:js && npm run build:css && npm run build:minify",
     "build:dev": "webpack --config webpack.config.js",
     "build:css": "node-sass src/scss/index.scss dist/app.css --output-style compressed",
-    "build:js": "rollup -c && rollup -c -i src/jsx/repositories.tsx -o dist/repositories.js && rollup -c -i src/jsx/codeAndComments.tsx -o dist/codeAndComments.js",
+    "build:js": "rollup -c && rollup -c -i src/tsx/repositories.tsx -o dist/repositories.js && rollup -c -i src/tsx/codeAndComments.tsx -o dist/codeAndComments.js",
     "build:minify": "terser dist/app.js -c -m --ecma 8 -o dist/app.min.js && terser dist/repositories.js -c -m --ecma 8 -o dist/repositories.min.js && terser dist/codeAndComments.js -c -m --ecma 8 -o dist/codeAndComments.min.js",
-    "fix": "eslint src/jsx/**/*.jsx src/jsx/**/*.tsx test/**/*.js --fix",
-    "lint": "eslint src/jsx/**/*.jsx src/jsx/**/*.tsx test/**/*.js",
+    "fix": "eslint src/tsx/**/*.tsx test/**/*.js --fix",
+    "lint": "eslint src/tsx/**/*.tsx test/**/*.js",
     "test": "mocha --recursive test --reporter spec"
   },
   "license": "MIT",

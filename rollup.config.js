@@ -6,7 +6,7 @@ import commonjs from 'rollup-plugin-commonjs';
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
 
 export default {
-  input: 'src/jsx/index.tsx',
+  input: 'src/tsx/index.tsx',
   output: {
     format: 'iife',
     file: 'dist/app.js',
