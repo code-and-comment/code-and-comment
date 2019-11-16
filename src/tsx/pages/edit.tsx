@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component, JSX } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions from '../actions/edit'
@@ -9,39 +9,73 @@ import Button from '../parts/button'
 import CodeAndCommentSelector from '../parts/code-and-comment-selector'
 import RepositorySelector from '../parts/repository-selector'
 import MenuBar from '../parts/menu-bar'
+import { State } from '../store'
 
 
-class Edit extends Component {
-  constructor(props) {
+interface S {
+  hiddenSignal: boolean
+  highlightLineNumber: number
+}
+
+
+interface A {
+  deleteOne: Function
+  setIsSelectorOpen: Function
+  updateComment: Function
+  updateTitle: JSX.GenericEventHandler
+  searchCodeAndComment: JSX.EventHandler<MouseEvent>
+  searchComment: JSX.EventHandler<MouseEvent>
+  isSelectorOpen: Function
+  setLoading: Function
+  setToken: Function
+  getFile: Function
+  exportData: Function
+  importData: Function
+  clearErrors: Function
+}
+
+
+type Props = A & Pick<State, 'id' | 'title' | 'lines' | 'loading' | 'comments' | 'path' | 'isSelectorOpen' | 'highlightLineNumber' | 'networkError' | 'urlError'>
+
+
+
+class Edit extends Component<Props, S> {
+  constructor(props: Props) {
     super(props)
     this.state = {
       hiddenSignal: false,
       highlightLineNumber: props.highlightLineNumber || 0
     }
     if (props.highlightLineNumber) {
+      // @ts-ignore
       window.requestIdleCallback(() => {
         scrollIntoView(props.highlightLineNumber)
       })
     }
-    this.deleteOne = props.deleteOne.bind(null, props.id)
+    this.deleteOne = this.deleteOne.bind(this)
     this.emitHiddenSignal = this.emitHiddenSignal.bind(this)
     this.toggleSelector = this.toggleSelector.bind(this)
     this.setHighlightLineNumber = this.setHighlightLineNumber.bind(this)
   }
 
-  componentWillReceiveProps({ id, deleteOne }) {
+  componentWillReceiveProps({ id }: Props) {
     if (this.props.id !== id) {
-      this.deleteOne = deleteOne.bind(null, id)
       this.setState({
         highlightLineNumber: 0
       })
     }
   }
 
+  deleteOne(event: MouseEvent) {
+    event.stopPropagation()
+    this.props.deleteOne(null, this.props.id)
+  }
+
   emitHiddenSignal() {
     this.setState({
       hiddenSignal: true
     })
+    // @ts-ignore
     window.requestIdleCallback(() => {
       this.setState({
         hiddenSignal: false
@@ -53,7 +87,8 @@ class Edit extends Component {
     this.props.setIsSelectorOpen(!this.props.isSelectorOpen)
   }
 
-  setHighlightLineNumber(event) {
+  setHighlightLineNumber(event: Event) {
+    // @ts-ignore
     const highlightLineNumber = event.target.value - 0
     this.setState({ highlightLineNumber })
   }
@@ -78,10 +113,10 @@ class Edit extends Component {
     clearErrors,
     networkError,
     urlError
-  }, {
+  }: Props, {
     hiddenSignal,
     highlightLineNumber
-  }) {
+  }: S) {
     const selectorClassName = isSelectorOpen ? 'selectors' : 'selectors display-none'
     const mainClassName = isSelectorOpen ? 'main' : 'main margin-left-0'
     return (
@@ -180,4 +215,4 @@ const mapStateToProps = [
 ]
 
 
-export default connect(mapStateToProps, actions)(Edit)
+export default connect<{}, S, State, Props>(mapStateToProps, actions)(Edit)

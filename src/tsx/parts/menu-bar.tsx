@@ -2,7 +2,6 @@ import { h, Component, JSX } from 'preact'
 
 import Button from '../parts/button'
 import Loading from '../parts/loading'
-import { State as _State } from '../store'
 
 
 export enum Mode {
@@ -16,9 +15,9 @@ export enum Mode {
 
 
 interface Props {
-  id: number
+  id: number | null
   loading: boolean
-  deleteOne: (event: MouseEvent) => _State
+  deleteOne: JSX.EventHandler<MouseEvent>
   searchCodeAndComment: JSX.EventHandler<MouseEvent>
   searchComment: JSX.EventHandler<MouseEvent>
   toggleSelector: JSX.EventHandler<MouseEvent>

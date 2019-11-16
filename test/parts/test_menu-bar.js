@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import { expect } from 'chai'
 import { spy } from 'sinon'
 
-import { MenuBar, Mode } from '../../src/jsx/parts/menu-bar'
+import { MenuBar, Mode } from '../../src/tsx/parts/menu-bar'
 
 describe('parts/menu-bar', () => {
   describe('<MenuBar />', () => {
