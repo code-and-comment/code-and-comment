@@ -1,4 +1,5 @@
 import { route as _route } from 'preact-router'
+import { BoundAction } from 'unistore'
 
 import { State } from '../store'
 import {
@@ -45,7 +46,7 @@ export function edit(
 }
 
 
-export interface IEdit{
+export interface IEdit extends BoundAction {
   (
     id: string | number,
     highlightLineNumber: string | number
