@@ -1,5 +1,6 @@
 import { Base64 } from 'js-base64'
 import { route as _route } from 'preact-router'
+import { BoundAction } from 'unistore'
 
 import {
   addRecord as _addRecord,
@@ -31,7 +32,7 @@ import {
 } from '../store'
 
 
-export interface IUpdateComment {
+export interface IUpdateComment extends BoundAction {
   (
     index: number | string,
     comment: string,
@@ -81,7 +82,7 @@ async function updateComment(
 }
 
 
-export interface IUpdateTitle {
+export interface IUpdateTitle extends BoundAction {
   (
     event: Event,
   ): void
