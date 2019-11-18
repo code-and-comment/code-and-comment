@@ -17,10 +17,10 @@ export enum Mode {
 interface Props {
   id: number | null
   loading: boolean
-  deleteOne: JSX.EventHandler<MouseEvent>
-  searchCodeAndComment: JSX.EventHandler<MouseEvent>
-  searchComment: JSX.EventHandler<MouseEvent>
-  toggleSelector: JSX.EventHandler<MouseEvent>
+  deleteOne: JSX.MouseEventHandler<Element>
+  searchCodeAndComment: JSX.MouseEventHandler<Element>
+  searchComment: JSX.MouseEventHandler<Element>
+  toggleSelector: JSX.MouseEventHandler<Element>
   isSelectorOpen: boolean
   setLoading: Function
   setToken: Function
