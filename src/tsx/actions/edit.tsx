@@ -140,6 +140,13 @@ async function exportData(
 }
 
 
+export interface IImportData extends BoundAction {
+  (
+    data: CodeAndComment[]
+  ): void
+}
+
+
 async function importData(
   state: State,
   data: CodeAndComment[],
@@ -235,6 +242,14 @@ function searchComment(
     requestIdleCallback,
     bound
   )
+}
+
+
+export interface IDeleteOne extends BoundAction {
+  (
+    id: number,
+    event: Event,
+  ): void
 }
 
 
