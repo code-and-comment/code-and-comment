@@ -116,6 +116,13 @@ async function updateTitle(
 }
 
 
+export interface IExportData extends BoundAction {
+  (
+    fileName: string
+  ): void
+}
+
+
 async function exportData(
   state: State,
   fileName: string,

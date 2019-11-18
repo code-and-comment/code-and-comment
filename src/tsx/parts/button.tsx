@@ -1,6 +1,10 @@
-import { h, FunctionalComponent, ComponentChildren } from 'preact'
+import { h, FunctionalComponent, ComponentChildren, JSX } from 'preact'
 
-interface Props { disabled?: boolean, onClick?: (event: MouseEvent) => any, children: ComponentChildren }
+interface Props {
+  disabled?: boolean
+  onClick?: JSX.MouseEventHandler<Element>
+  children: ComponentChildren
+}
 
 
 const Button: FunctionalComponent<Props> = function ({ disabled, onClick, children }) {

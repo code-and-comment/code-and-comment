@@ -2,14 +2,14 @@ import { h, Component, JSX } from 'preact'
 
 
 interface Props {
-  lineNumber: number;
-  content: string;
-  edit: JSX.EventHandler<MouseEvent>;
-  editable: boolean;
-  isHidden: boolean;
-  toggleHidden: JSX.EventHandler<MouseEvent> | undefined;
-  setMarkedLineNumber: Function;
-  scrollToMarkedLineNumber: Function;
+  lineNumber: number
+  content: string
+  edit: JSX.MouseEventHandler<Element>
+  editable: boolean
+  isHidden: boolean
+  toggleHidden: JSX.MouseEventHandler<Element> | undefined
+  setMarkedLineNumber: Function
+  scrollToMarkedLineNumber: Function
 }
 
 
