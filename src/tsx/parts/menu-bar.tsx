@@ -21,7 +21,7 @@ interface Props {
   searchCodeAndComment: JSX.MouseEventHandler<Element>
   searchComment: JSX.MouseEventHandler<Element>
   toggleSelector: JSX.MouseEventHandler<Element>
-  isSelectorOpen: boolean
+  isSelectorOpen: boolean | undefined
   setLoading: Function
   setToken: Function
   getFile: Function
