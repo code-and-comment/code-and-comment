@@ -1,14 +1,14 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/edit'
+import actions, { IChangeCodeAndComment } from '../actions/edit'
 import { CodeAndComment, State } from '../store'
 
 
 interface Props {
   id: number
   codeAndComments: CodeAndComment[]
-  changeCodeAndComment: Function
+  changeCodeAndComment: IChangeCodeAndComment
 }
 
 

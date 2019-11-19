@@ -1,14 +1,14 @@
 import { h, Component } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions, { setCodeAndCommentsFunc } from '../actions/edit'
+import actions, { ISetCodeAndComments } from '../actions/edit'
 import { State } from '../store'
 
 
 interface Props {
   repositories: State['repositories'],
   searchRepository: State['searchRepository'],
-  setCodeAndComments: setCodeAndCommentsFunc
+  setCodeAndComments: ISetCodeAndComments
 }
 
 export class RepositorySelector extends Component<Props, {}> {
