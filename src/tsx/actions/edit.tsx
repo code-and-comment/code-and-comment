@@ -272,6 +272,13 @@ async function deleteOne(
 }
 
 
+export interface ISetCodeAndComments extends BoundAction {
+  (
+    repository: string,
+  ): void
+}
+
+
 // Select repository for displaying Code and Comment list in CodeAndCommentSelector.
 // This is used by RepositorySelector.
 async function setCodeAndComments(
@@ -286,7 +293,11 @@ async function setCodeAndComments(
 }
 
 
-export type setCodeAndCommentsFunc = (repository: string) => ReturnType<typeof setCodeAndComments>
+export interface IChangeCodeAndComment extends BoundAction {
+  (
+    id: number
+  ): void
+}
 
 
 // Set Code and Comment record for editing.
