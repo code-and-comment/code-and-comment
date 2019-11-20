@@ -334,8 +334,22 @@ async function changeCodeAndComment(
 }
 
 
+export interface ISetIsSelectorOpen extends BoundAction {
+  (
+    isSelectorOpen: boolean
+  ): void
+}
+
+
 function setIsSelectorOpen(state: State, isSelectorOpen: boolean) {
   return { isSelectorOpen }
+}
+
+
+export interface IGetFile extends BoundAction {
+  (
+    url: string
+  ): void
 }
 
 

@@ -2,7 +2,7 @@ import { h, Component, JSX } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions, {
-  IUpdateComment, IUpdateTitle, IExportData, IImportData, IDeleteOne } from '../actions/edit'
+  IUpdateComment, IUpdateTitle, IExportData, IImportData, IDeleteOne, ISetIsSelectorOpen, IGetFile } from '../actions/edit'
 import { scrollIntoView } from '../utils'
 import FileHeader from '../parts/file-header'
 import FileBody from '../parts/file-body'
@@ -21,7 +21,7 @@ interface S {
 
 interface A {
   deleteOne: IDeleteOne
-  setIsSelectorOpen: Function
+  setIsSelectorOpen: ISetIsSelectorOpen
   updateComment: IUpdateComment
   updateTitle: IUpdateTitle
   exportData: IExportData
@@ -30,7 +30,7 @@ interface A {
   searchComment: JSX.MouseEventHandler<Element>
   setLoading: Function
   setToken: Function
-  getFile: Function
+  getFile: IGetFile
   clearErrors: Function
 }
 
