@@ -2,7 +2,8 @@ import { h, Component, JSX } from 'preact'
 import { connect } from 'unistore/preact'
 
 import actions, {
-  IUpdateComment, IUpdateTitle, IExportData, IImportData, IDeleteOne, ISetIsSelectorOpen, IGetFile } from '../actions/edit'
+  IUpdateComment, IUpdateTitle, IExportData, IImportData, IDeleteOne, ISetIsSelectorOpen, IGetFile,
+  ISetToken, ISetLoading, IClearErrors } from '../actions/edit'
 import { scrollIntoView } from '../utils'
 import FileHeader from '../parts/file-header'
 import FileBody from '../parts/file-body'
@@ -28,10 +29,10 @@ interface A {
   importData: IImportData
   searchCodeAndComment: JSX.MouseEventHandler<Element>
   searchComment: JSX.MouseEventHandler<Element>
-  setLoading: Function
-  setToken: Function
+  setLoading: ISetLoading
+  setToken: ISetToken
   getFile: IGetFile
-  clearErrors: Function
+  clearErrors: IClearErrors
 }
 
 

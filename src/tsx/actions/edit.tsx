@@ -427,10 +427,22 @@ async function getFile(
 }
 
 
+export interface ISetLoading extends BoundAction {
+  (
+    loading: true
+  ): void
+}
+
+
 function setLoading(): Pick<State, 'loading'> {
   return {
     loading: true,
   }
+}
+
+
+export interface IClearErrors extends BoundAction {
+  (): void
 }
 
 
@@ -439,6 +451,13 @@ function clearErrors(): Pick<State, 'networkError' | 'urlError'> {
     networkError: false,
     urlError: false
   }
+}
+
+
+export interface ISetToken extends BoundAction {
+  (
+    token: string
+  ): void
 }
 
 
