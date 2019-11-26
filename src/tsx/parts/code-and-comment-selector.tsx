@@ -13,9 +13,11 @@ interface Props {
 
 
 class CodeAndCommentSelector extends Component<Props> {
+  re: RegExp
   constructor(props: Props) {
     super(props)
     this.changeCodeAndComment = this.changeCodeAndComment.bind(this)
+    this.re = /^\/\w*\/\w*\/\w*\/\w*/
   }
 
   changeCodeAndComment(event: Event) {
@@ -36,6 +38,7 @@ class CodeAndCommentSelector extends Component<Props> {
       <div className="cc-code-and-comment-selector">
         {
           codeAndComments.map((codeAndComment) => {
+            const path = codeAndComment.path.replace(this.re, '')
             const className = codeAndComment.id === id ? 'code-and-comment selected' : 'code-and-comment'
             return (
               <div
@@ -44,9 +47,8 @@ class CodeAndCommentSelector extends Component<Props> {
                 onClick={ this.changeCodeAndComment }
                 className={ className }
               >
-                <div>ID: { codeAndComment.id }</div>
                 <div>{ codeAndComment.title }</div>
-                <div>{ codeAndComment.path }</div>
+                <div>{ path }</div>
                 <div>{ codeAndComment.updated_at.toLocaleString() }</div>
               </div>
             )
