@@ -2,6 +2,9 @@ import { h, Component, JSX } from 'preact'
 
 import Button from '../parts/button'
 import Loading from '../parts/loading'
+import {
+  IExportData, IImportData, IGetFile,
+  ISetToken, ISetLoading, IClearErrors } from '../actions/edit'
 
 
 export enum Mode {
@@ -22,12 +25,12 @@ interface Props {
   searchComment: JSX.MouseEventHandler<Element>
   toggleSelector: JSX.MouseEventHandler<Element>
   isSelectorOpen: boolean | undefined
-  setLoading: Function
-  setToken: Function
-  getFile: Function
-  exportData: Function
-  importData: Function
-  clearErrors: Function
+  setLoading: ISetLoading
+  setToken: ISetToken
+  getFile: IGetFile
+  exportData: IExportData
+  importData: IImportData
+  clearErrors: IClearErrors
   networkError: boolean
   urlError: boolean
 }
