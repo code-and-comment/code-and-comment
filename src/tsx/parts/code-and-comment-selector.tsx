@@ -49,6 +49,7 @@ class CodeAndCommentSelector extends Component<Props> {
               >
                 <div>{ codeAndComment.title }</div>
                 <div>{ path }</div>
+                <div>{ Object.keys(codeAndComment.comments).length } comments</div>
                 <div>{ codeAndComment.updated_at.toLocaleString() }</div>
               </div>
             )
