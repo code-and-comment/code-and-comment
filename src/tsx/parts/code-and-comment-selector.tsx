@@ -17,7 +17,7 @@ class CodeAndCommentSelector extends Component<Props> {
   constructor(props: Props) {
     super(props)
     this.changeCodeAndComment = this.changeCodeAndComment.bind(this)
-    this.re = /^\/\w*\/\w*\/\w*\/\w*/
+    this.re = /^\/[^/]*\/[^/]*\/[^/]*\/[^/]*/
   }
 
   changeCodeAndComment(event: Event) {
