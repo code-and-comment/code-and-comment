@@ -39,7 +39,6 @@ interface A {
 type Props = A & Pick<State, 'id' | 'title' | 'lines' | 'loading' | 'comments' | 'path' | 'isSelectorOpen' | 'highlightLineNumber' | 'networkError' | 'urlError'>
 
 
-
 class Edit extends Component<Props, S> {
   constructor(props: Props) {
     super(props)
