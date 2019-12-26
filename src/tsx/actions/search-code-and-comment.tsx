@@ -32,7 +32,7 @@ async function search(
   getAllRecords = _getAllRecords
 ) {
   let searchRepository = ''
-  if (conditions && conditions.repository) {
+  if (conditions.repository) {
     searchRepository = conditions.repository
   }
   function callback(cursor: IDBCursorWithValue) {
