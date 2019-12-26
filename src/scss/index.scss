@@ -48,6 +48,11 @@ a {
   }
 }
 
+body::-webkit-scrollbar {
+  height: initial;
+  width: initial;
+}
+
 ::-webkit-scrollbar {
   background-color: #ececec;
   height: 10px;
