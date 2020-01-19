@@ -13,8 +13,8 @@ interface Props {
   editable: boolean
   isHighlight: boolean
   isMarked: boolean
-  setMarkedLineNumber: Function
-  scrollToMarkedLineNumber: Function
+  setMarkedLineNumber: (event: Event) => void
+  scrollToMarkedLineNumber: () => void
   updateComment: Function
 }
 
