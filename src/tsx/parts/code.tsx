@@ -8,8 +8,8 @@ interface Props {
   editable: boolean
   isHidden: boolean
   toggleHidden: JSX.MouseEventHandler<Element> | undefined
-  setMarkedLineNumber: Function
-  scrollToMarkedLineNumber: Function
+  setMarkedLineNumber:  (event: Event) => void
+  scrollToMarkedLineNumber: () => void
 }
 
 
