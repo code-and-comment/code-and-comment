@@ -2,13 +2,14 @@ import { h, Component } from 'preact'
 
 import Line from './line'
 import { scrollIntoView } from '../utils'
+import { IUpdateComment } from '../actions/edit'
 
 
 interface Props {
   id: number
   lines: string[]
   comments: Record<string, string>
-  updateComment: Function
+  updateComment: IUpdateComment
   editable: boolean
   hiddenSignal: boolean
   highlightLineNumber: number

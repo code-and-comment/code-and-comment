@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 
 import Code from './code'
 import Comment from './comment'
+import { IUpdateComment } from '../actions/edit'
 
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
   isMarked: boolean
   setMarkedLineNumber: (event: Event) => void
   scrollToMarkedLineNumber: () => void
-  updateComment: Function
+  updateComment: IUpdateComment
 }
 
 
