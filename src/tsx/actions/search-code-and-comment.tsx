@@ -1,4 +1,5 @@
 import { route as _route } from 'preact-router'
+import { BoundAction } from 'unistore'
 
 import {
   getDB as _getDB,
@@ -22,6 +23,13 @@ import {
 import {
   State,
 } from '../store'
+
+
+export interface ISearch extends BoundAction {
+  (
+    conditions: Conditions
+  ): void
+}
 
 
 async function search(
@@ -53,6 +61,13 @@ async function search(
 }
 
 
+export interface IBack extends BoundAction {
+  (
+    event: Event
+  ): void
+}
+
+
 function back(
   state: State,
   event: Event,
@@ -79,6 +94,14 @@ function back(
 }
 
 
+export interface IDeleteOne extends BoundAction {
+  (
+    id: number,
+    event: Event
+  ): void
+}
+
+
 async function deleteOne(
   state: State,
   id: number,
@@ -99,6 +122,15 @@ async function deleteOne(
     return { codeAndComments }
   }
   return getStateAfterDeleting(state, codeAndComments)
+}
+
+
+export interface IEdit extends BoundAction {
+  (
+    id: number,
+    highlightLineNumber: number,
+    event: Event,
+  ): void
 }
 
 
