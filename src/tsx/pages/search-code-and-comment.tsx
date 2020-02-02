@@ -1,7 +1,7 @@
 import { h, Component, ComponentChild } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/search-code-and-comment'
+import actions, { IDeleteOne, IBack, ISearch, IEdit } from '../actions/search-code-and-comment'
 import Navigator from '../parts/navigator'
 import CodeAndCommentCard from '../parts/code-and-comment-card'
 import Button from '../parts/button'
@@ -10,7 +10,7 @@ import { State, CodeAndComment } from '../store'
 
 
 type SearchProps = {
-  search: Function
+  search: ISearch
   searchRepository: string
 }
 
@@ -61,10 +61,10 @@ class Search extends Component<SearchProps, SearchState> {
 
 interface I {
   codeAndComments: CodeAndComment[]
-  deleteOne: Function
-  search: Function
-  back: (event: MouseEvent) => any
-  edit: Function
+  deleteOne: IDeleteOne
+  search: ISearch
+  back: IBack
+  edit: IEdit
   searchRepository: string
 }
 
