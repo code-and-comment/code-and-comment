@@ -1,7 +1,7 @@
 import { h, Component, ComponentChild } from 'preact'
 import { connect } from 'unistore/preact'
 
-import actions from '../actions/search-code-and-comment'
+import actions, { IBack, ISearch, IEdit } from '../actions/search-code-and-comment'
 import Navigator from '../parts/navigator'
 import CommentCard from '../parts/comment-card'
 import Button from '../parts/button'
@@ -10,7 +10,7 @@ import { State, CodeAndComment } from '../store'
 
 
 type SearchProps = {
-  search: Function
+  search: (repository: string, comment: string) => void
   searchRepository: string
 }
 
@@ -122,10 +122,10 @@ function CommentList({ codeAndComments, commentPattern, edit }: Props) {
 
 
 interface I {
-  back: (event: MouseEvent) => any
+  back: IBack
   codeAndComments: CodeAndComment[]
-  edit: Function
-  search: Function
+  edit: IEdit
+  search: ISearch
   searchRepository: string
 }
 
