@@ -192,3 +192,15 @@ export async function edit(
   }
   route('/')
 }
+
+
+export function setLines(cursor: IDBCursorWithValue) {
+  const lines = Array.from({ length: cursor.value.lines.length })
+  Object.keys(cursor.value.comments).forEach((index: string) => {
+    // @ts-ignore
+    const i = index - 0
+    lines[i] = cursor.value.lines[i]
+  })
+  // @ts-ignore
+  cursor.value.lines = lines
+}

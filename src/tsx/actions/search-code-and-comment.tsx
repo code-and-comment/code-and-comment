@@ -14,7 +14,8 @@ import {
   getRepository as _getRepository,
   deleteOne as _deleteOne,
   search as _search,
-  getStateAfterDeleting
+  getStateAfterDeleting,
+  setLines
 } from '../utils'
 import {
   updateRepositories as _updateRepositories,
@@ -43,17 +44,7 @@ async function search(
   if (conditions.repository) {
     searchRepository = conditions.repository
   }
-  function callback(cursor: IDBCursorWithValue) {
-    const lines = Array.from({ length: cursor.value.lines.length })
-    Object.keys(cursor.value.comments).forEach((index: string) => {
-      // @ts-ignore
-      const i = index - 0
-      lines[i] = cursor.value.lines[i]
-    })
-    // @ts-ignore
-    cursor.value.lines = lines
-  }
-  const codeAndComments = await _search(conditions, getDB, getObjectStore, getAllRecords, IDBKeyRange.bound, 'prev', callback)
+  const codeAndComments = await _search(conditions, getDB, getObjectStore, getAllRecords, IDBKeyRange.bound, 'prev', setLines)
   return {
     codeAndComments,
     searchRepository

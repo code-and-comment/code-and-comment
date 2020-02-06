@@ -20,6 +20,7 @@ import {
   updateCodeAndComment as _updateCodeAndComment,
   deleteOne as _deleteOne,
   getStateAfterDeleting,
+  setLines
 } from '../utils'
 import {
   updateRepositories as _updateRepositories,
@@ -179,11 +180,12 @@ async function _search(
   getObjectStore: Function,
   getAllRecords: Function,
   requestIdleCallback: Function,
-  bound: typeof IDBKeyRange.bound
+  bound: typeof IDBKeyRange.bound,
+  callback?: typeof setLines
 ): Promise<Pick<State, 'highlightLineNumber' | 'codeAndComments' | 'searchRepository'>> {
   const repository = getRepository(state.path)
   const conditions = { repository }
-  const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound)
+  const codeAndComments = await search(conditions, getDB, getObjectStore, getAllRecords, bound, 'prev', callback)
   requestIdleCallback(() => {
     route(url)
   })
@@ -230,7 +232,7 @@ function searchComment(
   // @ts-ignore
   requestIdleCallback = window.requestIdleCallback,
   bound = IDBKeyRange.bound
-) {
+): ReturnType<typeof _search> {
   event.stopPropagation()
   return _search(
     state,
@@ -240,7 +242,8 @@ function searchComment(
     getObjectStore,
     getAllRecords,
     requestIdleCallback,
-    bound
+    bound,
+    setLines
   )
 }
 
