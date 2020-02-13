@@ -1,4 +1,6 @@
 import { h, Component } from 'preact'
+// @ts-ignore
+import Markup from 'preact-markup'
 
 import markdown from '../markdown'
 import Button from './button'
@@ -43,7 +45,9 @@ class CommentCard extends Component<Props> {
           <span className="number">{ lineNumber }</span>
           <span className="content">{ code }</span>
         </div>
-        <div className="comment" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
+        <div className="comment">
+          <Markup markup={ markdown(comment) } />
+        </div>
         <div>{ repository }</div>
         <div>
           <a
