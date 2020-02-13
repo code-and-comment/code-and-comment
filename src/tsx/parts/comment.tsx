@@ -1,4 +1,6 @@
 import { h, Component } from 'preact'
+// @ts-ignore
+import Markup from 'preact-markup'
 
 import markdown from '../markdown'
 import Button from './button'
@@ -90,7 +92,7 @@ class Comment extends Component<Props, State> {
     if (comment && !isEditing) {
       return (
         <div className="cc-comment">
-          <div className="display-markdown" dangerouslySetInnerHTML={ { __html: markdown(comment) } } />
+          <div className="display-markdown"><Markup markup={ markdown(comment) } /></div>
         </div>
       )
     }
@@ -105,7 +107,7 @@ class Comment extends Component<Props, State> {
               </div>
             </div>
             { !isPreview && <textarea onChange={ this.setComment }>{ comment }</textarea> }
-            { isPreview && <div className="display-markdown" dangerouslySetInnerHTML={ { __html: markdown(comment) } } /> }
+            { isPreview && <div className="display-markdown"><Markup markup={ markdown(comment) } /></div> }
           </div>
           <div className="controls">
             <Button onClick={ this.cancel }>Cancel</Button>
