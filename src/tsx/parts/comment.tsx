@@ -3,6 +3,7 @@ import { h, Component } from 'preact'
 import Markup from 'preact-markup'
 
 import markdown from '../markdown'
+import Anchor from './anchor'
 import Button from './button'
 
 
@@ -92,7 +93,9 @@ class Comment extends Component<Props, State> {
     if (comment && !isEditing) {
       return (
         <div className="cc-comment">
-          <div className="display-markdown"><Markup markup={ markdown(comment) } /></div>
+          <div className="display-markdown">
+            <Markup markup={ markdown(comment) } components={ { Anchor } } />
+          </div>
         </div>
       )
     }
@@ -107,7 +110,7 @@ class Comment extends Component<Props, State> {
               </div>
             </div>
             { !isPreview && <textarea onChange={ this.setComment }>{ comment }</textarea> }
-            { isPreview && <div className="display-markdown"><Markup markup={ markdown(comment) } /></div> }
+            { isPreview && <div className="display-markdown"><Markup markup={ markdown(comment) } components={ { Anchor } } /></div> }
           </div>
           <div className="controls">
             <Button onClick={ this.cancel }>Cancel</Button>
