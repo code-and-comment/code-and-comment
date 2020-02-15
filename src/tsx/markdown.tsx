@@ -9,7 +9,7 @@ marked.setOptions({
 
 renderer.link = function link(href: string, title: string, text: string): string {
   const a = _link.call(renderer, href, title, text)
-  return a.replace(/^<a/, '<a target="_blank" rel="noopener noreferrer"')
+  return a.replace(/^<a/, '<Anchor').replace(/<\/a>$/, '</Anchor>')
 }
 
 
