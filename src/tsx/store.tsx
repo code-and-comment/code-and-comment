@@ -14,6 +14,13 @@ export interface CodeAndComment {
 }
 
 
+export interface Popup {
+  left: number
+  top: number
+  lines: Record<string, string>
+}
+
+
 export interface State {
   id: number | null
   highlightLineNumber: number
@@ -28,6 +35,7 @@ export interface State {
   codeAndComments: CodeAndComment[]
   searchRepository: string
   repositories: string[]
+  popup: Popup | null
   isSelectorOpen?: boolean
   token?: string
 }
@@ -48,7 +56,8 @@ export function initialState(): State {
     codeAndComments: [],
     // for search and RepositorySelector component
     searchRepository: '',
-    repositories: []
+    repositories: [],
+    popup: null
   }
 }
 

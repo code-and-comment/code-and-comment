@@ -3,7 +3,6 @@ import { h, Component } from 'preact'
 import Markup from 'preact-markup'
 
 import markdown from '../markdown'
-import Anchor from './anchor'
 import Button from './button'
 
 
@@ -47,7 +46,7 @@ class CommentCard extends Component<Props> {
           <span className="content">{ code }</span>
         </div>
         <div className="comment">
-          <Markup markup={ markdown(comment) } components={ { Anchor } } />
+          <Markup wrap={ false } markup={ markdown(comment) } />
         </div>
         <div>{ repository }</div>
         <div>

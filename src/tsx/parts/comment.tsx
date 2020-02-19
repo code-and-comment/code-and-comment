@@ -94,7 +94,7 @@ class Comment extends Component<Props, State> {
       return (
         <div className="cc-comment">
           <div className="display-markdown">
-            <Markup markup={ markdown(comment) } components={ { Anchor } } />
+            <Markup wrap={ false } markup={ markdown(comment) } components={ { Anchor } } />
           </div>
         </div>
       )
@@ -110,7 +110,7 @@ class Comment extends Component<Props, State> {
               </div>
             </div>
             { !isPreview && <textarea onChange={ this.setComment }>{ comment }</textarea> }
-            { isPreview && <div className="display-markdown"><Markup markup={ markdown(comment) } components={ { Anchor } } /></div> }
+            { isPreview && <div className="display-markdown"><Markup wrap={ false } markup={ markdown(comment) } components={ { Anchor } } /></div> }
           </div>
           <div className="controls">
             <Button onClick={ this.cancel }>Cancel</Button>
