@@ -16,3 +16,13 @@ export interface ISetPopup extends BoundAction {
 export interface IClearPopup extends BoundAction {
   (): void
 }
+
+
+function clearPopup() {
+  return { popup: null }
+}
+
+
+export default {
+  clearPopup
+}
