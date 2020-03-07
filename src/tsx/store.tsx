@@ -4,6 +4,7 @@ import createStore from 'unistore'
 export interface CodeAndComment {
   id: number
   lines: string[]
+  // key is index of lines
   comments: Record<string, string>
   git: string
   repository: string
@@ -17,6 +18,8 @@ export interface CodeAndComment {
 export interface Popup {
   left: number
   top: number
+  width: number
+  // key is index of lines
   lines: Record<string, string>
 }
 
