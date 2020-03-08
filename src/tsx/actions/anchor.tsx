@@ -25,15 +25,12 @@ export interface ISetPopup extends BoundAction {
 // left, top and width are anchor
 async function setPopup(
   state: State,
+  id: number,
   index: number,
   left: number,
   top: number,
   width: number
 ): Promise<{ popup: Popup | null }> {
-  const id = state.id
-  if (id === null) {
-    return { popup: null }
-  }
   const db = await getDB()
   // @ts-ignore
   const objectStore = await getObjectStore(db)
