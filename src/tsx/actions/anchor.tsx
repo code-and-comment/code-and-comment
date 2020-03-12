@@ -1,4 +1,5 @@
 import { BoundAction } from 'unistore'
+import { getCurrentUrl } from 'preact-router'
 
 import { CodeAndComment, State, Popup } from '../store'
 import {
@@ -9,6 +10,7 @@ import {
 
 
 const NUMBER_OF_LINES = 10
+const EDIT_PATH = '/'
 
 
 export interface ISetPopup extends BoundAction {
@@ -25,25 +27,28 @@ export interface ISetPopup extends BoundAction {
 // left, top and width are anchor
 async function setPopup(
   state: State,
-  id: number,
   index: number,
   left: number,
   top: number,
   width: number
 ): Promise<{ popup: Popup | null }> {
+  if (getCurrentUrl() === EDIT_PATH) {
+    return { popup: null }
+  }
+  const id = state.id
   const db = await getDB()
   // @ts-ignore
   const objectStore = await getObjectStore(db)
-  const request = await getRecord(objectStore, id)
+  const request = await getRecord(objectStore, id!)
   // TODO error process
   // @ts-ignore
   if (request.target.result) {
     const lines = {}
     // @ts-ignore
     const codeAndComment: CodeAndComment = request.target.result
-    codeAndComment.lines.slice(index, NUMBER_OF_LINES).forEach((code, index) => {
+    codeAndComment.lines.slice(index, index + NUMBER_OF_LINES).forEach((code, i) => {
       // @ts-ignore
-      lines[index + NUMBER_OF_LINES + ''] = code
+      lines[index + i + ''] = code
     })
     return {
       popup: {
