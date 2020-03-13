@@ -12,6 +12,10 @@ renderer.link = function link(href: string, title: string, text: string): string
   return a.replace(/^<a/, '<Anchor').replace(/<\/a>$/, '</Anchor>')
 }
 
+renderer.br = function br() {
+  return '<br/>'
+}
+
 
 export default function markdown(comment: string): string {
   return marked(comment, { renderer })
