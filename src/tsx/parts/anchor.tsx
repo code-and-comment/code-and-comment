@@ -1,6 +1,7 @@
 import { h, Component, ComponentChildren, JSX } from 'preact'
 import { connect } from 'unistore/preact'
 
+import { State as S } from '../store'
 import actions, { IClearPopup, ISetPopup } from '../actions/anchor'
 
 
@@ -50,9 +51,13 @@ class Anchor extends Component<Props, State> {
   _onMouseEnter(event: JSX.TargetedEvent<HTMLAnchorElement, Event>) {
     event.stopPropagation()
     // @ts-ignore
-    const { lineNumber } = event.currentTarget.closest('.cc-line').firstChild.dataset
-    const { left, top, width } = event.currentTarget.getBoundingClientRect()
-    this.props.setPopup(+lineNumber - 1, left, top, width)
+    const line = event.currentTarget.closest('.cc-line')
+    if (line) {
+      // @ts-ignore
+      const { lineNumber } = line.firstChild.dataset
+      const { left, top, width } = event.currentTarget.getBoundingClientRect()
+      this.props.setPopup(+lineNumber - 1, left, top, width)
+    }
   }
 
   _onMouseLeave(event: JSX.TargetedEvent<HTMLAnchorElement, Event>) {
@@ -69,4 +74,4 @@ class Anchor extends Component<Props, State> {
 }
 
 
-export default connect<{}, State, {}, Props>([], actions)(Anchor)
+export default connect<Pick<Props, 'href' | 'children'>, State, S, Props>([], actions)(Anchor)
