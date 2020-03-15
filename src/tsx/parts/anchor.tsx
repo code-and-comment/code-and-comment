@@ -50,13 +50,10 @@ class Anchor extends Component<Props, State> {
 
   _onMouseEnter(event: JSX.TargetedEvent<HTMLAnchorElement, Event>) {
     event.stopPropagation()
-    // @ts-ignore
-    const line = event.currentTarget.closest('.cc-line')
-    if (line) {
-      // @ts-ignore
-      const { lineNumber } = line.firstChild.dataset
+    const { id, index } = this.state
+    if (id !== null) {
       const { left, top, width } = event.currentTarget.getBoundingClientRect()
-      this.props.setPopup(+lineNumber - 1, left, top, width)
+      this.props.setPopup(id, index, left + window.scrollX, top + window.scrollY, width)
     }
   }
 

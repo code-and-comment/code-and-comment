@@ -11,6 +11,7 @@ import Button from '../parts/button'
 import CodeAndCommentSelector from '../parts/code-and-comment-selector'
 import RepositorySelector from '../parts/repository-selector'
 import MenuBar from '../parts/menu-bar'
+import Popup from '../parts/popup'
 import { State } from '../store'
 
 
@@ -36,7 +37,7 @@ interface A {
 }
 
 
-type Props = A & Pick<State, 'id' | 'title' | 'lines' | 'loading' | 'comments' | 'path' | 'isSelectorOpen' | 'highlightLineNumber' | 'networkError' | 'urlError'>
+type Props = A & Pick<State, 'id' | 'title' | 'lines' | 'loading' | 'comments' | 'path' | 'isSelectorOpen' | 'highlightLineNumber' | 'networkError' | 'urlError' | 'popup'>
 
 
 class Edit extends Component<Props, S> {
@@ -111,7 +112,8 @@ class Edit extends Component<Props, S> {
     importData,
     clearErrors,
     networkError,
-    urlError
+    urlError,
+    popup
   }: Props, {
     hiddenSignal,
     highlightLineNumber
@@ -191,6 +193,7 @@ class Edit extends Component<Props, S> {
                 hiddenSignal={ hiddenSignal }
                 highlightLineNumber={ highlightLineNumber }
               />
+              <Popup popup={ popup } />
             </div>
           ) }
         </div>
@@ -211,6 +214,7 @@ const mapStateToProps = [
   'highlightLineNumber',
   'networkError',
   'urlError',
+  'popup'
 ]
 
 
