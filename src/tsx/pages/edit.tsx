@@ -112,8 +112,7 @@ class Edit extends Component<Props, S> {
     importData,
     clearErrors,
     networkError,
-    urlError,
-    popup
+    urlError
   }: Props, {
     hiddenSignal,
     highlightLineNumber
@@ -193,7 +192,7 @@ class Edit extends Component<Props, S> {
                 hiddenSignal={ hiddenSignal }
                 highlightLineNumber={ highlightLineNumber }
               />
-              <Popup popup={ popup } />
+              <Popup />
             </div>
           ) }
         </div>
@@ -214,7 +213,6 @@ const mapStateToProps = [
   'highlightLineNumber',
   'networkError',
   'urlError',
-  'popup'
 ]
 
 

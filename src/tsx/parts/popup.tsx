@@ -1,4 +1,5 @@
 import { h, FunctionalComponent } from 'preact'
+import { connect } from 'unistore/preact'
 
 import { Popup as P } from '../store'
 
@@ -40,4 +41,4 @@ const Popup: FunctionalComponent<Props> = function ({ popup }: Props) {
 }
 
 
-export default Popup
+export default connect<{}, {}, {}, Props>(['popup'], {})(Popup)
