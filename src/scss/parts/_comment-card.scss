@@ -1,28 +1,10 @@
 @import '../variables';
 
-
 .cc-comment-card {
   .line {
-    font-family: $line-font-family;
-    font-size: $line-font-size;
-    line-height:  $line-line-height;
-    min-width: 100%;
-    width: max-content;
+    @extend .cc-_line;
     border: $border;
     border-bottom: none;
-    .number {
-      width: 33px;
-      text-align: right;
-      display: inline-block;
-      padding-right: 4px;
-      border-right: $border;
-      user-select: none;
-    }
-    .content {
-      white-space: pre;
-      display: inline-block;
-      padding-left: 9px;
-    }
   }
   .comment {
     @extend .cc-display-markdown;

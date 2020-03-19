@@ -10,23 +10,6 @@
   border-radius: 4px 4px 4px 4px;
   box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.15);
   .line {
-    font-family: $line-font-family;
-    font-size: $line-font-size;
-    line-height:  $line-line-height;
-    min-width: 100%;
-    width: max-content;
-    .number {
-      width: 33px;
-      text-align: right;
-      display: inline-block;
-      padding-right: 4px;
-      border-right: $border;
-      user-select: none;
-    }
-    .content {
-      white-space: pre;
-      display: inline-block;
-      padding-left: 9px;
-    }
+    @extend .cc-_line;
   }
 }
