@@ -1,6 +1,6 @@
 {
   "name": "code-and-comment",
-  "version": "0.3.34",
+  "version": "0.3.35",
   "author": "38elements",
   "description": "PWA to add comment to Github file.",
   "scripts": {
