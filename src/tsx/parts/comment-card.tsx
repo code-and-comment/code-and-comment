@@ -1,5 +1,4 @@
 import { h, Component } from 'preact'
-// @ts-ignore
 import Markup from 'preact-markup'
 
 import Anchor from './anchor'
