@@ -8,6 +8,9 @@
     "noEmit": true,
     "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "typeRoots": ["types", "node_modules/@types"],
+    "paths": {"preact-markup": ["types/preact-markup"]}
   }
 }
