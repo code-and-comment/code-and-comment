@@ -38,7 +38,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.3",
     "fork-ts-checker-webpack-plugin": "^4.0.3",
-    "jsdom": "^16.1.0",
+    "jsdom": "^16.2.1",
     "jsdom-global": "^3.0.2",
     "mini-css-extract-plugin": "^0.9.0",
     "mocha": "^7.0.1",
@@ -51,7 +51,7 @@
     "sinon": "^8.1.1",
     "source-map-loader": "^0.2.4",
     "terser": "^4.6.3",
-    "typescript": "^3.7.5",
+    "typescript": "^3.8.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
@@ -59,7 +59,7 @@
     "history": "^4.10.1",
     "js-base64": "^2.5.1",
     "marked": "^0.7.0",
-    "preact": "10.3.3",
+    "preact": "10.3.4",
     "preact-markup": "^2.0.0",
     "preact-router": "^3.2.1",
     "unistore": "^3.5.1"
