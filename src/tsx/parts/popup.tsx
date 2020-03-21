@@ -36,9 +36,7 @@ const Popup: FunctionalComponent<Props> = function ({ popup }: Props) {
       top: `${ popup.top - top }px`,
       left: `${ popup.left }px`,
     }
-    const lineNumbers = Object.keys(popup.lines).map((n) => {
-      return +n
-    }).sort()
+    const lineNumbers = Object.keys(popup.lines).map((n) => +n).sort((a, b) => a - b)
     return (<div className="cc-popup" style={ style }>
       { lineNumbers.map((n) => <Line lineNumber={ n + 1 } code={ popup.lines[n + ''] } key={ n }  />) }
     </div>)
