@@ -1,18 +1,26 @@
-import { Component, VNode, ComponentConstructor } from 'preact'
+import { createElement, Component, VNode, ComponentConstructor, FunctionalComponent } from 'preact'
+
+
+type Components = Record<string, ComponentConstructor<any, any> | FunctionalComponent<any>>
 
 
 type Props = {
   type?: string
   trim?: boolean
   wrap?: boolean
+  reviver?: typeof createElement
   markup: string
-  components?: Record<string, ComponentConstructor<any, any>> 
+  components?: Components
   onError?: Function
   'allow-scripts'?: boolean
+  'allow-events'?: boolean
+  [key: string]: any
 }
 
 
 class Markup extends Component<Props, {}> {
+  static setReviver(h: typeof createElement): void
+  setComponents(components: Components): void
   render(props: Props, {}): VNode
 }
 
