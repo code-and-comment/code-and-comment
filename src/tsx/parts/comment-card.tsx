@@ -46,7 +46,7 @@ class CommentCard extends Component<Props> {
           <span className="content">{ code }</span>
         </div>
         <div className="comment">
-          <Markup wrap={ false } markup={ markdown(comment) } components={ { Anchor } } />
+          <Markup markup={ markdown(comment) } components={ { Anchor } } />
         </div>
         <div>{ repository }</div>
         <div>
