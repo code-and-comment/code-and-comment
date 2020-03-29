@@ -4,6 +4,7 @@ const renderer = new marked.Renderer()
 const _link = renderer.link
 
 marked.setOptions({
+  breaks: true,
   sanitize: true
 })
 
