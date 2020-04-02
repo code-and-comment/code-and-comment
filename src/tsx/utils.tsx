@@ -163,10 +163,8 @@ export async function edit(
   updateRepositories: Function,
   updateCodeAndComments: Function,
 ): Pick<State, 'id' | 'highlightLineNumber' | 'title' | 'git' | 'path' | 'lines' | 'comments' | 'searchRepository'> | void {
-  // @ts-ignore
-  id -= 0
-  // @ts-ignore
-  highlightLineNumber -= 0
+  id = +id
+  highlightLineNumber = +highlightLineNumber
   const db = await getDB()
   const objectStore = await getObjectStore(db)
   const request = await getRecord(objectStore, id)
@@ -197,10 +195,8 @@ export async function edit(
 export function setLines(cursor: IDBCursorWithValue) {
   const lines = Array.from({ length: cursor.value.lines.length })
   Object.keys(cursor.value.comments).forEach((index: string) => {
-    // @ts-ignore
-    const i = index - 0
+    const i = +index
     lines[i] = cursor.value.lines[i]
   })
-  // @ts-ignore
-  cursor.value.lines = lines
+  cursor!.value!.lines = lines
 }
