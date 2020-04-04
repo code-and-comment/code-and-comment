@@ -4,6 +4,11 @@ import { createElement, Component, VNode, ComponentConstructor, FunctionalCompon
 type Components = Record<string, ComponentConstructor<any, any> | FunctionalComponent<any>>
 
 
+type ErrorParam = {
+  error: Error
+}
+
+
 type Props = {
   type?: string
   trim?: boolean
@@ -11,7 +16,7 @@ type Props = {
   reviver?: typeof createElement
   markup: string
   components?: Components
-  onError?: Function
+  onError?: (error: ErrorParam) => void
   'allow-scripts'?: boolean
   'allow-events'?: boolean
   [key: string]: any
