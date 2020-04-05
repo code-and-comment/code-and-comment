@@ -160,8 +160,7 @@ async function importData(
   requestIdleCallback = window.requestIdleCallback
 ): Promise<State> {
   const db = await getDB()
-  // @ts-ignore
-  const objectStore = await getObjectStore(db)
+  const objectStore = await getObjectStore(db!)
   await clearObjectStore(objectStore)
   await putRecords(objectStore, data)
   window.alert('Importing data is complete.')
@@ -316,8 +315,7 @@ async function changeCodeAndComment(
     return
   }
   const db = await getDB()
-  // @ts-ignore
-  const objectStore = await getObjectStore(db)
+  const objectStore = await getObjectStore(db!)
   const request = await getRecord(objectStore, id)
   // TODO error process
   // @ts-ignore

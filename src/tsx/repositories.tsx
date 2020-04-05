@@ -6,8 +6,7 @@ import {
 
 self.addEventListener('message', async function() {
   const db = await getDB()
-  // @ts-ignore
-  const objectStore = await getObjectStore(db)
+  const objectStore = await getObjectStore(db!)
   const p = new Promise((resolve, reject) => {
     const cursor = objectStore.openCursor()
     const repositories = new Set()
