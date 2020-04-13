@@ -17,6 +17,10 @@ renderer.br = function br() {
   return '<br/>'
 }
 
+renderer.hr = function hr() {
+  return '<hr/>'
+}
+
 
 export default function markdown(comment: string): string {
   return marked(comment, { renderer })
