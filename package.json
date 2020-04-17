@@ -59,7 +59,7 @@
     "history": "^4.10.1",
     "js-base64": "^2.5.1",
     "marked": "^0.8.0",
-    "preact": "10.3.4",
+    "preact": "10.4.0",
     "preact-markup": "^2.0.0",
     "preact-router": "^3.2.1",
     "unistore": "^3.5.1"
