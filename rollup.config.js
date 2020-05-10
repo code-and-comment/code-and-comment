@@ -35,6 +35,6 @@ export default {
     commonjs({
       include: 'node_modules/**',
     }),
-    replace({'process.env.NODE_ENV': 'production'})
+    replace({'process.env.NODE_ENV': JSON.stringify('production')})
   ]
 };
