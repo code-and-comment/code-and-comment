@@ -27,7 +27,7 @@
     "@types/enzyme": "3.10.12",
     "@types/history": "4.7.11",
     "@types/js-base64": "2.3.2",
-    "@types/marked": "0.6.5",
+    "@types/marked": "0.7.4",
     "@types/tapable": "1.0.8",
     "@types/webpack": "4.41.32",
     "@typescript-eslint/eslint-plugin": "2.34.0",
