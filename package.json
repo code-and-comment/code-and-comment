@@ -59,7 +59,7 @@
   "dependencies": {
     "history": "4.10.1",
     "js-base64": "2.6.4",
-    "marked": "0.8.2",
+    "marked": "4.0.10",
     "preact": "10.4.1",
     "preact-markup": "2.1.1",
     "preact-router": "3.2.1",
