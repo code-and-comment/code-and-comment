@@ -28,7 +28,7 @@
     "@types/history": "4.7.11",
     "@types/js-base64": "2.3.2",
     "@types/marked": "0.6.5",
-    "@types/tapable": "1.0.8",
+    "@types/tapable": "2.2.7",
     "@types/webpack": "4.41.32",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
